@@ -30,4 +30,9 @@ Your app is ready to be deployed!
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### :mortar_board: MEMBER
-**![react](https://user-images.githubusercontent.com/98151533/210707238-89d94d1d-5ac7-4436-8fac-e32a33a9ed68.svg)**
+FE : 장한나, 이영우, 강성심
+
+BE : 김희진, 강신찬, 박금비
+
+### 
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/>
