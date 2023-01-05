@@ -52,11 +52,9 @@ BE : 김희진, 강신찬, 박금비
 
 <img src="https://img.shields.io/badge/React Router-CA4245?style=flat&logo=React Router&logoColor=white"/>
 
+## Back
 
-##Back
-
-
-##CI/CD
+## CI/CD
 
 
 <img src="https://img.shields.io/badge/Amazon S3-569A31?style=flat&logo=Amazon S3&logoColor=white"/>
