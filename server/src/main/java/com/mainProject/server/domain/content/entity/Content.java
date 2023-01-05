@@ -24,7 +24,7 @@ public class Content extends Auditable {
     @Column(nullable = false)
     private String contentTitle;
 
-    @Column(length = 100, nullable = false)
+    @Column(nullable = false)
     private String contentBody;
 
     @Column(nullable = false)
@@ -34,14 +34,14 @@ public class Content extends Auditable {
     private List<Comment> commentList;
 
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
-    private List<Choice> choiceList;
+    private List<Choice> choiceList; // 찜
 
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
-    private List<Deprecated> deprecatedList;
+    private List<Deprecated> deprecatedList; // 비추 = 추하면 비추 못함
 
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
-    private List<Recomend> recomendList;
+    private List<Recomend> recomendList; // 추 = 비추하면 추 못함
 
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
-    private List<Favorite> favoriteList;
+    private List<Favorite> favoriteList; // 인생작 3편 이하 선택
 }
