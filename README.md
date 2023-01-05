@@ -29,13 +29,13 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### :mortar_board: MEMBER
+## :mortar_board: MEMBER
 FE : 장한나, 이영우, 강성심
 
 BE : 김희진, 강신찬, 박금비
 
-### :low_brightness: 기술 스텍
-## Front
+## :low_brightness: 기술 스텍
+### Front
 
 
 <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/>
@@ -52,9 +52,9 @@ BE : 김희진, 강신찬, 박금비
 
 <img src="https://img.shields.io/badge/React Router-CA4245?style=flat&logo=React Router&logoColor=white"/>
 
-## Back
+### Back
 
-## CI/CD
+### CI/CD
 
 
 <img src="https://img.shields.io/badge/Amazon S3-569A31?style=flat&logo=Amazon S3&logoColor=white"/>
