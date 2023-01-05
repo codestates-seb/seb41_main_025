@@ -30,4 +30,4 @@ Your app is ready to be deployed!
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### :mortar_board: MEMBER
-![react](https://user-images.githubusercontent.com/98151533/210707238-89d94d1d-5ac7-4436-8fac-e32a33a9ed68.svg)
+**![react](https://user-images.githubusercontent.com/98151533/210707238-89d94d1d-5ac7-4436-8fac-e32a33a9ed68.svg)**
