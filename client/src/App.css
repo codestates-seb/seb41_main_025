@@ -1,3 +1,38 @@
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 400;
+  src: url(../src/fonts/NotoSansKR-Regular.otf) format("otf");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: medium;
+  font-weight: 500;
+  src: url(../src/fonts/NotoSansKR-Medium.otf) format("otf");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: bold;
+  font-weight: 700;
+  src: url(../src/fonts/NotoSansKR-Bold.otf) format("otf");
+}
+
+@font-face {
+  font-family: "Nanum Gothic Coding";
+  font-style: normal;
+  font-weight: 400;
+  src: url(../src/fonts/NanumGothicCoding-Regular.ttf) format("ttf");
+}
+
+@font-face {
+  font-family: "Nanum Gothic Coding";
+  font-style: bold;
+  font-weight: 700;
+  src: url(../src/fonts/NanumGothicCoding-Bold.ttf) format("ttf");
+}
+
 .App {
   text-align: center;
 }
