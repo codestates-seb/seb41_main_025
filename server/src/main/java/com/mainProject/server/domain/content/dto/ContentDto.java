@@ -5,10 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 
 public class ContentDto {
     @Getter
+    @Setter
     @AllArgsConstructor
     public static class Post{
         @NotBlank
@@ -16,22 +18,20 @@ public class ContentDto {
         @NotBlank
         private String contentBody;
         private String contentPoster;
+        private String contentRank;
+        private String contentOpenAt;
     }
 
     @Getter
     @Setter
     @AllArgsConstructor
     public static class Patch{
-        @NotBlank
         private long contentId;
-        @NotBlank
-        private String contentTitle;
-        @NotBlank
-        private String contentBody;
-        private String contentPoster;
+        private String contentRank;
     }
 
     @Getter
+    @Setter
     @AllArgsConstructor
     @NoArgsConstructor
     public static class Response{
@@ -39,5 +39,7 @@ public class ContentDto {
         private String contentTitle;
         private String contentBody;
         private String contentPoster;
+        private String contentRank;
+        private String contentOpenAt;
     }
 }

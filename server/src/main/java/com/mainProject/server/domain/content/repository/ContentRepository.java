@@ -1,5 +1,6 @@
 package com.mainProject.server.domain.content.repository;
 
+import com.mainProject.server.domain.comment.entity.Comment;
 import com.mainProject.server.domain.content.entity.Content;
 import com.mainProject.server.domain.member.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;

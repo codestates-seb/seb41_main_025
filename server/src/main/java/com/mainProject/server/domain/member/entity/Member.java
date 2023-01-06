@@ -27,19 +27,19 @@ public class Member extends Auditable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long memberId;
 
-    @Email @Column(nullable = false)
+    @Email @Column
     private String email;
 
-    @Column(nullable = false)
+    @Column
     private String password;
 
-    @Column(nullable = false)
+    @Column
     private String name;
 
-    @Column(nullable = false)
+    @Column
     private String nickName;
 
-    @Column(nullable = false)
+    @Column
     private String memberPicture;
 
     @OneToMany(mappedBy="member", cascade = CascadeType.ALL)
@@ -59,4 +59,5 @@ public class Member extends Auditable {
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Favorite> favoriteList;
+
 }
