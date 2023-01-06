@@ -4,6 +4,7 @@ import com.mainProject.server.domain.content.dto.ContentDto;
 import com.mainProject.server.domain.content.entity.Content;
 import com.mainProject.server.domain.content.mapper.ContentMapper;
 import com.mainProject.server.domain.content.service.ContentService;
+import com.mainProject.server.domain.content.service.CrawlingService;
 import com.mainProject.server.global.response.SingleResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -33,6 +34,7 @@ public class ContentController {
                 new SingleResponseDto<>(mapper.contentToContentResponseDto(createContent)),HttpStatus.CREATED);
     }
 
+
     // TODO PATCH
     @PatchMapping("/{content-id}")
     public ResponseEntity patchContent(@PathVariable("content-id") @Positive long contentId,
@@ -58,6 +60,7 @@ public class ContentController {
         return new ResponseEntity<>(new SingleResponseDto<>(
                 mapper.ContentListToContentListResponseDto(responses)), HttpStatus.OK);
     }
+
 
     // TODO DELETE ONE
     @DeleteMapping("/{content-id}")

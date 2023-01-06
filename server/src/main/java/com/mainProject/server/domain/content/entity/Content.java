@@ -24,11 +24,17 @@ public class Content extends Auditable {
     @Column(nullable = false)
     private String contentTitle;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1000)
     private String contentBody;
 
     @Column(nullable = false)
     private String contentPoster;
+
+    @Column(nullable = false)
+    private String contentRank;
+
+    @Column(nullable = false)
+    private String contentOpenAt;
 
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
     private List<Comment> commentList;
