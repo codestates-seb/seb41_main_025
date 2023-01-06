@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
-import { useState } from 'react'
 // import { ReactComponent as GreenLogo } from "../assets/GreenLogo.svg"
  
 export const Main = styled.div`
