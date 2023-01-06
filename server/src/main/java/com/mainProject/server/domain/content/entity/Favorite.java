@@ -1,6 +1,5 @@
 package com.mainProject.server.domain.content.entity;
 
-import com.mainProject.server.domain.content.entity.Content;
 import com.mainProject.server.domain.member.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Favorite {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long favoriteId;
+    private Long favoriteId;
 
     @ManyToOne
     @JoinColumn(name="MEMBER_ID")

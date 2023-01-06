@@ -15,7 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Choice {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long choiceId;
+    private Long choiceId;
 
     @ManyToOne
     @JoinColumn(name="MEMBER_ID")

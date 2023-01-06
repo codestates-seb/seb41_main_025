@@ -7,6 +7,7 @@ import com.mainProject.server.domain.content.service.ContentService;
 import com.mainProject.server.domain.content.service.CrawlingService;
 import com.mainProject.server.global.response.SingleResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

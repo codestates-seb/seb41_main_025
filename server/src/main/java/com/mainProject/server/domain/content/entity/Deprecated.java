@@ -17,7 +17,7 @@ public class Deprecated {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long deprecatedId;
+    private Long deprecatedId;
 
     @ManyToOne
     @JoinColumn(name="MEMBER_ID")
