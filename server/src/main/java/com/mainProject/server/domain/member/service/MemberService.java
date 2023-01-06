@@ -6,10 +6,12 @@ import com.mainProject.server.global.exception.BusinessLogicException;
 import com.mainProject.server.global.exception.ExceptionCode;
 import com.mainProject.server.global.utils.CustomBeanUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.Optional;
 
 @Transactional
@@ -37,8 +39,8 @@ public class MemberService {
         return findVerifiedMember(memberId);
     }
 
-    public List<Member> findMembers() {
-        return memberRepository.findAll();
+    public Page<Member> findMembers(int page, int size) {
+        return memberRepository.findAll(PageRequest.of(page, size, Sort.by("memberId").descending()));
     }
 
     public void deleteMember(long memberId) {

@@ -13,9 +13,9 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Recomend {
+public class Recommend {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long recomendId;
+    private Long recommendId;
 
     @ManyToOne
     @JoinColumn(name="MEMBER_ID")

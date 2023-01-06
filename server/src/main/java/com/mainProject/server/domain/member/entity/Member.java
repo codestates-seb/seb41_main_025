@@ -5,7 +5,7 @@ import com.mainProject.server.domain.comment.entity.Comment;
 import com.mainProject.server.domain.content.entity.Choice;
 import com.mainProject.server.domain.content.entity.Deprecated;
 import com.mainProject.server.domain.content.entity.Favorite;
-import com.mainProject.server.domain.content.entity.Recomend;
+import com.mainProject.server.domain.content.entity.Recommend;
 import com.mainProject.server.global.audit.Auditable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,7 +25,7 @@ import java.util.List;
 @EntityListeners(AuditingEntityListener.class)
 public class Member extends Auditable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long memberId;
+    private Long memberId;
 
     @Email @Column
     private String email;
@@ -55,7 +55,7 @@ public class Member extends Auditable {
     private List<Deprecated> deprecatedList;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<Recomend> recomendList;
+    private List<Recommend> recommendList;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Favorite> favoriteList;

@@ -6,11 +6,9 @@ import com.mainProject.server.global.exception.BusinessLogicException;
 import com.mainProject.server.global.exception.ExceptionCode;
 import com.mainProject.server.global.utils.CustomBeanUtils;
 import lombok.RequiredArgsConstructor;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -40,7 +38,8 @@ public class ContentService {
         return findVerifiedContent(contentId);
     }
 
-    public List<Content> findContents() {return contentRepository.findAll();}
+    public Page<Content> findContents(int page, int size) {
+        return contentRepository.findAll(PageRequest.of(page,size, Sort.by("contentId").descending()));}
 
     public void deleteContent(long contentId) {
         Content findContent = findVerifiedContent(contentId);

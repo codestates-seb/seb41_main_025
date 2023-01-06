@@ -19,7 +19,7 @@ import java.util.List;
 @EntityListeners(AuditingEntityListener.class)
 public class Content extends Auditable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long contentId;
+    private Long contentId;
 
     @Column(nullable = false)
     private String contentTitle;
@@ -46,7 +46,7 @@ public class Content extends Auditable {
     private List<Deprecated> deprecatedList; // 비추 = 추하면 비추 못함
 
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
-    private List<Recomend> recomendList; // 추 = 비추하면 추 못함
+    private List<Recommend> recommendList; // 추 = 비추하면 추 못함
 
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
     private List<Favorite> favoriteList; // 인생작 3편 이하 선택

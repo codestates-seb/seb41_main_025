@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 
 public class ContentDto {
@@ -26,7 +25,7 @@ public class ContentDto {
     @Setter
     @AllArgsConstructor
     public static class Patch{
-        private long contentId;
+        private Long contentId;
         private String contentRank;
     }
 
