@@ -4,7 +4,7 @@ import com.mainProject.server.domain.content.dto.ContentDto;
 import com.mainProject.server.domain.content.entity.Content;
 import com.mainProject.server.domain.content.mapper.ContentMapper;
 import com.mainProject.server.domain.content.service.ContentService;
-import com.mainProject.server.domain.content.service.CrawlingService;
+import com.mainProject.server.global.response.MultiResponseDto;
 import com.mainProject.server.global.response.SingleResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -56,10 +56,12 @@ public class ContentController {
 
     // TODO GET ALL
     @GetMapping
-    public ResponseEntity getContents() {
-        List<Content> responses = contentService.findContents();
-        return new ResponseEntity<>(new SingleResponseDto<>(
-                mapper.ContentListToContentListResponseDto(responses)), HttpStatus.OK);
+    public ResponseEntity getContents(@Positive @RequestParam int page,
+                                      @Positive @RequestParam int size) {
+        Page<Content> contentPage = contentService.findContents(page - 1, size);
+        List<Content> contents = contentPage.getContent();
+        return new ResponseEntity<>(new MultiResponseDto<>(
+                mapper.ContentListToContentListResponseDto(contents),contentPage), HttpStatus.OK);
     }
 
 

@@ -5,14 +5,17 @@ import com.mainProject.server.domain.member.dto.MemberDto;
 import com.mainProject.server.domain.member.entity.Member;
 import com.mainProject.server.domain.member.mapper.MemberMapper;
 import com.mainProject.server.domain.member.service.MemberService;
+import com.mainProject.server.global.response.MultiResponseDto;
 import com.mainProject.server.global.response.SingleResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Positive;
 import java.util.List;
 
 @Slf4j
@@ -57,12 +60,13 @@ public class MemberController {
 
     // TODO GET ALL
     @GetMapping
-    public ResponseEntity getMembers(){
-      //  List<MemberDto.Response> responses = mapper.memberListToMemberResponseList(memberListForResponse.findMembers());
-        List<Member> responses = memberService.findMembers();
+    public ResponseEntity getMembers(@Positive @RequestParam int page,
+                                     @Positive @RequestParam int size){
+        Page<Member> memberPage = memberService.findMembers(page -1, size);
+        List<Member> members = memberPage.getContent();
         
-        return new ResponseEntity(new SingleResponseDto<>(
-                mapper.memberListToMemberResponseList(responses)), HttpStatus.OK);
+        return new ResponseEntity(new MultiResponseDto<>(
+                mapper.memberListToMemberResponseList(members), memberPage), HttpStatus.OK);
     }
 
     // TODO DELETE ONE

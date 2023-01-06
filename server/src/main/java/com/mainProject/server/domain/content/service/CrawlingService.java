@@ -41,10 +41,9 @@ public class CrawlingService {
         List<WebElement> productList = productDiv.findElements(By.className("item_poster"));
 
         List<String> movieList = new ArrayList<>();
-        Content content = new Content();
-        List<Content> contentList = new ArrayList<>();
 
         for (WebElement li : productList) {
+            Content content = new Content();
             String contentLink = li.findElement(By.className("link_txt")).getAttribute("href");
             String contentPoster = li.findElement(By.className("img_thumb")).getAttribute("src");
             String contentRank = li.findElement(By.className("thumb_item")).getAttribute("data-tiara-ordnum");
@@ -61,15 +60,13 @@ public class CrawlingService {
             content.setContentRank(contentRank);
             content.setContentTitle(contentTitle);
 
-            contentList.add(content);
+            contentService.createContent(content);
 
             movieList.clear();
         }
 
-        for(int i =0; i<contentList.size(); i++) {
 
-            contentService.createContent(contentList.get(i));
-        }
+
 
         driver.close();
     }
