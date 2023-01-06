@@ -3,14 +3,14 @@ import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 // import { ReactComponent as GreenLogo } from "../assets/GreenLogo.svg"
  
-const Main = styled.div`
+export const Main = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 10%;
 `
 
-const LoginWindow = styled.div`
+export const Window = styled.div`
     display: flex;
     width: 983px;
     height: 637px;
@@ -51,7 +51,7 @@ const Logo = styled.div`
     }
 `
 
-const LoginContent = styled.div`
+export const ContentForm = styled.div`
     display: grid;
     justify-content: center;
     align-items: center;
@@ -60,13 +60,13 @@ const LoginContent = styled.div`
     font-size: 50px;
     font-weight: 600;
     color: white;
-    .loginButton {
+    .EnterButton {
         margin-left: 300px;
         margin-bottom: 30px;
     }
 `
 
-const Whitebutton = styled(NavLink)`
+export const Whitebutton = styled(NavLink)`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80,13 +80,13 @@ const Whitebutton = styled(NavLink)`
     border: 0;
     text-decoration: none;
 `
-const EnterContent = styled.form`
+export const EnterContent = styled.form`
     display: grid;
     width: 380px;
     margin-top: 90px;
 `
 
-const Enter = styled.input`
+export const Enter = styled.input`
     margin-bottom: 70px;
     background-color: #58BFAD;
     border: 0;
@@ -102,7 +102,7 @@ const Login = () => {
 
     return (
         <Main>
-            <LoginWindow>
+            <Window>
                 <Front>
                     <Logo>
                         <img src ='/assets/GreenLogo.png' className='greenLogo'/>
@@ -114,7 +114,7 @@ const Login = () => {
                         <Whitebutton to = '/signUp'>Sign Up</Whitebutton>
                     </LogoFont>
                 </Front>
-                <LoginContent>
+                <ContentForm>
                   <span className='LoginFont'>LOGIN</span> 
                   <EnterContent>
                     <Enter
@@ -128,9 +128,9 @@ const Login = () => {
                     onChange={handleEnter}
                     />
                   </EnterContent>
-                  <Whitebutton to = '/' className='loginButton'>Login</Whitebutton>
-                </LoginContent>
-            </LoginWindow>
+                  <Whitebutton to = '/' className='EnterButton'>Login</Whitebutton>
+                </ContentForm>
+            </Window>
         </Main>
 
     )
