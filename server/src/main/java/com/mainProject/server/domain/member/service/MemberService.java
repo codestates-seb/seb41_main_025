@@ -7,9 +7,12 @@ import com.mainProject.server.global.exception.BusinessLogicException;
 import com.mainProject.server.global.exception.ExceptionCode;
 import com.mainProject.server.global.utils.CustomBeanUtils;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Transactional
 @Service
 @RequiredArgsConstructor
@@ -42,6 +46,9 @@ public class MemberService {
     public Member updateMember(Member member) {
         Member findMember = findVerifiedMember(member.getMemberId());
 
+        if(getCurrentMember().getMemberId() != findMember.getMemberId())
+            throw new BusinessLogicException(ExceptionCode.MEMBER_NOT_ALLOW);
+
         Member updateMember = beanUtils.copyNonNullProperties(member, findMember);
 // 오 뭔가 눌렀는데 오류가 잠깐 사라진거 같아요
         return memberRepository.save(updateMember);
@@ -58,6 +65,9 @@ public class MemberService {
     public void deleteMember(long memberId) {
         Member findMember = findVerifiedMember(memberId);
 
+        if(getCurrentMember().getMemberId() != findMember.getMemberId())
+            throw new BusinessLogicException(ExceptionCode.MEMBER_NOT_ALLOW);
+
         memberRepository.delete(findMember);
     }
 
@@ -71,5 +81,19 @@ public class MemberService {
         Optional<Member> member = memberRepository.findByEmail(email);
         if(member.isPresent())
             throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
+    }
+
+    public Member getCurrentMember() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if(authentication == null || authentication.getName() == null || authentication.getName().equals("anonymousUser"))
+            throw new BusinessLogicException(ExceptionCode.MEMBER_UNAUTHORIZED);
+
+        Optional<Member> optionalMember = memberRepository.findByEmail(authentication.getName());
+        Member member = optionalMember.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
+
+        log.info("# 현재 사용자 ={}",member.getMemberId());
+
+        return member;
     }
 }

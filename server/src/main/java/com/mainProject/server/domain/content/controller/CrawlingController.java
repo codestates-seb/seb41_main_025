@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/contents/crawlings")
+@RequestMapping("/crawlings/contents")
 @RequiredArgsConstructor
 @Validated
 public class CrawlingController {
