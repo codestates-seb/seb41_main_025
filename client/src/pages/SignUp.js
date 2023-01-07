@@ -23,7 +23,7 @@ const SignUp = () => {
         <Main>
             <Window>
                 <Hello>
-                    <HelloAnnouncement>반갑습니다 !<br/><br/>오른쪽 칸에 정보 입력후 <br/>Sign up 버튼을 눌러주세요</HelloAnnouncement>
+                    <HelloAnnouncement>반갑습니다 !<br/><br/>오른쪽 칸에 정보 입력 후 <br/>Sign up 버튼을 눌러주세요</HelloAnnouncement>
                 </Hello>
                 <ContentForm>
                     <span className='LoginFont'>Sign Up</span>
