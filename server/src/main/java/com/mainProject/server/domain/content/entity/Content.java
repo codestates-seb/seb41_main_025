@@ -24,7 +24,7 @@ public class Content extends Auditable {
     @Column(nullable = false)
     private String contentTitle;
 
-    @Column(nullable = false, length = 1000)
+    @Column(nullable = false, length = 100000)
     private String contentBody;
 
     @Column(nullable = false)
