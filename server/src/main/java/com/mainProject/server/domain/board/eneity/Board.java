@@ -15,7 +15,6 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
 public class Board extends Auditable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long boardId;

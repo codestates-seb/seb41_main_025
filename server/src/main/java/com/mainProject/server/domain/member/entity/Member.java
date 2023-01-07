@@ -23,7 +23,6 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
 public class Member extends Auditable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberId;
@@ -47,21 +46,21 @@ public class Member extends Auditable {
     private List<String> roles = new ArrayList<>();
 
     @OneToMany(mappedBy="member", cascade = CascadeType.ALL)
-    private List<Board> boardList;
-
+    private List<Board> boardList = new ArrayList<>();
+/*
     @OneToMany(mappedBy="member", cascade = CascadeType.ALL)
-    private List<Comment> commentList;
+    private List<Comment> commentList = new ArrayList<>();*/
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<Choice> choiceList;
+    private List<Choice> choiceList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<Deprecated> deprecatedList;
+    private List<Deprecated> deprecatedList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<Recommend> recommendList;
+    private List<Recommend> recommendList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<Favorite> favoriteList;
+    private List<Favorite> favoriteList = new ArrayList<>();
 
 }

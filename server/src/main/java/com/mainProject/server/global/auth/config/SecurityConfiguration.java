@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -26,7 +27,7 @@ import java.util.Arrays;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
-//@EnableWebSecurity(debug = true)
+@EnableWebSecurity(debug = true) //테스트 용으로
 @RequiredArgsConstructor
 public class SecurityConfiguration {
     private final JwtTokenizer jwtTokenizer;
@@ -46,17 +47,24 @@ public class SecurityConfiguration {
                 .apply(new CustomFilterConfigurer())   // (1)
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
-                        .antMatchers(HttpMethod.POST, "/*/members/login").permitAll()
-                        .antMatchers(HttpMethod.POST, "/*/members").permitAll()         // (1) 추가
-                        .antMatchers(HttpMethod.PATCH, "/*/members/**").hasRole("USER")  // (2) 추가
-                        .antMatchers(HttpMethod.GET, "/*/members").hasRole("ADMIN")     // (3) 추가
-                        .antMatchers(HttpMethod.GET, "/*/members/**").hasAnyRole("USER", "ADMIN")  // (4) 추가
-                        .antMatchers(HttpMethod.DELETE, "/*/members/**").hasRole("USER")  // (5) 추가
-                        .antMatchers(HttpMethod.POST, "/*/contents").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.GET, "/*/contents/**").permitAll()
-                        .antMatchers(HttpMethod.PATCH, "/*/contents/{content-id}").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.PATCH, "/*/contents/{content-id}/comments/**").hasRole("USER")
-                        .antMatchers(HttpMethod.POST, "/*/comments/**").hasAnyRole("USER","ADMIN")
+                        .antMatchers(HttpMethod.POST, "/members/login").permitAll()
+                        .antMatchers(HttpMethod.POST, "/members").permitAll()
+                        .antMatchers(HttpMethod.PATCH, "/members/*").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/members").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.GET, "/members/*").hasAnyRole("USER")
+                        .antMatchers(HttpMethod.DELETE, "/members/*").hasRole("USER")
+                        .antMatchers(HttpMethod.POST, "/contents").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.PATCH, "/contents/*").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.GET, "/crawlings/contents").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.GET, "/contents/*").permitAll()
+                        .antMatchers(HttpMethod.GET, "/contents").permitAll()
+                        .antMatchers(HttpMethod.DELETE, "/contents/*").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.POST, "/comments/**").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "/contents/*/comments/*").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/comments/**").permitAll() //전체 조회가 되는지 확인
+                        .antMatchers(HttpMethod.DELETE, "/comments/*").hasRole("USER")
+
+                        .anyRequest().permitAll()
                 );
         return http.build();
     }

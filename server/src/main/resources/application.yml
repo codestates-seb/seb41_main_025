@@ -22,4 +22,4 @@ jwt:
   refresh-token-expiration-minutes: 420
 mail:
   address:
-    admin: amdin@gmail.com
+    admin: admin@gmail.com

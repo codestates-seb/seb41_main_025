@@ -1,5 +1,6 @@
 package com.mainProject.server.global.auth.authority;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+@Slf4j
 @Component
 public class CustomAuthorityUtils {
     @Value("${mail.address.admin}")
@@ -23,6 +24,7 @@ public class CustomAuthorityUtils {
     // 메모리 상의 Role을 기반으로 권한 정보 생성.
     public List<GrantedAuthority> createAuthorities(String email) {
         if (email.equals(adminMailAddress)) {
+
             return ADMIN_ROLES;
         }
         return USER_ROLES;
@@ -38,6 +40,9 @@ public class CustomAuthorityUtils {
 
     // DB 저장 용
     public List<String> createRoles(String email) {
+
+        log.info("# email.equals(adminMailAddress) = {} "+ email.equals(adminMailAddress));
+        log.info(adminMailAddress);
         if (email.equals(adminMailAddress)) {
             return ADMIN_ROLES_STRING;
         }
