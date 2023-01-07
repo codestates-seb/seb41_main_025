@@ -31,7 +31,7 @@ const HeaderContainer = styled.div`
     }
 `
 
-const SearchBar = styled.div`
+export const SearchBar = styled.div`
     input {
         width: 512px;
         height: 40px;

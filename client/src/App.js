@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp"
 import SearchNull from "./pages/SearchNull";
 import Recommend from "./pages/Recommend/Recommend"
+import FavoriteMovie from "./pages/FavoriteMovie";
 import { createGlobalStyle } from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -33,6 +34,7 @@ function App() {
                 <Route path='/signup' element={<SignUp/>}/>
                 <Route path='/searchFalse' element={<SearchNull/>}/>
                 <Route path='/recommend' element={<Recommend/>}/>
+                <Route path="/favorite" element={<FavoriteMovie/>}/>
               </Routes>
           <Footer />
         </BrowserRouter>

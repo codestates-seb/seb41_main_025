@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import GreenButton from '../components/item/Button'
-import { Link } from 'react-router-dom'
+
  
 const Main = styled.div`
     display: grid;
