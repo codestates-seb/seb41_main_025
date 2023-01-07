@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,7 +25,7 @@ public class Content extends Auditable {
     @Column(nullable = false)
     private String contentTitle;
 
-    @Column(nullable = false, length = 1000)
+    @Column(nullable = false, length = 100000)
     private String contentBody;
 
     @Column(nullable = false)
@@ -36,18 +37,18 @@ public class Content extends Auditable {
     @Column(nullable = false)
     private String contentOpenAt;
 
-    @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
-    private List<Comment> commentList;
+//    @OneToMany(mappedBy = "content", cascade = CascadeType.ALL
+//  private List<Comment> commentList = new ArrayList<>();
 
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
-    private List<Choice> choiceList; // 찜
+    private List<Choice> choiceList = new ArrayList<>(); // 찜
 
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
-    private List<Deprecated> deprecatedList; // 비추 = 추하면 비추 못함
+    private List<Deprecated> deprecatedList = new ArrayList<>(); // 비추 = 추하면 비추 못함
 
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
-    private List<Recommend> recommendList; // 추 = 비추하면 추 못함
+    private List<Recommend> recommendList = new ArrayList<>(); // 추 = 비추하면 추 못함
 
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
-    private List<Favorite> favoriteList; // 인생작 3편 이하 선택
+    private List<Favorite> favoriteList = new ArrayList<>(); // 인생작 3편 이하 선택
 }

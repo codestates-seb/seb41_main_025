@@ -27,6 +27,15 @@ public class MemberController {
     private final MemberService memberService;
     private final MemberMapper mapper;
 
+    @PostMapping("/api/test")
+    public ResponseEntity testApi(@RequestBody MemberDto.Post postRequest){
+
+        log.info("# testAPi 정상 작동중, getEmail = {}, getName = {}, getNickName = {}",
+                postRequest.getEmail(),postRequest.getName(),postRequest.getNickName());
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
     // TODO POST
     @PostMapping
     public  ResponseEntity postMember(@RequestBody MemberDto.Post postRequest){

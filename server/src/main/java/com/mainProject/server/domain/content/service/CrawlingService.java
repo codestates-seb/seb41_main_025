@@ -17,12 +17,14 @@ import java.util.List;
 public class CrawlingService {
     private final ContentService contentService;
 
-    public static String id = "webdriver.chrome.driver";
-    public static String path = "C:\\drivers\\chromedriver.exe";
+    static final String id = "webdriver.chrome.driver";
+    static final String path = "/Users/keumbipark/Downloads/chromedriver";
+    /*final String id = "webdriver.chrome.driver";
+    final String path = "C:\\drivers\\chromedriver.exe";*/
 
     public void createCrawling() {
-        final String id = "webdriver.chrome.driver";
-        final String path = "C:\\drivers\\chromedriver.exe";
+
+
         System.setProperty(id, path);
         ChromeOptions options = new ChromeOptions();
 

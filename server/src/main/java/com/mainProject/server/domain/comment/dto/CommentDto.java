@@ -31,6 +31,7 @@ public class CommentDto {
         @NotBlank
         private String commentBody;
     }
+
     @AllArgsConstructor
     @NoArgsConstructor
     @Getter
