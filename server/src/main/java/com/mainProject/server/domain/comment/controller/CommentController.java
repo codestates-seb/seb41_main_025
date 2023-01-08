@@ -36,7 +36,7 @@ public class CommentController {
         Comment comment = mapper.commentPostToComment(postRequest);
         Comment createComment = commentService.createComment(comment);
 
-        return new ResponseEntity(new SingleResponseDto<>(createComment), HttpStatus.CREATED);
+        return new ResponseEntity(new SingleResponseDto<>(mapper.commentToCommentResponseDto(createComment)), HttpStatus.CREATED);
     }
 
     // TODO PATCH
