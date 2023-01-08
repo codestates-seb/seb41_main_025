@@ -38,6 +38,9 @@ public class Content extends Auditable {
     private String contentOpenAt;
 
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
+    private List<Ott> ottList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
     private List<Comment> commentList = new ArrayList<>();
 
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)

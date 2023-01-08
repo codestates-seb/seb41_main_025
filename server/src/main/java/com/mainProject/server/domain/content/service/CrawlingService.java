@@ -68,8 +68,6 @@ public class CrawlingService {
         }
 
 
-
-
         driver.close();
     }
 
