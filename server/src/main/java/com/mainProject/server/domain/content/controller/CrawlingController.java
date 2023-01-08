@@ -21,6 +21,9 @@ public class CrawlingController {
     private final CrawlingService crawlingService;
     @GetMapping
     public void postCrawling() {
-        crawlingService.createCrawling();
+
+        crawlingService.createCrawling("watcha-slide");
+        crawlingService.createCrawling("wavve-slide");
+        crawlingService.createCrawling("tving-slide");
     }
 }

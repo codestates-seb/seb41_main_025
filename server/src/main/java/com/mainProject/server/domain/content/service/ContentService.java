@@ -1,6 +1,7 @@
 package com.mainProject.server.domain.content.service;
 
 import com.mainProject.server.domain.content.entity.Content;
+import com.mainProject.server.domain.content.entity.Ott;
 import com.mainProject.server.domain.content.repository.ContentRepository;
 import com.mainProject.server.global.exception.BusinessLogicException;
 import com.mainProject.server.global.exception.ExceptionCode;
@@ -23,6 +24,26 @@ public class ContentService {
     @Transactional
     public Content createContent(Content content) {
         VerifiedContentTitle(content.getContentTitle());
+
+        return contentRepository.save(content);
+    }
+
+    @Transactional
+    public Content createCrawlingContent(Content content) {
+        Optional<Content> optionalContent = contentRepository.findByContentTitle(content.getContentTitle());
+
+        if(optionalContent.isPresent()) {
+            Content findContent = optionalContent.get();
+            Ott ott = new Ott();
+            ott.setOttName(ott.getOttName());
+            ott.setRank(ott.getRank());
+
+            List<Ott> ottList = new ArrayList<>();
+            ottList.addAll(findContent.getOttList());
+            ottList.add(ott);
+            findContent.setOttList(ottList);
+            return contentRepository.save(findContent);
+        }
 
         return contentRepository.save(content);
     }

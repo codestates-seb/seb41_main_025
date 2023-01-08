@@ -1,6 +1,7 @@
 package com.mainProject.server.domain.content.service;
 
 import com.mainProject.server.domain.content.entity.Content;
+import com.mainProject.server.domain.content.entity.Ott;
 import lombok.RequiredArgsConstructor;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -22,7 +23,7 @@ public class CrawlingService {
     /*final String id = "webdriver.chrome.driver";
     final String path = "C:\\drivers\\chromedriver.exe";*/
 
-    public void createCrawling() {
+    public void createCrawling(String ottCrawling) {
 
 
         System.setProperty(id, path);
@@ -38,7 +39,7 @@ public class CrawlingService {
             e.printStackTrace();
         }
 
-        WebElement productDiv = driver.findElement(By.className("watcha-slide"));
+        WebElement productDiv = driver.findElement(By.className(ottCrawling));
 
         List<WebElement> productList = productDiv.findElements(By.className("item_poster"));
 
@@ -46,6 +47,10 @@ public class CrawlingService {
 
         for (WebElement li : productList) {
             Content content = new Content();
+            List<Ott> ottList = new ArrayList<>();
+            content.setOttList(ottList);
+            Ott ott = new Ott();
+            ott.setContent(content);
             String contentLink = li.findElement(By.className("link_txt")).getAttribute("href");
             String contentPoster = li.findElement(By.className("img_thumb")).getAttribute("src");
             String contentRank = li.findElement(By.className("thumb_item")).getAttribute("data-tiara-ordnum");
@@ -59,10 +64,13 @@ public class CrawlingService {
             content.setContentBody(contentBody);
             content.setContentPoster(contentPoster);
             content.setContentOpenAt(contentOpenAt);
-            content.setContentRank(contentRank);
             content.setContentTitle(contentTitle);
 
-            contentService.createContent(content);
+            ott.setRank(contentRank);
+            ott.setOttName(ottCrawling.split("-")[0]);
+            content.getOttList().add(ott);
+
+            contentService.createCrawlingContent(content);
 
             movieList.clear();
         }

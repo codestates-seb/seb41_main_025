@@ -32,9 +32,6 @@ public class Content extends Auditable {
     private String contentPoster;
 
     @Column(nullable = false)
-    private String contentRank;
-
-    @Column(nullable = false)
     private String contentOpenAt;
 
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)

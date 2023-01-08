@@ -36,6 +36,7 @@ public class ContentDto {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class Response{
+        private String ottName;
         private long contentId;
         private String contentTitle;
         private String contentBody;
