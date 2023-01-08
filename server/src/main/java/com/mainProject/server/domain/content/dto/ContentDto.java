@@ -13,6 +13,8 @@ public class ContentDto {
     @AllArgsConstructor
     public static class Post{
         @NotBlank
+        private String ottName;
+        @NotBlank
         private String contentTitle;
         @NotBlank
         private String contentBody;
