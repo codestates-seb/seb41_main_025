@@ -37,8 +37,8 @@ public class Content extends Auditable {
     @Column(nullable = false)
     private String contentOpenAt;
 
-//    @OneToMany(mappedBy = "content", cascade = CascadeType.ALL
-//  private List<Comment> commentList = new ArrayList<>();
+    @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
+    private List<Comment> commentList = new ArrayList<>();
 
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
     private List<Choice> choiceList = new ArrayList<>(); // 찜

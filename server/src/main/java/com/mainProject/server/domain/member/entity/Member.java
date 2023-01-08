@@ -47,9 +47,9 @@ public class Member extends Auditable {
 
     @OneToMany(mappedBy="member", cascade = CascadeType.ALL)
     private List<Board> boardList = new ArrayList<>();
-/*
+
     @OneToMany(mappedBy="member", cascade = CascadeType.ALL)
-    private List<Comment> commentList = new ArrayList<>();*/
+    private List<Comment> commentList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Choice> choiceList = new ArrayList<>();
