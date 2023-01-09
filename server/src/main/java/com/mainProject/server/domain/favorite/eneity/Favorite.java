@@ -18,6 +18,12 @@ public class Favorite {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long favoriteId;
 
+    @Column
+    private Boolean favoriteSelected;
+
+    @Column
+    private long favoriteLimit;
+
     @ManyToOne
     @JoinColumn(name="MEMBER_ID")
     private Member member;
