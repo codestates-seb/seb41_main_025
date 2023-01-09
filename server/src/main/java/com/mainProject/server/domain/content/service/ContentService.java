@@ -50,6 +50,9 @@ public class ContentService {
         }
 
         content.setChoiceCount(0L);
+        content.setDeprecateCount(0L);
+        content.setRecommendCount(0L);
+        content.setFavoriteCount(0L);
 
         return contentRepository.save(content);
     }

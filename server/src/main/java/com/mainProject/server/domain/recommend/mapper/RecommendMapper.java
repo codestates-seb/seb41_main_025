@@ -1,5 +1,13 @@
 package com.mainProject.server.domain.recommend.mapper;
 
+import com.mainProject.server.domain.recommend.dto.RecommendDto;
+import com.mainProject.server.domain.recommend.entity.Deprecate;
+import com.mainProject.server.domain.recommend.entity.Recommend;
+import org.mapstruct.Mapper;
+
+import java.time.LocalDateTime;
+
+@Mapper(componentModel = "spring")
 public interface RecommendMapper {
     default RecommendDto.RecommendResponse recommendToRecommrndDto(Recommend recommend) {
         RecommendDto.RecommendResponse responseDto =  RecommendDto.RecommendResponse.builder()

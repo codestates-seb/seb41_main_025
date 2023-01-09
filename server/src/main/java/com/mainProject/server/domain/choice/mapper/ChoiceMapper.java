@@ -5,6 +5,8 @@ import com.mainProject.server.domain.choice.entity.Choice;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
+import java.time.LocalDateTime;
+
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public class ChoiceMapper {
 
@@ -14,6 +16,7 @@ public class ChoiceMapper {
                 .contentId(choice.getContent().getContentId())
                 .choiceSelected(choice.getChoiceSelected())
                 .choiceCount(choice.getContent().getChoiceCount())
+                .createdAt(LocalDateTime.now())
                 .build();
 
         return responseDto;

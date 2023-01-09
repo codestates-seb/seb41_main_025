@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Favorite {
+public class Favorite extends Auditable{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long favoriteId;
 

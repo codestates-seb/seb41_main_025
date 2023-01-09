@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
 
 public class MemberDto {
     @AllArgsConstructor
@@ -47,6 +48,8 @@ public class MemberDto {
         private String memberPicture;
         private String name;
         private String nickName;
+        private LocalDateTime createdAt;
+        private LocalDateTime modifiedAt;
     }
 }
 

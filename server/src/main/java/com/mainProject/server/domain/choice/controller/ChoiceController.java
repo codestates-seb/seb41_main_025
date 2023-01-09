@@ -31,10 +31,5 @@ public class ChoiceController {
         return new ResponseEntity(new SingleResponseDto<>(mapper.choiceTochoiceResponseDto(choice)), HttpStatus.OK);
     }
 
-    @GetMapping
-    public ResponseEntity getChoice(){
-        return new ResponseEntity(HttpStatus.OK);
-    }
-
 
 }

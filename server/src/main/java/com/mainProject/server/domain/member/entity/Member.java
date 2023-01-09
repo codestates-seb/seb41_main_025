@@ -37,6 +37,9 @@ public class Member extends Auditable {
 
     @Column
     private String memberPicture;
+
+    @Column
+    private long favoriteLimitTotal;
     // 추가
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();

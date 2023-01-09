@@ -44,6 +44,15 @@ public class Content extends Auditable {
     @Column
     private Long choiceCount;
 
+    @Column
+    private Long recommendCount;
+
+    @Column
+    private Long deprecateCount;
+
+    @Column
+    private Long favoriteCount;
+
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
     private List<Ott> ottList = new ArrayList<>();
 
