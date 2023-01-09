@@ -47,8 +47,6 @@ public class CrawlingService {
 
         for (WebElement li : productList) {
             Content content = new Content();
-            List<Ott> ottList = new ArrayList<>();
-            content.setOttList(ottList);
             Ott ott = new Ott();
             ott.setContent(content);
             String contentLink = li.findElement(By.className("link_txt")).getAttribute("href");
@@ -65,6 +63,8 @@ public class CrawlingService {
             content.setContentPoster(contentPoster);
             content.setContentOpenAt(contentOpenAt);
             content.setContentTitle(contentTitle);
+            content.setRank(contentRank);
+            content.setOttName(ottCrawling.split("-")[0]);
 
             ott.setRank(contentRank);
             ott.setOttName(ottCrawling.split("-")[0]);

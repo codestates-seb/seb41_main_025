@@ -7,11 +7,7 @@ import com.mainProject.server.domain.content.entity.Deprecated;
 import com.mainProject.server.domain.content.entity.Favorite;
 import com.mainProject.server.domain.content.entity.Recommend;
 import com.mainProject.server.global.audit.Auditable;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -19,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
-@Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Member extends Auditable {
