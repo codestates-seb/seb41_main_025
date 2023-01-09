@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React from "react";
 import styled from "styled-components";
 import dummy from "../Recommend/dummydata";
-import ModalBasic from "./ModalBasic";
+import { ModifyBtn } from "./Mypage";
 
 const MypageDiv = styled.div`
   display: flex;
@@ -72,16 +72,16 @@ const MyInput = styled.input`
   }
 `;
 
-export const ModifyBtn = styled.button`
-  width: 240px;
-  height: 60px;
-  background-color: #167e6c;
-  color: white;
-  border: none;
-  border-radius: 15px;
-  font-size: 32px;
-  font-weight: 300;
-`;
+// const ModifyBtn = styled.button`
+//   width: 240px;
+//   height: 60px;
+//   background-color: #167e6c;
+//   color: white;
+//   border: none;
+//   border-radius: 15px;
+//   font-size: 32px;
+//   font-weight: 300;
+// `;
 
 const SaveBtn = styled(ModifyBtn)`
   width: 140px;
@@ -92,20 +92,10 @@ const DeleteBtn = styled(ModifyBtn)`
   margin: 50px;
 `;
 
-const Mypage = () => {
+const Modify = () => {
   const filteredDummy = dummy.filter((item) => item.id === "1");
   console.log(filteredDummy);
   // const [id, onChangeId, setId] = useInput("");
-
-  // 모달창 노출 여부 state
-  const [modalOpen, setModalOpen] = useState(false);
-
-  // 모달창 노출
-  const showModal = () => {
-      setModalOpen(true);
-  };
-
-
 
   return (
     <MypageDiv>
@@ -122,10 +112,9 @@ const Mypage = () => {
             </div>
             <div className="userInfo">
               <div className="userName">{item.name}</div>
-              <ModifyBtn type="submit" value="저장" onClick={showModal}>
+              <ModifyBtn type="submit" value="저장">
                 회원 정보 수정
               </ModifyBtn>
-              {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
             </div>
           </UserInfoHeader>
         );
@@ -193,4 +182,4 @@ const Mypage = () => {
   );
 };
 
-export default Mypage;
+export default Modify;
