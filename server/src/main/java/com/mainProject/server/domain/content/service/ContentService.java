@@ -61,7 +61,6 @@ public class ContentService {
 
         Content updateContent = beanUtils.copyNonNullProperties(content, findContent);
         return contentRepository.save(updateContent);
-
     }
     
     public Content findContent(long contentId) {
