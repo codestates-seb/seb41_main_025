@@ -2,10 +2,7 @@ package com.mainProject.server.domain.content.entity;
 
 import com.mainProject.server.domain.comment.entity.Comment;
 import com.mainProject.server.global.audit.Auditable;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -13,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
-@Builder
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
@@ -33,6 +30,12 @@ public class Content extends Auditable {
 
     @Column(nullable = false)
     private String contentOpenAt;
+
+    @Column(nullable = false)
+    private String ottName;
+
+    @Column(nullable = false)
+    private String rank;
 
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
     private List<Ott> ottList = new ArrayList<>();
