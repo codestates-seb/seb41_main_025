@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Item from "../../components/item/item";
 
 export const MainWarp = styled.div`
   width: 100%;
@@ -14,7 +15,7 @@ const Main = () => {
   return (
     <MainWarp>
       <MainContainer>
-
+        <Item />
       </MainContainer>
     </MainWarp>
   )

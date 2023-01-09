@@ -85,8 +85,8 @@ const FavoriteMovie = () =>{
                         <input type="text" placeholder="검색할 내용을 입력하세요."></input>
                     </FavoriteSearch>
                 </Title>
-                <Items>
                     {/*TODO: 인생 영화 값이 true인 것들을 filter 해서 뿌려주기 */}
+                <Items>
                     <Item>
                         <img src ='/assets/avatar2.jpeg' className='poster' alt="" />
                         <Details>
@@ -95,8 +95,8 @@ const FavoriteMovie = () =>{
                             <h3 className="movieTitle">미국, 2022</h3>
                             <h4 className="movieTitle">평점 : 8.4</h4>
                         </DetailFont>
-                        {/* TODO : DELETE */}
-                        <DeleteBtn>X</DeleteBtn>
+                        <DeleteBtn>X
+                        </DeleteBtn>
                         </Details>
                     </Item>
                     <Item>
