@@ -1,5 +1,6 @@
-package com.mainProject.server.domain.content.entity;
+package com.mainProject.server.domain.deprecate.eneity;
 
+import com.mainProject.server.domain.content.entity.Content;
 import com.mainProject.server.domain.member.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Deprecated {
+public class Deprecate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

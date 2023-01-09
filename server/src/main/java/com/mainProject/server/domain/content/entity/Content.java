@@ -47,7 +47,7 @@ public class Content extends Auditable {
     private List<Choice> choiceList = new ArrayList<>(); // 찜
 
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
-    private List<Deprecated> deprecatedList = new ArrayList<>(); // 비추 = 추하면 비추 못함
+    private List<Deprecate> deprecatedList = new ArrayList<>(); // 비추 = 추하면 비추 못함
 
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
     private List<Recommend> recommendList = new ArrayList<>(); // 추 = 비추하면 추 못함

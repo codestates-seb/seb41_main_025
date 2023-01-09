@@ -1,6 +1,5 @@
 package com.mainProject.server.domain.member.dto;
 
-import com.mainProject.server.domain.content.entity.Content;
 import com.mainProject.server.global.validator.NotSpace;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +8,6 @@ import lombok.Setter;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import java.time.LocalDateTime;
 
 public class MemberDto {
     @AllArgsConstructor

@@ -2,10 +2,10 @@ package com.mainProject.server.domain.member.entity;
 
 import com.mainProject.server.domain.board.eneity.Board;
 import com.mainProject.server.domain.comment.entity.Comment;
-import com.mainProject.server.domain.content.entity.Choice;
-import com.mainProject.server.domain.content.entity.Deprecated;
-import com.mainProject.server.domain.content.entity.Favorite;
-import com.mainProject.server.domain.content.entity.Recommend;
+import com.mainProject.server.domain.deprecate.eneity.Deprecate;
+import com.mainProject.server.domain.favorite.eneity.Favorite;
+import com.mainProject.server.domain.recommend.eneity.Recommend;
+import com.mainProject.server.domain.choice.entity.Choice;
 import com.mainProject.server.global.audit.Auditable;
 import lombok.*;
 
@@ -51,7 +51,7 @@ public class Member extends Auditable {
     private List<Choice> choiceList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<Deprecated> deprecatedList = new ArrayList<>();
+    private List<Deprecate> deprecatedList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Recommend> recommendList = new ArrayList<>();

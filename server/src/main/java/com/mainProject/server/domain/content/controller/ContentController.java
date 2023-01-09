@@ -1,6 +1,5 @@
 package com.mainProject.server.domain.content.controller;
 
-import com.mainProject.server.domain.content.dto.ContentDto;
 import com.mainProject.server.domain.content.entity.Content;
 import com.mainProject.server.domain.content.mapper.ContentMapper;
 import com.mainProject.server.domain.content.service.ContentService;
