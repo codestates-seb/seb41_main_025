@@ -30,7 +30,7 @@ const Contents = styled.div`
 
 const Item = () => {
   return (
-    <ItemContainer>
+    <ItemContainer className="item">
       <div className="posterWrap"></div>
       <Contents>
         <div className="title">영화 제목{/* 영화제목 */}</div>
