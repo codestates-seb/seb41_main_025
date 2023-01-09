@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const HeaderWrap = styled.div`
     width: 100%;
     height: 60px;
+    color : #d0d0d0;
     border-bottom: 1px solid #d0d0d0;
+    /* position: fixed; */
 `
 const HeaderContainer = styled.div`
     display: flex;
@@ -30,7 +33,7 @@ const HeaderContainer = styled.div`
     }
 `
 
-const SearchBar = styled.div`
+export const SearchBar = styled.div`
     input {
         width: 512px;
         height: 40px;
@@ -58,10 +61,31 @@ const Sign = styled.ul`
     .signUp {
         margin-left: 24px;
     }
+    .modal {
+    width: 90px;
+    height: 30px;
+    margin-left: 70px;
+    background-color: white;
+    border: 0;
+    font-weight: bold;
+    font-size : 16px;
+    font-weight: 500;
+}
+`
+
+const Modalwindow = styled.div`
+    width: 400px;
+    height: 400px;
+    margin: 50px;
+    background-color: aliceblue;
+    border-radius: 20px;
 `
 
 const Header = () => {
-    const islogin = false;
+
+    const [modal, setModal] = useState(false)
+
+    const islogin = true;
     return (
         <HeaderWrap>
             <HeaderContainer>
@@ -69,7 +93,7 @@ const Header = () => {
                 {/* logo */}
                 <div className="logo">
                     <Link to="/">
-                        <img src="/assets/logo.png"></img>
+                        <img src="/assets/logo.png" alt =""></img>
                     </Link>
                 </div>
 
@@ -81,7 +105,16 @@ const Header = () => {
                 {/* sign Up / sign In */}
                 {islogin ? (
                     <Sign>
-                        <li className="signIn"><Link to='/'>마이페이지</Link></li>
+                        <button 
+                        className="modal"
+                        onClick={ 
+                           ()=> setModal(!modal)
+                        }>
+                            {
+                                modal === true ?  <Modal /> : "마이페이지"  //기계역할
+                            }
+                        </button>
+
                     </Sign>
                 ) : (
                     <Sign>
@@ -95,4 +128,17 @@ const Header = () => {
     )
 }
 
-export default Header;
+const Modal = () => {
+
+
+    return(
+        <Modalwindow>
+          <h4>제목</h4>
+          <p>날짜</p>
+          <p>상세내용</p>
+        </Modalwindow>
+      )
+
+}
+
+export {Header, Modal} ;

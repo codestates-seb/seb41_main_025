@@ -1,0 +1,21 @@
+{
+  "posts": [
+    {
+      "contentTitle":"avarta2",
+      "contentBody":"컨텐츠 내용입니다.",
+      "contentPoster":"https://media.wdwnt.com/2022/11/avatar-the-way-of-water-poster-1.jpg",
+      "contentRank":"1",
+      "contentOpenAt":"2023년 1월 11일"
+  }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

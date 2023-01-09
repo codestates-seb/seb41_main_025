@@ -63,6 +63,9 @@ export const ContentForm = styled.div`
         margin-left: 300px;
         margin-bottom: 30px;
     }
+    .LoginFont{
+        margin-left: 30%;
+    }
 `
 
 export const Whitebutton = styled(NavLink)`
@@ -104,8 +107,8 @@ const Login = () => {
             <Window>
                 <Front>
                     <Logo>
-                        <img src ='/assets/GreenLogo.png' className='greenLogo'/>
-                        <img src ='/assets/Character.png' className='character'/>
+                        <img src ='/assets/GreenLogo.png' className='greenLogo' alt="" />
+                        <img src ='/assets/Character.png' className='character' alt="" />
                         {/* <GreenLogo/> */}
                     </Logo>
                     <LogoFont>
@@ -128,6 +131,7 @@ const Login = () => {
                     />
                   </EnterContent>
                   <Whitebutton to = '/' className='EnterButton'>Login</Whitebutton>
+                  {/* login에 성공하면 반갑습니다 00님 ! 비슷하게 alart 창 혹은 모달창 띄우기 */}
                 </ContentForm>
             </Window>
         </Main>
