@@ -53,8 +53,6 @@ public class SecurityConfiguration {
                         .antMatchers(HttpMethod.GET, "/members").hasRole("ADMIN")
                         .antMatchers(HttpMethod.GET, "/members/*").hasAnyRole("USER")
                         .antMatchers(HttpMethod.DELETE, "/members/*").hasRole("USER")
-                        .antMatchers(HttpMethod.POST, "/contents").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.PATCH, "/contents/*").hasRole("ADMIN")
                         .antMatchers(HttpMethod.GET, "/crawlings/contents").hasRole("ADMIN")
                         .antMatchers(HttpMethod.GET, "/contents/*").permitAll()
                         .antMatchers(HttpMethod.GET, "/contents").permitAll()

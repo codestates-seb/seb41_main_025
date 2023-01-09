@@ -1,6 +1,5 @@
 package com.mainProject.server.domain.member.dto;
 
-import com.mainProject.server.domain.content.entity.Content;
 import com.mainProject.server.global.validator.NotSpace;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -46,10 +45,11 @@ public class MemberDto {
     public static class Response {
         private Long memberId;
         private String email;
-        private String password;
         private String memberPicture;
         private String name;
         private String nickName;
+        private LocalDateTime createdAt;
+        private LocalDateTime modifiedAt;
     }
 }
 

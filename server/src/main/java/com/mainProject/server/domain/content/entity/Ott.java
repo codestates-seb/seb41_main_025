@@ -13,7 +13,7 @@ public class Ott {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ottId;
     private String ottName;
-    private String rank;
+    private String ottRank;
 
     @ManyToOne
     @JoinColumn(name="CONTENT_ID")

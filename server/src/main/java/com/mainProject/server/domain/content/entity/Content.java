@@ -1,6 +1,10 @@
 package com.mainProject.server.domain.content.entity;
 
 import com.mainProject.server.domain.comment.entity.Comment;
+import com.mainProject.server.domain.choice.entity.Choice;
+import com.mainProject.server.domain.favorite.eneity.Favorite;
+import com.mainProject.server.domain.recommend.entity.Deprecate;
+import com.mainProject.server.domain.recommend.entity.Recommend;
 import com.mainProject.server.global.audit.Auditable;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -35,7 +39,19 @@ public class Content extends Auditable {
     private String ottName;
 
     @Column(nullable = false)
-    private String rank;
+    private String ottRank;
+
+    @Column
+    private Long choiceCount;
+
+    @Column
+    private Long recommendCount;
+
+    @Column
+    private Long deprecateCount;
+
+    @Column
+    private Long favoriteCount;
 
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
     private List<Ott> ottList = new ArrayList<>();
@@ -47,7 +63,7 @@ public class Content extends Auditable {
     private List<Choice> choiceList = new ArrayList<>(); // 찜
 
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
-    private List<Deprecated> deprecatedList = new ArrayList<>(); // 비추 = 추하면 비추 못함
+    private List<Deprecate> deprecatedList = new ArrayList<>(); // 비추 = 추하면 비추 못함
 
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
     private List<Recommend> recommendList = new ArrayList<>(); // 추 = 비추하면 추 못함

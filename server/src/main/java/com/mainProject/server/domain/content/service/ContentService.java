@@ -3,6 +3,7 @@ package com.mainProject.server.domain.content.service;
 import com.mainProject.server.domain.content.entity.Content;
 import com.mainProject.server.domain.content.entity.Ott;
 import com.mainProject.server.domain.content.repository.ContentRepository;
+import com.mainProject.server.domain.member.service.MemberService;
 import com.mainProject.server.global.exception.BusinessLogicException;
 import com.mainProject.server.global.exception.ExceptionCode;
 import com.mainProject.server.global.utils.CustomBeanUtils;
@@ -19,14 +20,8 @@ import java.util.*;
 @RequiredArgsConstructor
 public class ContentService {
     private final ContentRepository contentRepository;
+    private final MemberService memberService;
     private final CustomBeanUtils<Content> beanUtils;
-
-    @Transactional
-    public Content createContent(Content content) {
-        VerifiedContentTitle(content.getContentTitle());
-
-        return contentRepository.save(content);
-    }
 
     @Transactional
     public Content createCrawlingContent(Content content) {
@@ -37,14 +32,14 @@ public class ContentService {
 
             for(int i =0; i<findContent.getOttList().size(); i++) {
                 if(findContent.getOttList().get(i).getOttName().equals(content.getOttName())) {
-                    findContent.getOttList().get(i).setRank(content.getRank());
+                    findContent.getOttList().get(i).setOttRank(content.getOttRank());
                     return contentRepository.save(findContent);
                 }
             }
 
             Ott ott = new Ott();
             ott.setOttName(content.getOttName());
-            ott.setRank(content.getRank());
+            ott.setOttRank(content.getOttRank());
             ott.setContent(findContent);
 
             findContent.getOttList().add(ott);
@@ -52,16 +47,14 @@ public class ContentService {
             return contentRepository.save(findContent);
         }
 
+        content.setChoiceCount(0L);
+        content.setDeprecateCount(0L);
+        content.setRecommendCount(0L);
+        content.setFavoriteCount(0L);
+
         return contentRepository.save(content);
     }
 
-
-    public Content updateContent(Content content) {
-        Content findContent = findVerifiedContent(content.getContentId());
-
-        Content updateContent = beanUtils.copyNonNullProperties(content, findContent);
-        return contentRepository.save(updateContent);
-    }
     
     public Content findContent(long contentId) {
         return findVerifiedContent(contentId);
