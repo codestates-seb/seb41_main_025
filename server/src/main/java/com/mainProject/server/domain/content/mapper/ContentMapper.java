@@ -8,8 +8,7 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface ContentMapper {
-    Content contentPostToDtoToContent(ContentDto.Post postRequest);
-    Content contentPatchDtoToQuestion(ContentDto.Patch patchRequest);
+
     ContentDto.Response contentToContentResponseDto(Content content);
 
     List<ContentDto.Response> ContentListToContentListResponseDto(List<Content> contentList);

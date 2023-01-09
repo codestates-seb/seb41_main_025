@@ -37,7 +37,7 @@ public class ContentService {
 
             for(int i =0; i<findContent.getOttList().size(); i++) {
                 if(findContent.getOttList().get(i).getOttName().equals(content.getOttName())) {
-                    findContent.getOttList().get(i).setRank(content.getRank());
+                    findContent.getOttList().get(i).setOttRank(content.getOttRank());
                     return contentRepository.save(findContent);
                 }
             }
