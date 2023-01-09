@@ -12,6 +12,8 @@ const dummy = [
       98
     )}.jpg`,
     commentBody: `넷플릭스 “에밀리 파리에 가다" 추천해요!`,
+    email: "rlfehd@gmail.com",
+    password: "asdf1234",
   },
   {
     id: "2",
