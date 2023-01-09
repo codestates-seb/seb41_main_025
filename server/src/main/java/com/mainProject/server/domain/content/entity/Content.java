@@ -1,6 +1,10 @@
 package com.mainProject.server.domain.content.entity;
 
 import com.mainProject.server.domain.comment.entity.Comment;
+import com.mainProject.server.domain.choice.entity.Choice;
+import com.mainProject.server.domain.deprecate.eneity.Deprecate;
+import com.mainProject.server.domain.favorite.eneity.Favorite;
+import com.mainProject.server.domain.recommend.eneity.Recommend;
 import com.mainProject.server.global.audit.Auditable;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
