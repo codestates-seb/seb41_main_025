@@ -1,6 +1,6 @@
 import styled from "styled-components";
 // import GreenButton from "../components/item/Button";
-import Item from "../components/item/item";
+import SeleteItem from "../components/item/SeleteItem";
 import { MainWarp, MainContainer} from "./Main/Main"
 import { SearchBar } from "../components/Header"
 
@@ -54,9 +54,9 @@ const FavoriteMovie = () =>{
                 </Title>
                     {/*TODO: 인생 영화 값이 true인 것들을 filter 해서 뿌려주기 */}
                 <Items>
-                    <Item/>
-                    <Item/>
-                    <Item/>
+                    <SeleteItem/>
+                    <SeleteItem/>
+                    <SeleteItem/>
                 </Items>
                     {/* <ChangeBtn>
                         <GreenButton name={"수정하기"}/>

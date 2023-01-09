@@ -1,84 +1,99 @@
 import styled from "styled-components";
 import { NavLink } from 'react-router-dom'
 
-// const ItemContainer = styled.div`
-//   display: flex;
-//   flex-direction: column;
+// const Details = styled.div`
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     margin-top: 10px;
+// `
 
-//   width: 240px;
-//   height: 400px;
-  
-//   .posterWrap {
-//     width: 240px;
-//     height: 346px;
+// const DeleteBtn = styled.button`
+//     width: 30px;
+//     height: 30px;
 //     border-radius: 10px;
-//     background-color: red;
-//     background-image: url('');
-//     background-size: contain;
-//   }
+//     color: #167E6C;
+//     border: 0ch;
+//     :active {
+//         background-color: #167E6C;
+//         color : white
+//     }
 // `
 
-// const Contents = styled.div`
-//   color: #000000;
-
-//   .title {
-//     font-size: 20px;
-//   }
-//   .comeout, .score {
-//     font-size: 13px;
-//   }
+// const DetailFont = styled.div`
+//   margin: 5px;
 // `
+// const EachItem = styled.div `
+//     margin: 70px 90px 90px 90px;
+//     .poster {
+//         width: 300px;
+//         height: 350px;
+//         border-radius: 40px;
+//     }
+//     `;
 
-const Details = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-`
+// const MovieTitle = styled(NavLink)`
+//   font-size: 25px;
+//   color: black;
+// `;
 
-const DeleteBtn = styled.button`
-    width: 30px;
-    height: 30px;
+// const Item = () => {
+//   return (
+//     <EachItem>
+//     <img src ='/assets/avatar2.jpeg' className='poster' alt="" />
+//       <Details>
+//         <DetailFont>
+//           <MovieTitle to ='/Moviedetail'>Avatar 2 : 물의 길</MovieTitle>
+//           <h3 className="movieTitle">미국, 2022</h3>
+//           <h4 className="movieTitle">평점 : 8.4</h4>
+//         </DetailFont>
+//       <DeleteBtn>X
+//       </DeleteBtn>
+//       </Details>
+//     </EachItem>
+//   )
+// }
+// export default Item;
+
+
+const ItemContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: 240px;
+  height: 400px;
+  
+  .posterWrap {
+    width: 240px;
+    height: 346px;
     border-radius: 10px;
-    color: #167E6C;
-    border: 0ch;
-    :active {
-        background-color: #167E6C;
-        color : white
-    }
+    background-color: red;
+    background-image: url('');
+    background-size: contain;
+  }
 `
 
-const DetailFont = styled.div`
-  margin: 5px;
-`
-const EachItem = styled.div `
-    margin: 70px 90px 90px 90px;
-    .poster {
-        width: 300px;
-        height: 350px;
-        border-radius: 40px;
-    }
-    `;
+const Contents = styled.div`
+  color: #000000;
 
-const MovieTitle = styled(NavLink)`
-  font-size: 25px;
-  color: black;
-`;
+  .title {
+    font-size: 20px;
+  }
+  .comeout, .score {
+    font-size: 13px;
+  }
+`
 
 const Item = () => {
   return (
-    <EachItem>
-    <img src ='/assets/avatar2.jpeg' className='poster' alt="" />
-      <Details>
-        <DetailFont>
-          <MovieTitle to ='/Moviedetail'>Avatar 2 : 물의 길</MovieTitle>
-          <h3 className="movieTitle">미국, 2022</h3>
-          <h4 className="movieTitle">평점 : 8.4</h4>
-        </DetailFont>
-      <DeleteBtn>X
-      </DeleteBtn>
-      </Details>
-    </EachItem>
+    <ItemContainer className="item">
+      <div className="posterWrap"></div>
+      <Contents>
+        <div className="title">영화 제목{/* 영화제목 */}</div>
+        <div className="comeout">국가 / 개봉년도{/* 국가/개봉년도 */}</div>
+        <div className="score">평점 {/* 평점 */}</div>
+      </Contents>
+    </ItemContainer>
   )
 }
 export default Item;
