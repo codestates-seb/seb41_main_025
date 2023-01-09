@@ -14,6 +14,7 @@ public class ContentDto {
     @NoArgsConstructor
     public static class Response{
         private String ottName;
+        private String ottRank;
         private long contentId;
         private String contentTitle;
         private String contentBody;

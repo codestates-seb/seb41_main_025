@@ -24,28 +24,6 @@ public class ContentController {
     private final ContentService contentService;
     private final ContentMapper mapper;
 
-    // TODO POST
-    @PostMapping
-    public ResponseEntity postContent(@RequestBody ContentDto.Post postRequest){
-
-        Content content = mapper.contentPostToDtoToContent(postRequest);
-        Content createContent = contentService.createContent(content);
-
-        return new ResponseEntity(
-                new SingleResponseDto<>(mapper.contentToContentResponseDto(createContent)),HttpStatus.CREATED);
-    }
-
-
-    // TODO PATCH
-    @PatchMapping("/{content-id}")
-    public ResponseEntity patchContent(@PathVariable("content-id") @Positive long contentId,
-                                       @RequestBody ContentDto.Patch patchRequest){
-        patchRequest.setContentId(contentId);
-        Content content = contentService.updateContent(mapper.contentPatchDtoToQuestion(patchRequest));
-        return new ResponseEntity(
-                new SingleResponseDto<>(mapper.contentToContentResponseDto(content)),HttpStatus.OK);
-    }
-
     // TODO GET ONE
     @GetMapping("/{content-id}")
     public ResponseEntity getContent(@PathVariable("content-id") @Positive long contentId){

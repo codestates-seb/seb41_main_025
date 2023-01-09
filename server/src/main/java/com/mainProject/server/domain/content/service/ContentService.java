@@ -21,12 +21,6 @@ public class ContentService {
     private final ContentRepository contentRepository;
     private final CustomBeanUtils<Content> beanUtils;
 
-    @Transactional
-    public Content createContent(Content content) {
-        VerifiedContentTitle(content.getContentTitle());
-
-        return contentRepository.save(content);
-    }
 
     @Transactional
     public Content createCrawlingContent(Content content) {
@@ -44,7 +38,7 @@ public class ContentService {
 
             Ott ott = new Ott();
             ott.setOttName(content.getOttName());
-            ott.setRank(content.getRank());
+            ott.setOttRank(content.getOttRank());
             ott.setContent(findContent);
 
             findContent.getOttList().add(ott);
@@ -55,13 +49,6 @@ public class ContentService {
         return contentRepository.save(content);
     }
 
-
-    public Content updateContent(Content content) {
-        Content findContent = findVerifiedContent(content.getContentId());
-
-        Content updateContent = beanUtils.copyNonNullProperties(content, findContent);
-        return contentRepository.save(updateContent);
-    }
     
     public Content findContent(long contentId) {
         return findVerifiedContent(contentId);

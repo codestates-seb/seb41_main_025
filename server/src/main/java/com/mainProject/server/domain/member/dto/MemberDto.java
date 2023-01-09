@@ -46,7 +46,6 @@ public class MemberDto {
     public static class Response {
         private Long memberId;
         private String email;
-        private String password;
         private String memberPicture;
         private String name;
         private String nickName;
