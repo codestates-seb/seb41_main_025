@@ -2,9 +2,9 @@ package com.mainProject.server.domain.member.entity;
 
 import com.mainProject.server.domain.board.eneity.Board;
 import com.mainProject.server.domain.comment.entity.Comment;
-import com.mainProject.server.domain.deprecate.eneity.Deprecate;
 import com.mainProject.server.domain.favorite.eneity.Favorite;
-import com.mainProject.server.domain.recommend.eneity.Recommend;
+import com.mainProject.server.domain.recommend.entity.Deprecate;
+import com.mainProject.server.domain.recommend.entity.Recommend;
 import com.mainProject.server.domain.choice.entity.Choice;
 import com.mainProject.server.global.audit.Auditable;
 import lombok.*;

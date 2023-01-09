@@ -8,8 +8,8 @@ import lombok.Getter;
 @Builder
 @AllArgsConstructor
 public class ChoiceResponseDto {
-    private long memberId;
-    private long contentId;
+    private Long memberId;
+    private Long contentId;
     private Boolean choiceSelected;
     private Long choiceCount;
 }

@@ -15,6 +15,7 @@ public enum ExceptionCode {
     QUESTION_IS_NOT(405, "That answer isn't answer the question."),
     COMMENT_NOT_FOUND(404, "Comment not found"),
     COMMENT_EXISTS(409, "Comment exists"),
+    FAVORITE_FULL_ALREADY(409, "Favorite is full already."),
     VOTE_NOT_ALLOW(405, "You're already voted "),
     TAG_NOT_FOUND(404, "Tag not found"),
     TAG_EXISTS(409, "Tag exists"),

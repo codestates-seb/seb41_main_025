@@ -1,4 +1,4 @@
-package com.mainProject.server.domain.recommend.eneity;
+package com.mainProject.server.domain.recommend.entity;
 
 import com.mainProject.server.domain.content.entity.Content;
 import com.mainProject.server.domain.member.entity.Member;
@@ -19,6 +19,9 @@ public class Recommend extends Auditable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long recommendId;
 
+    @Column
+    private Boolean recommendSelected;
+
     @ManyToOne
     @JoinColumn(name="MEMBER_ID")
     private Member member;
@@ -26,5 +29,6 @@ public class Recommend extends Auditable {
     @ManyToOne
     @JoinColumn(name="CONTENT_ID")
     private Content content;
+
 
 }

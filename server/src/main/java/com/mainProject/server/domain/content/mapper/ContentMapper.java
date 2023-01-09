@@ -11,5 +11,5 @@ public interface ContentMapper {
 
     ContentDto.Response contentToContentResponseDto(Content content);
 
-    List<ContentDto.Response> ContentListToContentListResponseDto(List<Content> contentList);
+    List<ContentResponseDto> ContentListToContentListResponseDto(List<Content> contentList);
 }

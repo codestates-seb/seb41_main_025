@@ -1,8 +1,8 @@
-package com.mainProject.server.domain.choice.entity;
-
+package com.mainProject.server.domain.recommend.entity;
 
 import com.mainProject.server.domain.content.entity.Content;
 import com.mainProject.server.domain.member.entity.Member;
+import com.mainProject.server.global.audit.Auditable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,12 +13,13 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Choice {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long choiceId;
+public class Deprecate extends Auditable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long deprecatedId;
 
     @Column
-    private Boolean choiceSelected;
+    private Boolean deprecatedSelected;
 
     @ManyToOne
     @JoinColumn(name="MEMBER_ID")

@@ -5,7 +5,6 @@ import com.mainProject.server.domain.choice.mapper.ChoiceMapper;
 import com.mainProject.server.domain.choice.service.ChoiceService;
 import com.mainProject.server.domain.content.entity.Content;
 import com.mainProject.server.domain.content.service.ContentService;
-import com.mainProject.server.domain.member.dto.MemberDto;
 import com.mainProject.server.domain.member.entity.Member;
 import com.mainProject.server.domain.member.service.MemberService;
 import com.mainProject.server.global.response.SingleResponseDto;
@@ -37,5 +36,5 @@ public class ChoiceController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    
+
 }
