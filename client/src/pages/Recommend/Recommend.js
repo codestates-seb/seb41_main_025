@@ -8,21 +8,27 @@ import Wavve from "./Wavve";
 const RecommendDiv = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   height: auto;
-  margin-bottom: 10px;
+  width: 1440px;
+  height: 655x;
+  margin-bottom: 30px;
+`;
 
-  .titleDiv {
-    display: flex;
-    width: max-content;
-    border-bottom: 2px solid #167e6c;
-    margin: 80px;
-  }
+const TitleDiv = styled.div`
+  display: flex;
+  align-content: flex-start;
+  width: 1120px;
+  margin: 80px;
+
   h1 {
     font-size: 32px;
+    border-bottom: 2px solid #167e6c;
   }
 `;
+
 const ButtonDiv = styled.div`
-  width: 1200px;
+  width: 1120px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -43,11 +49,13 @@ const ButtonDiv = styled.div`
 const CommentList = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
-  margin: 20px auto;
+  width: 1120px;
+  height: 100%;
+  margin-top: 20px;
   background: #bcede4;
   padding-bottom: 30px;
-  .inputDiv{
+
+  .inputDiv {
     width: 80%;
   }
   .recommendInput {
@@ -59,7 +67,7 @@ const CommentList = styled.div`
     &:active {
       border: none;
     }
-  
+
     ::placeholder {
       padding-left: 30px;
       color: #ffffff;
@@ -67,16 +75,11 @@ const CommentList = styled.div`
   }
 `;
 
-// const CommentItem = styled.div`
-//   width: 100%;
-//   /* background: #58bfad; */
-//   margin-bottom: 10px;
-//   color: #efefef;
-//   font-size: 22px;
-//   .userInfo {
-//     padding-bottom: 20px;
-//   }
-// `;
+const CommentItem = styled.div`
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+`;
 
 const Recommend = () => {
   //TODO: 탭 메뉴 구현하기
@@ -111,9 +114,9 @@ const Recommend = () => {
 
   return (
     <RecommendDiv>
-      <div className="titleDiv">
+      <TitleDiv>
         <h1>실시간 채팅</h1>
-      </div>
+      </TitleDiv>
 
       <ButtonDiv>
         {/* {tabArray.map((el, idx) => (
@@ -141,20 +144,16 @@ const Recommend = () => {
       </ButtonDiv>
 
       <CommentList>
-        {/* <div className="userInfo">{tabArray[currentTab].userInfo}</div>
-          <div className="content">{tabArray[currentTab].content}</div> */}
-        {tabList[currentTab].content}
-        <div className="inputDiv">
-          <input
-            id="tagfilter"
-            className="recommendInput"
-            autoComplete="off"
-            name="tags"
-            type="text"
-            // maxLength="35"
-            placeholder="한줄평을 입력해주세요"
-          ></input>
-        </div>
+        <CommentItem>{tabList[currentTab].content}</CommentItem>
+
+        <input
+          className="recommendInput"
+          autoComplete="off"
+          name="recommend"
+          type="text"
+          // maxLength="35"
+          placeholder="한줄평을 입력해주세요"
+        ></input>
       </CommentList>
     </RecommendDiv>
   );

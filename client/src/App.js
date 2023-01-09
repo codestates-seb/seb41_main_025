@@ -8,6 +8,7 @@ import SearchNull from "./pages/SearchNull";
 import Recommend from "./pages/Recommend/Recommend";
 import FavoriteMovie from "./pages/FavoriteMovie";
 import Choose from "./pages/Choose";
+import Mypage from "./pages/Mypage/Mypage"
 import { createGlobalStyle } from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -36,10 +37,11 @@ function App() {
           <Route path="/recommend" element={<Recommend />} />
           <Route path="/favorite" element={<FavoriteMovie />} />
           <Route path="/choose" element={<Choose />} />
+          <Route path='/mypage' element={<Mypage/>}/>
         </Routes>
-
         <Footer />
       </BrowserRouter>
+
     </>
   );
 }
