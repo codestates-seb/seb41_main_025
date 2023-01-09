@@ -1,5 +1,5 @@
 import "./App.css";
-import { Header, Modal } from "./components/Header";
+import { Header } from "./components/Header";
 import Footer from "./components/Footer";
 import Main from "./pages/Main/Main";
 import Login from "./pages/Login";

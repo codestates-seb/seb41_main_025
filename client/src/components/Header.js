@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 
 const HeaderWrap = styled.div`
@@ -54,7 +54,6 @@ const Sign = styled.ul`
     a {
         font-weight: bold;
         font-size : 16px;
-        
         color: #7E7E7E;
     }
 
@@ -64,7 +63,7 @@ const Sign = styled.ul`
     .modal {
     width: 90px;
     height: 30px;
-    margin-left: 70px;
+    margin-left: 0px;
     background-color: white;
     border: 0;
     font-weight: bold;
@@ -73,12 +72,17 @@ const Sign = styled.ul`
 }
 `
 
-const Modalwindow = styled.div`
-    width: 400px;
-    height: 400px;
-    margin: 50px;
+const ModalWindow = styled.div`
+    width: 300px;
+    height: 350px;
+    margin: 50px 30px 10px 120px;
     background-color: aliceblue;
     border-radius: 20px;
+    display: grid;
+`
+
+const NevFont = styled(NavLink)`
+    margin: 30px;
 `
 
 const Header = () => {
@@ -107,13 +111,12 @@ const Header = () => {
                     <Sign>
                         <button 
                         className="modal"
-                        onClick={ 
-                           ()=> setModal(!modal)
-                        }>
+                        onClick={()=> setModal(!modal)}>
                             {
-                                modal === true ?  <Modal /> : "마이페이지"  //기계역할
+                                modal === true ?  <Modal>마이페이지</Modal>: "마이페이지"
                             }
                         </button>
+                        {/* FIXME : 누르면 마이페이지 글씨가 없어지는 현상 */}
 
                     </Sign>
                 ) : (
@@ -132,11 +135,12 @@ const Modal = () => {
 
 
     return(
-        <Modalwindow>
-          <h4>제목</h4>
-          <p>날짜</p>
-          <p>상세내용</p>
-        </Modalwindow>
+        <ModalWindow>
+          <NevFont to = "/login">내가 누른 추천 & 비 추천</NevFont>
+          <NevFont to = "/signUp">찜한 영화</NevFont>
+          <NevFont to = "/favorite">내 인생작품 3가지</NevFont>
+          <h5>Log out</h5>
+        </ModalWindow>
       )
 
 }
