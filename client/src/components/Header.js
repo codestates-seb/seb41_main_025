@@ -86,8 +86,8 @@ const Header = () => {
                     </Sign>
                 ) : (
                     <Sign>
-                        <li className="signIn"><Link to='/login'>로그인</Link></li>
-                        <li className="signUp"><Link to='/signup'>회원가입</Link></li>
+                        <li className="signIn"><Link to='/'>로그인</Link></li>
+                        <li className="signUp"><Link to='/'>회원가입</Link></li>
                     </Sign>
                 )}
 

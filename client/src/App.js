@@ -2,10 +2,8 @@ import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Main from "./pages/Main/Main";
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp"
 import { createGlobalStyle } from "styled-components";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 
 const GlobalStyle = createGlobalStyle`
@@ -25,11 +23,7 @@ function App() {
       <GlobalStyle />
         <BrowserRouter>
           <Header />
-              <Routes>
-                <Route path='/' element={<Main/>}/>
-                <Route path='/login' element={<Login/>}/>
-                <Route path='/signup' element={<SignUp/>}/>
-              </Routes>
+          <Main />
           <Footer />
         </BrowserRouter>
     </>
