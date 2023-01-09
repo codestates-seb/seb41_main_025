@@ -1,10 +1,8 @@
 package com.mainProject.server.domain.content.service;
 
-import com.mainProject.server.domain.choice.entity.Choice;
 import com.mainProject.server.domain.content.entity.Content;
 import com.mainProject.server.domain.content.entity.Ott;
 import com.mainProject.server.domain.content.repository.ContentRepository;
-import com.mainProject.server.domain.member.entity.Member;
 import com.mainProject.server.domain.member.service.MemberService;
 import com.mainProject.server.global.exception.BusinessLogicException;
 import com.mainProject.server.global.exception.ExceptionCode;
