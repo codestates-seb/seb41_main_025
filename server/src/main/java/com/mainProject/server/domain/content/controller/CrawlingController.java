@@ -23,7 +23,7 @@ public class CrawlingController {
     public void postCrawling() {
 
         crawlingService.createCrawling("watcha-slide");
-        crawlingService.createCrawling("wavve-slide");
-        crawlingService.createCrawling("tving-slide");
+//        crawlingService.createCrawling("wavve-slide");
+//        crawlingService.createCrawling("tving-slide");
     }
 }

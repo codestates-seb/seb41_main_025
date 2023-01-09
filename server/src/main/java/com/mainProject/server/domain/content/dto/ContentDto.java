@@ -20,5 +20,6 @@ public class ContentDto {
         private String contentBody;
         private String contentPoster;
         private String contentOpenAt;
+        private Long choiceCount;
     }
 }

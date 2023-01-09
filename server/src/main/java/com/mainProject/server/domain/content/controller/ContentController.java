@@ -3,6 +3,8 @@ package com.mainProject.server.domain.content.controller;
 import com.mainProject.server.domain.content.entity.Content;
 import com.mainProject.server.domain.content.mapper.ContentMapper;
 import com.mainProject.server.domain.content.service.ContentService;
+import com.mainProject.server.domain.member.entity.Member;
+import com.mainProject.server.domain.member.service.MemberService;
 import com.mainProject.server.global.response.MultiResponseDto;
 import com.mainProject.server.global.response.SingleResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,7 @@ import java.util.List;
 public class ContentController {
     private final ContentService contentService;
     private final ContentMapper mapper;
+
 
     // TODO GET ONE
     @GetMapping("/{content-id}")

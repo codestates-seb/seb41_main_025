@@ -41,6 +41,9 @@ public class Content extends Auditable {
     @Column(nullable = false)
     private String ottRank;
 
+    @Column
+    private Long choiceCount;
+
     @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
     private List<Ott> ottList = new ArrayList<>();
 

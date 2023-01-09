@@ -1,5 +1,6 @@
 package com.mainProject.server.domain.content.service;
 
+import com.mainProject.server.domain.choice.entity.Choice;
 import com.mainProject.server.domain.content.entity.Content;
 import com.mainProject.server.domain.content.entity.Ott;
 import lombok.RequiredArgsConstructor;
@@ -63,10 +64,10 @@ public class CrawlingService {
             content.setContentPoster(contentPoster);
             content.setContentOpenAt(contentOpenAt);
             content.setContentTitle(contentTitle);
-            content.setRank(contentRank);
+            content.setOttRank(contentRank);
             content.setOttName(ottCrawling.split("-")[0]);
 
-            ott.setRank(contentRank);
+            ott.setOttRank(contentRank);
             ott.setOttName(ottCrawling.split("-")[0]);
             content.getOttList().add(ott);
 
