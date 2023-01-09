@@ -2,7 +2,6 @@ package com.mainProject.server.domain.content.entity;
 
 import com.mainProject.server.domain.member.entity.Member;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
 
 public class ContentDto {
     @Getter
@@ -41,7 +40,6 @@ public class ContentDto {
         private String contentTitle;
         private String contentBody;
         private String contentPoster;
-        private String contentRank;
         private String contentOpenAt;
     }
 }
