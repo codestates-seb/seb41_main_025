@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import React, { Component } from "react";
 import Item from "../../components/item/item";
 import { useRef, useCallback } from "react";
 
@@ -64,180 +63,83 @@ const NextButton = styled.button`
   right: 0;
 `;
 
+const Main = () => {
+  //React-slick
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 1000,
+    //autoplay: true,
+    autoplayspeed: 1000,
+    arrows: false,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+  };
 
-// const Main = () => {
-//   //React-slick
-//   const settings = {
-//     dots: false,
-//     infinite: true,
-//     speed: 1000,
-//     //autoplay: true,
-//     autoplayspeed: 1000,
-//     arrows: false,
-//     slidesToShow: 5,
-//     slidesToScroll: 1,
-//   };
+  // prev, next
+  const slickRef1 = useRef(null);
+  const slickRef2 = useRef(null);
+  const previous1 = useCallback(() => slickRef1.current.slickPrev(), []);
+  const next1 = useCallback(() => slickRef1.current.slickNext(), []);
+  const previous2 = useCallback(() => slickRef2.current.slickPrev(), []);
+  const next2 = useCallback(() => slickRef2.current.slickNext(), []);
 
-//   // prev, next
-//   const slickRef = useRef(null);
-//   const previous = useCallback(() => slickRef.current.slickPrev(), []);
-//   const next = useCallback(() => slickRef.current.slickNext(), []);
-
-//   return (
-//     <MainWarp>
-//       <MainContainer>
-//         <ItemContainer>
-//           <h2 className="title">박스오피스 순위</h2>
-//           <Slider className="items" ref={slickRef} {...settings}>
-//             {/* item.map(item => ()) */}
-//             <Item />
-//             <Item />
-//             <Item />
-//             <Item />
-//             <Item />
-//             <Item />
-//             <Item />
-//             <Item />
-//             <Item />
-//             <Item />
-//             <Item />
-//             <Item />
-//           </Slider>
-//           <PrevButton onClick={previous}>
-//             <img src="/assets/ArrowPrev.svg" alt=""/>
-//           </PrevButton>
-//           <NextButton onClick={next}>
-//             <img src="/assets/ArrowNext.svg" alt=""/>
-//           </NextButton>
-//         </ItemContainer>   
-//       </MainContainer>
-//     </MainWarp>
-//   )
-// }
-
-
-function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
   return (
-    <div
-      className={className}
-      style={{ ...style, display: "block", background: "black" }}
-      onClick={onClick}
-    />
-  );
-}
-
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: "block", background: "black" }}
-      onClick={onClick}
-    />
-  );
-}
-
-export default class AsNavFor extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      nav1: null,
-      nav2: null
-    };
-  }
-
-  componentDidMount() {
-    this.setState({
-      nav1: this.slider1,
-      nav2: this.slider2
-    });
-  }
-
-  render() {
-
-    // const slickRef = useRef(null);
-    // const previous = useCallback(() => slickRef.current.slickPrev(), []);
-    // const next = useCallback(() => slickRef.current.slickNext(), []);
-    
-    const settings = {
-      nextArrow: <SampleNextArrow />,
-      prevArrow: <SamplePrevArrow />
-    }
-    return (
     <MainWarp>
       <MainContainer>
+
         <ItemContainer>
-        <h2 className="title">박스오피스 순위</h2>
-        <Slider
-          ref={slider => (this.slider1 = slider)}
-          slidesToShow={5}
-          swipeToSlide={true}
-          focusOnSelect={true}
-          {...settings}
-        >
-          <Item />
-          <Item />
-          <Item />
-          <Item />
-          <Item />
-          <Item />
-          <Item />
-        </Slider>
-        <h2 className="title">넷플릭스 순위</h2>
-        <Slider
-          // asNavFor={this.state.nav1}
-          ref={slider => (this.slider2 = slider)}
-          slidesToShow={5}
-          swipeToSlide={true}
-          focusOnSelect={true}
-          {...settings}
-        >
-          <Item />
-          <Item />
-          <Item />
-          <Item />
-          <Item />
-          <Item />
-          <Item />
-          <Item />
-        </Slider>
-          {/* <PrevButton onClick={previous}>
-             <img src="/assets/ArrowPrev.svg" alt=""/>
+          <h2 className="title">박스오피스 순위</h2>
+          <Slider className="items" ref={slickRef1} {...settings}>
+            {/* item.map(item => ()) */}
+            <Item />
+            <Item />
+            <Item />
+            <Item />
+            <Item />
+            <Item />
+            <Item />
+            <Item />
+            <Item />
+            <Item />
+            <Item />
+            <Item />
+          </Slider>
+          <PrevButton onClick={previous1}>
+            <img src="/assets/ArrowPrev.svg" />
           </PrevButton>
-           <NextButton onClick={next}>
-             <img src="/assets/ArrowNext.svg" alt=""/>
-           </NextButton> */}
-      </ItemContainer>
-    </MainContainer>
-  </MainWarp>
-    );
-  }
+          <NextButton onClick={next1}>
+            <img src="/assets/ArrowNext.svg" />
+          </NextButton>
+        </ItemContainer>
+
+        <ItemContainer>
+          <h2 className="title">박스오피스 순위</h2>
+          <Slider className="items" ref={slickRef2} {...settings}>
+            <Item />
+            <Item />
+            <Item />
+            <Item />
+            <Item />
+            <Item />
+            <Item />
+            <Item />
+            <Item />
+            <Item />
+            <Item />
+            <Item />
+          </Slider>
+          <PrevButton onClick={previous2}>
+            <img src="/assets/ArrowPrev.svg" />
+          </PrevButton>
+          <NextButton onClick={next2}>
+            <img src="/assets/ArrowNext.svg" />
+          </NextButton>
+        </ItemContainer>
+
+      </MainContainer>
+    </MainWarp>
+  )
 }
 
-// export default Main;
-// import styled from "styled-components";
-// import Item from "../../components/item/item";
-
-// export const MainWarp = styled.div`
-//   width: 100%;
-// `
-
-// export const MainContainer = styled.div`
-//   width: 1440px;
-//   height: 1000px;
-//   margin: auto;
-// `
-
-// const Main = () => {
-//   return (
-//     <MainWarp>
-//       <MainContainer>
-//         <Item />
-//       </MainContainer>
-//     </MainWarp>
-//   )
-// }
-
-// export default Main;
+export default Main;
