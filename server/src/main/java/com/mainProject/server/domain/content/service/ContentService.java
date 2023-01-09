@@ -34,14 +34,21 @@ public class ContentService {
 
         if(optionalContent.isPresent()) {
             Content findContent = optionalContent.get();
-            Ott ott = new Ott();
-            ott.setOttName(ott.getOttName());
-            ott.setRank(ott.getRank());
 
-            List<Ott> ottList = new ArrayList<>();
-            ottList.addAll(findContent.getOttList());
-            ottList.add(ott);
-            findContent.setOttList(ottList);
+            for(int i =0; i<findContent.getOttList().size(); i++) {
+                if(findContent.getOttList().get(i).getOttName().equals(content.getOttName())) {
+                    findContent.getOttList().get(i).setRank(content.getRank());
+                    return contentRepository.save(findContent);
+                }
+            }
+
+            Ott ott = new Ott();
+            ott.setOttName(content.getOttName());
+            ott.setRank(content.getRank());
+            ott.setContent(findContent);
+
+            findContent.getOttList().add(ott);
+
             return contentRepository.save(findContent);
         }
 
@@ -85,6 +92,7 @@ public class ContentService {
            throw new BusinessLogicException(ExceptionCode.CONTENT_EXISTS);
 
     }
+
 
 
 }
