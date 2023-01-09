@@ -116,6 +116,28 @@ const NextButton = styled.button`
 // }
 
 
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "black" }}
+      onClick={onClick}
+    />
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "black" }}
+      onClick={onClick}
+    />
+  );
+}
+
 export default class AsNavFor extends Component {
 
   constructor(props) {
@@ -139,6 +161,10 @@ export default class AsNavFor extends Component {
     // const previous = useCallback(() => slickRef.current.slickPrev(), []);
     // const next = useCallback(() => slickRef.current.slickNext(), []);
     
+    const settings = {
+      nextArrow: <SampleNextArrow />,
+      prevArrow: <SamplePrevArrow />
+    }
     return (
     <MainWarp>
       <MainContainer>
@@ -146,9 +172,10 @@ export default class AsNavFor extends Component {
         <h2 className="title">박스오피스 순위</h2>
         <Slider
           ref={slider => (this.slider1 = slider)}
-          slidesToShow={3}
+          slidesToShow={5}
           swipeToSlide={true}
           focusOnSelect={true}
+          {...settings}
         >
           <Item />
           <Item />
@@ -162,9 +189,10 @@ export default class AsNavFor extends Component {
         <Slider
           // asNavFor={this.state.nav1}
           ref={slider => (this.slider2 = slider)}
-          slidesToShow={3}
+          slidesToShow={5}
           swipeToSlide={true}
           focusOnSelect={true}
+          {...settings}
         >
           <Item />
           <Item />
