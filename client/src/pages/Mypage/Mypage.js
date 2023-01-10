@@ -10,7 +10,7 @@ const MypageDiv = styled.div`
   width: 1440px;
   height: 655x;
   margin-bottom: 30px;
-  padding: 0px 60px;
+  padding: 60px 60px 0px;
   margin: 0 auto;
   form {
     display: flex;

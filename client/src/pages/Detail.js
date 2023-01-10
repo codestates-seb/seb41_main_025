@@ -9,7 +9,7 @@ const DetailContainer = styled.div`
   width: 1440px;
   height: 1800px;
   margin-bottom: 30px;
-  padding: 0px 60px;
+  padding: 60px 60px 0px;
   margin: 0 auto;
 `;
 const DetailHeader = styled.div`
