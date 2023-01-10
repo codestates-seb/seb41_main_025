@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import dummy from "../Recommend/dummydata";
+import dummy from "../AllTimeChat/dummydata";
 import ModalBasic from "./ModalBasic";
 
 const MypageDiv = styled.div`
