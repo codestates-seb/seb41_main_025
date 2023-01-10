@@ -3,6 +3,7 @@ import Item from "../../components/item/item";
 import { useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 
+
 // slide
 import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
