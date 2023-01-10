@@ -31,7 +31,7 @@ function App() {
       <GlobalStyle />
       <BrowserRouter>
         <Header />
-        {/* <Routes>
+        <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
@@ -41,8 +41,7 @@ function App() {
           <Route path="/choose" element={<Choose />} />
           <Route path='/mypage' element={<Mypage/>}/>
           <Route path='/detail' element={<Detail/>}/>
-        </Routes> */}
-        <Detail/>
+        </Routes>
         <Footer />
       </BrowserRouter>
 
