@@ -4,6 +4,7 @@ import { AiTwotoneLike, AiTwotoneDislike, AiFillStar } from "react-icons/ai";
 import { FcLike } from "react-icons/fc";
 import { ModifyBtn } from "./Mypage/Mypage";
 import dummy from "./AllTimeChat/dummydata";
+import { ButtonForm } from "../components/item/Button";
 
 const DetailContainer = styled.div`
   width: 1440px;
@@ -151,7 +152,8 @@ const Detail = () => {
             </div>
           </DetailItem>
         </DetailContent>
-        <ModifyBtn  style={{margin:"130px 0px"}}> 실시간 채팅 </ModifyBtn>
+        {/* <ModifyBtn  style={{margin:"130px 0px"}}> 실시간 채팅 </ModifyBtn> */}
+        <ButtonForm to='/alltimechat'>실시간 채팅</ButtonForm>
       </DetailHeader>
 
       <DetailCommentList>

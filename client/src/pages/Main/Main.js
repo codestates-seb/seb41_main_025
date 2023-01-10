@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import ItemContainer from "../../components/item/itemContainer";
 
+
 export const MainWarp = styled.div`
   padding: 60px 60px;
   width: 100%;
@@ -13,13 +14,14 @@ export const MainContainer = styled.div`
 `
 
 const Main = () => {
+
+
   return (
     <MainWarp>
       <MainContainer>
-
         <ItemContainer />
-        <ItemContainer />
-        <ItemContainer />
+        {/* <ItemContainer />
+        <ItemContainer /> */}
 
       </MainContainer>
     </MainWarp>

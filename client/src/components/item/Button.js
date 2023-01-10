@@ -19,7 +19,7 @@ const GreenButton = ({ name }) => {
 
 
     return (
-        <ButtonForm to='/recommend'>{name}</ButtonForm>
+        <ButtonForm >{name}</ButtonForm>
         // FIXME : searchNull에서 nevlink가 되지 않음
     )
 }

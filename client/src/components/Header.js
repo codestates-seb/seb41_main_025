@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useEffect } from "react";
 
 const HeaderWrap = styled.div`
     position: fixed;
@@ -100,7 +101,25 @@ const NevFont = styled(NavLink)`
 
 const Header = () => {
 
-    const [modal, setModal] = useState(false)
+    const [isModal, setIsModalOpen] = useState(false)
+    const outSection = useRef()
+    // FIXME : 마이페이지를 두 번 누르면 닫히지 않는 현상
+    useEffect(() => {
+        document.addEventListener('mousedown', clickModalOutside);
+    
+        return () => {
+          document.removeEventListener('mousedown', clickModalOutside);
+        };
+      });
+
+    const clickModalOutside = event => {
+        if(isModal && !outSection.current.contains(event.target)) 
+        {
+            setIsModalOpen(!isModal)
+        }
+
+    }
+
 
     const islogin = true;
     return (
@@ -123,14 +142,16 @@ const Header = () => {
                 {islogin ? (
                     <Sign>
                         <button 
-                        className="modal"
-                        onClick={()=> setModal(!modal)}>
-                            마이페이지
+                            className="modal"
+                            onClick={()=> setIsModalOpen(!isModal)}> 마이페이지 
                         </button>
-                        {modal === true ? ( 
-                            <Modal />
-                        ) : null }
-
+                        {isModal === true ? (
+                            <div
+                                ref={outSection} 
+                                onClick={clickModalOutside}>
+                                <Modal/>
+                            </div>) 
+                            : null }
                     </Sign>
                 ) : (
                     <Sign>
