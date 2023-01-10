@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import ItemContainer from "../../components/item/itemContainer";
+import useFetch from "../../components/util/useFetch";
 
 
 export const MainWarp = styled.div`
@@ -19,9 +20,10 @@ const Main = () => {
   return (
     <MainWarp>
       <MainContainer>
+ 
         <ItemContainer />
-        {/* <ItemContainer />
-        <ItemContainer /> */}
+        <ItemContainer />
+        <ItemContainer />
 
       </MainContainer>
     </MainWarp>

@@ -74,8 +74,8 @@ const ItemContainer = () => {
   const previous = useCallback(() => slickRef.current.slickPrev(), []);
   const next = useCallback(() => slickRef.current.slickNext(), []);
   
-  const [movies] = useFetch('http://localhost:3000/contents')
-  console.log(movies)
+  // const [movies] = useFetch('http://localhost:3000/contents')
+  // console.log(movies)
 
 //   const DataList = async () => {
 //     await axios({
@@ -94,15 +94,7 @@ const ItemContainer = () => {
     <Container>
       <h2 className="title">박스오피스 순위</h2>
       <Slider className="items" ref={slickRef} {...settings}>
-        {/* item.map(item => ()) */}
-        {movies && movies.map((movies) => {
-          return(
-          // {console.log(movies)}
-          <Link to="detail" key={movies.id}><Item movies={movies}/></Link>
-        )})
-        }
-        
-        {/* <Link to="detail"><Item /></Link>
+      
         <Link to="detail"><Item /></Link>
         <Link to="detail"><Item /></Link>
         <Link to="detail"><Item /></Link>
@@ -111,7 +103,8 @@ const ItemContainer = () => {
         <Link to="detail"><Item /></Link>
         <Link to="detail"><Item /></Link>
         <Link to="detail"><Item /></Link>
-        <Link to="detail"><Item /></Link> */}
+        <Link to="detail"><Item /></Link>
+        <Link to="detail"><Item /></Link>
       </Slider>
       <PrevButton onClick={previous}>
         <img src="/assets/ArrowPrev.svg" alt="이전" />
