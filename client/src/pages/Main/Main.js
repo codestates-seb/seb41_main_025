@@ -1,6 +1,8 @@
 import styled, { css } from "styled-components";
 import Item from "../../components/item/item";
 import { useRef, useCallback } from "react";
+import { Link } from "react-router-dom";
+
 
 // slide
 import Slider from "react-slick";
@@ -92,18 +94,17 @@ const Main = () => {
           <h2 className="title">박스오피스 순위</h2>
           <Slider className="items" ref={slickRef1} {...settings}>
             {/* item.map(item => ()) */}
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
+            <Link to="detail"><Item /></Link>
+            <Link to="detail"><Item /></Link>
+            <Link to="detail"><Item /></Link>
+            <Link to="detail"><Item /></Link>
+            <Link to="detail"><Item /></Link>
+            <Link to="detail"><Item /></Link>
+            <Link to="detail"><Item /></Link>
+            <Link to="detail"><Item /></Link>
+            <Link to="detail"><Item /></Link>
+            <Link to="detail"><Item /></Link>
+            <Link to="detail"><Item /></Link>
           </Slider>
           <PrevButton onClick={previous1}>
             <img src="/assets/ArrowPrev.svg" />
@@ -116,18 +117,17 @@ const Main = () => {
         <ItemContainer>
           <h2 className="title">박스오피스 순위</h2>
           <Slider className="items" ref={slickRef2} {...settings}>
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
+            <Link to="detail"><Item /></Link>
+            <Link to="detail"><Item /></Link>
+            <Link to="detail"><Item /></Link>
+            <Link to="detail"><Item /></Link>
+            <Link to="detail"><Item /></Link>
+            <Link to="detail"><Item /></Link>
+            <Link to="detail"><Item /></Link>
+            <Link to="detail"><Item /></Link>
+            <Link to="detail"><Item /></Link>
+            <Link to="detail"><Item /></Link>
+            <Link to="detail"><Item /></Link>
           </Slider>
           <PrevButton onClick={previous2}>
             <img src="/assets/ArrowPrev.svg" />

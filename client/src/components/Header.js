@@ -48,6 +48,7 @@ export const SearchBar = styled.div`
 const Sign = styled.ul`
     display: flex;
     justify-content: flex-end;
+    position: relative;
     min-width: 150px;
     padding-left: 10px;
 
@@ -72,17 +73,27 @@ const Sign = styled.ul`
 }
 `
 
-const ModalWindow = styled.div`
-    width: 300px;
-    height: 350px;
-    margin: 50px 30px 10px 120px;
+const ModalContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    width: 250px;
+    height: 300px;
+    top: calc(0% + 45px);
     background-color: aliceblue;
-    border-radius: 20px;
-    display: grid;
+    border-radius: 20px 0px 20px 20px;
+
+    z-index: 10;
+
+    h5 {
+        text-align: end;
+        padding: 0px 20px; 
+    }
 `
 
 const NevFont = styled(NavLink)`
-    margin: 30px;
+    padding: 20px;
 `
 
 const Header = () => {
@@ -112,11 +123,11 @@ const Header = () => {
                         <button 
                         className="modal"
                         onClick={()=> setModal(!modal)}>
-                            {
-                                modal === true ?  <Modal>마이페이지</Modal>: "마이페이지"
-                            }
+                            마이페이지
                         </button>
-                        {/* FIXME : 누르면 마이페이지 글씨가 없어지는 현상 */}
+                        {modal === true ? ( 
+                            <Modal />
+                        ) : null }
 
                     </Sign>
                 ) : (
@@ -133,15 +144,14 @@ const Header = () => {
 
 const Modal = () => {
 
-
     return(
-        <ModalWindow>
+        <ModalContainer>
             <NevFont to = "/mypage">나의 정보</NevFont>
             <NevFont to = "/recommend">내가 누른 추천 & 비 추천</NevFont>
             <NevFont to = "/choose">찜한 영화</NevFont>
             <NevFont to = "/favorite">내 인생작품 3가지</NevFont>
             <h5>Log out</h5>
-        </ModalWindow>
+        </ModalContainer>
     )
 }
 
