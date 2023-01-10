@@ -4,14 +4,14 @@ import SeleteItem from "../components/item/SeleteItem";
 import { MainWarp, MainContainer} from "./Main/Main"
 import { SearchBar } from "../components/Header"
 
-const Items = styled.div`
+export const Items = styled.div`
     display: flex;
     justify-content: center;
     align-content: center;
     margin: 20px;
 `;
 
-const Title = styled(MainContainer)`
+export const Title = styled(MainContainer)`
     width: 500px;
     height: 100px;
     margin: 100px;

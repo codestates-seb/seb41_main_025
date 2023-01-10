@@ -9,6 +9,7 @@ import AllTimeChat from "./pages/AllTimeChat/AllTimeChat";
 import FavoriteMovie from "./pages/FavoriteMovie";
 import Choose from "./pages/Choose";
 import Mypage from "./pages/Mypage/Mypage"
+import RecommendMovies from "./pages/RecommendMovies";
 import { createGlobalStyle } from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -39,6 +40,7 @@ function App() {
           <Route path="/favorite" element={<FavoriteMovie />} />
           <Route path="/choose" element={<Choose />} />
           <Route path='/mypage' element={<Mypage/>}/>
+          <Route path="/recommend" element={<RecommendMovies />}/>
         </Routes>
         <Footer />
       </BrowserRouter>

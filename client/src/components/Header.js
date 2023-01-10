@@ -137,7 +137,7 @@ const Modal = () => {
     return(
         <ModalWindow>
             <NevFont to = "/mypage">나의 정보</NevFont>
-            <NevFont to = "/login">내가 누른 추천 & 비 추천</NevFont>
+            <NevFont to = "/recommend">내가 누른 추천 & 비 추천</NevFont>
             <NevFont to = "/choose">찜한 영화</NevFont>
             <NevFont to = "/favorite">내 인생작품 3가지</NevFont>
             <h5>Log out</h5>
