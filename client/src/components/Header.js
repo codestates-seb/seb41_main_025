@@ -1,10 +1,13 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useState } from "react";
 
 const HeaderWrap = styled.div`
     width: 100%;
     height: 60px;
+    color : #d0d0d0;
     border-bottom: 1px solid #d0d0d0;
+    /* position: fixed; */
 `
 const HeaderContainer = styled.div`
     display: flex;
@@ -13,7 +16,6 @@ const HeaderContainer = styled.div`
     width: 1440px;
     height: 60px;
     margin: 0 auto;
-    padding: 0px 60px;
 
     .logo {
         display: flex;
@@ -31,7 +33,7 @@ const HeaderContainer = styled.div`
     }
 `
 
-const SearchBar = styled.div`
+export const SearchBar = styled.div`
     input {
         width: 512px;
         height: 40px;
@@ -52,17 +54,42 @@ const Sign = styled.ul`
     a {
         font-weight: bold;
         font-size : 16px;
-        
         color: #7E7E7E;
     }
 
     .signUp {
         margin-left: 24px;
     }
+    .modal {
+    width: 90px;
+    height: 30px;
+    margin-left: 0px;
+    background-color: white;
+    border: 0;
+    font-weight: bold;
+    font-size : 16px;
+    font-weight: 500;
+}
+`
+
+const ModalWindow = styled.div`
+    width: 300px;
+    height: 350px;
+    margin: 50px 30px 10px 120px;
+    background-color: aliceblue;
+    border-radius: 20px;
+    display: grid;
+`
+
+const NevFont = styled(NavLink)`
+    margin: 30px;
 `
 
 const Header = () => {
-    const islogin = false;
+
+    const [modal, setModal] = useState(false)
+
+    const islogin = true;
     return (
         <HeaderWrap>
             <HeaderContainer>
@@ -70,7 +97,7 @@ const Header = () => {
                 {/* logo */}
                 <div className="logo">
                     <Link to="/">
-                        <img src="/assets/logo.png"></img>
+                        <img src="/assets/logo.png" alt =""></img>
                     </Link>
                 </div>
 
@@ -82,7 +109,15 @@ const Header = () => {
                 {/* sign Up / sign In */}
                 {islogin ? (
                     <Sign>
-                        <li className="signIn"><Link to='/'>마이페이지</Link></li>
+                        <button 
+                        className="modal"
+                        onClick={()=> setModal(!modal)}>
+                            {
+                                modal === true ?  <Modal>마이페이지</Modal>: "마이페이지"
+                            }
+                        </button>
+                        {/* FIXME : 누르면 마이페이지 글씨가 없어지는 현상 */}
+
                     </Sign>
                 ) : (
                     <Sign>
@@ -96,4 +131,18 @@ const Header = () => {
     )
 }
 
-export default Header;
+const Modal = () => {
+
+
+    return(
+        <ModalWindow>
+            <NevFont to = "/mypage">나의 정보</NevFont>
+            <NevFont to = "/login">내가 누른 추천 & 비 추천</NevFont>
+            <NevFont to = "/choose">찜한 영화</NevFont>
+            <NevFont to = "/favorite">내 인생작품 3가지</NevFont>
+            <h5>Log out</h5>
+        </ModalWindow>
+    )
+}
+
+export {Header, Modal} ;
