@@ -82,15 +82,14 @@ const InputDiv = styled.div`
   .recommendInput {
     width: 70%;
     height: 100px;
+    padding-left: 30px;
     background-color: #58bfad;
     color: #ffffff;
     border: none;
-    &:active {
-      border: none;
+    &:focus {
+      outline: none;
     }
-
     ::placeholder {
-      padding-left: 30px;
       color: #ffffff;
     }
   }
