@@ -7,6 +7,7 @@ export const Main = styled.div`
     justify-content: center;
     align-items: center;
     padding: 60px 60px 0px;
+    height: 100vh;
 `
 
 export const Window = styled.div`
