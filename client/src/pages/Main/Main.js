@@ -1,7 +1,8 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import ItemContainer from "../../components/item/itemContainer";
 
 export const MainWarp = styled.div`
+  padding-top: 50px;
   width: 100%;
 `
 

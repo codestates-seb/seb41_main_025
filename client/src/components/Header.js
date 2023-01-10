@@ -3,11 +3,13 @@ import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 
 const HeaderWrap = styled.div`
+    position: fixed;
     width: 100%;
     height: 60px;
     color : #d0d0d0;
     border-bottom: 1px solid #d0d0d0;
-    /* position: fixed; */
+    background: white;
+    z-index: 10;
 `
 const HeaderContainer = styled.div`
     display: flex;
