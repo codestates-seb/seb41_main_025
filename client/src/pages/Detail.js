@@ -13,7 +13,9 @@ const DetailContainer = styled.div`
 `;
 const DetailHeader = styled.div`
   display: flex;
+  justify-content: space-around;
   width: 100%;
+  padding: 40px 0px;
   .posterWrap {
     width: 240px;
     height: 346px;
@@ -24,7 +26,10 @@ const DetailHeader = styled.div`
   }
 `;
 const DetailCommentList = styled.div`
-  width: 1220px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 const DetailContent = styled.div`
   display: flex;
@@ -77,10 +82,13 @@ const DetailCommentItem = styled.div`
     width: 48px;
   }
 `;
+
+
 const InputDiv = styled.div`
   display: flex;
+  width: 80%;
   .recommendInput {
-    width: 70%;
+    width: 100%;
     height: 100px;
     padding-left: 30px;
     background-color: #58bfad;
@@ -97,7 +105,7 @@ const InputDiv = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
+    width: 110px;
     height: 100px;
     background-color: #d9d9d9;
   }
@@ -142,7 +150,7 @@ const Detail = () => {
             </div>
           </DetailItem>
         </DetailContent>
-        <ModifyBtn> 실시간 채팅 </ModifyBtn>
+        <ModifyBtn  style={{margin:"130px 0px"}}> 실시간 채팅 </ModifyBtn>
       </DetailHeader>
 
       <DetailCommentList>
