@@ -10,6 +10,7 @@ const DetailContainer = styled.div`
   height: 1800px;
   margin-bottom: 30px;
   padding: 0px 60px;
+  margin: 0 auto;
 `;
 const DetailHeader = styled.div`
   display: flex;
