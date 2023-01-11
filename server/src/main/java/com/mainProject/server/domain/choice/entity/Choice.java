@@ -4,14 +4,13 @@ package com.mainProject.server.domain.choice.entity;
 import com.mainProject.server.domain.content.entity.Content;
 import com.mainProject.server.domain.member.entity.Member;
 import com.mainProject.server.global.audit.Auditable;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Choice extends Auditable {

@@ -2,16 +2,14 @@ package com.mainProject.server.domain.board.eneity;
 
 import com.mainProject.server.domain.member.entity.Member;
 import com.mainProject.server.global.audit.Auditable;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

@@ -59,8 +59,8 @@ public class ContentService {
         return findVerifiedContent(contentId);
     }
 
-    public Page<Content> findContents(int page, int size) {
-        return contentRepository.findAll(PageRequest.of(page,size, Sort.by("contentId").descending()));}
+    public List<Content> findContents() {
+        return contentRepository.findAll();}
 
     public void deleteContent(long contentId) {
         Content findContent = findVerifiedContent(contentId);

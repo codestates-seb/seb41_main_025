@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class ContentResponseDto {
 
     private String contentOttName;
-    private String ottRank;
+    private String contentOttRank;
 
     private long contentId;
     private String contentOpenAt;// 개봉 0
