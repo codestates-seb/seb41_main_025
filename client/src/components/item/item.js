@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import useFetch from "../util/useFetch";
 
 const ItemContainer = styled.div`
   display: flex;
@@ -28,16 +29,18 @@ const Contents = styled.div`
   }
 `
 
-const Item = () => {
+const Item = (movie) => {
   return (
-    <ItemContainer className="item">
+    <ItemContainer>
       <div className="posterWrap"></div>
       <Contents>
         <div className="title">영화 제목{/* 영화제목 */}</div>
         <div className="comeout">국가 / 개봉년도{/* 국가/개봉년도 */}</div>
         <div className="score">평점 {/* 평점 */}</div>
       </Contents>
+ 
     </ItemContainer>
+
   )
 }
 export default Item;

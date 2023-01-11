@@ -4,6 +4,9 @@ import { AiTwotoneLike, AiTwotoneDislike, AiFillStar } from "react-icons/ai";
 import { FcLike } from "react-icons/fc";
 import { ModifyBtn } from "./Mypage/Mypage";
 import dummy from "./AllTimeChat/dummydata";
+import { ButtonForm } from "../components/item/Button";
+import { useParams } from "react-router-dom";
+import useFetch from "../components/util/useFetch";
 
 const DetailContainer = styled.div`
   width: 1440px;
@@ -21,8 +24,6 @@ const DetailHeader = styled.div`
     width: 240px;
     height: 346px;
     border-radius: 10px;
-    background-color: red;
-    background-image: url("");
     background-size: contain;
   }
 `;
@@ -40,6 +41,9 @@ const DetailContent = styled.div`
   justify-content: space-around;
   .title {
     font-size: 35px;
+  }
+  .comeout {
+    margin-top: 10px;
   }
 `;
 const DetailItem = styled.div`
@@ -121,15 +125,32 @@ const InputDiv = styled.div`
 `;
 
 const Detail = () => {
+
+
+  const { id } = useParams()
+
+  const request = {
+    method : "get",
+    headers : {"Content-Type" : "application/json"}
+  }
+
+  const [movies] = useFetch(`http://localhost:3000/contents/${id}`,request)
+  // console.log(movies)
+
   return (
     <DetailContainer>
       <DetailHeader>
-        <div className="posterWrap"></div>
+        <img className="posterWrap" src={movies && movies.contentPoster} alt='moviePoster'></img>
         <DetailContent>
-          <div className="title">영화 제목{/* 영화제목 */}</div>
-          <div className="comeout">국가 / 개봉년도{/* 국가/개봉년도 */}</div>
-          <div className="score">평점 {/* 평점 */}</div>
-          <div className="comments">영화설명 {/* 영화설명*/}</div>
+            {console.log(movies.contentTitle)}
+            <>
+                <div className="contents">
+                  <div className="title">{movies && movies.contentTitle}</div>
+                  <div className="comeout">{movies && movies.contentOpenAt}</div>
+                  <div className="score">평점 {/* 평점 */}</div>
+                  <div className="comments">영화설명 {movies && movies.contentBody}</div>
+                </div>
+            </>
           <DetailItem>
             {/*아이콘 박스*/}
             <div className="itemIcon">
@@ -151,7 +172,8 @@ const Detail = () => {
             </div>
           </DetailItem>
         </DetailContent>
-        <ModifyBtn  style={{margin:"130px 0px"}}> 실시간 채팅 </ModifyBtn>
+        {/* <ModifyBtn  style={{margin:"130px 0px"}}> 실시간 채팅 </ModifyBtn> */}
+        <ButtonForm to='/alltimechat'>실시간 채팅</ButtonForm>
       </DetailHeader>
 
       <DetailCommentList>

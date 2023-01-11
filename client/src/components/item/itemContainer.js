@@ -2,6 +2,8 @@ import styled, { css } from "styled-components";
 import Item from "./item";
 import { useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
+// import axios from 'axios';
+import useFetch from "../../components/util/useFetch";
 
 // slide
 import Slider from "react-slick";
@@ -58,7 +60,7 @@ const ItemContainer = () => {
   //React-slick
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 1000,
     //autoplay: true,
     autoplayspeed: 1000,
@@ -72,12 +74,27 @@ const ItemContainer = () => {
   const previous = useCallback(() => slickRef.current.slickPrev(), []);
   const next = useCallback(() => slickRef.current.slickNext(), []);
   
+  // const [movies] = useFetch('http://localhost:3000/contents')
+  // console.log(movies)
+
+//   const DataList = async () => {
+//     await axios({
+//         method: "GET",
+//         url: `http://localhost:3000/contents`,
+//         headers: {
+//             "Content-Type": 'application/json',
+//         },
+//         .then(data) {
+//           console.log(data)
+//         }
+//     });
+// }
+
   return (
     <Container>
       <h2 className="title">박스오피스 순위</h2>
       <Slider className="items" ref={slickRef} {...settings}>
-        {/* item.map(item => ()) */}
-        <Link to="detail"><Item /></Link>
+      
         <Link to="detail"><Item /></Link>
         <Link to="detail"><Item /></Link>
         <Link to="detail"><Item /></Link>
