@@ -24,22 +24,43 @@ public class Content extends Auditable {
     private Long contentId;
 
     @Column(nullable = false)
-    private String contentTitle;
+    private String contentTitle; //7
 
     @Column(nullable = false, length = 100000)
-    private String contentBody;
+    private String contentBody; //8
 
     @Column(nullable = false)
     private String contentPoster;
 
     @Column(nullable = false)
-    private String contentOpenAt;
-
-    @Column(nullable = false)
     private String ottName;
 
     @Column(nullable = false)
-    private String ottRank;
+    private String contentOttRank;
+
+    @Column
+    private String contentOpenAt; // 개봉 0
+
+    @Column
+    private String contentGenre; // 장르 1
+
+    @Column
+    private String contentCountry; // 국가 2
+
+    @Column
+    private String contentGrade; // 등급 3
+
+    @Column
+    private String contentScore; // 평점 4
+
+    @Column
+    private String contentRunningTime; // 러닝타임 5
+
+    @Column
+    private String contentAttendance; // 누적관객 6
+
+    @Column(nullable = false)
+    private String contentOttList; // Ott 9
 
     @Column
     private Long choiceCount;

@@ -11,7 +11,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -55,9 +57,17 @@ public class CrawlingService {
 
             movieList.addAll(innerCrawling(contentLink));
 
-            String contentOpenAt = movieList.get(0);
-            String contentTitle = movieList.get(1);
-            String contentBody = movieList.get(2);
+            String contentOpenAt = movieList.get(0); // 개봉0
+            String contentGenre = movieList.get(1); // 장르 1
+            String contentCountry = movieList.get(2); // 국가 2
+            String contentGrade = movieList.get(3); // 등급 3
+            String contentScore = movieList.get(4); // 평점4
+            String contentRunningTime = movieList.get(5); // 러닝타임 5
+            String contentAttendance = movieList.get(6); // 누적관객6
+            String contentTitle = movieList.get(7); // 타이틀 7
+            String contentBody = movieList.get(8); // desc 8
+            String contentOttList = movieList.get(9); // Ott 9
+
 
             content.setContentBody(contentBody);
             content.setContentPoster(contentPoster);
@@ -96,7 +106,7 @@ public class CrawlingService {
         WebElement productDiv = driver.findElement(By.className("kakao_content"));
 
         List<String> result = new ArrayList<>();
-        String openAtList = productDiv.findElement(By.className("info_detail")).findElement(By.className("list_cont")).getText();
+        Map<String, String> infoMap = new HashMap<>();
         String titleList = productDiv.findElement(By.className("tit_movie")).findElement(By.className("txt_tit")).getText();
         String descList = productDiv.findElement(By.className("box_detailinfo")).findElement(By.className("desc_cont")).getText();
         String ottList = productDiv.findElement(By.className("info_detail")).findElement(By.className("group_btn")).getText();

@@ -38,8 +38,8 @@ public class ContentService {
             }
 
             Ott ott = new Ott();
-            ott.setOttName(content.getOttName());
-            ott.setOttRank(content.getOttRank());
+            ott.setOttName(content.getContentOttName());
+            ott.setOttRank(content.getContentOttRank());
             ott.setContent(findContent);
 
             findContent.getOttList().add(ott);

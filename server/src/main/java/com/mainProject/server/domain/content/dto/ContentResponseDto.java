@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ContentResponseDto {
 
-    private String ottName;
+    private String contentOttName;
     private String ottRank;
     private long contentId;
     private String contentTitle;
