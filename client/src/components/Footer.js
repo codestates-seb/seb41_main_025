@@ -55,7 +55,7 @@ const Footer = () => {
         {/* logo */}
         <div className="logo">
           <Link to="/">
-              <img src="/assets/footerLogo.svg"></img>
+              <img src="/assets/footerLogo.svg" alt=""></img>
           </Link>
         </div>
 
