@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import GreenButton from '../components/item/Button'
+import { ButtonForm } from '../components/item/Button'
 
  
 const Main = styled.div`
@@ -62,7 +62,7 @@ const SearchNull = () => {
                 </Font>
                 <img src ='/assets/Character.png' className='character' alt="" />
             </Window>
-            <GreenButton linkto={'/recommend'} name={"실시간 채팅"}/>
+            <ButtonForm to='/alltimechat'>실시간 채팅</ButtonForm>
         </Main>
         </>
     )
