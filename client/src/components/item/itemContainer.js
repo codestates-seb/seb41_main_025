@@ -74,8 +74,10 @@ const ItemContainer = () => {
   const previous = useCallback(() => slickRef.current.slickPrev(), []);
   const next = useCallback(() => slickRef.current.slickNext(), []);
 
+
   const [movies] = useFetch('http://localhost:3000/contents')
   console.log(movies)
+
 
   // let [movieList] = useFetch("data/db.json");
   // const movies = movieList.contents;
@@ -106,6 +108,7 @@ const ItemContainer = () => {
     <Container>
       <h2 className="title">박스오피스 순위</h2>
       <Slider className="items" ref={slickRef} {...settings}>
+
         {movies &&
           movies.map((movie) => {
             return (
@@ -117,6 +120,7 @@ const ItemContainer = () => {
         {/* key={movies.contentId}*/}
         {/*contentTitle={movies.contentTitle} contentPoster={movies.contentPoster} contentOpenAt={movies.contentOpenAt} */}
         <Link to="detail"><Item /></Link>
+
 
       </Slider>
       <PrevButton onClick={previous}>

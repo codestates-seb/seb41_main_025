@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import useFetch from "../util/useFetch";
 
 const ItemContainer = styled.div`
   display: flex;
@@ -39,7 +40,9 @@ const Item = ( { contentTitle, contentPoster, contentOpenAt } ) => {
   // { contentTitle, contentPoster, contentOpenAt }
   // const movies = { contentTitle };
 
+
   return (
+
 
     <ItemContainer>
       <div className="posterWrap">
