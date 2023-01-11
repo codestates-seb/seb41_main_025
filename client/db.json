@@ -1,6 +1,7 @@
 {
   "contents": [
     {
+      "id" : 1,
       "ottName": "watcha",
       "ottRank": "10",
       "contentId": 10,
@@ -9,11 +10,57 @@
       "contentPoster": "https://img1.daumcdn.net/thumb/C408x596/?fname=http%3A%2F%2Ft1.daumcdn.net%2Fcfile%2F2269744D5321566306",
       "contentOpenAt": "개봉 2014.01.09",
       "choiceCount": 0,
-      "recommendCount": 0,
+      "recommendCount": 10,
+      "decommendCount": 20,
       "deprecateCount": 0,
-      "favoriteCount": 0
+      "favoriteCount": 0,
+      "recommend" :
+        {
+          "memberId": 2,
+          "contentId": 1,
+          "recommendSelected": false,
+          "recommendCount": 1,
+          "createdAt": "2023-01-10T01:52:00.6122737"
+        },
+        "decommend" :
+        {
+          "memberId": 3,
+          "contentId": 1,
+          "recommendSelected": false,
+          "recommendCount": 1,
+          "createdAt": "2023-01-10T01:52:00.6122737"
+        },
+      "favorite" :
+        {
+        "memberId": 2,
+        "contentId": 2,
+        "choiceSelected": false,
+        "choiceCount": 0,
+        "createdAt": "2023-01-10T01:53:24.351982"
+      },
+      "comments": [
+        {
+          "commentId": 1,
+          "commentBody": "넷플릭스 '에밀리 파리에 가다' 추천해요!",
+          "createdAt": "2023-01-10T01:50:15.2879067",
+          "modifiedAt": "2023-01-10T01:50:15.2879067",
+          "memberNickName":"강성심",
+          "memberPicture": "https://img1.daumcdn.net/thumb/C408x596/?fname=http%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F6a795fedd9e4e2cf33bb28f6fe08a628afe2a83b",
+          "contentId": 1
+        },
+        {
+          "commentId": 2,
+          "commentBody": "넷플릭스 '에밀리 파리에 가다' 추천해요!",
+          "createdAt": "2023-01-10T01:50:15.2879067",
+          "modifiedAt": "2023-01-10T01:50:15.2879067",
+          "memberNickName":"강성심",
+          "memberPicture": "https://img1.daumcdn.net/thumb/C408x596/?fname=http%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F6a795fedd9e4e2cf33bb28f6fe08a628afe2a83b",
+          "contentId": 1
+        }
+      ]
     },
     {
+      "id" : 2,
       "ottName": "watcha",
       "ottRank": "9",
       "contentId": 9,
@@ -24,9 +71,37 @@
       "choiceCount": 0,
       "recommendCount": 0,
       "deprecateCount": 0,
-      "favoriteCount": 0
+      "favoriteCount": 0,
+      "recommend" : [
+        {
+          "memberId": 2,
+          "contentId": 1,
+          "recommendSelected": true,
+          "recommendCount": 1,
+          "createdAt": "2023-01-10T01:52:00.6122737"
+        }
+      ],
+      "favorite" : [
+        {
+        "memberId": 2,
+        "contentId": 2,
+        "choiceSelected": false,
+        "choiceCount": 0,
+        "createdAt": "2023-01-10T01:53:24.351982"
+    }],
+      "comments": [
+        {
+          "commentId": 1,
+          "commentBody": "넷플릭스 '에밀리 파리에 가다' 추천해요!",
+          "createdAt": "2023-01-10T01:50:15.2879067",
+          "modifiedAt": "2023-01-10T01:50:15.2879067",
+          "memberNickName":"강성심",
+          "memberPicture": "https://img1.daumcdn.net/thumb/C408x596/?fname=http%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F6a795fedd9e4e2cf33bb28f6fe08a628afe2a83b",
+          "contentId": 1
+        }]
     },
     {
+      "id" : 3,
       "ottName": "watcha",
       "ottRank": "8",
       "contentId": 8,
@@ -37,9 +112,65 @@
       "choiceCount": 0,
       "recommendCount": 0,
       "deprecateCount": 0,
-      "favoriteCount": 0
-    },
+      "favoriteCount": 0,
+      "recommend" : [
+        {
+          "memberId": 2,
+          "contentId": 1,
+          "recommendSelected": true,
+          "recommendCount": 1,
+          "createdAt": "2023-01-10T01:52:00.6122737"
+        }
+      ],
+      "favorite" : [
+        {
+        "memberId": 2,
+        "contentId": 2,
+        "choiceSelected": false,
+        "choiceCount": 0,
+        "createdAt": "2023-01-10T01:53:24.351982"
+      }
+    ],
+      "comments": [
+      {
+        "commentId": 1,
+        "commentBody": "넷플릭스 '에밀리 파리에 가다' 추천해요!",
+        "createdAt": "2023-01-10T01:50:15.2879067",
+        "modifiedAt": "2023-01-10T01:50:15.2879067",
+        "memberNickName":"강성심",
+        "memberPicture": "https://img1.daumcdn.net/thumb/C408x596/?fname=http%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F6a795fedd9e4e2cf33bb28f6fe08a628afe2a83b",
+        "contentId": 1
+      },
+      {
+        "commentId": 2,
+        "commentBody": "넷플릭스 '외계+인 1부' 별로에요...",
+        "createdAt": "2023-01-10T01:50:15.2879067",
+        "modifiedAt": "2023-01-10T01:50:15.2879067",
+        "memberNickName":"이영우",
+        "memberPicture": "https://randomuser.me/api/portraits/women/1.jpg",
+        "contentId": 3
+      },
+      {
+        "commentId": 3,
+        "commentBody": "넷플릭스 “시스피라시” 문제작... 꼭 보세요",
+        "createdAt": "2023-01-10T01:50:15.2879067",
+        "modifiedAt": "2023-01-10T01:50:15.2879067",
+        "memberNickName":"박금비",
+        "memberPicture": "https://randomuser.me/api/portraits/women/3.jpg",
+        "contentId": 1
+      },
+      {
+        "commentId": 4,
+        "commentBody": "넷플릭스 “오징어 게임” 내년에 공개한데요 !",
+        "createdAt": "2023-01-10T01:50:15.2879067",
+        "modifiedAt": "2023-01-10T01:50:15.2879067",
+        "memberNickName":"김희진",
+        "memberPicture": "https://randomuser.me/api/portraits/women/6.jpg",
+        "contentId": 2
+      }
+    ]},
     {
+      "id" : 4,
       "ottName": "watcha",
       "ottRank": "7",
       "contentId": 7,
@@ -50,9 +181,29 @@
       "choiceCount": 0,
       "recommendCount": 0,
       "deprecateCount": 0,
-      "favoriteCount": 0
+      "favoriteCount": 0,
+      "recommend" : [
+        {
+          "memberId": 2,
+          "contentId": 1,
+          "recommendSelected": true,
+          "recommendCount": 1,
+          "createdAt": "2023-01-10T01:52:00.6122737"
+        }
+      ],
+      "favorite" :
+        {
+        "memberId": 2,
+        "contentId": 2,
+        "choiceSelected": false,
+        "choiceCount": 0,
+        "createdAt": "2023-01-10T01:53:24.351982"
+      },
+      "comments":
+        []
     },
     {
+      "id" : 5,
       "ottName": "watcha",
       "ottRank": "6",
       "contentId": 6,
@@ -63,9 +214,29 @@
       "choiceCount": 0,
       "recommendCount": 0,
       "deprecateCount": 0,
-      "favoriteCount": 0
+      "favoriteCount": 0,
+      "recommend" : [
+        {
+          "memberId": 2,
+          "contentId": 1,
+          "recommendSelected": true,
+          "recommendCount": 1,
+          "createdAt": "2023-01-10T01:52:00.6122737"
+        }
+      ],
+      "favorite" :
+        {
+        "memberId": 2,
+        "contentId": 2,
+        "choiceSelected": false,
+        "choiceCount": 0,
+        "createdAt": "2023-01-10T01:53:24.351982"
+      },
+      "comments":
+        []
     },
     {
+      "id" : 6,
       "ottName": "watcha",
       "ottRank": "5",
       "contentId": 5,
@@ -76,9 +247,29 @@
       "choiceCount": 0,
       "recommendCount": 0,
       "deprecateCount": 0,
-      "favoriteCount": 0
+      "favoriteCount": 0,
+      "recommend" : [
+        {
+          "memberId": 2,
+          "contentId": 1,
+          "recommendSelected": true,
+          "recommendCount": 1,
+          "createdAt": "2023-01-10T01:52:00.6122737"
+        }
+      ],
+      "favorite" :
+        {
+        "memberId": 2,
+        "contentId": 2,
+        "choiceSelected": false,
+        "choiceCount": 0,
+        "createdAt": "2023-01-10T01:53:24.351982"
+      },
+      "comments":
+        []
     },
     {
+      "id" : 7,
       "ottName": "watcha",
       "ottRank": "4",
       "contentId": 4,
@@ -89,20 +280,36 @@
       "choiceCount": 0,
       "recommendCount": 0,
       "deprecateCount": 0,
-      "favoriteCount": 0
+      "favoriteCount": 0,
+      "recommend" : [
+        {
+          "memberId": 2,
+          "contentId": 1,
+          "recommendSelected": true,
+          "recommendCount": 1,
+          "createdAt": "2023-01-10T01:52:00.6122737"
+        }
+      ],
+      "favorite" :
+        {
+        "memberId": 2,
+        "contentId": 2,
+        "choiceSelected": false,
+        "choiceCount": 0,
+        "createdAt": "2023-01-10T01:53:24.351982"
+        },
+        "comments":
+        []
     }
   ],
-  "comments": [
-    {
-      "commentId": 1,
-      "commentBody": "코멘트 내용입니다.",
-      "createdAt": "2023-01-10T01:50:15.2879067",
-      "modifiedAt": "2023-01-10T01:50:15.2879067",
-      "memberId": 2,
-      "contentId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
+
+  "members": {
+    "memberId": 1,
+    "email": "admin@gmail.com",
+    "memberPicture": "유알엘이 있어서 그리로 이동됨",
+    "name": "관리자",
+    "nickName": "ADMIN권한을 가진 자",
+    "createdAt": "2023-01-10T01:31:59.1539254",
+    "modifiedAt": "2023-01-10T01:31:59.1539254"
   }
 }
