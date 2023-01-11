@@ -31,8 +31,8 @@ public class ContentService {
             Content findContent = optionalContent.get();
 
             for(int i =0; i<findContent.getOttList().size(); i++) {
-                if(findContent.getOttList().get(i).getOttName().equals(content.getOttName())) {
-                    findContent.getOttList().get(i).setOttRank(content.getOttRank());
+                if(findContent.getOttList().get(i).getOttName().equals(content.getContentOttName())) {
+                    findContent.getOttList().get(i).setOttRank(content.getContentOttRank());
                     return contentRepository.save(findContent);
                 }
             }

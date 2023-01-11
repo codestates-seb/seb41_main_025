@@ -3,6 +3,7 @@ package com.mainProject.server.domain.content.service;
 import com.mainProject.server.domain.content.entity.Content;
 import com.mainProject.server.domain.content.entity.Ott;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class CrawlingService {
     private final ContentService contentService;
@@ -69,14 +71,21 @@ public class CrawlingService {
             String contentOttList = movieList.get(9); // Ott 9
 
 
-            content.setContentBody(contentBody);
-            content.setContentPoster(contentPoster);
-            content.setContentOpenAt(contentOpenAt);
-            content.setContentTitle(contentTitle);
-            content.setOttRank(contentRank);
-            content.setOttName(ottCrawling.split("-")[0]);
+            content.setContentOpenAt(contentOpenAt); // 개봉0
+            content.setContentGenre(contentGenre); // 장르 1
+            content.setContentCountry(contentCountry);// 국가 2
+            content.setContentGrade(contentGrade); // 등급 3
+            content.setContentScore(contentScore); // 평점4
+            content.setContentRunningTime(contentRunningTime); // 러닝타임 5
+            content.setContentAttendance(contentAttendance); // 누적관객6
+            content.setContentTitle(contentTitle); // 타이틀 7
+            content.setContentBody(contentBody); // desc8
+            content.setContentOttList(contentOttList); // Ott 9
+            content.setContentOttName(ottCrawling.split("-")[0]);
+            content.setContentOttRank(contentOttRank);
 
-            ott.setOttRank(contentRank);
+            content.setContentPoster(contentPoster);
+            ott.setOttRank(contentOttRank);
             ott.setOttName(ottCrawling.split("-")[0]);
             content.getOttList().add(ott);
 

@@ -33,7 +33,7 @@ public class Content extends Auditable {
     private String contentPoster;
 
     @Column(nullable = false)
-    private String ottName;
+    private String contentOttName;
 
     @Column(nullable = false)
     private String contentOttRank;

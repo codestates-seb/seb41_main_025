@@ -1,9 +1,6 @@
 package com.mainProject.server.domain.comment.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
@@ -36,12 +33,14 @@ public class CommentDto {
     @NoArgsConstructor
     @Getter
     @Setter
+    @Builder
     public static class Response{
         private long commentId;
         private String commentBody;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
-        private Long memberId;
+        private String nickName;
+        private String memberPicture;
         private Long contentId;
     }
 }

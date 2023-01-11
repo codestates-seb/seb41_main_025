@@ -21,14 +21,16 @@ public interface CommentMapper {
     }
     Comment commentPatchToComment(CommentDto.Patch patchRequest);
     default CommentDto.Response commentToCommentResponseDto(Comment comment){
-        CommentDto.Response response = new CommentDto.Response(
-            comment.getCommentId(),
-            comment.getCommentBody(),
-            comment.getCreatedAt(),
-            comment.getModifiedAt(),
-            comment.getMember().getMemberId(),
-            comment.getContent().getContentId()
-        );
+        CommentDto.Response response = CommentDto.Response.builder()
+                .commentId(comment.getCommentId())
+                .commentBody(comment.getCommentBody())
+                .createdAt(comment.getCreatedAt())
+                .modifiedAt(comment.getModifiedAt())
+                .nickName(comment.getMember().getNickName())
+                .memberPicture(comment.getMember().getMemberPicture())
+                .contentId(comment.getContent().getContentId())
+                .build();
+
         return response;
     }
     default List<CommentDto.Response> commentListToCommentResponseDto(List<Comment> commentList){
