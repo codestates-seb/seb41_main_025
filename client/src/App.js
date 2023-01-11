@@ -24,16 +24,23 @@ function App() {
   return (
     <>
       <GlobalStyle />
-        <BrowserRouter>
-          <Header />
-              <Routes>
-                <Route path='/' element={<Main/>}/>
-                <Route path='/login' element={<Login/>}/>
-                <Route path='/signup' element={<SignUp/>}/>
-                <Route path='/mypage' element={<Mypage/>}/>
-              </Routes>
-          <Footer />
-        </BrowserRouter>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/searchFalse" element={<SearchNull />} />
+          <Route path="/alltimechat" element={<AllTimeChat />} />
+          <Route path="/favorite" element={<FavoriteMovie />} />
+          <Route path="/choose" element={<Choose />} />
+          <Route path='/mypage' element={<Mypage/>}/>
+          <Route path="/recommend" element={<RecommendMovies />}/>
+          <Route path='/contents/:contentI' element={<Detail />}/>
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+
     </>
   )
 }
