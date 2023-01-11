@@ -1,16 +1,21 @@
+
+
 import "./App.css";
-import { Header, Modal } from "./components/Header";
+import { Header } from "./components/Header";
 import Footer from "./components/Footer";
 import Main from "./pages/Main/Main";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import SearchNull from "./pages/SearchNull";
-import Recommend from "./pages/Recommend/Recommend";
+import AllTimeChat from "./pages/AllTimeChat/AllTimeChat";
 import FavoriteMovie from "./pages/FavoriteMovie";
 import Choose from "./pages/Choose";
 import Mypage from "./pages/Mypage/Mypage"
+import RecommendMovies from "./pages/RecommendMovies";
+import Detail from "./pages/Detail";
 import { createGlobalStyle } from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -34,19 +39,12 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/searchFalse" element={<SearchNull />} />
-<<<<<<< HEAD
           <Route path="/alltimechat" element={<AllTimeChat />} />
           <Route path="/favorite" element={<FavoriteMovie />} />
           <Route path="/choose" element={<Choose />} />
           <Route path='/mypage' element={<Mypage/>}/>
           <Route path="/recommend" element={<RecommendMovies />}/>
-          <Route path='/contents/:contentI' element={<Detail />}/>
-=======
-          <Route path="/recommend" element={<Recommend />} />
-          <Route path="/favorite" element={<FavoriteMovie />} />
-          <Route path="/choose" element={<Choose />} />
-          <Route path='/mypage' element={<Mypage/>}/>
->>>>>>> 8a078d93cb97a3e7ac1ba48d3fe34d8107e46d70
+          <Route path='/contents/:id' element={<Detail />}/>
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -1,13 +1,16 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { useRef, useState } from "react";
+import { useEffect } from "react";
 
 const HeaderWrap = styled.div`
+    position: fixed;
     width: 100%;
     height: 60px;
     color : #d0d0d0;
     border-bottom: 1px solid #d0d0d0;
-    /* position: fixed; */
+    background: white;
+    z-index: 10;
 `
 const HeaderContainer = styled.div`
     display: flex;
@@ -48,42 +51,81 @@ export const SearchBar = styled.div`
 const Sign = styled.ul`
     display: flex;
     justify-content: flex-end;
+    position: relative;
     min-width: 150px;
     padding-left: 10px;
 
     a {
         font-weight: bold;
         font-size : 16px;
-        
         color: #7E7E7E;
     }
 
     .signUp {
         margin-left: 24px;
     }
+
     .modal {
-    width: 90px;
-    height: 30px;
-    margin-left: 70px;
-    background-color: white;
-    border: 0;
-    font-weight: bold;
-    font-size : 16px;
-    font-weight: 500;
-}
+        width: 90px;
+        height: 30px;
+        margin-left: 0px;
+        background-color: white;
+        border: 0;
+        font-weight: bold;
+        font-size : 16px;
+        font-weight: 500;
+    }
+
+    .flexEnd {
+        display: flex;
+        justify-content: flex-end;
+    }
 `
 
-const Modalwindow = styled.div`
-    width: 400px;
-    height: 400px;
-    margin: 50px;
+const ModalContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    width: 250px;
+    height: 300px;
+    top: calc(0% + 45px);
     background-color: aliceblue;
-    border-radius: 20px;
+    border-radius: 20px 0px 20px 20px;
+
+    z-index: 10;
+
+    h5 {
+        text-align: end;
+        padding: 0px 20px; 
+    }
+`
+
+const NevFont = styled(NavLink)`
+    padding: 20px;
 `
 
 const Header = () => {
 
-    const [modal, setModal] = useState(false)
+    const [isModal, setIsModalOpen] = useState(false)
+    const outSection = useRef()
+    // FIXME : 마이페이지를 두 번 누르면 닫히지 않는 현상
+    useEffect(() => {
+        document.addEventListener('mousedown', clickModalOutside);
+    
+        return () => {
+            document.removeEventListener('mousedown', clickModalOutside);
+        };
+    });
+
+    const clickModalOutside = event => {
+        if(isModal && !outSection.current.contains(event.target)) 
+        {
+            setIsModalOpen(!isModal)
+        }
+
+    }
+
 
     const islogin = true;
     return (
@@ -105,16 +147,21 @@ const Header = () => {
                 {/* sign Up / sign In */}
                 {islogin ? (
                     <Sign>
-                        <button 
-                        className="modal"
-                        onClick={ 
-                           ()=> setModal(!modal)
-                        }>
-                            {
-                                modal === true ?  <Modal /> : "마이페이지"  //기계역할
-                            }
-                        </button>
-
+                        <li>
+                            <button 
+                            className="modal"
+                            onClick={()=> setIsModalOpen(!isModal)}> 
+                                마이페이지 
+                            </button>
+                        </li>
+                        {isModal === true ? (
+                            <li
+                            className="flexEnd"
+                            ref={outSection} 
+                            onClick={clickModalOutside}>
+                                <Modal/>
+                            </li>) 
+                            : null }
                     </Sign>
                 ) : (
                     <Sign>
@@ -130,15 +177,15 @@ const Header = () => {
 
 const Modal = () => {
 
-
     return(
-        <Modalwindow>
-          <h4>제목</h4>
-          <p>날짜</p>
-          <p>상세내용</p>
-        </Modalwindow>
-      )
-
+        <ModalContainer>
+            <NevFont to = "/mypage">나의 정보</NevFont>
+            <NevFont to = "/recommend">내가 누른 추천 & 비 추천</NevFont>
+            <NevFont to = "/choose">찜한 영화</NevFont>
+            <NevFont to = "/favorite">내 인생작품 3가지</NevFont>
+            <h5>Log out</h5>
+        </ModalContainer>
+    )
 }
 
 export {Header, Modal} ;

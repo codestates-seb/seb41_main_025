@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import dummy from "../Recommend/dummydata";
+import dummy from "../AllTimeChat/dummydata";
 import ModalBasic from "./ModalBasic";
 
 const MypageDiv = styled.div`
@@ -10,7 +10,8 @@ const MypageDiv = styled.div`
   width: 1440px;
   height: 655x;
   margin-bottom: 30px;
-  padding: 0px 60px;
+  padding: 60px 60px 0px;
+  margin: 0 auto;
   form {
     display: flex;
     width: 100%;

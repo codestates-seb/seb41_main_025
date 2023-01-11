@@ -81,7 +81,7 @@ const CommentItem = styled.div`
   margin-bottom: 10px;
 `;
 
-const Recommend = () => {
+const AllTimeChat = () => {
   //TODO: 탭 메뉴 구현하기
 
   //! 첫번째 방법 - 단순한 탭 메뉴로 구현
@@ -159,4 +159,4 @@ const Recommend = () => {
   );
 };
 
-export default Recommend;
+export default AllTimeChat;

@@ -6,7 +6,8 @@ export const Main = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10%;
+    padding: 60px 60px 0px;
+    height: 100vh;
 `
 
 export const Window = styled.div`

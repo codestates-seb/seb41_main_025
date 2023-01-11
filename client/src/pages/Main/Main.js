@@ -1,21 +1,30 @@
 import styled from "styled-components";
-import Item from "../../components/item/item";
+import ItemContainer from "../../components/item/itemContainer";
+import useFetch from "../../components/util/useFetch";
+
 
 export const MainWarp = styled.div`
+  padding: 60px 60px;
   width: 100%;
 `
 
 export const MainContainer = styled.div`
   width: 1440px;
-  height: 1000px;
-  margin: auto;
+  margin: 0 auto;
+  padding: 0 60px;
 `
 
 const Main = () => {
+
+
   return (
     <MainWarp>
       <MainContainer>
-        <Item />
+ 
+        <ItemContainer />
+        <ItemContainer />
+        <ItemContainer />
+
       </MainContainer>
       
     </MainWarp>
