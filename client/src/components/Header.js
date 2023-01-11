@@ -64,16 +64,22 @@ const Sign = styled.ul`
     .signUp {
         margin-left: 24px;
     }
+
     .modal {
-    width: 90px;
-    height: 30px;
-    margin-left: 0px;
-    background-color: white;
-    border: 0;
-    font-weight: bold;
-    font-size : 16px;
-    font-weight: 500;
-}
+        width: 90px;
+        height: 30px;
+        margin-left: 0px;
+        background-color: white;
+        border: 0;
+        font-weight: bold;
+        font-size : 16px;
+        font-weight: 500;
+    }
+
+    .flexEnd {
+        display: flex;
+        justify-content: flex-end;
+    }
 `
 
 const ModalContainer = styled.div`
@@ -108,9 +114,9 @@ const Header = () => {
         document.addEventListener('mousedown', clickModalOutside);
     
         return () => {
-          document.removeEventListener('mousedown', clickModalOutside);
+            document.removeEventListener('mousedown', clickModalOutside);
         };
-      });
+    });
 
     const clickModalOutside = event => {
         if(isModal && !outSection.current.contains(event.target)) 
@@ -141,16 +147,20 @@ const Header = () => {
                 {/* sign Up / sign In */}
                 {islogin ? (
                     <Sign>
-                        <button 
+                        <li>
+                            <button 
                             className="modal"
-                            onClick={()=> setIsModalOpen(!isModal)}> 마이페이지 
-                        </button>
+                            onClick={()=> setIsModalOpen(!isModal)}> 
+                                마이페이지 
+                            </button>
+                        </li>
                         {isModal === true ? (
-                            <div
-                                ref={outSection} 
-                                onClick={clickModalOutside}>
+                            <li
+                            className="flexEnd"
+                            ref={outSection} 
+                            onClick={clickModalOutside}>
                                 <Modal/>
-                            </div>) 
+                            </li>) 
                             : null }
                     </Sign>
                 ) : (
