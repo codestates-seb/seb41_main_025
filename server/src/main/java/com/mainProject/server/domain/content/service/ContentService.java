@@ -55,7 +55,6 @@ public class ContentService {
         return contentRepository.save(content);
     }
 
-    
     public Content findContent(long contentId) {
         return findVerifiedContent(contentId);
     }

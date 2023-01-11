@@ -1,6 +1,5 @@
 package com.mainProject.server.domain.content.service;
 
-import com.mainProject.server.domain.choice.entity.Choice;
 import com.mainProject.server.domain.content.entity.Content;
 import com.mainProject.server.domain.content.entity.Ott;
 import lombok.RequiredArgsConstructor;
@@ -52,7 +51,7 @@ public class CrawlingService {
             ott.setContent(content);
             String contentLink = li.findElement(By.className("link_txt")).getAttribute("href");
             String contentPoster = li.findElement(By.className("img_thumb")).getAttribute("src");
-            String contentRank = li.findElement(By.className("thumb_item")).getAttribute("data-tiara-ordnum");
+            String contentOttRank = li.findElement(By.className("thumb_item")).getAttribute("data-tiara-ordnum");
 
             movieList.addAll(innerCrawling(contentLink));
 
@@ -100,10 +99,30 @@ public class CrawlingService {
         String openAtList = productDiv.findElement(By.className("info_detail")).findElement(By.className("list_cont")).getText();
         String titleList = productDiv.findElement(By.className("tit_movie")).findElement(By.className("txt_tit")).getText();
         String descList = productDiv.findElement(By.className("box_detailinfo")).findElement(By.className("desc_cont")).getText();
+        String ottList = productDiv.findElement(By.className("info_detail")).findElement(By.className("group_btn")).getText();
 
-        result.add(openAtList);
+        String infoList = productDiv.findElement(By.className("info_detail")).findElement(By.className("detail_cont")).getText();
+        String[] infoArray = infoList.split("\n");
+        for(int i = 0; i < 8; i++) { //인포정보에서 7가지만 가져온다.
+            String[] infoArray2 = infoArray[i].split(" ");
+            String key = infoArray2[0];
+            String value = infoArray2[1];
+            for(int k=2; k<infoArray2.length; k++) {
+                    value += infoArray2[k];
+            }
+            infoMap.put(key, value);
+        }
+
+        result.add(infoMap.get("개봉"));
+        result.add(infoMap.get("장르"));
+        result.add(infoMap.get("국가"));
+        result.add(infoMap.get("등급"));
+        result.add(infoMap.get("러닝타임"));
+        result.add(infoMap.get("평점"));
+        result.add(infoMap.get("누적관객"));
         result.add(titleList);
         result.add(descList);
+        result.add(ottList);
         driver.close();
 
         return result;

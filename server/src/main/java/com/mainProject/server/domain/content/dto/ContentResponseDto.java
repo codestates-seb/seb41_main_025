@@ -17,10 +17,11 @@ public class ContentResponseDto {
     private String contentTitle;
     private String contentBody;
     private String contentPoster;
-    private String contentOpenAt;
+
     private Long choiceCount;
     private Long recommendCount;
     private Long deprecateCount;
     private Long favoriteCount;
+
 
 }
