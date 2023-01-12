@@ -1,5 +1,6 @@
+import { useState } from "react";
 import styled from "styled-components";
-import Item from "../components/item/item";
+import ItemContainer from "../components/item/itemContainer";
 
 const Wrap = styled.div`
   width: 100%;
@@ -24,7 +25,10 @@ const ItemList = styled.div`
 `
 
 const SearchResult = () => {
-  
+  const [searchItem, setSearchItem] = useState("");
+
+  // const serached = 
+
   return (
     <Wrap>
       <Container>
@@ -37,8 +41,7 @@ const SearchResult = () => {
 
         {/* mapping 으로 검색 결과에 맞는 영화 가져오기 */}
         <ItemList>
-          <Item />
-          <Item />
+          <ItemContainer/>
         </ItemList>
       </Container>
     </Wrap>
