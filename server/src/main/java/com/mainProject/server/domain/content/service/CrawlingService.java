@@ -126,8 +126,8 @@ public class CrawlingService {
         for(int i = 0; i < 8; i++) { //인포정보에서 7가지만 가져온다.
             String[] infoArray2 = infoArray[i].split(" ");
             String key = infoArray2[0];
-            String value = infoArray2[1];
-            for(int k=2; k<infoArray2.length; k++) {
+            String value = "";
+            for(int k=1; k<infoArray2.length; k++) {
                     value += infoArray2[k];
             }
             infoMap.put(key, value);
