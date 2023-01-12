@@ -11,7 +11,7 @@ const FooterContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 1440px;
+  /* width: 1440px; */
   margin: 0 auto;
   color: #ffffff;
 
@@ -19,12 +19,17 @@ const FooterContainer = styled.div`
     width: 300px;
     height: 150px;
     margin: 20px 0px;
-
     img { width: 100% }
+    @media only screen and (max-width: ${'600px'}) {
+    width: 200px;
+    height: 150px;
+    margin: 20px 0px 0 0;
+  } 
   }
 
   .copyright {
     span { font-size: 13px; }
+
   }
 `
 
@@ -32,7 +37,12 @@ const Creaters = styled.div`
   display: flex;
   padding-top: 30px;
   padding-bottom: 50px;
-
+  @media only screen and (max-width: ${'600px'}) {
+    display: grid;
+    padding-top: 10px;
+    justify-items: center;
+    font-size: 15px;
+  } 
   div { 
     display: flex;
     ul {
@@ -41,9 +51,11 @@ const Creaters = styled.div`
   }
 
   span { margin-right: 20px; }
-  .frontend { margin-right: 50px; }
   .title {
     margin-right: 30px;
+    @media only screen and (max-width: ${'600px'}) {
+    padding-top: 20px;
+  } 
   }
 `
 
@@ -67,7 +79,7 @@ const Footer = () => {
         <Creaters>
           <div className="frontend">
             <span className="title">FRONTEND</span>
-            <ul>
+            <ul className="title">
               <li><span>강성심</span></li>
               <li><span>이영우</span></li>
               <li><span>장한나</span></li>
@@ -75,7 +87,7 @@ const Footer = () => {
           </div>
           <div className="backend">
             <span className="title">BACKEND</span>
-            <ul>
+            <ul className="title">
               <li><span>강신찬</span></li>
               <li><span>김희진</span></li>
               <li><span>박금비</span></li>

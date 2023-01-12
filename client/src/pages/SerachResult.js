@@ -7,7 +7,7 @@ const Wrap = styled.div`
 `
 
 const Container = styled.div`
-  width: 1440px;
+  /* width: 1440px; */
   height: calc(100vh - 378px);
   margin: 0 auto;
   padding: 60px;

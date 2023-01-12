@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
 import { useRef, useState } from "react";
 import { useEffect } from "react";
+import { ImSearch } from "react-icons/im";
 
 const HeaderWrap = styled.div`
     position: fixed;
@@ -11,20 +12,27 @@ const HeaderWrap = styled.div`
     border-bottom: 1px solid #d0d0d0;
     background: white;
     z-index: 10;
+    @media only screen and (max-width: ${'600px'}) {
+    display: grid;
+  } 
 `
 const HeaderContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 1440px;
+    /* width: 1440px; */
     height: 60px;
     margin: 0 auto;
+    @media only screen and (max-width: ${'600px'}) {
+        margin: 0 0;
+    }
 
     .logo {
         display: flex;
         align-items: center;
         justify-content: flex-start;
         flex: 1;
+        margin-left: 20px;
         a {
             display: flex;
             align-items: center;
@@ -32,7 +40,11 @@ const HeaderContainer = styled.div`
             width: 120px;
             height: 60px;
             img { width: 100% };
+            @media only screen and (max-width: ${'600px'}) {
+            width: 80px;
+            height: 40px;
         }
+  } 
     }
 `
 
@@ -43,10 +55,21 @@ export const SearchBar = styled.div`
         padding-left: 15px;
         border: 1px solid #e5e5e5;
         border-radius: 15px;
-    }
+        @media only screen and (max-width: ${'600px'}) {
+        margin-left: 10px;
+        width: 150px;
+        height: 40px;
+  } 
 
-    input:focus { outline: none; } /* outline 테두리 없애기 */
+}
+input:focus { outline: none; } /* outline 테두리 없애기 */
 `
+const SearchIcon = styled.button`
+    margin: 10px 0 0 10px;
+    background-color: white;
+    border: 0;
+`
+
 
 const Sign = styled.ul`
     display: flex;
@@ -54,7 +77,10 @@ const Sign = styled.ul`
     position: relative;
     min-width: 150px;
     padding-left: 10px;
-
+    @media only screen and (max-width: ${'600px'}) {
+        padding: 0;
+        min-width: 100px;
+    }
     a {
         font-weight: bold;
         font-size : 16px;
@@ -63,6 +89,10 @@ const Sign = styled.ul`
 
     .signUp {
         margin-left: 24px;
+        @media only screen and (max-width: ${'600px'}) {
+        width: 0;
+        height: 0;
+    }
     }
 
     .modal {
@@ -143,6 +173,9 @@ const Header = () => {
                 <SearchBar>
                     <input type="text" placeholder="검색할 내용을 입력하세요."></input>
                 </SearchBar>
+                <SearchIcon>
+                    <ImSearch className="searchIcon" size="25"/>
+                </SearchIcon>
 
                 {/* sign Up / sign In */}
                 {islogin ? (

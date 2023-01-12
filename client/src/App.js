@@ -10,8 +10,8 @@ import FavoriteMovie from "./pages/FavoriteMovie";
 import Choose from "./pages/Choose";
 import Mypage from "./pages/Mypage/Mypage"
 import RecommendMovies from "./pages/RecommendMovies";
-import Detail from "./pages/Detail";
-import { createGlobalStyle } from "styled-components";
+import Detail from "./pages/Detail/Detail";
+import styled, { createGlobalStyle } from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SearchResult from "./pages/SerachResult";
 
@@ -27,9 +27,14 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const Home = styled.div`
+  width:100%;
+  height: 100%;
+`
+
 function App() {
   return (
-    <>
+    <Home>
       <GlobalStyle />
       <BrowserRouter>
         <Header />
@@ -49,7 +54,7 @@ function App() {
         <Footer />
       </BrowserRouter>
 
-    </>
+    </Home>
   );
 }
 
