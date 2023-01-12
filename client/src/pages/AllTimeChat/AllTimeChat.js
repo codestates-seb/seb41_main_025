@@ -10,16 +10,17 @@ const RecommendDiv = styled.div`
   flex-direction: column;
   align-items: center;
   height: auto;
-  width: 1440px;
-  height: 655x;
-  margin-bottom: 30px;
+  /* width: 1440px; */
+  /* height: 655x; */
+  padding: 50px;
+  margin: auto;
 `;
 
 const TitleDiv = styled.div`
   display: flex;
   align-content: flex-start;
   width: 1120px;
-  margin: 80px;
+  padding: 80px;
 
   h1 {
     font-size: 32px;
@@ -40,9 +41,15 @@ const ButtonDiv = styled.div`
   border: none;
   border-bottom: 1px solid #898989;
 
-  .active {
+  li {
     width: calc(100% / 4);
-    border-bottom: 2px solid #000000;
+    color: #898989;
+    text-align: center;
+  }
+  .active {
+    font-weight: bold;
+    color: #167e6c;
+    border-bottom: 3px solid #167e6c;
   }
 `;
 
