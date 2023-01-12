@@ -123,7 +123,7 @@ public class CrawlingService {
 
         String infoList = productDiv.findElement(By.className("info_detail")).findElement(By.className("detail_cont")).getText();
         String[] infoArray = infoList.split("\n");
-        for(int i = 0; i < 8; i++) { //인포정보에서 7가지만 가져온다.
+        for(int i = 0; i < infoArray.length; i++) { //인포정보에서 7가지만 가져온다.
             String[] infoArray2 = infoArray[i].split(" ");
             String key = infoArray2[0];
             String value = "";
