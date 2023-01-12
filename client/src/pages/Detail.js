@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { AiTwotoneLike, AiTwotoneDislike, AiFillStar } from "react-icons/ai";
-import { FcLike } from "react-icons/fc";
-import { ModifyBtn } from "./Mypage/Mypage";
-import dummy from "./AllTimeChat/dummydata";
+import { AiTwotoneLike, AiTwotoneDislike, AiFillStar, AiOutlineLike, AiOutlineDislike, AiOutlineStar } from "react-icons/ai";
+import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 import { ButtonForm } from "../components/item/Button";
 import { useParams } from "react-router-dom";
 import useFetch from "../components/util/useFetch";
+import { useState } from "react";
 
 const DetailContainer = styled.div`
   width: 1440px;
@@ -32,6 +31,7 @@ const DetailCommentList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
 `;
 const DetailContent = styled.div`
   display: flex;
@@ -65,6 +65,7 @@ const DetailCommentItem = styled.div`
   background: #58bfad;
   margin-bottom: 10px;
   font-size: 13px;
+  border-radius: 10px;
   .userInfo {
     display: flex;
     align-items: center;
@@ -79,7 +80,7 @@ const DetailCommentItem = styled.div`
     /* justify-content: center; */
     align-items: center;
     color: #ffffff;
-
+    font-size: 17px;
     border-radius: 30px;
   }
   .memberPicture {
@@ -92,13 +93,16 @@ const DetailCommentItem = styled.div`
 const InputDiv = styled.div`
   display: flex;
   width: 80%;
+  margin-top: 20px;
   .recommendInput {
     width: 100%;
     height: 100px;
     padding-left: 30px;
     background-color: #58bfad;
     color: #ffffff;
+    font-size: 20px;
     border: none;
+    border-radius: 10px;
     &:focus {
       outline: none;
     }
@@ -113,10 +117,11 @@ const InputDiv = styled.div`
     width: 110px;
     height: 100px;
     background-color: #d9d9d9;
+    border-radius: 10px;
   }
   .submit {
     width: 48px;
-    height: 38px;
+    height: 28px;
     color: #ffffff;
     background-color: #58bfad;
     border: none;
@@ -135,14 +140,80 @@ const Detail = () => {
   }
 
   const [movies] = useFetch(`http://localhost:3000/contents/${id}`,request)
-  // console.log(movies)
+
+  const [recommend, setRecommend] = useState (movies && movies.recommend)
+  const [recommendCounts, setRecommendCounts] = useState(movies && movies.recommendCount)
+  const [decommend, setDecommend] = useState (false)
+  const [decommendCounts, setDecommendCounts] = useState (movies && movies.decommendCount)
+  const [favorite, setFavorite] = useState(movies && movies.favorite.choiceSelected)
+  const [choose, setChoose] = useState(false)
+  const [comment, setComment] = useState('')
+
+
+  console.log(movies.recommendCount)
+  console.log(recommendCounts)
+
+  const handleRecommend = () => {
+      setRecommend(!recommend)
+      setRecommendCounts(recommend === true ? Number(recommendCounts) + 1 : recommendCounts)
+      // FIXME : recommendCounts 가 number 로 따로 변환해 줘야 함
+    }
+  
+    // 백엔드 쪽에서 투표 ID 당 한번만 할 수 있게 바꿔줄 수 있는지 확인
+    // decommend도 만들어달라고 요청
+  const handleDecommend = () => {
+    setDecommend(!decommend)
+    setDecommendCounts(decommend === true ? Number(decommendCounts) + 1 : decommendCounts)
+  }
+  const handleFavorite = () => {
+       const updateRequest = {
+        method : "PUT",
+        headers: {
+          "Content-Type": 'application/json',
+          // "Authorization": localStorage.getItem("accessToken"),
+          // "Refresh": localStorage.getItem("refreshToken")
+        }
+      }
+      fetch(`http://localhost:3000/contents/${id}/favorite`, updateRequest)
+      .then (() => {
+        setFavorite(!favorite)
+        console.log(movies.favorite.choiceSelected)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+  const handleChoose = () => {
+    setChoose(!choose)
+  }
+
+// TODO : 로그인 하면 작성자 정보 나타나도록 
+  const submitcommit = (e) => {
+    // if(comment === '') return alert("내용을 입력하세요")
+    // const updateRequest = {
+    //   method : "POST",
+    //   body : JSON.stringify(comment),
+    //   headers: {
+    //     "Content-Type": 'application/json'
+    //     // "Authorization": localStorage.getItem("accessToken"),
+    //     // "Refresh": localStorage.getItem("refreshToken")
+    //   }
+    // }
+    // fetch(`http://localhost:3000/contents/${id}/comments`,JSON.stringify(comment),updateRequest)
+    // .then (() => {
+    //   window.location.reload()
+    // })
+    // .catch(err => {
+    //   console.log(err)
+    // })
+    console.log(e.target.value)
+  }
 
   return (
     <DetailContainer>
       <DetailHeader>
         <img className="posterWrap" src={movies && movies.contentPoster} alt='moviePoster'></img>
         <DetailContent>
-            {console.log(movies.contentTitle)}
             <>
                 <div className="contents">
                   <div className="title">{movies && movies.contentTitle}</div>
@@ -153,46 +224,48 @@ const Detail = () => {
             </>
           <DetailItem>
             {/*아이콘 박스*/}
-            <div className="itemIcon">
-              <AiTwotoneLike size="48" color="#58BFAD" />
-              100
+            <div className="itemIcon" onClick={handleRecommend}>
+              {recommend === true ? <AiTwotoneLike size="48" color="#58BFAD" /> : 
+              <AiOutlineLike size="48" />}
+              {recommendCounts}
             </div>
-            <div className="itemIcon">
-              <AiTwotoneDislike size="48" color="#58BFAD" />
-              100
+            <div className="itemIcon" onClick={handleDecommend}>
+              {decommend === true ? <AiTwotoneDislike size="48" color="#58BFAD" /> : 
+              <AiOutlineDislike size="48" />}
+              {decommendCounts}
             </div>
-            <div className="itemIcon">
-              <FcLike size="48" />
+            <div className="itemIcon" onClick={handleChoose}>
+              {choose === true ? <FcLike size="48" /> :
+              <FcLikePlaceholder size="48" />}
               찜하기
             </div>
-            <div className="itemIcon">
-              {/* 별 모양 색 찾기*/}
-              <AiFillStar size="48" color="#167E6C" />
+            <div className="itemIcon" onClick={handleFavorite}>
+              {favorite ? <AiFillStar size="48" color="#167E6C" /> :
+              <AiOutlineStar size="48"/>}
               나의 인생 작품
             </div>
           </DetailItem>
         </DetailContent>
-        {/* <ModifyBtn  style={{margin:"130px 0px"}}> 실시간 채팅 </ModifyBtn> */}
         <ButtonForm to='/alltimechat'>실시간 채팅</ButtonForm>
       </DetailHeader>
 
-      <DetailCommentList>
-        {dummy.map((item) => {
-          return (
-            <DetailCommentItem key={item.id}>
+        {/* 한 줄 평 작성 */}
+      {movies && movies.comments.length !== null ? (
+        <DetailCommentList>
+        { movies && movies.comments.map(comment => (
+          <DetailCommentItem key={comment.commentId}>
               <div className="userInfo">
                 <img
-                  src={item.memberPicture}
+                  src={comment.memberPicture}
                   className="memberPicture"
                   alt="사용자 이미지"
-                  style={{}}
-                ></img>
-                <div className="name">{item.name}</div>
+                  style={{"width" : "40px", "height" : "40px"}}
+                  ></img>
+                <div className="name">{comment.memberNickName}</div>
               </div>
-              <div className="content">{item.commentBody}</div>
+              <div className="content">{comment.commentBody}</div>
             </DetailCommentItem>
-          );
-        })}
+        ))}  
         <InputDiv>
           <input
             className="recommendInput"
@@ -201,14 +274,35 @@ const Detail = () => {
             type="text"
             // maxLength="35"
             placeholder="한줄평을 입력해주세요"
+            onChange = {(e) => setComment(e.target.value)}
           ></input>
           <div className="buttonDiv">
-            <button type="submit" className="submit">
+            <button type="submit" className="submit" onClick={submitcommit}>
               등록
             </button>
           </div>
         </InputDiv>
       </DetailCommentList>
+      ) : (
+      <DetailCommentList>
+        <InputDiv>
+          <input
+            className="recommendInput"
+            autoComplete="off"
+            name="recommend"
+            type="text"
+            // maxLength="35"
+            placeholder="한줄평을 입력해주세요"
+            onChange = {(e) => setComment(e.target.value)}
+          ></input>
+          <div className="buttonDiv">
+            <button type="submit" className="submit" onClick={submitcommit} >
+              등록
+            </button>
+          </div>
+        </InputDiv>
+      </DetailCommentList>
+      )}
     </DetailContainer>
   );
 };

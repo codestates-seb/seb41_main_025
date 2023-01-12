@@ -44,7 +44,7 @@ function App() {
           <Route path="/choose" element={<Choose />} />
           <Route path='/mypage' element={<Mypage/>}/>
           <Route path="/recommend" element={<RecommendMovies />}/>
-          <Route path='/contents/:id' element={<Detail />}/>
+          <Route path="/contents/:id" element={<Detail />}/>
         </Routes>
         <Footer />
       </BrowserRouter>

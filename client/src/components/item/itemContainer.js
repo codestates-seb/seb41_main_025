@@ -112,14 +112,14 @@ const ItemContainer = () => {
         {movies &&
           movies.map((movie) => {
             return (
-              <Link to="detail" key={movie.ottRank}>
+              <Link to={`/contents/${movie.id}`} key={movie.ottRank}>
                 <Item contentTitle={movie.contentTitle} contentPoster={movie.contentPoster} contentOpenAt={movie.contentOpenAt}/>
               </Link>
             );
           })}
         {/* key={movies.contentId}*/}
         {/*contentTitle={movies.contentTitle} contentPoster={movies.contentPoster} contentOpenAt={movies.contentOpenAt} */}
-        <Link to="detail"><Item /></Link>
+          <Link to={'/detail'}><Item /></Link>
 
 
       </Slider>

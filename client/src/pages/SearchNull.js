@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import GreenButton from '../components/item/Button'
+import { ButtonForm } from '../components/item/Button'
 
 const SerachWrap = styled.div`
     width: 100%;
@@ -72,7 +72,7 @@ const SearchNull = () => {
                     </Window>
                 </Main>
 
-                <GreenButton linkto={'/recommend'} name={"실시간 채팅"}/>
+                <ButtonForm to='/alltimechat'>실시간 채팅</ButtonForm>
             </SearchConatiner>
         </SerachWrap>
     )
