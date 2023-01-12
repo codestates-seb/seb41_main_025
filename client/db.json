@@ -22,14 +22,14 @@
           "recommendCount": 1,
           "createdAt": "2023-01-10T01:52:00.6122737"
         },
-        "decommend" :
-        {
-          "memberId": 3,
-          "contentId": 1,
-          "recommendSelected": false,
-          "recommendCount": 1,
-          "createdAt": "2023-01-10T01:52:00.6122737"
-        },
+      "decommend" :
+      {
+        "memberId": 3,
+        "contentId": 1,
+        "recommendSelected": false,
+        "recommendCount": 1,
+        "createdAt": "2023-01-10T01:52:00.6122737"
+      },
       "favorite" :
         {
         "memberId": 2,
@@ -69,7 +69,7 @@
       "contentPoster": "https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F66007205fdb9e95e11334fc491253e5200194276",
       "contentOpenAt": "공개 2022.04.20",
       "choiceCount": 0,
-      "recommendCount": 0,
+      "recommendCount": 20,
       "deprecateCount": 0,
       "favoriteCount": 0,
       "recommend" : [

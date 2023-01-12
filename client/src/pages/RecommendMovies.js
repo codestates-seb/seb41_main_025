@@ -22,6 +22,10 @@ const RecommendButton = styled.button`
         color: #167E6C;
         background-color: whitesmoke;
     }
+    @media only screen and (max-width: ${'600px'}) {
+        width: 200px;
+
+    }
 `
 
 const RecommendMovies = () => {

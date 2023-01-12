@@ -7,15 +7,15 @@ const MypageDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: end;
-  width: 1440px;
-  height: 655x;
+  /* width: 1440px; */
+  /* height: 655x; */
   margin-bottom: 30px;
   padding: 60px 60px 0px;
   margin: 0 auto;
   form {
     display: flex;
-    width: 100%;
-    height: 300px;
+    /* width: 100%;
+    height: 300px; */
     padding: 60px 0px;
     align-items: center;
   }
@@ -25,11 +25,22 @@ const UserInfoHeader = styled.div`
   display: flex;
   width: 100%;
   padding: 60px;
+  @media only screen and (max-width: ${'600px'}) {
+    padding: 30px;
+    display: grid;
+  } 
   .userImage {
     padding-left: 80px;
+    @media only screen and (max-width: ${'600px'}) {
+    padding-left: 0;
+  } 
 
     & > .memberPicture {
       border-radius: 30%;
+      @media only screen and (max-width: ${'600px'}) {
+    width: 200px;
+    height: 200px;
+  } 
     }
   }
   .userInfo {
@@ -47,7 +58,7 @@ const UserInfoHeader = styled.div`
 const FormDiv = styled.div`
   display: flex;
   flex-direction: column;
-  width: 1000px;
+  /* width: 1000px; */
   align-items: end;
   padding-right: 100px;
   margin-right: 120px;
@@ -82,6 +93,11 @@ export const ModifyBtn = styled.button`
   border-radius: 15px;
   font-size: 32px;
   font-weight: 300;
+  @media only screen and (max-width: ${'600px'}) {
+  width: 150px;
+  height: 40px;
+  font-size: 20px;
+  } 
 `;
 
 const SaveBtn = styled(ModifyBtn)`

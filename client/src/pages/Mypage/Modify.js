@@ -7,7 +7,7 @@ const MypageDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: end;
-  width: 1440px;
+  /* width: 1440px; */
   height: 655x;
   margin-bottom: 30px;
   padding: 60px 60px 0px;
