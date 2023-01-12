@@ -105,7 +105,7 @@ const NevFont = styled(NavLink)`
     padding: 20px;
 `
 
-const Header = () => {
+const Header = (props) => {
 
     const [isModal, setIsModalOpen] = useState(false)
     const outSection = useRef()
@@ -125,7 +125,14 @@ const Header = () => {
         }
 
     }
+    // 검색기능 구현
+    const [searchItem, setSearchItem] = useState("");
 
+    const searchHandler = (e) => {
+        setSearchItem(e.currentTarget.value);
+        // props.refreshFunction(e.currentTarget.value);
+        console.log(e.currentTarget.value);
+    }
 
     const islogin = true;
     return (
@@ -141,7 +148,13 @@ const Header = () => {
 
                 {/* search */}
                 <SearchBar>
-                    <input type="text" placeholder="검색할 내용을 입력하세요."></input>
+                    <input 
+                    type="text" 
+                    placeholder="검색할 내용을 입력하세요."
+                    value={searchItem}
+                    onChange={searchHandler}
+                    >
+                    </input>
                 </SearchBar>
 
                 {/* sign Up / sign In */}
