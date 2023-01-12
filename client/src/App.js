@@ -15,6 +15,7 @@ import RecommendMovies from "./pages/RecommendMovies";
 import Detail from "./pages/Detail";
 import { createGlobalStyle } from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SearchResult from "./pages/SerachResult";
 
 
 const GlobalStyle = createGlobalStyle`
@@ -39,12 +40,13 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/searchFalse" element={<SearchNull />} />
+          <Route path="/searchResult" element={<SearchResult />} />
           <Route path="/alltimechat" element={<AllTimeChat />} />
           <Route path="/favorite" element={<FavoriteMovie />} />
           <Route path="/choose" element={<Choose />} />
           <Route path='/mypage' element={<Mypage/>}/>
           <Route path="/recommend" element={<RecommendMovies />}/>
-          <Route path='/contents/:id' element={<Detail />}/>
+          <Route path="/contents/:id" element={<Detail />}/>
         </Routes>
         <Footer />
       </BrowserRouter>

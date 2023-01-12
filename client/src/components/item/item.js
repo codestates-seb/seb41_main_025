@@ -10,7 +10,7 @@ const ItemContainer = styled.div`
 
   .posterWrap {
     width: 240px;
-    height: 346px;
+    height: 336px;
     border-radius: 10px;
     background-color: red;
     background-image: url("");
@@ -18,7 +18,7 @@ const ItemContainer = styled.div`
   }
   .poster {
     width: 240px;
-    height: 346px;
+    height: 336px;
     border-radius: 10px;
   }
 `;
