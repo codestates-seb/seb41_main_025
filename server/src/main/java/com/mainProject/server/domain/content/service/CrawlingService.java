@@ -23,7 +23,8 @@ public class CrawlingService {
     private final ContentService contentService;
 
     static final String id = "webdriver.chrome.driver";
-    static final String path = "/Users/keumbipark/Downloads/chromedriver";
+    static final String path = "/usr/bin/chromedriver";
+//    static final String path = "/Users/keumbipark/Downloads/chromedriver";
     /*final String id = "webdriver.chrome.driver";
     final String path = "C:\\drivers\\chromedriver.exe";*/
 
