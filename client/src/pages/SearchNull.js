@@ -6,8 +6,7 @@ const SerachWrap = styled.div`
     padding-top: 60px;
 `
 const SearchConatiner = styled.div`
-    width: 1440px;
-    height: calc(100vh - 378px);
+    /* width: 1440px; */
     margin: 0 auto;
     padding: 60px;
     

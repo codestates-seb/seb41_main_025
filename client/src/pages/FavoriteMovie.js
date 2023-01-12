@@ -9,6 +9,9 @@ export const Items = styled.div`
     justify-content: center;
     align-content: center;
     margin: 20px;
+    @media only screen and (max-width: ${'600px'}) {
+        display: grid;
+    }
 `;
 
 export const Title = styled(MainContainer)`
@@ -20,7 +23,14 @@ export const Title = styled(MainContainer)`
     text-decoration: underline #167E6C;
     text-decoration-thickness: 4px;
     text-underline-offset: 20px;
+    @media only screen and (max-width: ${'600px'}) {
+        font-size: 15px;
+    }
   }
+  @media only screen and (max-width: ${'600px'}) {
+        width: 320px;
+        margin: 80px 0 0 -120px;
+    }
 `
 
 // const ChangeBtn = styled.div`
@@ -34,6 +44,11 @@ const FavoriteSearch = styled(SearchBar)`
         width: 620px;
         height: 50px;
         font-size: 20px;
+        @media only screen and (max-width: ${'600px'}) {
+        width: 300px;
+        height: 40px;
+        margin-top: 80px;
+    }
     }
 `
 

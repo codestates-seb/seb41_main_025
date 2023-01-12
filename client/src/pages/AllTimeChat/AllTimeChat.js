@@ -10,7 +10,7 @@ const RecommendDiv = styled.div`
   flex-direction: column;
   align-items: center;
   height: auto;
-  width: 1440px;
+  /* width: 1440px; */
   height: 655x;
   margin-bottom: 30px;
 `;
