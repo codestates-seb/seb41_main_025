@@ -29,8 +29,6 @@ public class CrawlingService {
     final String path = "C:\\drivers\\chromedriver.exe";*/
 
     public void createCrawling(String ottCrawling) {
-
-
         System.setProperty(id, path);
         ChromeOptions options = new ChromeOptions();
 
@@ -64,8 +62,8 @@ public class CrawlingService {
             String contentGenre = movieList.get(1); // 장르 1
             String contentCountry = movieList.get(2); // 국가 2
             String contentGrade = movieList.get(3); // 등급 3
-            String contentScore = movieList.get(4); // 평점4
-            String contentRunningTime = movieList.get(5); // 러닝타임 5
+            String contentRunningTime = movieList.get(4); // 러닝타임 4
+            String contentScore = movieList.get(5); // 평점5
             String contentAttendance = movieList.get(6); // 누적관객6
             String contentTitle = movieList.get(7); // 타이틀 7
             String contentBody = movieList.get(8); // desc 8
@@ -76,8 +74,8 @@ public class CrawlingService {
             content.setContentGenre(contentGenre); // 장르 1
             content.setContentCountry(contentCountry);// 국가 2
             content.setContentGrade(contentGrade); // 등급 3
-            content.setContentScore(contentScore); // 평점4
-            content.setContentRunningTime(contentRunningTime); // 러닝타임 5
+            content.setContentRunningTime(contentRunningTime); // 러닝타임 4
+            content.setContentScore(contentScore); // 평점5
             content.setContentAttendance(contentAttendance); // 누적관객6
             content.setContentTitle(contentTitle); // 타이틀 7
             content.setContentBody(contentBody); // desc8

@@ -10,6 +10,7 @@ import com.mainProject.server.domain.recommend.mapper.RecommendMapper;
 import com.mainProject.server.domain.recommend.service.RecommendService;
 import com.mainProject.server.global.response.SingleResponseDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping
 @RequiredArgsConstructor
+@Slf4j
 public class RecommendController {
     private final MemberService memberService;
     private final ContentService contentService;
@@ -40,6 +42,7 @@ public class RecommendController {
 
         return new ResponseEntity(new SingleResponseDto<>(mapper.deprecateToDeprecateResponseDto(deprecate)), HttpStatus.OK);
     }
+
     @GetMapping("/recomend/{recommend-id}")
     public ResponseEntity getRecomend(@PathVariable("recommend-id") long recommendId){
         Recommend recommend = recommendService.findRecommend(recommendId);
@@ -49,6 +52,7 @@ public class RecommendController {
     @GetMapping("/deprecate/{deprecate-id}")
     public ResponseEntity getDeprecate(@PathVariable("deprecate-id") long deprecateId){
         Deprecate deprecate = recommendService.findDeprecate(deprecateId);
+        log.info("# deprecate.getId ={}", deprecate.getDeprecatedId());
         return new ResponseEntity(new SingleResponseDto<>(mapper.deprecateToDeprecateResponseDto(deprecate)), HttpStatus.OK);
     }
 }
