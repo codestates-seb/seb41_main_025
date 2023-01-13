@@ -4,22 +4,22 @@ export const Container = styled.button`
   /* 모달창 크기 */
   width: 500px;
   height: 500px;
-
-  /* 최상단 위치 */
-  z-index: 999;
-
-  /* 중앙 배치 */
-  /* top, bottom, left, right 는 브라우저 기준으로 작동한다. */
-  /* translate는 본인의 크기 기준으로 작동한다. */
-  position: absolute;
+  //모달창 정중앙에 위치
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
   /* 모달창 디자인 */
-  background-color: gray;
-  border: 1px solid black;
+  background-color: #ffffff;
+  box-shadow: 4px 9px 9px rgb(32 33 36 / 30%);
+  border: none;
   border-radius: 8px;
+  .boxing {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    height: 100%;
+  }
 `;
 
 export const CloseBtn = styled.button`
@@ -28,20 +28,27 @@ export const CloseBtn = styled.button`
   height: 30px;
   font-size: medium;
   background-color: #167e6c;
+  color:#ffffff;
   border: none;
   border-radius: 10px;
 `;
 
 export const InputItem = styled.div`
-  /* display: flex;
+  display: flex;
   align-items: center;
-  height: 200x; */
+
+  
+  //인풋창 배치
+  padding: 150px 30px;
 `;
 
 export const MyInput = styled.input`
   display: flex;
+
   width: 360px;
   height: 50px;
+  padding-left: 40px;
+  
   border: none;
   border-bottom: 1px solid #999999;
   :focus {

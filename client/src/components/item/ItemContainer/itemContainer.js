@@ -29,7 +29,7 @@ const ItemContainer = () => {
   const next = useCallback(() => slickRef.current.slickNext(), []);
 
 
-  const [movies] = useFetch('http://localhost:3000/contents')
+  const [movies] = useFetch('http://whatu1.kro.kr:8080/contents')
   console.log(movies)
 
 

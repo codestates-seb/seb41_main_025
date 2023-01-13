@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 
 const useFetch = (url) => {
-  const [movieList, setMovieList] = useState("");
-  
+  //todo : loading, error 관련 페이지 작업하기
+  const [data, setData] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
+      setLoading(true);
       fetch(url)
         .then((res) => {
           if (!res.ok) {
@@ -14,14 +17,15 @@ const useFetch = (url) => {
           return res.json();
         })
         .then((data) => {
-          setMovieList(data);
+          setData(data.data);
         })
         .catch((err) => {
+          setError(err.msg);
           console.log("err");
         });
-    }, );
+    });
   }, [url]);
-  return [movieList, setMovieList];
+  return [data, setData, loading, error];
 };
 
 export default useFetch;
