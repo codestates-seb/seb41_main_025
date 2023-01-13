@@ -64,38 +64,39 @@ const DetailItem = styled.div`
 
 const Detail = () => {
 
-  const { contentId } = useParams()
+  const {contentId} = useParams()
+  // console.log(params.data)
 
   const request = {
     method : "get",
     headers : {"Content-Type" : "application/json"}
   }
 
-  const [movies] = useFetch(`http://whatu1.kro.kr:8080/contents/1`,request)
-
-  const [recommend, setRecommend] = useState(movies.recommend)
+  const [movies] = useFetch(`http://whatu1.kro.kr:8080/contents/${contentId}`,request)
+  const [recommend] = useFetch(`http://whatu1.kro.kr:8080/contents/1/recommend`,request)
   console.log(recommend)
-  const [recommendCounts, setRecommendCounts] = useState(movies.recommendCounts)
-  console.log(recommendCounts)
+
+  const [recommendConts, setRecommend] = useState(movies.recommend)
+  const [recommendCounts, setRecommendCounts] = useState(movies && movies.recommendCounts)
+  // console.log(typeof(Number(recommendCounts)))
   const [decommend, setDecommend] = useState (false)
-  const [decommendCounts, setDecommendCounts] = useState (movies && movies.decommendCount)
+  const [decommendCounts, setDecommendCounts] = useState (movies && movies.deprecateCount)
+  // console.log(typeof(decommendCounts))
+  const [contentOttRanks, setContentOttRank] = useState (movies && movies.contentOttRank)
+  // console.log(typeof(contentOttRanks))
   const [favorite, setFavorite] = useState(movies && movies.favorite)
   const [choose, setChoose] = useState(false)
 
-
-
-  console.log(movies.data.recommendCount)
-  console.log(movies.data.recommendCount)
-  console.log(recommendCounts)
+  // console.log(movies.contentId)
+  // console.log(movies.recommendCount)
+  // console.log(recommendCounts)
 
   const handleRecommend = () => {
       setRecommend(!recommend)
-      setRecommendCounts(recommend === true ? Number(recommendCounts) + 1 : recommendCounts)
+      setRecommendCounts(recommend === true ? recommendCounts + 1 : recommendCounts)
       // FIXME : recommendCounts 가 number 로 따로 변환해 줘야 함
     }
-  
-    // 백엔드 쪽에서 투표 ID 당 한번만 할 수 있게 바꿔줄 수 있는지 확인
-    // decommend도 만들어달라고 요청
+    
   const handleDecommend = () => {
     setDecommend(!decommend)
     setDecommendCounts(decommend === true ? Number(decommendCounts) + 1 : decommendCounts)
@@ -110,7 +111,7 @@ const Detail = () => {
           // "Refresh": localStorage.getItem("refreshToken")
         }
       }
-      fetch(`http://whatu1.kro.kr:8080/contents/1/favorite`, updateRequest)
+      fetch(`http://whatu1.kro.kr:8080/contents/${contentId}/choice`, updateRequest)
       .then (() => {
         setFavorite(!favorite)
         console.log(movies.favorite.choiceSelected)
@@ -142,12 +143,12 @@ const Detail = () => {
             <div className="itemIcon" onClick={handleRecommend}>
               {recommend === true ? <AiTwotoneLike size="48" color="#58BFAD" /> : 
               <AiOutlineLike size="48" />}
-              {recommendCounts}
+              {movies.recommendCount}
             </div>
             <div className="itemIcon" onClick={handleDecommend}>
               {decommend === true ? <AiTwotoneDislike size="48" color="#58BFAD" /> : 
               <AiOutlineDislike size="48" />}
-              {decommendCounts}
+              {movies.deprecateCount}
             </div>
             <div className="itemIcon" onClick={handleChoose}>
               {choose === true ? <FcLike size="48" /> :

@@ -91,17 +91,20 @@ const Buttons = styled.div`
 `
 
 const Comment = () => {
-    const { id } = useParams()
+  const {contentId} = useParams()
+  // console.log(params.data)
 
-    const request = {
-      method : "get",
-      headers : {"Content-Type" : "application/json"}
-    }
+  const request = {
+    method : "get",
+    headers : {"Content-Type" : "application/json"}
+  }
+
+  const [comments] = useFetch('http://whatu1.kro.kr:8080/comments?page=1&size=10',request)
   
-    const [movies] = useFetch(`http://localhost:3000/contents/${id}`,request)
+
     const [comment, setComment] = useState('')
 
-    console.log(comment)
+    console.log(comments)
 
     // TODO : 로그인 하면 작성자 정보 나타나도록 
   const submitcommit = (e) => {
@@ -113,7 +116,7 @@ const Comment = () => {
         "Content-Type":'application/json'
       }
     }
-    fetch(`http://localhost:3000/contents/${id}/comments`,JSON.stringify(comment),updateRequest)
+    fetch(`http://localhost:3000/contents/${contentId}/comments`,JSON.stringify(comment),updateRequest)
     .then (() => {
       window.location.reload()
     })
@@ -131,7 +134,7 @@ const Comment = () => {
         "Content-Type":'application/json'
       }
     }
-    fetch(`http://localhost:3000/contents/${id}/comments`,JSON.stringify(comment),updateRequest)
+    fetch(`http://localhost:3000/contents/${contentId}/comments`,JSON.stringify(comment),updateRequest)
     .then (() => {
       window.location.reload()
     })
@@ -149,7 +152,7 @@ const Comment = () => {
         "Content-Type":'application/json'
       }
     }
-    fetch(`http://localhost:3000/contents/${id}/comments`,JSON.stringify(comment),updateRequest)
+    fetch(`http://localhost:3000/contents/${contentId}/comments`,JSON.stringify(comment),updateRequest)
     .then (() => {
       window.location.reload()
     })
@@ -161,9 +164,9 @@ const Comment = () => {
     return (
         <>
         {/* 한 줄 평 작성 */}
-        {movies && movies.comments.length !== null ? (
+        {comments && comments.length !== null ? (
             <DetailCommentList>
-                { movies && movies.comments.map(comment => (
+                { comments && comments.map(comment => (
                     <DetailCommentItem key={comment.commentId}>
                 <div className="userInfo">
                     <img

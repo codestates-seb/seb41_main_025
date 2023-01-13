@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 // import { ReactComponent as GreenLogo } from "../assets/GreenLogo.svg"
+import store from '../Redux/store'
+import { addToken, addUser, logIn} from '../Redux/action';
+import { ImInfo } from "react-icons/im";
 
 export const Main = styled.div`
   display: flex;
@@ -110,7 +113,7 @@ export const ContentForm = styled.div`
   }
 `;
 
-export const Whitebutton = styled(NavLink)`
+export const Whitebutton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -146,15 +149,46 @@ export const Enter = styled.input`
   font-size: 20px;
 `;
 const Login = () => {
-    const [inputId, setInputId] = useState("");
-    const [inputPw, setInputPw] = useState("");
+    const [info, setInfo]= useState({
+      email:'',
+      password:''
+    });
+
+  const navigate = useNavigate();
   
-    const handleInputId = (e) => {
-      setInputId(e.target.value);
-    };
+    const Login = (e) => {
+        const jsonData = {
+         method : "POST",
+         body : JSON.stringify(info),
+         headers: {
+           "Content-Type": 'application/json',
+           // "Authorization": localStorage.getItem("accessToken"),
+           // "Refresh": localStorage.getItem("refreshToken")
+         }
+       }
+       fetch('http://whatu1.kro.kr:8080/members/login', jsonData)
+       .then ((res) => {
+          store.dispatch(addToken(
+            {
+              accessToken: res.headers.authorization, 
+              refreshToken: res.headers.refresh
+            }
+          ));
+          store.dispatch(logIn())
+          store.dispatch(addUser(res.data))
+          localStorage.setItem("accessToken", res.headers.authorization)
+          localStorage.setItem("refreshToken", res.headers.refresh)
+          localStorage.setItem("isLogin",true)
+          localStorage.setItem("user", res.data.memberId)
+          navigate("/")
+       })
+       .catch(err => {
+         console.log(err)
+       })
+   };
   
     const handleInputPw = (e) => {
-      setInputPw(e.target.value);
+     
     };
   
     const handleEnter = (e) => {
@@ -183,15 +217,22 @@ const Login = () => {
             <Enter
               type="text"
               placeholder="Enter email"
-              onChange={handleEnter}
+              value={info.email}
+              onChange={e => setInfo({
+                   ...info,
+                   email : e.target.value
+                  })}
             />
             <Enter
               type="password"
               placeholder="Enter password"
-              onChange={handleEnter}
+              onChange={e => setInfo({
+                ...info,
+                password : e.target.value
+               })}
             />
           </EnterContent>
-          <Whitebutton to="/" className="EnterButton">
+          <Whitebutton onClick={Login} className="EnterButton">
             Login
           </Whitebutton>
           {/* login에 성공하면 반갑습니다 00님 ! 비슷하게 alart 창 혹은 모달창 띄우기 */}
