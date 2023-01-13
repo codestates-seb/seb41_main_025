@@ -1,4 +1,7 @@
+import { ImInfo } from 'react-icons/im';
 import styled from 'styled-components'
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Main, Window, Enter, EnterContent, Whitebutton, ContentForm} from './Login';
 
 const Hello = styled.div`
@@ -20,6 +23,16 @@ const HelloAnnouncement = styled.span`
 
 const SignUp = () => {
 
+    const [info, setInfo] = useState({
+        email: '',
+        password: '',
+        name:'',
+        nickName: '',
+        confirmedPassword: '',
+        memberPicture:''
+      })
+      const navigate = useNavigate();
+
     const handleEnter = (e) =>{
         console.log(e.target.value);
     }
@@ -36,25 +49,37 @@ const SignUp = () => {
                         <Enter
                         type="text"
                         placeholder="이름을 입력해 주세요"
-                        onChange={handleEnter}
+                        onChange={e => setInfo ({
+                            ...info,
+                            name : e.target.value
+                        })}
                         style={{marginBottom:"50px"}}
                         />
                         <Enter
                         type="text"
                         placeholder="닉네임을 입력해 주세요"
-                        onChange={handleEnter}
+                        onChange={e => setInfo ({
+                            ...info,
+                            name : e.target.value
+                        })}
                         style={{marginBottom:"50px"}}
                         />
                         <Enter
                         type="text"
                         placeholder="이메일을 입력해 주세요"
-                        onChange={handleEnter}
+                        onChange={e => setInfo ({
+                            ...info,
+                            email : e.target.value
+                        })}
                         style={{marginBottom:"50px"}}
                         />
                         <Enter
                         type="text"
                         placeholder="비밀번호를 입력해 주세요"
-                        onChange={handleEnter}
+                        onChange={e => setInfo ({
+                            ...info,
+                            password : e.target.value
+                        })}
                         style={{marginBottom:"50px"}}
                         />
                         <Whitebutton to = '/' className='EnterButton' style={{"marginBottom" : "30px"}}>Sign Up</Whitebutton>
