@@ -11,6 +11,7 @@ import Comment from "../Comment/Comment";
 const Detail = () => {
 
   const {contentId} = useParams()
+  const {deprecateId} = useParams()
   // console.log(params.data)
 
   const request = {
@@ -19,7 +20,7 @@ const Detail = () => {
   }
 
   const [movies] = useFetch(`http://whatu1.kro.kr:8080/contents/${contentId}`,request)
-  const [recommend] = useFetch(`http://whatu1.kro.kr:8080/contents/1/recommend`,request)
+  const [recommend] = useFetch(`http://whatu1.kro.kr:8080/recommend/${deprecateId}`,request)
   console.log(recommend)
 
   const [recommendConts, setRecommend] = useState(movies.recommend)
@@ -79,9 +80,10 @@ const Detail = () => {
             <>
                 <div className="contents">
                   <div className="title">{movies && movies.contentTitle}</div>
-                  <div className="comeout">{movies && movies.contentOpenAt}</div>
-                  <div className="score">평점 {/* 평점 */}</div>
-                  <div className="comments">영화설명 {movies && movies.contentBody}</div>
+                  <div className="content">공개일 : {movies && movies.contentOpenAt}</div>
+                  <div className="content">평점 : {movies && movies.contentScore}</div>
+                  <div className="content">장르 : {movies && movies.contentGenre}</div>
+                  <div className="content">영화설명 : {movies && movies.contentBody}</div>
                 </div>
             </>
           <S.DetailItem>

@@ -1,12 +1,44 @@
 import * as S from './styled'
 // import { ReactComponent as GreenLogo } from "../assets/GreenLogo.svg"
+import React, { useState } from "react";
+import { useNavigate, NavLink } from "react-router-dom";
+// import { ReactComponent as GreenLogo } from "../assets/GreenLogo.svg"
+import store from '../../Redux/store'
+import { addToken, addUser, logIn} from '../../Redux/action';
 
 const Login = () => {
-    // const [id, setId] = useState('');
-
-    const handleEnter = (e) =>{
-        console.log(e.target.value);
-    }
+    const [info, setInfo]= useState({
+        email:'',
+        password:''
+      });
+  
+    const navigate = useNavigate();
+        const jsonData = {
+       method : "POST",
+       body : JSON.stringify(info),
+        headers: {
+         "Content-Type": 'application/json',
+        }
+        }
+        fetch('http://whatu1.kro.kr:8080/members/login', jsonData)
+        .then ((res) => {
+        store.dispatch(addToken(
+          {
+            accessToken: res.headers.authorization, 
+            refreshToken: res.headers.refresh
+          }
+        ));
+        store.dispatch(logIn())
+        store.dispatch(addUser(res.data))
+        localStorage.setItem("accessToken", res.headers.authorization)
+        localStorage.setItem("refreshToken", res.headers.refresh)
+        localStorage.setItem("isLogin",true)
+        localStorage.setItem("user", res.data.memberId)
+        navigate("/")
+        })
+        .catch(err => {
+        console.log(err)
+        })
 
     return (
         <S.Main>
@@ -28,12 +60,18 @@ const Login = () => {
                     <S.Enter
                     type="text"
                     placeholder="Enter email"
-                    onChange={handleEnter}
+                    onChange={e => setInfo({
+                        ...info,
+                        email:e.target.value
+                    })}
                     />
                     <S.Enter
                     type="password"
                     placeholder="Enter password"
-                    onChange={handleEnter}
+                    onChange={e => setInfo({
+                        ...info,
+                        password:e.target.value
+                    })}
                     />
                   </S.EnterContent>
                   <S.Whitebutton to = '/' className='EnterButton'>Login</S.Whitebutton>

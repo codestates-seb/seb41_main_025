@@ -15,9 +15,14 @@ const SignUp = () => {
       })
       const navigate = useNavigate();
 
-    const handleEnter = (e) =>{
-        console.log(e.target.value);
-    }
+    const onSignUpSubmitHandler = async () => {
+        }
+      //enter 눌렀을 때도 작동 되도록
+      const handleKeypress = e => {
+        if (e.keyCode === 13) {
+          onSignUpSubmitHandler();
+        }
+      };
 
     return (
         <Main>
@@ -25,7 +30,7 @@ const SignUp = () => {
                 <S.Hello>
                     <S.HelloAnnouncement>반갑습니다 !<br/><br/>오른쪽 칸에 정보 입력 후 <br/>Sign up 버튼을 눌러주세요</S.HelloAnnouncement>
                 </S.Hello>
-                <ContentForm>
+                <ContentForm onKeyUp={e => handleKeypress(e)}>
                     <span className='LoginFont'>Sign Up</span>
                     <EnterContent>
                         <Enter
@@ -42,7 +47,7 @@ const SignUp = () => {
                         placeholder="닉네임을 입력해 주세요"
                         onChange={e => setInfo ({
                             ...info,
-                            name : e.target.value
+                            nickName : e.target.value
                         })}
                         style={{marginBottom:"50px"}}
                         />
@@ -64,7 +69,7 @@ const SignUp = () => {
                         })}
                         style={{marginBottom:"50px"}}
                         />
-                        <Whitebutton to = '/' className='EnterButton' style={{"marginBottom" : "30px"}}>Sign Up</Whitebutton>
+                        <Whitebutton className='EnterButton' style={{"marginBottom" : "30px"}}>Sign Up</Whitebutton>
                     </EnterContent>
                 </ContentForm>
             </Window>
