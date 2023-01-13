@@ -48,10 +48,18 @@ const UserInfoHeader = styled.div`
     flex-direction: column;
     justify-content: flex-end;
     padding-left: 80px;
+    @media only screen and (max-width: ${'600px'}) {
+    padding: 20px 0 0 0;
+
+  } 
   }
   .userName {
     padding: 0px 0px 80px 30px;
     font-size: 30px;
+    @media only screen and (max-width: ${'600px'}) {
+    padding: 10 0 0 30;
+
+  } 
   }
 `;
 
@@ -62,14 +70,30 @@ const FormDiv = styled.div`
   align-items: end;
   padding-right: 100px;
   margin-right: 120px;
+  @media only screen and (max-width: ${'600px'}) {
+  display:grid;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  flex-direction: row;
+  } 
 `;
 const InputItem = styled.div`
   display: flex;
   align-items: center;
   height: 200x;
+  @media only screen and (max-width: ${'600px'}) {
+  display: grid;
+  margin: 10px;
+  width: 30px;
+  } 
 `;
 const InputLabel = styled.div`
   padding-right: 30px;
+  @media only screen and (max-width: ${'600px'}) {
+  font-size: 20px;
+  padding-right: 0;
+  } 
 `;
 const InputDiv = styled.div``;
 const MyInput = styled.input`
@@ -101,13 +125,25 @@ export const ModifyBtn = styled.button`
 `;
 
 const SaveBtn = styled(ModifyBtn)`
-  width: 140px;
+  width: 100px;
+  @media only screen and (max-width: ${'600px'}) {
+    margin: 10px 0px 0px 220px;
+  }
 `;
 
 const DeleteBtn = styled(ModifyBtn)`
-  width: 150px;
+  width: 70px;
+  height: 20px;
   margin: 50px;
+  @media only screen and (max-width: ${'600px'}) {
+    margin: 10px 0px 10px 220px;
+    font-size: 15px;
+  }
 `;
+
+ const FormStyle = styled.div`
+  display: grid;
+ `;
 
 const Mypage = () => {
   const filteredDummy = dummy.filter((item) => item.id === "1");
@@ -122,6 +158,7 @@ const Mypage = () => {
       setModalOpen(true);
   };
 
+ 
 
 
   return (
@@ -147,7 +184,7 @@ const Mypage = () => {
           </UserInfoHeader>
         );
       })}
-      <form>
+      <FormStyle>
         <FormDiv>
           <InputItem>
             <InputLabel htmlFor="profile">프로필</InputLabel>
@@ -201,7 +238,7 @@ const Mypage = () => {
         <SaveBtn type="submit" value="저장">
           저장
         </SaveBtn>
-      </form>
+      </FormStyle>
 
       <DeleteBtn type="submit" value="저장">
         회원탈퇴
