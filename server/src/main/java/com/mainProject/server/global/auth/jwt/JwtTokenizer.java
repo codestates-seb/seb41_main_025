@@ -98,16 +98,16 @@ public class JwtTokenizer {
 
         return expiration;
     }
-    private Claims parseToken(String token) {
-        Key key = getKeyFromBase64EncodedKey(encodeBase64SecretKey(this.secretKey));
-        String jws = token.replace("Bearer ", "");
-
-        return Jwts.parserBuilder()
-                .setSigningKey(key)
-                .build()
-                .parseClaimsJws(jws)
-                .getBody();
-    }
+//    private Claims parseToken(String token) {
+//        Key key = getKeyFromBase64EncodedKey(encodeBase64SecretKey(this.secretKey));
+//        String jws = token.replace("Bearer ", "");
+//
+//        return Jwts.parserBuilder()
+//                .setSigningKey(key)
+//                .build()
+//                .parseClaimsJws(jws)
+//                .getBody();
+//    }
 
     /*public Long getMemberId(String token) {
         return parseToken(token).get("memberId", Long.class);

@@ -1,7 +1,7 @@
 package com.mainProject.server.global.auth.config;
 
+import com.mainProject.server.domain.member.service.MemberService;
 import com.mainProject.server.global.auth.authority.CustomAuthorityUtils;
-import com.mainProject.server.global.auth.filter.JwtAuthenticationFilter;
 import com.mainProject.server.global.auth.filter.JwtVerificationFilter;
 import com.mainProject.server.global.auth.handler.MemberAuthenticationFailureHandler;
 import com.mainProject.server.global.auth.handler.MemberAuthenticationSuccessHandler;
@@ -10,7 +10,6 @@ import org.springframework.http.HttpMethod;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -32,6 +31,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfiguration {
     private final JwtTokenizer jwtTokenizer;
     private final CustomAuthorityUtils authorityUtils;
+    private final MemberService memberService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -44,6 +44,10 @@ public class SecurityConfiguration {
                 .and()
                 .formLogin().disable()
                 .httpBasic().disable()
+                .exceptionHandling()  // 추가
+                .authenticationEntryPoint(new MemberAuthenticationEntryPoint())  // 추가
+                .accessDeniedHandler(new MemberAccessDeniedHandler())            // 추가
+                .and()
                 .apply(new CustomFilterConfigurer())   // (1)
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
@@ -63,6 +67,9 @@ public class SecurityConfiguration {
                         .antMatchers(HttpMethod.DELETE, "/comments/*").hasRole("USER")
 
                         .anyRequest().permitAll()
+                )
+                .oauth2Login(oauth2 -> oauth2
+                        .successHandler(new OAuth2MemberSuccessHandler(jwtTokenizer, authorityUtils, memberService))  // (1)
                 );
         return http.build();
     }
@@ -82,8 +89,19 @@ public class SecurityConfiguration {
         source.registerCorsConfiguration("/**", configuration);      // (8-4)     주의 사항: 컨텐츠 표시 오류로 인해 '/**'를 '\/**'로 표기했으니 실제 코드 구현 시에는 '\(역슬래시)'를 빼 주세요.
         return source;
     }
-    // (2)
-    public class CustomFilterConfigurer extends AbstractHttpConfigurer<CustomFilterConfigurer, HttpSecurity> {  // (2-1)
+
+    // 추가
+    public class CustomFilterConfigurer extends AbstractHttpConfigurer<CustomFilterConfigurer, HttpSecurity> {
+        @Override
+        public void configure(HttpSecurity builder) throws Exception {
+            JwtVerificationFilter jwtVerificationFilter = new JwtVerificationFilter(jwtTokenizer, authorityUtils);
+
+            builder.addFilterAfter(jwtVerificationFilter, OAuth2LoginAuthenticationFilter.class); // (2)
+        }
+    }
+
+    // (2) jwt
+/*    public class CustomFilterConfigurer extends AbstractHttpConfigurer<CustomFilterConfigurer, HttpSecurity> {  // (2-1)
         @Override
         public void configure(HttpSecurity builder) throws Exception {  // (2-2)
             AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);  // (2-3)
@@ -99,11 +117,11 @@ public class SecurityConfiguration {
                     .addFilter(jwtAuthenticationFilter)
                     .addFilterAfter(jwtVerificationFilter, JwtAuthenticationFilter.class);   // (3)추가 차후 수정
         }
-    }
+    }*/
 }
 /*
 # 전체 개요
-## SecurityConfiguration
+## Oauth2SecurityConfiguration
 1. FilterChain 설정
 2. PasswordEncoder 사용
 3. CorsConfigurationSource 제공

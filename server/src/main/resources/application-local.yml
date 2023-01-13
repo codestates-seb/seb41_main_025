@@ -16,6 +16,13 @@ spring:
     init:
       schema-locations: classpath*:db/h2/schema.sql
 #    open-in-view: false
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: ${OAUTH2_ID}           # (1)
+            clientSecret: ${OAUTH2_SECRET} # (2)
 jwt:
   key: ${JWT_SECRET_KEY}               # 민감한 정보는 시스템 환경 변수에서 로드한다.
   access-token-expiration-minutes: 420
@@ -23,3 +30,4 @@ jwt:
 mail:
   address:
     admin: admin@gmail.com
+
