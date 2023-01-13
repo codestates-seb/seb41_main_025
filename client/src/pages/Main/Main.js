@@ -29,12 +29,11 @@ const Main = () => {
   return (
     <MainWarp>
       <MainContainer>
- 
         <ItemContainer />
         <ItemContainer />
         <ItemContainer />
-
       </MainContainer>
+      
     </MainWarp>
   )
 }
