@@ -54,6 +54,10 @@ const SignUp = () => {
       .match(/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{10,25}$/);
   };
 
+  //* post 에러 잡기 위해서 기본 프로필 이미지 생성
+  const memberPicture =
+    "https://i.ibb.co/P1TsnM3/2023-01-14-1-35-41.png";
+
   const onSubmit = (e) => {
     e.preventDefault();
     fetch("http://whatu1.kro.kr:8080/members", {
@@ -66,14 +70,16 @@ const SignUp = () => {
         nickName: nickname,
         email: email,
         password: pwd,
+        memberPicture: memberPicture,
       }),
     })
       .then((res) => {
         console.log(res.status);
         if (res.status === 201) {
           alert("회원가입이 완료되었습니다!");
-        }
-        return res.json();
+        };
+        return res.json()
+        
       })
       // .then((res) => {
       //   console.log(res.status);
@@ -82,6 +88,7 @@ const SignUp = () => {
         console.log(err);
       });
   };
+
 
   //네임
   const onChangeName = (e) => {
