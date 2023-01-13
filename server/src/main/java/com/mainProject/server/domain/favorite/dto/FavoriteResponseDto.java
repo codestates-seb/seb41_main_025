@@ -10,8 +10,9 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 public class FavoriteResponseDto {
-    private Long memberId;
-    private Long favoriteLimitTotal;
+    private Long favoriteId;
+    private long memberId;
+    private long favoriteLimitTotal;
     private Long contentId;
     private Boolean favoriteSelected;
     private Long favoriteCount;
