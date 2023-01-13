@@ -3,6 +3,8 @@ package com.mainProject.server.global.auth.config;
 import com.mainProject.server.global.auth.authority.CustomAuthorityUtils;
 import com.mainProject.server.global.auth.filter.JwtAuthenticationFilter;
 import com.mainProject.server.global.auth.filter.JwtVerificationFilter;
+import com.mainProject.server.global.auth.handler.MemberAccessDeniedHandler;
+import com.mainProject.server.global.auth.handler.MemberAuthenticationEntryPoint;
 import com.mainProject.server.global.auth.handler.MemberAuthenticationFailureHandler;
 import com.mainProject.server.global.auth.handler.MemberAuthenticationSuccessHandler;
 import com.mainProject.server.global.auth.jwt.JwtTokenizer;
@@ -33,14 +35,18 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .headers().frameOptions().sameOrigin()
+                .headers().frameOptions().disable()
                 .and()
                 .csrf().disable()
-                .cors(withDefaults())
+                .cors().and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .formLogin().disable()
                 .httpBasic().disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(new MemberAuthenticationEntryPoint())
+                .accessDeniedHandler(new MemberAccessDeniedHandler())
+                .and()
                 .apply(new CustomFilterConfigurer())   // (1)
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
@@ -58,6 +64,14 @@ public class SecurityConfiguration {
                         .antMatchers(HttpMethod.PATCH, "/contents/*/comments/*").hasRole("USER")
                         .antMatchers(HttpMethod.GET, "/comments/**").permitAll() //전체 조회가 되는지 확인
                         .antMatchers(HttpMethod.DELETE, "/comments/*").hasRole("USER")
+                        .antMatchers(HttpMethod.POST, "/comments/*/choice").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/choice/**").hasRole("USER")
+                        .antMatchers(HttpMethod.POST, "/comments/*/favorite").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/favorite/**").hasRole("USER")
+                        .antMatchers(HttpMethod.POST, "/comments/*/deprecate").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/deprecate/**").hasRole("USER")
+                        .antMatchers(HttpMethod.POST, "/comments/*/recommend").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/recommend/**").hasRole("USER")
 
                         .anyRequest().permitAll()
                 );
