@@ -5,6 +5,8 @@ import com.mainProject.server.domain.choice.repository.ChoiceRepository;
 import com.mainProject.server.domain.content.entity.Content;
 import com.mainProject.server.domain.content.repository.ContentRepository;
 import com.mainProject.server.domain.member.entity.Member;
+import com.mainProject.server.global.exception.BusinessLogicException;
+import com.mainProject.server.global.exception.ExceptionCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -48,6 +50,17 @@ public class ChoiceService {
             return new Choice();
         }
     }
+    public Choice findChoice(long choiceId){
+        return findVerifiedChoice(choiceId);
+    }
+
+    public Choice findVerifiedChoice(long choiceId){
+        Optional<Choice> optionalChoice = choiceRepository.findById(choiceId);
+        Choice choice = optionalChoice.orElseThrow(()->
+                new BusinessLogicException(ExceptionCode.CHOICE_NOT_FOUND));
+        return choice;
+    }
+
 
 
 }

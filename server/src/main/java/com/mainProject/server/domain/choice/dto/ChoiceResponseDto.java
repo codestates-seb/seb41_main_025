@@ -10,8 +10,9 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 public class ChoiceResponseDto {
-    private Long memberId;
-    private Long contentId;
+    private Long choiceId;
+    private long memberId;
+    private long contentId;
     private Boolean choiceSelected;
     private Long choiceCount;
     private LocalDateTime createdAt;

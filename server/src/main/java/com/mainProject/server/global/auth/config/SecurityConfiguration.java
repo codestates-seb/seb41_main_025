@@ -3,6 +3,8 @@ package com.mainProject.server.global.auth.config;
 import com.mainProject.server.global.auth.authority.CustomAuthorityUtils;
 import com.mainProject.server.global.auth.filter.JwtAuthenticationFilter;
 import com.mainProject.server.global.auth.filter.JwtVerificationFilter;
+import com.mainProject.server.global.auth.handler.MemberAccessDeniedHandler;
+import com.mainProject.server.global.auth.handler.MemberAuthenticationEntryPoint;
 import com.mainProject.server.global.auth.handler.MemberAuthenticationFailureHandler;
 import com.mainProject.server.global.auth.handler.MemberAuthenticationSuccessHandler;
 import com.mainProject.server.global.auth.jwt.JwtTokenizer;
@@ -18,13 +20,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.Arrays;
-
-import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity(debug = true) //테스트 용으로
@@ -36,14 +32,18 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .headers().frameOptions().sameOrigin()
+                .headers().frameOptions().disable()
                 .and()
                 .csrf().disable()
-                .cors(withDefaults())
+                .cors().and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .formLogin().disable()
                 .httpBasic().disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(new MemberAuthenticationEntryPoint())
+                .accessDeniedHandler(new MemberAccessDeniedHandler())
+                .and()
                 .apply(new CustomFilterConfigurer())   // (1)
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
@@ -61,6 +61,14 @@ public class SecurityConfiguration {
                         .antMatchers(HttpMethod.PATCH, "/contents/*/comments/*").hasRole("USER")
                         .antMatchers(HttpMethod.GET, "/comments/**").permitAll() //전체 조회가 되는지 확인
                         .antMatchers(HttpMethod.DELETE, "/comments/*").hasRole("USER")
+                        .antMatchers(HttpMethod.POST, "/comments/*/choice").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/choice/**").hasRole("USER")
+                        .antMatchers(HttpMethod.POST, "/comments/*/favorite").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/favorite/**").hasRole("USER")
+                        .antMatchers(HttpMethod.POST, "/comments/*/deprecate").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/deprecate/**").hasRole("USER")
+                        .antMatchers(HttpMethod.POST, "/comments/*/recommend").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/recommend/**").hasRole("USER")
 
                         .anyRequest().permitAll()
                 );
@@ -72,17 +80,6 @@ public class SecurityConfiguration {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*"));   // (8-1)
-        configuration.setAllowedMethods(Arrays.asList("GET","POST", "PATCH", "DELETE"));
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();   // (8-3)
-        source.registerCorsConfiguration("/**", configuration);      // (8-4)     주의 사항: 컨텐츠 표시 오류로 인해 '/**'를 '\/**'로 표기했으니 실제 코드 구현 시에는 '\(역슬래시)'를 빼 주세요.
-        return source;
-    }
-    // (2)
     public class CustomFilterConfigurer extends AbstractHttpConfigurer<CustomFilterConfigurer, HttpSecurity> {  // (2-1)
         @Override
         public void configure(HttpSecurity builder) throws Exception {  // (2-2)

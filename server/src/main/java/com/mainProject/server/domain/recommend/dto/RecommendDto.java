@@ -12,8 +12,9 @@ public class RecommendDto {
     @Builder
     @AllArgsConstructor
     public static class RecommendResponse {
-        private Long memberId;
-        private Long contentId;
+        private Long recommendId;
+        private long memberId;
+        private long contentId;
         private Boolean recommendSelected;
         private Long recommendCount;
         private LocalDateTime createdAt;
@@ -23,6 +24,7 @@ public class RecommendDto {
     @Builder
     @AllArgsConstructor
     public static class DeprecateResponse {
+        private Long deprecateId;
         private long memberId;
         private long contentId;
         private Boolean deprecateSelected;

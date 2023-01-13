@@ -29,7 +29,7 @@ public class RecommendController {
         Content content = contentService.findContent(contentId);
         Recommend recommend = recommendService.pickRecommend(member, content);
 
-        return new ResponseEntity(new SingleResponseDto<>(mapper.recommendToRecommrndDto(recommend)), HttpStatus.OK);
+        return new ResponseEntity(new SingleResponseDto<>(mapper.recommendToRecommendDto(recommend)), HttpStatus.OK);
     }
 
     @PostMapping("/contents/{content-id}/deprecate")
@@ -38,6 +38,17 @@ public class RecommendController {
         Content content = contentService.findContent(contentId);
         Deprecate deprecate = recommendService.pickDeprecate(member, content);
 
+        return new ResponseEntity(new SingleResponseDto<>(mapper.deprecateToDeprecateResponseDto(deprecate)), HttpStatus.OK);
+    }
+    @GetMapping("/recomend/{recommend-id}")
+    public ResponseEntity getRecomend(@PathVariable("recommend-id") long recommendId){
+        Recommend recommend = recommendService.findRecommend(recommendId);
+        return new ResponseEntity(new SingleResponseDto<>(mapper.recommendToRecommendDto(recommend)), HttpStatus.OK);
+    }
+
+    @GetMapping("/deprecate/{deprecate-id}")
+    public ResponseEntity getDeprecate(@PathVariable("deprecate-id") long deprecateId){
+        Deprecate deprecate = recommendService.findDeprecate(deprecateId);
         return new ResponseEntity(new SingleResponseDto<>(mapper.deprecateToDeprecateResponseDto(deprecate)), HttpStatus.OK);
     }
 }
