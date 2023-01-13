@@ -19,10 +19,10 @@ const Container = styled.div`
   h2.title {
     margin-bottom: 14px;
   }
-  .items {
+  /* .items {
     display: flex;
     overflow: hidden;
-  }
+  } */
 
   .item {
     margin-right: 30px;
@@ -119,7 +119,7 @@ const ItemContainer = () => {
           })}
         {/* key={movies.contentId}*/}
         {/*contentTitle={movies.contentTitle} contentPoster={movies.contentPoster} contentOpenAt={movies.contentOpenAt} */}
-          <Link to={'/detail'}><Item /></Link>
+          {/* <Link to={'/detail'}><Item /></Link> */}
 
 
       </Slider>
