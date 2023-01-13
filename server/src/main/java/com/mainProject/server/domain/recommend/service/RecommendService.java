@@ -29,6 +29,8 @@ public class RecommendService {
         Deprecate deprecate = findByDeprecateMemberAndContent(member, content);
         recommend.setMember(member);
         recommend.setContent(content);
+        deprecate.setMember(member);
+        deprecate.setContent(content);
 
         if (recommend.getRecommendSelected() != Boolean.TRUE) {
             recommend.setRecommendSelected(Boolean.TRUE);
@@ -54,6 +56,8 @@ public class RecommendService {
         Recommend recommend = findByRecommendMemberAndContent(member, content);
         deprecate.setMember(member);
         deprecate.setContent(content);
+        recommend.setMember(member);
+        recommend.setContent(content);
 
         //추천버튼과 비추천 버튼이 모두 True가 아닌경우 >> 비추천만 count
         //추천 버튼이 True이면서 비추천 버튼이 True가 아닌 경우 >> 추천은 -1, 비추천은 count
