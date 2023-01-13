@@ -7,6 +7,8 @@ import com.mainProject.server.domain.recommend.entity.Deprecate;
 import com.mainProject.server.domain.recommend.entity.Recommend;
 import com.mainProject.server.domain.recommend.repository.DeprecateRepository;
 import com.mainProject.server.domain.recommend.repository.RecommendRepository;
+import com.mainProject.server.global.exception.BusinessLogicException;
+import com.mainProject.server.global.exception.ExceptionCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -94,6 +96,30 @@ public class RecommendService {
         } else {
             return new Deprecate();
         }
+    }
+
+    public Recommend findRecommend(long recommendId){
+        return findVerifiedRecommend(recommendId);
+    }
+
+    public Deprecate findDeprecate(long deprecateId){
+        return findVerifiedDeprecate(deprecateId);
+    }
+
+    private Recommend findVerifiedRecommend(long recommendId){
+        Optional<Recommend> optionalRecommend = recommendRepository.findById(recommendId);
+        Recommend findRecommend
+                = optionalRecommend.orElseThrow(() ->
+                new BusinessLogicException(ExceptionCode.RECOMMEND_NOT_FOUND));
+        return findRecommend;
+    }
+
+    private Deprecate findVerifiedDeprecate(long deprecateId){
+        Optional<Deprecate> optionalDeprecate = deprecateRepository.findById(deprecateId);
+        Deprecate findDeprecate
+                = optionalDeprecate.orElseThrow(() ->
+                new BusinessLogicException(ExceptionCode.DEPRECATE_NOT_FOUND));
+        return findDeprecate;
     }
 
 }

@@ -72,4 +72,15 @@ public class FavoriteService {
             return new Favorite();
         }
     }
+    public Favorite findFavorite(long favoriteId){
+        return findVerifiedFavorite(favoriteId);
+    }
+
+    public Favorite findVerifiedFavorite(long favoriteId){
+        Optional<Favorite> optionalFavorite = favoriteRepository.findById(favoriteId);
+        Favorite findFavorite
+                = optionalFavorite.orElseThrow(() ->
+                new BusinessLogicException(ExceptionCode.FAVORITE_NOT_FOUND));
+        return findFavorite;
+    }
 }

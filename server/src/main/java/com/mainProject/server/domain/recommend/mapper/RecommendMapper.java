@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Mapper(componentModel = "spring")
 public interface RecommendMapper {
-    default RecommendDto.RecommendResponse recommendToRecommrndDto(Recommend recommend) {
+    default RecommendDto.RecommendResponse recommendToRecommendDto(Recommend recommend) {
         RecommendDto.RecommendResponse responseDto =  RecommendDto.RecommendResponse.builder()
                 .memberId(recommend.getMember().getMemberId())
                 .contentId(recommend.getContent().getContentId())
