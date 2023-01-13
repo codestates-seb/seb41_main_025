@@ -23,7 +23,6 @@ public class RecommendService {
     private final ContentRepository contentRepository;
     private final DeprecateRepository deprecateRepository;
 
-
     public Recommend pickRecommend(Member member, Content content) {
         Recommend recommend = findByRecommendMemberAndContent(member, content);
         Deprecate deprecate = findByDeprecateMemberAndContent(member, content);
@@ -80,7 +79,6 @@ public class RecommendService {
 
         return deprecate;
     }
-
 
     public Recommend findByRecommendMemberAndContent(Member member, Content content) {
         Optional<Recommend> optionalRecommend = this.recommendRepository.findByMemberAndContent(member, content);

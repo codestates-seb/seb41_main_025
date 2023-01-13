@@ -23,3 +23,7 @@ jwt:
 mail:
   address:
     admin: admin@gmail.com
+logging:
+  file:
+    name: sever.log
+    path: /Users/user/Workspace/seb41_25

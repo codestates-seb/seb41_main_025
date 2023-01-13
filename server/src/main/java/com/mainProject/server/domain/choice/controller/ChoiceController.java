@@ -33,6 +33,7 @@ public class ChoiceController {
 
         return new ResponseEntity(new SingleResponseDto<>(mapper.choiceTochoiceResponseDto(choice)), HttpStatus.OK);
     }
+
     @GetMapping("/choice/{choice-id}")
     public ResponseEntity getChoice(@PathVariable("choice-id") long choiceId){
         Choice choice = choiceService.findChoice(choiceId);

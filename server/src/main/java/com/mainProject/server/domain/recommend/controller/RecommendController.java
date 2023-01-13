@@ -42,6 +42,7 @@ public class RecommendController {
 
         return new ResponseEntity(new SingleResponseDto<>(mapper.deprecateToDeprecateResponseDto(deprecate)), HttpStatus.OK);
     }
+
     @GetMapping("/recomend/{recommend-id}")
     public ResponseEntity getRecomend(@PathVariable("recommend-id") long recommendId){
         Recommend recommend = recommendService.findRecommend(recommendId);
