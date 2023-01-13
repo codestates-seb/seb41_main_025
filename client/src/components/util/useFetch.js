@@ -14,7 +14,7 @@ const useFetch = (url) => {
           return res.json();
         })
         .then((data) => {
-          setMovieList(data);
+          setMovieList(data.data);
         })
         .catch((err) => {
           console.log("err");

@@ -14,12 +14,20 @@ const DetailContainer = styled.div`
   margin-bottom: 30px;
   padding: 60px 60px 0px;
   margin: 0 auto;
+  @media only screen and (max-width: ${'600px'}) {
+    display: grid;
+    
+  }
 `;
 const DetailHeader = styled.div`
   display: flex;
   justify-content: space-around;
   width: 100%;
   padding: 40px 0px;
+  @media only screen and (max-width: ${'600px'}) {
+    display: grid;
+    height: 0;
+    }
   .posterWrap {
     width: 240px;
     height: 346px;
@@ -56,14 +64,14 @@ const DetailItem = styled.div`
 
 const Detail = () => {
 
-  const { id } = useParams()
+  const { contentId } = useParams()
 
   const request = {
     method : "get",
     headers : {"Content-Type" : "application/json"}
   }
 
-  const [movies] = useFetch(`http://localhost:3000/contents/${id}`,request)
+  const [movies] = useFetch(`http://whatu1.kro.kr:8080/contents/1`,request)
 
   const [recommend, setRecommend] = useState(movies.recommend)
   console.log(recommend)
@@ -76,7 +84,8 @@ const Detail = () => {
 
 
 
-  console.log(movies.recommendCount)
+  console.log(movies.data.recommendCount)
+  console.log(movies.data.recommendCount)
   console.log(recommendCounts)
 
   const handleRecommend = () => {
@@ -101,7 +110,7 @@ const Detail = () => {
           // "Refresh": localStorage.getItem("refreshToken")
         }
       }
-      fetch(`http://localhost:3000/contents/${id}/favorite`, updateRequest)
+      fetch(`http://whatu1.kro.kr:8080/contents/1/favorite`, updateRequest)
       .then (() => {
         setFavorite(!favorite)
         console.log(movies.favorite.choiceSelected)
