@@ -1,22 +1,19 @@
-
-
 import "./App.css";
-import { Header } from "./components/Header";
-import Footer from "./components/Footer";
-import Main from "./pages/Main/Main";
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
-import SearchNull from "./pages/SearchNull";
-import AllTimeChat from "./pages/AllTimeChat/AllTimeChat";
-import FavoriteMovie from "./pages/FavoriteMovie";
-import Choose from "./pages/Choose";
-import Mypage from "./pages/Mypage/Mypage"
-import RecommendMovies from "./pages/RecommendMovies";
-import Detail from "./pages/Detail/Detail";
 import styled, { createGlobalStyle } from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SearchResult from "./pages/SerachResult";
-
+import { Header } from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import Main from "./pages/Main/Main";
+import Login from "./pages/Login/Login";
+import SignUp from "./pages/SignUp/SignUp";
+import SearchNull from "./pages/SearchNull/SearchNull";
+import SearchResult from "./pages/SearchResult/SearchResult";
+import AllTimeChat from "./pages/AllTimeChat/AllTimeChat/AllTimeChat";
+import FavoriteMovie from "./pages/FavoriteMovie/FavoriteMovie";
+import Choose from "./pages/Choose/Choose";
+import Mypage from "./pages/Mypage/Mypage/Mypage"
+import RecommendMovies from "./pages/RecommendMovies/RecommendMovies";
+import Detail from "./pages/Detail/Detail/Detail";
 
 const GlobalStyle = createGlobalStyle`
   *{
