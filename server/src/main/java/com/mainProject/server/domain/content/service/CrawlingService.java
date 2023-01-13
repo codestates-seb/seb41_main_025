@@ -29,8 +29,6 @@ public class CrawlingService {
     final String path = "C:\\drivers\\chromedriver.exe";*/
 
     public void createCrawling(String ottCrawling) {
-
-
         System.setProperty(id, path);
         ChromeOptions options = new ChromeOptions();
 
