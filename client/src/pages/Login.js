@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 // import { ReactComponent as GreenLogo } from "../assets/GreenLogo.svg"
@@ -145,11 +146,20 @@ export const Enter = styled.input`
   font-size: 20px;
 `;
 const Login = () => {
-  // const [id, setId] = useState('');
-
-  const handleEnter = (e) => {
-    console.log(e.target.value);
-  };
+    const [inputId, setInputId] = useState("");
+    const [inputPw, setInputPw] = useState("");
+  
+    const handleInputId = (e) => {
+      setInputId(e.target.value);
+    };
+  
+    const handleInputPw = (e) => {
+      setInputPw(e.target.value);
+    };
+  
+    const handleEnter = (e) => {
+      console.log(e.target.value);
+    };
 
   return (
     <Main>
