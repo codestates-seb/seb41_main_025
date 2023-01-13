@@ -62,4 +62,8 @@ public class Member extends Auditable {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Favorite> favoriteList = new ArrayList<>();
 
+    public Member(String email) {
+        this.email = email;
+    }
+
 }

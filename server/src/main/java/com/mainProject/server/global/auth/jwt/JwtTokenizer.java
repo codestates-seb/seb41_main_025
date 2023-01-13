@@ -27,7 +27,7 @@ public class JwtTokenizer {
     private int refreshTokenExpirationMinutes;
 
 
-    // (2)
+    // (2) OK
     public String encodeBase64SecretKey(String secretKey) {
         return Encoders.BASE64.encode(secretKey.getBytes(StandardCharsets.UTF_8));
     }
