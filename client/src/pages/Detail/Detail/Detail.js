@@ -45,32 +45,7 @@ const Detail = () => {
   
     // 백엔드 쪽에서 투표 ID 당 한번만 할 수 있게 바꿔줄 수 있는지 확인
     // decommend도 만들어달라고 요청
-  const handleDecommend = () => {
-    setDecommend(!decommend)
-    setDecommendCounts(decommend === true ? Number(decommendCounts) + 1 : decommendCounts)
-  }
-  const handleFavorite = () => {
-      const updateRequest = {
-        method : "POST",
-        body : JSON.stringify({...favorite,choiceSelected : !favorite}),
-        headers: {
-          "Content-Type": 'application/json',
-          // "Authorization": localStorage.getItem("accessToken"),
-          // "Refresh": localStorage.getItem("refreshToken")
-        }
-      }
-      fetch(`http://localhost:3000/contents/${id}/favorite`, updateRequest)
-      .then (() => {
-        setFavorite(!favorite)
-        console.log(movies.favorite.choiceSelected)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
-  const handleChoose = () => {
-    setChoose(!choose)
-  }
+
 
   // 백엔드 쪽에서 투표 ID 당 한번만 할 수 있게 바꿔줄 수 있는지 확인
   // decommend도 만들어달라고 요청
