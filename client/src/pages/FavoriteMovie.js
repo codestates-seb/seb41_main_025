@@ -2,7 +2,7 @@ import styled from "styled-components";
 // import GreenButton from "../components/item/Button";
 import SeleteItem from "../components/item/SeleteItem";
 import { MainWarp, MainContainer} from "./Main/Main"
-import { SearchBar } from "../components/Header"
+import { SearchBar } from "../components/HeaderStyle"
 
 export const Items = styled.div`
     display: flex;
