@@ -3,8 +3,7 @@ package com.mainProject.server.global.auth.config;
 import com.mainProject.server.domain.member.service.MemberService;
 import com.mainProject.server.global.auth.authority.CustomAuthorityUtils;
 import com.mainProject.server.global.auth.filter.JwtVerificationFilter;
-import com.mainProject.server.global.auth.handler.MemberAuthenticationFailureHandler;
-import com.mainProject.server.global.auth.handler.MemberAuthenticationSuccessHandler;
+import com.mainProject.server.global.auth.handler.*;
 import com.mainProject.server.global.auth.jwt.JwtTokenizer;
 import org.springframework.http.HttpMethod;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +15,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;

@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,12 +27,15 @@ import java.util.List;
 public class MemberController {
     private final MemberService memberService;
     private final MemberMapper mapper;
+    private final PasswordEncoder passwordEncoder;
 
     // TODO POST
     @PostMapping
     public  ResponseEntity postMember(@RequestBody MemberDto.Post postRequest){
         Member memberForService = mapper.memberPostToMember(postRequest);
         Member memberForResponse = memberService.createMember(memberForService);
+        String encryptPassword = passwordEncoder.encode(memberForResponse.getPassword());
+        memberForResponse.setPassword(encryptPassword);
         MemberDto.Response response = mapper.memberToMemberResponse(memberForResponse);
 
         return new ResponseEntity(new SingleResponseDto<>(response), HttpStatus.CREATED);

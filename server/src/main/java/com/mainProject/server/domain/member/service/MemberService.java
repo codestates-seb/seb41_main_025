@@ -29,14 +29,10 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final CustomBeanUtils<Member> beanUtils;
 
-    private final PasswordEncoder passwordEncoder;
     private final CustomAuthorityUtils authorityUtils;
 
     public Member createMember(Member member) {
         verifyExistsEmail(member.getEmail());
-
-        String encryptPassword = passwordEncoder.encode(member.getPassword());
-        member.setPassword(encryptPassword);
 
         List<String> roles = authorityUtils.createRoles(member.getEmail());
         member.setRoles(roles);
