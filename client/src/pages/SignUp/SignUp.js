@@ -1,16 +1,15 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import * as S from "./styled";
 import {
   Main,
   // Window,
-    Enter,
+  Enter,
   EnterContent,
-  Whitebutton,
+  // Whitebutton,
   ContentForm,
 } from "../Login/styled";
 
 const SignUp = () => {
-
   // * 이름, 닉네임, 이메일, 비밀번호, 비밀번호 확인
   const [name, setName] = useState("");
   const [nickname, setNickname] = useState("");
@@ -30,8 +29,8 @@ const SignUp = () => {
   const [isNickname, setIsNickname] = useState(false);
   const [isEmail, setIsEmail] = useState(false);
   const [isPassword, setIsPassword] = useState(false);
-  const [isPasswordConfirm, setIsPasswordConfirm] = useState(false)
-  
+  const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
+
   //*  유효성 검사 함수
   const validateName = (name) => {
     return name.toLowerCase().match(/^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|].{1,5}$/);
@@ -55,32 +54,34 @@ const SignUp = () => {
       .match(/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{10,25}$/);
   };
 
-  const onSubmit = useCallback(
-    async (e) => {
-      e.preventDefault();
-      try {
-        await fetch
-          .post("http://whatu1.kro.kr:8080/members", {
-            name: name,
-            nickname: nickname,
-            email: email,
-            password: pwd,
-          })
-          .then((res) => {
-            console.log("response:", res);
-            //     if (res.status === 200) {
-            //       router.push("/sign_up/profile_start");
-            //     }
-          });
-      } catch (err) {
-        console.error(err);
-      }
-    },
-    [name, nickname, email, pwd]
-  );
-
-  
- 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    fetch("http://whatu1.kro.kr:8080/members", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify({
+        name: name,
+        nickName: nickname,
+        email: email,
+        password: pwd,
+      }),
+    })
+      .then((res) => {
+        console.log(res.status);
+        if (res.status === 201) {
+          alert("회원가입이 완료되었습니다!");
+        }
+        return res.json();
+      })
+      // .then((res) => {
+      //   console.log(res.status);
+      // })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   //네임
   const onChangeName = (e) => {
@@ -266,14 +267,14 @@ const SignUp = () => {
             <span className="message" style={{ fontSize: "20px" }}>
               {confirmPwdMsg}
             </span>
-            <Whitebutton
-              to="/"
+            <S.SignUpButton
+              // to="/"
               className="EnterButton"
-              onSubmit={onSubmit}
+              onClick={onSubmit}
               style={{ marginBottom: "30px" }}
             >
               Sign Up
-            </Whitebutton>
+            </S.SignUpButton>
           </EnterContent>
         </ContentForm>
       </S.WindowDiv>
