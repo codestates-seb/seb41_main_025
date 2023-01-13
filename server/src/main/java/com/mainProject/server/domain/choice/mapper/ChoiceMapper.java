@@ -12,6 +12,7 @@ public class ChoiceMapper {
 
     public ChoiceResponseDto choiceTochoiceResponseDto(Choice choice) {
         ChoiceResponseDto responseDto = ChoiceResponseDto.builder()
+                .choiceId(choice.getChoiceId())
                 .memberId(choice.getMember().getMemberId())
                 .contentId(choice.getContent().getContentId())
                 .choiceSelected(choice.getChoiceSelected())

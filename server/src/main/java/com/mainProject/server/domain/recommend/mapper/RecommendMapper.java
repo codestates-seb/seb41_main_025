@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 public interface RecommendMapper {
     default RecommendDto.RecommendResponse recommendToRecommendDto(Recommend recommend) {
         RecommendDto.RecommendResponse responseDto =  RecommendDto.RecommendResponse.builder()
+                .recommendId(recommend.getRecommendId())
                 .memberId(recommend.getMember().getMemberId())
                 .contentId(recommend.getContent().getContentId())
                 .recommendSelected(recommend.getRecommendSelected())
@@ -22,6 +23,7 @@ public interface RecommendMapper {
 
     default RecommendDto.DeprecateResponse deprecateToDeprecateResponseDto(Deprecate deprecate){
         RecommendDto.DeprecateResponse responseDto = RecommendDto.DeprecateResponse.builder()
+                .deprecateId(deprecate.getDeprecatedId())
                 .memberId(deprecate.getMember().getMemberId())
                 .contentId(deprecate.getContent().getContentId())
                 .deprecateSelected(deprecate.getDeprecatedSelected())

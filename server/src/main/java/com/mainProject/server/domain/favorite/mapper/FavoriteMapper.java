@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 public interface FavoriteMapper {
     default FavoriteResponseDto favoriteTofavoriteResponseDto(Favorite favorite) {
         FavoriteResponseDto responseDto = FavoriteResponseDto.builder()
+                .favoriteId(favorite.getFavoriteId())
                 .memberId(favorite.getMember().getMemberId())
                 .favoriteLimitTotal(favorite.getMember().getFavoriteLimitTotal())
                 .contentId(favorite.getContent().getContentId())
