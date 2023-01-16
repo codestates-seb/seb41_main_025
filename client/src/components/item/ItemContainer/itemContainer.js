@@ -10,7 +10,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const ItemContainer = () => {
+const ItemContainer = ( {lankName} ) => {
   //React-slick
   const settings = {
     dots: false,
@@ -28,16 +28,28 @@ const ItemContainer = () => {
   const previous = useCallback(() => slickRef.current.slickPrev(), []);
   const next = useCallback(() => slickRef.current.slickNext(), []);
 
-
-  const [movies] = useFetch('http://whatu1.kro.kr:8080/contents')
+  const [movies] = useFetch('http://whatu1.kro.kr:8080/contents');
   console.log(movies)
+  // console.log(movies[8].contentOttName)
+  console.log(Object.keys(movies))
+  console.log(Object.values(movies))
 
+  // const movieList = movies.filter(movie => movie.contentOttName === "watcha");
+  // console.log(movieList);
+
+  // const movieList = movies.filter(function (movie) { return movie.contentOttName === "tving" });
+  // console.log(movieList)
+
+  // TODO * contentOttName 별로 매핑을 하려고하는데, 방법을 찾아보자.
+  // filter 를 생각했지만, 잘 안된다.
+
+  // const movieList = movies.filter(movie => movie.contentOttName === "watcha");
+  // console.log(movieList);
+  // Uncaught TypeError: movies.filter is not a function
 
   // let [movieList] = useFetch("data/db.json");
   // const movies = movieList.contents;
   // const [movie, setMovie] = useState(movies);
-  
-
 
   //   const DataList = async () => {
   //     await axios({
@@ -51,16 +63,12 @@ const ItemContainer = () => {
   //         }
   //     });
   // }
-  
-  
 
   return (
     // ? 1. 콘솔이 두번 찍히는 이유
     // ? 2. item 컴포넌트가 하나 더 있어야 리랜더링이 되어도 데이터가 남아있는 이유 
-    // *    -> 반대로 map 밖의 item 컴포넌트가 하나 더 없으면 데이터 출력 안됨
-
     <S.Container>
-      <h2 className="title">박스오피스 순위</h2>
+      <h2 className="title">{lankName} 순위</h2>
       <Slider className="items" ref={slickRef} {...settings}>
 
         {movies &&
@@ -74,7 +82,6 @@ const ItemContainer = () => {
         {/* key={movies.contentId}*/}
         {/*contentTitle={movies.contentTitle} contentPoster={movies.contentPoster} contentOpenAt={movies.contentOpenAt} */}
           {/* <Link to={'/detail'}><Item /></Link> */}
-
 
       </Slider>
       <S.PrevButton onClick={previous}>

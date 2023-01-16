@@ -7,9 +7,10 @@ const Main = () => {
     <S.MainWarp>
       <S.MainContainer>
 
-        <ItemContainer />
-        <ItemContainer />
-        <ItemContainer />
+        {/* TODO : OTT별로 데이터 받아와야한다. */}
+        <ItemContainer lankName={`Watcha`} />
+        <ItemContainer lankName={`Wavve`} />
+        <ItemContainer lankName={`Tving`} />
 
       </S.MainContainer>
     </S.MainWarp>
