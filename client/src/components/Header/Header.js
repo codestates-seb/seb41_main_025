@@ -101,7 +101,7 @@ const Modal = () => {
 
     return(
         <S.ModalContainer>
-            <S.NevFont to = "/mypage">나의 정보</S.NevFont>
+            <S.NevFont to = {`/mypage`}>나의 정보</S.NevFont>
             <S.NevFont to = "/recommend">내가 누른 추천 & 비 추천</S.NevFont>
             <S.NevFont to = "/choose">찜한 영화</S.NevFont>
             <S.NevFont to = "/favorite">내 인생작품 3가지</S.NevFont>
