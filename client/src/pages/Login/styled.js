@@ -119,6 +119,25 @@ export const Whitebutton = styled(NavLink)`
     margin-left: 160px;
   }
 `;
+
+export const WhiteLoginbutton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 50px;
+  margin-left: 30px;
+  background-color: white;
+  border-radius: 30px;
+  color: #054d40;
+  font-size: 17px;
+  border: 0;
+  text-decoration: none;
+  @media only screen and (max-width: ${"600px"}) {
+    margin-left: 160px;
+  }
+`;
+
 export const EnterContent = styled.form`
   display: grid;
   width: 380px;

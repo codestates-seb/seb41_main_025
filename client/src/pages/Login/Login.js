@@ -5,6 +5,7 @@ import { useNavigate, NavLink } from "react-router-dom";
 // import { ReactComponent as GreenLogo } from "../assets/GreenLogo.svg"
 import store from '../../Redux/store'
 import { addToken, addUser, logIn} from '../../Redux/action';
+import axios from 'axios';
 
 const Login = () => {
     const [info, setInfo]= useState({
@@ -13,33 +14,75 @@ const Login = () => {
       });
   
     const navigate = useNavigate();
-        const jsonData = {
-       method : "POST",
-       body : JSON.stringify(info),
-        headers: {
-         "Content-Type": 'application/json',
-        }
-        }
-        fetch('http://whatu1.kro.kr:8080/members/login', jsonData)
-        .then ((res) => {
-        store.dispatch(addToken(
-          {
-            accessToken: res.headers.authorization, 
-            refreshToken: res.headers.refresh
-          }
-        ));
-        store.dispatch(logIn())
-        store.dispatch(addUser(res.data))
-        localStorage.setItem("accessToken", res.headers.authorization)
-        localStorage.setItem("refreshToken", res.headers.refresh)
-        localStorage.setItem("isLogin",true)
-        localStorage.setItem("user", res.data.memberId)
-        navigate("/")
-        })
-        .catch(err => {
-        console.log(err)
-        })
 
+    // const EnterButton = async(e) => {
+
+    //     await fetch('http://whatu1.kro.kr:8080/members/login', {
+    //     method : "POST",
+    //     body : JSON.stringify(info),
+    //     headers : {
+    //         "Content-Type" : "text/plain"
+    //     }
+    //     })
+    //     .then ((res) => {
+    //     store.dispatch(addToken(
+    //       {
+    //         accessToken: res.headers.Authorization, 
+    //         refreshToken: res.headers.Refresh
+    //       }
+    //     ));
+    //     store.dispatch(logIn())
+    //     store.dispatch(addUser(res.data))
+    //     localStorage.setItem("accessToken", res.headers.Authorization)
+    //     localStorage.setItem("refreshToken", res.headers.Refresh)
+    //     console.log(res)
+    //     localStorage.setItem("isLogin",true)
+   
+    //     console.log("로그인 성공")
+    //     })
+        
+    //     .catch(err => {
+    //     console.log(err)
+    //     })
+    // }
+    const Login = async (e) => {
+        const jsonData = JSON.stringify(info);
+        e.preventDefault();
+    
+        if(info.email === '' || info.password === '') {
+          alert("이메일이나 패스워드를 확인하세요");
+          return
+        }
+    
+        await axios
+        .post("http://whatu1.kro.kr:8080/members/login", jsonData)
+        .then((res) => {
+          store.dispatch(addToken(
+            {
+              accessToken: res.headers.authorization, 
+              refreshToken: res.headers.refresh
+            }
+          ));
+          store.dispatch(logIn());
+          store.dispatch(addUser(res.data));
+          localStorage.setItem("accessToken", res.headers.authorization)
+          console.log(res.headers)
+          localStorage.setItem("refreshToken", res.headers.refresh)
+          localStorage.setItem("isLogin", true)
+          window.location.reload();
+
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+      }
+    
+      const handleKeypress = e => {
+        if (e.keyCode === 13) {
+          Login();
+        }
+      };
+    
     return (
         <S.Main>
             <S.Window>
@@ -54,7 +97,7 @@ const Login = () => {
                         <S.Whitebutton to = '/signUp'>Sign Up</S.Whitebutton>
                     </S.LogoFont>
                 </S.Front>
-                <S.ContentForm>
+                <S.ContentForm onKeyUp={e => handleKeypress(e)}>
                   <span className='LoginFont'>LOGIN</span> 
                   <S.EnterContent>
                     <S.Enter
@@ -74,8 +117,8 @@ const Login = () => {
                     })}
                     />
                   </S.EnterContent>
-                  <S.Whitebutton to = '/' className='EnterButton'>Login</S.Whitebutton>
-                  {/* login에 성공하면 반갑습니다 00님 ! 비슷하게 alart 창 혹은 모달창 띄우기 */}
+                  {/* <S.Whitebutton to = '/' onClick={EnterButton}>Login</S.Whitebutton> */}
+                  <S.WhiteLoginbutton onClick={Login}>Login</S.WhiteLoginbutton>
                 </S.ContentForm>
             </S.Window>
         </S.Main>
