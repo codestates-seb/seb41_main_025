@@ -71,12 +71,13 @@ const Login = () => {
           localStorage.setItem("isLogin", true)
           if (res.status === 200) {
             alert("로그인이 완료되었습니다!");
-          }
-          window.location.reload();
-
+            navigate("/");
+          } 
         })
         .catch((err) => {
           console.log(err);
+          alert("입력하신 정보를 다시 확인해주세요!");
+          window.location.reload();
         })
       }
     
