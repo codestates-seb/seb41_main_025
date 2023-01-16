@@ -6,14 +6,14 @@ export const RecommendDiv = styled.div`
   align-items: center;
   max-width: 1440px;
   margin-bottom: 30px;
-`;
+  `;
 
 export const TitleDiv = styled.div`
   display: flex;
   align-content: flex-start;
   width: 1120px;
   margin: 80px;
-
+  
   h1 {
     font-size: 32px;
     border-bottom: 2px solid #167e6c;

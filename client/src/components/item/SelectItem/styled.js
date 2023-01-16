@@ -22,13 +22,21 @@ export const DeleteBtn = styled.button`
 
 export const DetailFont = styled.div`
   margin: 5px;
+  @media only screen and (max-width: ${'1200px'}) {
+    font-size: 20px;
+    }
 `
 export const EachItem = styled.div `
-    margin: 70px 90px 90px 90px;
+    margin: 70px 5% 5% 90px;
     .poster {
-        width: 300px;
-        height: 350px;
+        width: 100%;
+        height: auto;
+        min-width: 60%;
         border-radius: 40px;
+        @media only screen and (max-width: ${'1200px'}) {
+        min-height: 300px;
+        min-width: 300px;
+  }
     }
     `;
 

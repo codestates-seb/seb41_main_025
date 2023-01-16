@@ -5,7 +5,6 @@ export const DetailCommentList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
 `;
 
 export const DetailCommentItem = styled.div`
@@ -16,6 +15,12 @@ export const DetailCommentItem = styled.div`
   margin-bottom: 10px;
   font-size: 13px;
   border-radius: 10px;
+  @media only screen and (max-width: ${"600px"}) {
+    width: 90%;
+  }
+  @media only screen and (max-width: ${"1200px"}) {
+    width: 90%;
+  }
   .userInfo {
     display: flex;
     align-items: center;
@@ -59,7 +64,7 @@ export const InputDiv = styled.div`
       color: #ffffff;
     }
   }
-  .buttonDiv {
+   .buttonDiv {
     display: flex;
     justify-content: center;
     align-items: center;

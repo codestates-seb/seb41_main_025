@@ -8,6 +8,7 @@ import {
   // Whitebutton,
   ContentForm,
 } from "../Login/styled";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   // * 이름, 닉네임, 이메일, 비밀번호, 비밀번호 확인
@@ -54,6 +55,8 @@ const SignUp = () => {
       .match(/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{10,25}$/);
   };
 
+  const navigate = useNavigate()
+
   //* post 에러 잡기 위해서 기본 프로필 이미지 생성
   const memberPicture = "https://i.ibb.co/P1TsnM3/2023-01-14-1-35-41.png";
 
@@ -76,6 +79,7 @@ const SignUp = () => {
         console.log(res.status);
         if (res.status === 201) {
           alert("회원가입이 완료되었습니다!");
+          navigate('/login')
         }
         return res.json();
       })

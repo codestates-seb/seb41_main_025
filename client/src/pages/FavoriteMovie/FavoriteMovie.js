@@ -2,8 +2,12 @@ import * as S from "./styled";
 // import GreenButton from "../components/item/Button";
 import SeleteItem from "../../components/item/SelectItem/SeleteItem";
 import { MainWarp, MainContainer} from "../Main/styled"
+import useFetch from "../../components/util/useFetch";
 
 const FavoriteMovie = () =>{
+
+    const [favorite] = useFetch('http://whatu1.kro.kr:8080/contents/1/recommend')
+    console.log(favorite)
 
     return (
         <MainWarp>

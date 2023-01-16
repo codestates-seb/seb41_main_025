@@ -16,7 +16,7 @@ export const Items = styled.div`
 export const Title = styled(MainContainer)`
     width: 500px;
     height: 100px;
-    margin: 100px;
+    margin: 100px 100px 0 100px;
     .title {
     font-size: 30px;
     text-decoration: underline #167E6C;

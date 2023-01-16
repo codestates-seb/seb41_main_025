@@ -9,9 +9,6 @@ export const HeaderWrap = styled.div`
     border-bottom: 1px solid #d0d0d0;
     background: white;
     z-index: 10;
-    @media only screen and (max-width: ${'600px'}) {
-    display: grid;
-    } 
 `
 export const HeaderContainer = styled.div`
     display: flex;
@@ -37,9 +34,14 @@ export const HeaderContainer = styled.div`
             width: 120px;
             height: 60px;
             img { width: 100% };
+            @media only screen and (max-width: ${'1200px'}) {
+            max-width: 40%;
+            min-width: 100px;
+            height: auto;
+            }
             @media only screen and (max-width: ${'600px'}) {
-            width: 80px;
-            height: 40px;
+            min-width: 100px;
+            height: 80px;
             }
         } 
     }
@@ -52,6 +54,12 @@ export const SearchBar = styled.div`
         padding-left: 15px;
         border: 1px solid #e5e5e5;
         border-radius: 15px;
+        @media only screen and (max-width: ${'1200px'}) {
+        margin-left: 10px;
+        /* max-width: 512px; */
+        width: 300px;
+        height: 40px;
+        } 
         @media only screen and (max-width: ${'600px'}) {
         margin-left: 10px;
         width: 150px;
@@ -60,12 +68,13 @@ export const SearchBar = styled.div`
 
     }
     input:focus { outline: none; } /* outline 테두리 없애기 */
-`
+`;
+
 export const SearchIcon = styled.button`
     margin: 10px 0 0 10px;
     background-color: white;
     border: 0;
-`
+`;
 
 
 export const Sign = styled.ul`
@@ -107,7 +116,7 @@ export const Sign = styled.ul`
         display: flex;
         justify-content: flex-end;
     }
-`
+`;
 
 export const ModalContainer = styled.div`
     display: flex;
@@ -126,8 +135,17 @@ export const ModalContainer = styled.div`
         text-align: end;
         padding: 0px 20px; 
     }
-`
+`;
 
 export const NevFont = styled(NavLink)`
     padding: 20px;
-`
+`;
+
+export const LogoutButton = styled.button`
+    font-size: 15px;
+    color: gray;
+    border: 0;
+    :active{
+        background-color: aliceblue;
+    }
+`;

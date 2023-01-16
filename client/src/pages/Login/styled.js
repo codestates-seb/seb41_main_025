@@ -39,9 +39,6 @@ export const LogoFont = styled.div`
     @media only screen and (max-width: ${"600px"}) {
       font-size: 15px;
       margin: 10px;
-    }
-    
-    @media only screen and (max-width: ${"600px"}) {
       display: grid;
     }
 `;
@@ -55,11 +52,19 @@ export const Logo = styled.div`
         width: 200px;
         margin: 10px 0 20px 40px;
     }
+    .greenLogo {
+      height: 260px;
+      width: 260px;
+      @media only screen and (max-width: ${'600px'}) {
+        width: 150px;
+        height: 150px;
+    }
+    }
 
     .character {
       height: 130px;
       width: 130px;
-      margin: 0 0px 80px -15px;
+      margin: 0 0px 80px -10px;
       @media only screen and (max-width: ${"600px"}) {
         width: 100px;
         height: 80px;
@@ -114,6 +119,25 @@ export const Whitebutton = styled(NavLink)`
     margin-left: 160px;
   }
 `;
+
+export const WhiteLoginbutton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 50px;
+  margin-left: 30px;
+  background-color: white;
+  border-radius: 30px;
+  color: #054d40;
+  font-size: 17px;
+  border: 0;
+  text-decoration: none;
+  @media only screen and (max-width: ${"600px"}) {
+    margin-left: 160px;
+  }
+`;
+
 export const EnterContent = styled.form`
   display: grid;
   width: 380px;

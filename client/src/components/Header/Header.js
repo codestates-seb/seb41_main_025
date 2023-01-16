@@ -5,8 +5,9 @@ import { useEffect } from "react";
 import { ImSearch } from "react-icons/im";
 
 const Header = (props) => {
-
+    let isLogin = localStorage.getItem("isLogin")
     const [isModal, setIsModalOpen] = useState(false)
+
     const outSection = useRef()
     // FIXME : 마이페이지를 두 번 누르면 닫히지 않는 현상
     useEffect(() => {
@@ -18,7 +19,7 @@ const Header = (props) => {
     });
 
     const clickModalOutside = event => {
-        if(isModal && !outSection.current.contains(event.target)) 
+        if(isLogin && isModal && !outSection.current.contains(event.target)) 
         {
             setIsModalOpen(!isModal)
         }
@@ -33,7 +34,8 @@ const Header = (props) => {
         console.log(e.currentTarget.value);
     }
 
-    const islogin = true;
+    
+    
     return (
         <S.HeaderWrap>
             <S.HeaderContainer>
@@ -60,7 +62,7 @@ const Header = (props) => {
                 </S.SearchIcon>
 
                 {/* sign Up / sign In */}
-                {islogin ? (
+                {isLogin ? (
                     <S.Sign>
                         <li>
                             <button 
@@ -91,13 +93,19 @@ const Header = (props) => {
 }
 
 const Modal = () => {
+
+    const LogoutHandle = () => {
+        localStorage.clear();
+        window.location.reload()
+    }
+
     return(
         <S.ModalContainer>
             <S.NevFont to = "/mypage">나의 정보</S.NevFont>
             <S.NevFont to = "/recommend">내가 누른 추천 & 비 추천</S.NevFont>
             <S.NevFont to = "/choose">찜한 영화</S.NevFont>
             <S.NevFont to = "/favorite">내 인생작품 3가지</S.NevFont>
-            <h5>Log out</h5>
+            <S.LogoutButton onClick={LogoutHandle}>Log out</S.LogoutButton>
         </S.ModalContainer>
     )
 }
