@@ -1,18 +1,19 @@
 package com.mainProject.server.global.auth.filter;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mainProject.server.domain.member.entity.Member;
-import com.mainProject.server.global.auth.dto.LoginDto;
-import com.mainProject.server.global.auth.jwt.JwtTokenizer;
+import com.mainProject.server.global.auth.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
+import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
