@@ -69,7 +69,7 @@ const Login = () => {
           console.log(res.headers)
           localStorage.setItem("refreshToken", res.headers.refresh)
           localStorage.setItem("isLogin", true)
-          // window.location.reload();
+
 
         })
         .catch((err) => {
