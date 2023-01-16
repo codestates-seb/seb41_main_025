@@ -68,12 +68,13 @@ export const SearchBar = styled.div`
 
     }
     input:focus { outline: none; } /* outline 테두리 없애기 */
-`
+`;
+
 export const SearchIcon = styled.button`
     margin: 10px 0 0 10px;
     background-color: white;
     border: 0;
-`
+`;
 
 
 export const Sign = styled.ul`
@@ -115,7 +116,7 @@ export const Sign = styled.ul`
         display: flex;
         justify-content: flex-end;
     }
-`
+`;
 
 export const ModalContainer = styled.div`
     display: flex;
@@ -134,8 +135,17 @@ export const ModalContainer = styled.div`
         text-align: end;
         padding: 0px 20px; 
     }
-`
+`;
 
 export const NevFont = styled(NavLink)`
     padding: 20px;
-`
+`;
+
+export const LogoutButton = styled.button`
+    font-size: 15px;
+    color: gray;
+    border: 0;
+    :active{
+        background-color: aliceblue;
+    }
+`;
