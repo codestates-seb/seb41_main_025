@@ -63,7 +63,8 @@ const Header = (props) => {
 
                 {/* sign Up / sign In */}
                 {isLogin ? (
-                    <S.Sign>
+                    <S.Sign ref={outSection}>
+                        {/* ref 위치 확인하기 */}
                         <li>
                             <button 
                             className="modal"
@@ -74,7 +75,6 @@ const Header = (props) => {
                         {isModal === true ? (
                             <li
                             className="flexEnd"
-                            ref={outSection} 
                             onClick={clickModalOutside}>
                                 <Modal/>
                             </li>) 
