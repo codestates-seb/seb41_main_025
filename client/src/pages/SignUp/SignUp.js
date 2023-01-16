@@ -87,12 +87,7 @@ const SignUp = () => {
           alert("다시 회원가입을 진행해주세요");
           window.location.reload();
         }
-        
-        // return res.json();
       })
-      // .then((res) => {
-      //   console.log(res.status);
-      // })
       .catch((err) => {
         console.log(err);
       });
@@ -147,7 +142,6 @@ const SignUp = () => {
     const currentPwd = e.target.value;
     console.log(currentPwd);
     setPwd(currentPwd);
-
     if (!validatePwd(currentPwd)) {
       setPwdMsg("영문, 숫자, 특수기호 조합으로 10자리 이상 입력해주세요.");
       setIsPassword(false);
@@ -175,53 +169,6 @@ const SignUp = () => {
   );
 
   //todo: 이메일, 닉네임 중복 확인
-  //   const [checkMail, setCheckMail] = useState(false);
-  //   const [checkNickname, setCheckNickname] = useState(false);
-
-  //   const onCheckEmail = async (e) => {
-  //     e.preventDefault();
-
-  //     try {
-  //       const res = await Api.post("user/register/email", {email});
-
-  //       const { result } = res.data;
-
-  //       if (!result) {
-  //           setEmailMsg("이미 등록된 메일입니다. 다시 입력해주세요.");
-  //           setCheckMail(false);
-  //       } else {
-  //         setEmailMsg("사용 가능한 메일입니다.😊");
-  //         setCheckMail(true);
-  //       }
-
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   }
-
-  //   const onCheckNickname = async (e) => {
-  //     e.preventDefault();
-
-  //     try {
-  //       const res = await Api.post("user/register/nickname", {nickname});
-
-  //       const { result } = res.data;
-
-  //       if (!result) {
-  //           setNicknameMsg("이미 등록된 닉네임입니다. 다시 입력해주세요.");
-  //           setCheckNickname(false);
-  //      } else {
-  //         setNicknameMsg("사용 가능한 닉네임입니다.😊");
-  //         setCheckNickname(true);
-  //       }
-
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   }
-  //   const handleEnter = (e) => {
-  //     console.log(e.target.value);
-  //   };
 
   return (
     <Main>
