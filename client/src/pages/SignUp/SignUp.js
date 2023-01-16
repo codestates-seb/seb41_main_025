@@ -55,7 +55,7 @@ const SignUp = () => {
       .match(/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{10,25}$/);
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   //* post 에러 잡기 위해서 기본 프로필 이미지 생성
   const memberPicture = "https://i.ibb.co/P1TsnM3/2023-01-14-1-35-41.png";
@@ -79,9 +79,16 @@ const SignUp = () => {
         console.log(res.status);
         if (res.status === 201) {
           alert("회원가입이 완료되었습니다!");
-          navigate('/login')
+          navigate("/login");
+        } else if (res.status === 304) {
+          alert("회원가입을 진행해주세요!");
+          window.location.reload();
+        } else if (res.status === 409) {
+          alert("다시 회원가입을 진행해주세요");
+          window.location.reload();
         }
-        return res.json();
+        
+        // return res.json();
       })
       // .then((res) => {
       //   console.log(res.status);
