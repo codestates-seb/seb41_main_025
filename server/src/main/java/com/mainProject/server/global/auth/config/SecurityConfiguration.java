@@ -3,11 +3,9 @@ package com.mainProject.server.global.auth.config;
 import com.mainProject.server.global.auth.authority.CustomAuthorityUtils;
 import com.mainProject.server.global.auth.filter.JwtAuthenticationFilter;
 import com.mainProject.server.global.auth.filter.JwtVerificationFilter;
-import com.mainProject.server.global.auth.handler.MemberAccessDeniedHandler;
-import com.mainProject.server.global.auth.handler.MemberAuthenticationEntryPoint;
-import com.mainProject.server.global.auth.handler.MemberAuthenticationFailureHandler;
-import com.mainProject.server.global.auth.handler.MemberAuthenticationSuccessHandler;
+import com.mainProject.server.global.auth.handler.*;
 import com.mainProject.server.global.auth.jwt.JwtTokenizer;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpMethod;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -17,11 +15,20 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
+@Slf4j
 @Configuration
 @EnableWebSecurity(debug = true) //테스트 용으로
 @RequiredArgsConstructor
@@ -45,6 +52,12 @@ public class SecurityConfiguration {
                 .accessDeniedHandler(new MemberAccessDeniedHandler())
                 .and()
                 .apply(new CustomFilterConfigurer())   // (1)
+                .and()
+                .logout().logoutUrl("/members/logout")
+                .logoutSuccessUrl("/members/login")
+                .logoutSuccessHandler(new MembersLogoutSuccessHandler())
+                .deleteCookies("JSESSIONID")
+                .addLogoutHandler(new MembersLogoutHandler())
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
                         .antMatchers(HttpMethod.POST, "/members/login").permitAll()
