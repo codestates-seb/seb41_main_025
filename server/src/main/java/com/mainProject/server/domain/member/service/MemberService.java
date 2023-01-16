@@ -3,10 +3,13 @@ package com.mainProject.server.domain.member.service;
 
 import com.mainProject.server.domain.member.entity.Member;
 import com.mainProject.server.domain.member.repository.MemberRepository;
+
 import com.mainProject.server.global.auth.authority.CustomAuthorityUtils;
+
 import com.mainProject.server.global.exception.BusinessLogicException;
 import com.mainProject.server.global.exception.ExceptionCode;
 import com.mainProject.server.global.utils.CustomBeanUtils;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -30,8 +33,9 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final CustomBeanUtils<Member> beanUtils;
 
-    private final PasswordEncoder passwordEncoder;
     private final CustomAuthorityUtils authorityUtils;
+    private final PasswordEncoder passwordEncoder;
+
 
     public Member createMember(Member member) {
         verifyExistsEmail(member.getEmail());

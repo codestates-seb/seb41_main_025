@@ -4,8 +4,10 @@ import com.mainProject.server.global.auth.authority.CustomAuthorityUtils;
 import com.mainProject.server.global.auth.filter.JwtAuthenticationFilter;
 import com.mainProject.server.global.auth.filter.JwtVerificationFilter;
 import com.mainProject.server.global.auth.handler.*;
+import com.mainProject.server.global.auth.jwt.JwtTokenProvider;
 import com.mainProject.server.global.auth.jwt.JwtTokenizer;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpMethod;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +22,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
@@ -33,9 +36,12 @@ import java.io.IOException;
 @Configuration
 @EnableWebSecurity(debug = true) //테스트 용으로
 @RequiredArgsConstructor
-public class SecurityConfiguration {
-    private final JwtTokenizer jwtTokenizer;
-    private final CustomAuthorityUtils authorityUtils;
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+ /*   private final JwtTokenizer jwtTokenizer;
+    private final CustomAuthorityUtils authorityUtils;*/
+
+    private final JwtTokenProvider jwtTokenProvider;
+    private final RedisTemplate redisTemplate;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -54,12 +60,12 @@ public class SecurityConfiguration {
 //                .and()
 //                .apply(new CustomFilterConfigurer())   // (1)
                 .and()
-                .logout().logoutUrl("/members/logout")
+                /*.logout().logoutUrl("/members/logout")
                 .logoutSuccessUrl("/members/login")
                 .logoutSuccessHandler(new MembersLogoutSuccessHandler())
                 .deleteCookies("JSESSIONID")
-                .addLogoutHandler(new MembersLogoutHandler())
-                .and()
+                .addLogoutHandler(new MembersLogoutHandler())*/
+                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider, redisTemplate), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(authorize -> authorize
                         .antMatchers(HttpMethod.POST, "/members/login").permitAll()
                         .antMatchers(HttpMethod.POST, "/members").permitAll()
@@ -94,7 +100,7 @@ public class SecurityConfiguration {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
-    public class CustomFilterConfigurer extends AbstractHttpConfigurer<CustomFilterConfigurer, HttpSecurity> {  // (2-1)
+ /*   public class CustomFilterConfigurer extends AbstractHttpConfigurer<CustomFilterConfigurer, HttpSecurity> {  // (2-1)
         @Override
         public void configure(HttpSecurity builder) throws Exception {  // (2-2)
             AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);  // (2-3)
@@ -110,5 +116,5 @@ public class SecurityConfiguration {
                     .addFilter(jwtAuthenticationFilter)
                     .addFilterAfter(jwtVerificationFilter, JwtAuthenticationFilter.class);   // (3)추가 차후 수정
         }
-    }
+    }*/
 }

@@ -17,66 +17,42 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+@Slf4j
 @RequiredArgsConstructor
-public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter { //(1)
-    //(2)
-    private final AuthenticationManager authenticationManager;
-    private final JwtTokenizer jwtTokenizer;
+public class JwtAuthenticationFilter extends GenericFilterBean {
 
-    //(3)
-    @SneakyThrows
+    private static final String AUTHORIZATION_HEADER = "Authorization";
+    private static final String BEARER_TYPE = "Bearer";
+
+    private final JwtTokenProvider jwtTokenProvider;
+    private final RedisTemplate redisTemplate;
+
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {//(3-1)
-        //(3-2)
-        ObjectMapper objectMapper = new ObjectMapper();
-        LoginDto loginDto = objectMapper.readValue(request.getInputStream(), LoginDto.class);
-        //(3-3)
-        UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword());
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
-        return authenticationManager.authenticate(authenticationToken);
+        // 1. Request Header 에서 JWT 토큰 추출
+        String token = resolveToken((HttpServletRequest) request);
+
+        // 2. validateToken 으로 토큰 유효성 검사
+        if (token != null && jwtTokenProvider.validateToken(token)) {
+            // (추가) Redis 에 해당 accessToken logout 여부 확인
+            String isLogout = (String)redisTemplate.opsForValue().get(token);
+            if (ObjectUtils.isEmpty(isLogout)) {
+                // 토큰이 유효할 경우 토큰에서 Authentication 객체를 가지고 와서 SecurityContext 에 저장
+                Authentication authentication = jwtTokenProvider.getAuthentication(token);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
+        }
+        chain.doFilter(request, response);
     }
 
-    //(4)
-    @Override
-    protected void successfulAuthentication(HttpServletRequest request,
-                                            HttpServletResponse response,
-                                            FilterChain chain,
-                                            Authentication authResult) throws ServletException, IOException{
-        Member member = (Member) authResult.getPrincipal(); //(4-1)
-        //(4-2)
-        String accessToken = delegateAccessToken(member);
-        String refreshToken = delegateRefreshToken(member);
-        //(4-3)
-        response.setHeader("Authorization", "Bearer " + accessToken);
-        response.setHeader("Refresh", refreshToken);
-
-        this.getSuccessHandler().onAuthenticationSuccess(request, response, authResult);
-    }
-
-    //(5)
-    private String delegateAccessToken(Member member) {
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("email", member.getEmail());
-        claims.put("memberId", member.getMemberId());
-        claims.put("roles", member.getRoles());
-
-        String subject = member.getEmail();
-        Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getAccessTokenExpirationMinutes());
-        String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
-        String accessToken = jwtTokenizer.generateAccessToken(claims, subject, expiration, base64EncodedSecretKey);
-
-        return accessToken;
-    }
-
-    //(6)
-    private String delegateRefreshToken(Member member) {
-        String subject = member.getEmail();
-        Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getRefreshTokenExpirationMinutes());
-        String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
-        String accessToken = jwtTokenizer.generateRefreshToken(subject, expiration, base64EncodedSecretKey);
-
-        return accessToken;
+    // Request Header 에서 토큰 정보 추출
+    private String resolveToken(HttpServletRequest request) {
+        String bearerToken = request.getHeader(AUTHORIZATION_HEADER);
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(BEARER_TYPE)) {
+            return bearerToken.substring(7);
+        }
+        return null;
     }
 }
 
