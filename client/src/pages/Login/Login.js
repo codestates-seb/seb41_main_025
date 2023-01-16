@@ -1,11 +1,11 @@
-import * as S from './styled'
+import React, { useEffect, useState } from "react";
+import * as S from "./styled";
+import axios from "axios";
 // import { ReactComponent as GreenLogo } from "../assets/GreenLogo.svg"
-import React, { useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 // import { ReactComponent as GreenLogo } from "../assets/GreenLogo.svg"
 import store from '../../Redux/store'
 import { addToken, addUser, logIn} from '../../Redux/action';
-import axios from 'axios';
 
 const Login = () => {
     const [info, setInfo]= useState({

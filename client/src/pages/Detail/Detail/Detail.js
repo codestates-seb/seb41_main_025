@@ -45,9 +45,11 @@ const Detail = () => {
     }
     
   const handleDecommend = () => {
-    setDecommend(!decommend)
-    setDecommendCounts(decommend === true ? Number(decommendCounts) + 1 : decommendCounts)
-  }
+    setDecommend(!decommend);
+    setDecommendCounts(
+      decommend === true ? Number(decommendCounts) + 1 : decommendCounts
+    );
+  };
   const handleFavorite = () => {
       const updateRequest = {
         method : "POST",
@@ -63,14 +65,13 @@ const Detail = () => {
         setFavorite(!favorite)
         console.log(movies.favorite.choiceSelected)
       })
-      .catch(err => {
-        console.log(err)
-      })
-  }
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const handleChoose = () => {
-    setChoose(!choose)
-  }
-
+    setChoose(!choose);
+  };
 
   return (
     <S.DetailContainer>
@@ -99,13 +100,19 @@ const Detail = () => {
               {movies.deprecateCount}
             </div>
             <div className="itemIcon" onClick={handleChoose}>
-              {choose === true ? <FcLike size="48" /> :
-              <FcLikePlaceholder size="48" />}
+              {choose === true ? (
+                <FcLike size="48" />
+              ) : (
+                <FcLikePlaceholder size="48" />
+              )}
               찜하기
             </div>
             <div className="itemIcon" onClick={handleFavorite}>
-              {favorite ? <AiFillStar size="48" color="#167E6C" /> :
-              <AiOutlineStar size="48"/>}
+              {favorite ? (
+                <AiFillStar size="48" color="#167E6C" />
+              ) : (
+                <AiOutlineStar size="48" />
+              )}
               나의 인생 작품
             </div>
           </S.DetailItem>
