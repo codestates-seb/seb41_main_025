@@ -1,5 +1,6 @@
 package com.mainProject.server.domain.member.service;
 
+
 import com.mainProject.server.domain.member.entity.Member;
 import com.mainProject.server.domain.member.repository.MemberRepository;
 import com.mainProject.server.global.auth.authority.CustomAuthorityUtils;
@@ -15,8 +16,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,7 +71,6 @@ public class MemberService {
 
         memberRepository.delete(findMember);
     }
-
     public Member findVerifiedMember(long memberId) {
         Optional<Member> optionalMember = memberRepository.findById(memberId);
         Member findMember = optionalMember.orElseThrow(()-> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
@@ -78,7 +78,7 @@ public class MemberService {
     }
 
     private void verifyExistsEmail(String email) {
-        Optional<Member> member = memberRepository.findByEmail(email);
+        Optional<Member> member = MemberRepository.findByEmail(email);
         if(member.isPresent())
             throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
     }
@@ -89,11 +89,12 @@ public class MemberService {
         if(authentication == null || authentication.getName() == null || authentication.getName().equals("anonymousUser"))
             throw new BusinessLogicException(ExceptionCode.MEMBER_UNAUTHORIZED);
 
-        Optional<Member> optionalMember = memberRepository.findByEmail(authentication.getName());
+        Optional<Member> optionalMember = MemberRepository.findByEmail(authentication.getName());
         Member member = optionalMember.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
 
-        log.info("# 현재 사용자 ={}",member.getMemberId());
+//        log.info("# 현재 사용자 ={}",member.getMemberId());
 
         return member;
     }
+
 }
