@@ -1,22 +1,18 @@
-import styled from "styled-components";
-
-const MainWarp = styled.div`
-  width: 100%;
-`
-
-const MainContainer = styled.div`
-  width: 1440px;
-  height: 1000px;
-  margin: 0 auto;
-`
+import * as S from "./styled";
+import ItemContainer from "../../components/item/ItemContainer/itemContainer";
 
 const Main = () => {
-  return (
-    <MainWarp>
-      <MainContainer>
 
-      </MainContainer>
-    </MainWarp>
+  return (
+    <S.MainWarp>
+      <S.MainContainer>
+
+        <ItemContainer />
+        <ItemContainer />
+        <ItemContainer />
+
+      </S.MainContainer>
+    </S.MainWarp>
   )
 }
 
