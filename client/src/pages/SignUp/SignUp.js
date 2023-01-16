@@ -55,8 +55,7 @@ const SignUp = () => {
   };
 
   //* post 에러 잡기 위해서 기본 프로필 이미지 생성
-  const memberPicture =
-    "https://i.ibb.co/P1TsnM3/2023-01-14-1-35-41.png";
+  const memberPicture = "https://i.ibb.co/P1TsnM3/2023-01-14-1-35-41.png";
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -77,9 +76,8 @@ const SignUp = () => {
         console.log(res.status);
         if (res.status === 201) {
           alert("회원가입이 완료되었습니다!");
-        };
-        return res.json()
-        
+        }
+        return res.json();
       })
       // .then((res) => {
       //   console.log(res.status);
@@ -88,7 +86,6 @@ const SignUp = () => {
         console.log(err);
       });
   };
-
 
   //네임
   const onChangeName = (e) => {
@@ -257,7 +254,7 @@ const SignUp = () => {
               {emailMsg}
             </span>
             <Enter
-              type="text"
+              type="password"
               placeholder="비밀번호를 입력해 주세요"
               onChange={onChangePwd}
               style={{ margin: "20px 0px" }}
@@ -266,7 +263,7 @@ const SignUp = () => {
               {pwdMsg}
             </span>
             <Enter
-              type="text"
+              type="password"
               placeholder="비밀번호를 확인해 주세요"
               onChange={onChangeConfirmPwd}
               style={{ margin: "20px 0px" }}
