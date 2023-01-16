@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import useFetch from "../../../components/util/useFetch";
 import { useState } from "react";
 import * as S from "./styled";
+import axios from "axios";
 
 const Comment = () => {
   const {contentId} = useParams()
@@ -12,24 +13,46 @@ const Comment = () => {
     headers : {"Content-Type" : "application/json"}
   }
 
-  const [comments] = useFetch('http://whatu1.kro.kr:8080/comments?page=1&size=10',request)
+  const [comments] = useFetch('http://whatu1.kro.kr:8080/comments?page=1&size=10',request);
   
 
-    const [comment, setComment] = useState('')
+    const [comment, setComment] = useState('');
 
-    console.log(comments)
+    console.log(comment)
 
     // TODO : 로그인 하면 작성자 정보 나타나도록 
-  const submitcommit = (e) => {
-    if(comment === '') return alert("내용을 입력하세요")
-    const updateRequest = {
-      method : "POST",
-      body : JSON.stringify({comment}),
+  const commitModification = (e) => {
+    // if(comment === '') return alert("내용을 입력하세요")
+    // const updateRequest = {
+    //   method : "POST",
+    //   body : JSON.stringify({comment}),
+    //   headers: {
+    //     "Content-Type":'application/json'
+    //   }
+    // }
+    // fetch(`http://localhost:3000/contents/${contentId}/comments`,JSON.stringify(comment),updateRequest)
+    // .then (() => {
+    //   window.location.reload()
+    // })
+    // .catch(err => {
+    //   console.log(err)
+    // })
+    // console.log(e.target.value)
+  }
+
+  const submitcommit = async (e) => {
+    if(comment === '') return alert('내용을 입력하세요')
+
+    const bodyJSON =  JSON.stringify({
+      commentBody: comment,
+    });
+
+    await axios.post(`http://whatu1.kro.kr:8080/contents/${contentId}/comments`,bodyJSON,{
       headers: {
-        "Content-Type":'application/json'
+        "Content-Type":'application/json',
+        "Authorization": localStorage.getItem("accessToken")
       }
-    }
-    fetch(`http://localhost:3000/contents/${contentId}/comments`,JSON.stringify(comment),updateRequest)
+    })
     .then (() => {
       window.location.reload()
     })
@@ -39,22 +62,25 @@ const Comment = () => {
     console.log(e.target.value)
   }
 
-  const commitModification = (e) => {
-    const updateRequest = {
-      method : "POST",
-      body : JSON.stringify({comment}),
+  const onAnswerEditHandler = (commentMemberId) => {
+    const bodyJSON =  JSON.stringify({
+      commentBody: comment,
+    });
+
+    axios
+    .patch(`http://whatu1.kro.kr:8080/contents/${contentId}/comments/${commentMemberId}`, bodyJSON, {
       headers: {
-        "Content-Type":'application/json'
+        "Content-Type": 'application/json',
+        "AutHorization": localStorage.getItem("accessToken"),
       }
-    }
-    fetch(`http://localhost:3000/contents/${contentId}/comments`,JSON.stringify(comment),updateRequest)
-    .then (() => {
-      window.location.reload()
     })
-    .catch(err => {
-      console.log(err)
+    .then((res) => {
+      alert("Answer edited!");
+      window.location.reload();
     })
-    console.log(e.target.value)
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
   const commitDelete = () => {
@@ -89,10 +115,14 @@ const Comment = () => {
                     alt="사용자 이미지"
                     style={{"width" : "40px", "height" : "40px"}}
                     ></img>
-                    <div className="name">{comment.memberNickName}</div>
+                    <div className="name">{comment.nickName}</div>
                 </div>
                 <div className="content">{comment.commentBody}</div>
-            </S.DetailCommentItem>
+                <S.Buttons>
+                    <S.InputButton defaultValue={comment.commentBody} onClick={() => onAnswerEditHandler(comment.commentId)}>수정</S.InputButton>
+                    <S.InputButton>삭제</S.InputButton>
+                </S.Buttons>
+              </S.DetailCommentItem>
         ))}  
             <S.InputDiv>
                 <input
@@ -109,10 +139,6 @@ const Comment = () => {
                     등록
                     </button>
                 </div>
-                <S.Buttons>
-                    <S.InputButton>수정</S.InputButton>
-                    <S.InputButton>삭제</S.InputButton>
-                </S.Buttons>
             
             </S.InputDiv>
             {/*  TODO:삭제, 수정 기능 만들기 */}
