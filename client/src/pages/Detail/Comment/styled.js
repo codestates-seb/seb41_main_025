@@ -89,5 +89,5 @@ export const InputButton = styled.button`
 `
 
 export const Buttons = styled.div`
-    display: grid;
+    display: flex;
 `
