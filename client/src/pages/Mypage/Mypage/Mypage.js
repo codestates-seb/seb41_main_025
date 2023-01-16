@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./styled";
-import dummy from "../../AllTimeChat/dummydata";
 import ModalBasic from "../ModalBasic/ModalBasic";
 import axios from "axios";
-import useFetch from "../../../components/util/useFetch";
 import { useParams } from "react-router-dom";
 
 const Mypage = () => {
@@ -55,8 +53,6 @@ const Mypage = () => {
       });
   }, []);
 
-  const filteredDummy = dummy.filter((item) => item.id === "1");
-  // console.log(filteredDummy);
 
   // 모달창 노출 여부 state
   const [modalOpen, setModalOpen] = useState(false);
