@@ -66,7 +66,7 @@ const Login = () => {
           store.dispatch(logIn());
           store.dispatch(addUser(res.data));
           localStorage.setItem("accessToken", res.headers.authorization)
-          console.log(res.headers)
+          navigate('/')
           localStorage.setItem("refreshToken", res.headers.refresh)
           localStorage.setItem("isLogin", true)
           window.location.reload();
@@ -76,7 +76,8 @@ const Login = () => {
           console.log(err);
         })
       }
-    
+      
+    //   enter 키 눌러도 login 함수 실행
       const handleKeypress = e => {
         if (e.keyCode === 13) {
           Login();
