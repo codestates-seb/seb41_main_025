@@ -25,8 +25,8 @@ public class CrawlingController {
     @PostMapping
     public void Crawling() {
         crawlingService.createCrawling("watcha-slide");
-        //crawlingService.createCrawling("wavve-slide");
-        //crawlingService.createCrawling("tving-slide");
+        crawlingService.createCrawling("wavve-slide");
+        crawlingService.createCrawling("tving-slide");
     }
 
 //    @Scheduled(fixedDelay = 86_400_000)

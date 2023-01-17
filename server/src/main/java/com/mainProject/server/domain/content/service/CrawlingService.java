@@ -61,8 +61,8 @@ public class CrawlingService {
             String contentOpenAt = movieList.get(0); // 개봉0
             String contentGenre = movieList.get(1); // 장르 1
             String contentCountry = movieList.get(2); // 국가 2
-            String contentScore = movieList.get(4); // 평점3
-            String contentRunningTime = movieList.get(3); // 러닝타임 4
+            String contentScore = movieList.get(3); // 평점3
+            String contentRunningTime = movieList.get(4); // 러닝타임 4
             String contentGrade = movieList.get(5); // 등급 5
             String contentAttendance = movieList.get(6); // 누적관객6
             String contentTitle = movieList.get(7); // 타이틀 7
