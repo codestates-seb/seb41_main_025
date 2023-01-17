@@ -86,6 +86,7 @@ const Header = () => {
 
 const Modal = () => {
     // logout
+    // TODO: 일정 시간이 지나면 로그아웃 될 수 있도록 구현하기
     const LogoutHandle = () => {
         localStorage.clear();
         window.location.reload()

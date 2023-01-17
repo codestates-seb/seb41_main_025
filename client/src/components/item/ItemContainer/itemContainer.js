@@ -32,28 +32,6 @@ const ItemContainer = () => {
   const [movies] = useFetch('http://whatu1.kro.kr:8080/contents')
   console.log(movies)
 
-
-  // let [movieList] = useFetch("data/db.json");
-  // const movies = movieList.contents;
-  // const [movie, setMovie] = useState(movies);
-  
-
-
-  //   const DataList = async () => {
-  //     await axios({
-  //         method: "GET",
-  //         url: `http://localhost:3000/contents`,
-  //         headers: {
-  //             "Content-Type": 'application/json',
-  //         },
-  //         .then(data) {
-  //           console.log(data)
-  //         }
-  //     });
-  // }
-  
-  
-
   return (
     // ? 1. 콘솔이 두번 찍히는 이유
     // ? 2. item 컴포넌트가 하나 더 있어야 리랜더링이 되어도 데이터가 남아있는 이유 

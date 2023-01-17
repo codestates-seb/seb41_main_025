@@ -8,13 +8,13 @@ export const AuthReducer = (state = AuthState, action) => {
         case ADD_TOKEN:
             return {
                 ...state, 
-                tokens: {accessToken: action.payload.accessToken, refreshToken: action.payload.refreshToken}
+                tokens: {accessToken: action.payload.accessToken}
             }
 
         case DELETE_TOKEN:
             return {
                 ...state, 
-                tokens: {accessToken: null, refreshToken: null}
+                tokens: {accessToken: null}
             }
 
         case LOGGED_TRUE:
