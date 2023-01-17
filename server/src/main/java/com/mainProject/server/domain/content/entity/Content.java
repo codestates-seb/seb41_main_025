@@ -48,13 +48,13 @@ public class Content extends Auditable {
     private String contentCountry; // 국가 2
 
     @Column
-    private String contentGrade; // 등급 3
+    private String contentScore; // 평점 3
 
     @Column
-    private String contentScore; // 평점 4
+    private String contentRunningTime; // 러닝타임 4
 
     @Column
-    private String contentRunningTime; // 러닝타임 5
+    private String contentGrade; // 등급 5
 
     @Column
     private String contentAttendance; // 누적관객 6

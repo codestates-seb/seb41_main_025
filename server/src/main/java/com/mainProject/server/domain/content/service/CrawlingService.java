@@ -134,8 +134,8 @@ public class CrawlingService {
         result.add(infoMap.get("개봉"));
         result.add(infoMap.get("장르"));
         result.add(infoMap.get("국가"));
-        result.add(infoMap.get("평점"));
         result.add(infoMap.get("러닝타임"));
+        result.add(infoMap.get("평점"));
         result.add(infoMap.get("등급"));
         result.add(infoMap.get("누적관객"));
         result.add(titleList);
