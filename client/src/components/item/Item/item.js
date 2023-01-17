@@ -1,6 +1,6 @@
 import * as S from "./styled";
 
-const Item = ( { contentTitle, contentPoster, contentOpenAt } ) => {
+const Item = ( { contentTitle, contentPoster, contentOpenAt, contentCountry } ) => {
 
   // { contentTitle, contentPoster, contentOpenAt }
   // const movies = { contentTitle };
@@ -21,7 +21,7 @@ const Item = ( { contentTitle, contentPoster, contentOpenAt } ) => {
           {contentTitle}
         </div>
         <div className="comeout">
-          국가 / {contentOpenAt}
+          {contentCountry} / {contentOpenAt}
           {/* 국가/개봉년도 */}
         </div>
         <div className="score">평점 {/* 평점 */}</div>
