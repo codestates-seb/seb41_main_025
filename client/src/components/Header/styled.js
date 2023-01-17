@@ -48,6 +48,7 @@ export const HeaderContainer = styled.div`
 `
 
 export const SearchBar = styled.div`
+    position: relative;
     input {
         width: 512px;
         height: 40px;
@@ -71,9 +72,13 @@ export const SearchBar = styled.div`
 `;
 
 export const SearchIcon = styled.button`
-    margin: 10px 0 0 10px;
-    background-color: white;
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    transform: translate(-50%,-50%);
+    color: #7e7e7e;
     border: 0;
+    background-color: white;
 `;
 
 
