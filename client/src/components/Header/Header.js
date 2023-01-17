@@ -25,6 +25,7 @@ const Header = (props) => {
         }
 
     }
+
     // 검색기능 구현
     const [searchItem, setSearchItem] = useState("");
 
@@ -56,10 +57,10 @@ const Header = (props) => {
                     onChange={searchHandler}
                     >
                     </input>
+                    <S.SearchIcon>
+                    <ImSearch className="searchIcon" size="30" />
+                    </S.SearchIcon>
                 </S.SearchBar>
-                <S.SearchIcon>
-                    <   ImSearch className="searchIcon" size="25"/>
-                </S.SearchIcon>
 
                 {/* sign Up / sign In */}
                 {isLogin ? (
