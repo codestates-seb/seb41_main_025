@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import * as S from "./styled";
 import ModalBasic from "../ModalBasic/ModalBasic";
 import axios from "axios";
@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 
 const Mypage = () => {
   const [info, setInfo] = useState([]);
+  const [pwd, setPwd] = useState([]);
 
   const { memberId } = useParams();
   console.log(memberId)
@@ -46,12 +47,18 @@ const Mypage = () => {
       })
       .then((res) => {
         setInfo(res.data.data);
+        setPwd()
         console.log(res.data.data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
+
+  const onConfirmPwd = (e) => {
+    e.preventDefault();
+    
+  }
 
 
   // 모달창 노출 여부 state
@@ -65,6 +72,17 @@ const Mypage = () => {
   // const userinfo = [info]
   console.log(info);
 
+  // input으로 이미지 수정
+  const [selectFile, setSelectFile] = useState(null);
+  const fileChangedHandler = (e) => {
+    const files = e.target.files;
+    console.log(files);
+    setSelectFile(files)
+  };
+
+  // 이미지 클릭해서 수정
+  const fileInput = useRef();
+
   return (
     <S.MypageDiv>
       <S.UserInfoHeader>
@@ -74,6 +92,7 @@ const Mypage = () => {
             className="memberPicture"
             alt="사용자 이미지"
             width={"300px"}
+            onClick={()=>{fileInput.current.click()}}
           ></img>
         </div>
         <div className="userInfo">
@@ -91,10 +110,12 @@ const Mypage = () => {
             <S.InputLabel htmlFor="profile">프로필</S.InputLabel>
             <S.InputDiv>
               <S.MyInput
+                type="file"
+                // style={{display:"none"}}
                 id="profile"
-                value={info.memberPicture}
+                // value={info.memberPicture}
                 // value={id}
-                // onChange={onChangeId}
+                onChange={fileChangedHandler}
                 placeholder="수정할 프로필을 적용해주세요"
                 required
               />
@@ -138,7 +159,7 @@ const Mypage = () => {
             </S.InputDiv>
           </S.InputItem>
         </S.FormDiv>
-        <S.SaveBtn type="submit" value="저장">
+        <S.SaveBtn type="submit"  value="저장">
           저장
         </S.SaveBtn>
       </S.FormStyle>
