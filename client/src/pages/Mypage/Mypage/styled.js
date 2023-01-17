@@ -22,22 +22,25 @@ export const UserInfoHeader = styled.div`
   display: flex;
   width: 100%;
   padding: 60px;
-  @media only screen and (max-width: ${'600px'}) {
+  @media only screen and (max-width: ${"600px"}) {
     padding: 30px;
     display: grid;
-  } 
+  }
   .userImage {
     padding-left: 80px;
-    @media only screen and (max-width: ${'600px'}) {
-    padding-left: 0;
-  } 
+    @media only screen and (max-width: ${"600px"}) {
+      padding-left: 0;
+    }
 
     & > .memberPicture {
       border-radius: 30%;
-      @media only screen and (max-width: ${'600px'}) {
-    width: 200px;
-    height: 200px;
-  } 
+      /* &:hover {
+        transform: scale(1.5);
+      } */
+      @media only screen and (max-width: ${"600px"}) {
+        width: 200px;
+        height: 200px;
+      }
     }
   }
   .userInfo {
@@ -45,18 +48,16 @@ export const UserInfoHeader = styled.div`
     flex-direction: column;
     justify-content: flex-end;
     padding-left: 80px;
-    @media only screen and (max-width: ${'600px'}) {
-    padding: 20px 0 0 0;
-
-  } 
+    @media only screen and (max-width: ${"600px"}) {
+      padding: 20px 0 0 0;
+    }
   }
   .userName {
     padding: 0px 0px 80px 30px;
     font-size: 30px;
-    @media only screen and (max-width: ${'600px'}) {
-    padding: 10 0 0 30;
-
-  } 
+    @media only screen and (max-width: ${"600px"}) {
+      padding: 10 0 0 30;
+    }
   }
 `;
 
@@ -68,37 +69,36 @@ export const FormDiv = styled.div`
   padding-right: 100px;
   margin-right: 120px;
 
-  @media only screen and (max-width: ${'600px'}) {
-  display: grid;
-  margin: 0;
-  padding: 0;
-  align-items: center;
-  flex-direction: row;
-  } 
+  @media only screen and (max-width: ${"600px"}) {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    flex-direction: row;
+  }
 `;
 
 export const InputItem = styled.div`
   display: flex;
   align-items: center;
   height: 200x;
-  @media only screen and (max-width: ${'600px'}) {
-  display: grid;
-  margin: 10px;
-  width: 30px;
-  } 
+  @media only screen and (max-width: ${"600px"}) {
+    display: grid;
+    margin: 10px;
+    width: 30px;
+  }
 `;
 
 export const InputLabel = styled.div`
   padding-right: 30px;
 
-  @media only screen and (max-width: ${'600px'}) {
-  font-size: 20px;
-  padding-right: 0;
-  } 
+  @media only screen and (max-width: ${"600px"}) {
+    font-size: 20px;
+    padding-right: 0;
+  }
 `;
 
-export const InputDiv = styled.div`
-`;
+export const InputDiv = styled.div``;
 
 export const MyInput = styled.input`
   display: flex;
@@ -121,16 +121,16 @@ export const ModifyBtn = styled.button`
   border-radius: 15px;
   font-size: 32px;
   font-weight: 300;
-  @media only screen and (max-width: ${'600px'}) {
-  width: 150px;
-  height: 40px;
-  font-size: 20px;
-  } 
+  @media only screen and (max-width: ${"600px"}) {
+    width: 150px;
+    height: 40px;
+    font-size: 20px;
+  }
 `;
 
 export const SaveBtn = styled(ModifyBtn)`
   width: 100px;
-  @media only screen and (max-width: ${'600px'}) {
+  @media only screen and (max-width: ${"600px"}) {
     margin: 10px 0px 0px 220px;
   }
 `;
@@ -140,7 +140,7 @@ export const DeleteBtn = styled(ModifyBtn)`
   height: 80px;
   padding: 10px;
   margin: 50px;
-  @media only screen and (max-width: ${'600px'}) {
+  @media only screen and (max-width: ${"600px"}) {
     /* margin: 10px 0px 10px 220px; */
     font-size: 15px;
   }
