@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -28,6 +30,9 @@ import java.util.List;
 public class MemberController {
     private final MemberService memberService;
     private final MemberMapper mapper;
+
+    @Autowired
+    private PasswordEncoder encoder;
 
     // TODO POST
     @PostMapping
@@ -78,4 +83,24 @@ public class MemberController {
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
+
+
+    @PostMapping("prevModify")
+    public String postPrevModify(@RequestParam String pw, RedirectAttributes rttr) {
+        String memberpw = memberService.getCurrentMember().getPassword();
+        log.info("# memberpw = {}", memberpw);
+        log.info("# pw = {}", pw);
+
+//        if(encoder.matches(pw, memberpw)) {
+        if(encoder.matches(pw, memberpw)) {
+            log.info("pw 재확인 완료..");
+            return "/members/"+memberService.getCurrentMember().getMemberId();
+        }
+        else {
+            rttr.addFlashAttribute("msg", "비밀번호를 다시 확인해 주세요.");
+            return "/members/prevModify";
+        }
+    }
+
+
 }
