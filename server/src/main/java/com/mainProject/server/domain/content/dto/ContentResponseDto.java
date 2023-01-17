@@ -19,8 +19,8 @@ public class ContentResponseDto {
     private String contentGenre;// 장르 1
     private String contentCountry;// 국가 2
     private String contentGrade;// 평점 3
-    private String contentRunningTime;// 러닝타임 4
     private String contentScore;// 등급 5
+    private String contentRunningTime;// 러닝타임 4
     private String contentAttendance;// 누적관객 6
     private String contentTitle;
     private String contentBody;
