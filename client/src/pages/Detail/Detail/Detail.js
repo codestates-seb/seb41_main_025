@@ -7,12 +7,12 @@ import { useParams } from "react-router-dom";
 import useFetch from "../../../components/util/useFetch";
 import { useState } from "react";
 import Comment from "../Comment/Comment";
+import axios from "axios";
+
 
 const Detail = () => {
 
   const {contentId} = useParams()
-  const {deprecateId} = useParams()
-  // console.log(params.data)
 
   const request = {
     method : "get",
@@ -20,59 +20,112 @@ const Detail = () => {
   }
 
   const [movies] = useFetch(`http://whatu1.kro.kr:8080/contents/${contentId}`,request)
-  const [recommend] = useFetch(`http://whatu1.kro.kr:8080/recommend/${deprecateId}`,request)
-  console.log(recommend)
 
-  const [recommendConts, setRecommend] = useState(movies.recommend)
-  const [recommendCounts, setRecommendCounts] = useState(movies && movies.recommendCounts)
-  // console.log(typeof(Number(recommendCounts)))
-  const [decommend, setDecommend] = useState (false)
-  const [decommendCounts, setDecommendCounts] = useState (movies && movies.deprecateCount)
-  // console.log(typeof(decommendCounts))
-  const [contentOttRanks, setContentOttRank] = useState (movies && movies.contentOttRank)
-  // console.log(typeof(contentOttRanks))
-  const [favorite, setFavorite] = useState(movies && movies.favorite)
-  const [choose, setChoose] = useState(false)
 
-  // console.log(movies.contentId)
-  // console.log(movies.recommendCount)
-  // console.log(recommendCounts)
+  const [isrecommend, setIsRecommend] = useState([
+    {
+      recommendId: 0,
+      memberId: 0,
+      contentId: 0,
+      recommendSelected : false,
+      recommendCount: 0,
+      createdAt: ""
+  }
+  ])
+  const [isrecommendId, setIsRecommendId] = useState()
+  console.log(isrecommendId)
+  const [recommendCounts, setRecommendCounts] = useState()
+  
+  const [isdeprecate, setIsDeprecate] = useState('')
+  const [deprecateCounts, setDeprecateCounts] = useState()
+  
+  const [ischoice, setIsChoice] = useState('')
+  const [isFavorite, setIsFavorite] = useState('')
 
-  const handleRecommend = () => {
-      setRecommend(!recommend)
-      setRecommendCounts(recommend === true ? recommendCounts + 1 : recommendCounts)
-      // FIXME : recommendCounts 가 number 로 따로 변환해 줘야 함
-    }
-    
-  const handleDecommend = () => {
-    setDecommend(!decommend);
-    setDecommendCounts(
-      decommend === true ? Number(decommendCounts) + 1 : decommendCounts
-    );
-  };
-  const handleFavorite = () => {
-      const updateRequest = {
-        method : "POST",
-        body : JSON.stringify({...favorite,choiceSelected : !favorite}),
-        headers: {
-          "Content-Type": 'application/json',
-          // "Authorization": localStorage.getItem("accessToken"),
-          // "Refresh": localStorage.getItem("refreshToken")
-        }
+
+  //추천
+  const handleRecommend = async () => {
+    await axios.post(`http://whatu1.kro.kr:8080/contents/${contentId}/recommend`,JSON.stringify({}),
+      {
+      headers: {
+        Authorization : localStorage.getItem("accessToken")
       }
-      fetch(`http://whatu1.kro.kr:8080/contents/${contentId}/choice`, updateRequest)
-      .then (() => {
-        setFavorite(!favorite)
-        console.log(movies.favorite.choiceSelected)
+    })
+      .then ((res) => {
+        setIsRecommend(res.data.data.recommendSelected)
+        setRecommendCounts(res.data.data.recommendCount + 1)
+        setIsRecommendId(res.data.data.recommendId)
+        console.log(res.data.data)
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  const handleChoose = () => {
-    setChoose(!choose);
+      axios.get(`http://whatu1.kro.kr:8080/recommend/${isrecommendId}`,
+      {
+      headers: {
+        Authorization : localStorage.getItem("accessToken")
+      }
+    })
+      .then ((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  
+  //비추천
+  const handleDecommend = async () => {
+    await axios.post(`http://whatu1.kro.kr:8080/contents/${contentId}/deprecate`,JSON.stringify({}),
+      {
+      headers: {
+        "Authorization": localStorage.getItem("accessToken"),
+      }
+      })
+      .then ((res) => {
+        setIsDeprecate(res.data.data.deprecateSelected)
+        setDeprecateCounts(res.data.data.deprecateCount + 1)
+      })
+      .catch((err) => {
+        console.log(err);
+      });       
+  };
+          
+  //찜하기
+  const handleChoose = async () => {
+    await axios.post(`http://whatu1.kro.kr:8080/contents/${contentId}/choice`,JSON.stringify({}),
+      {
+      headers: {
+        "Content-Type": 'application/json',
+        "Authorization": localStorage.getItem("accessToken")
+        }
+      })
+      .then ((res) => {
+        setIsChoice(res.data.data.choiceSelected)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
+  //인생작
+  const handleFavorite = () => {
+    axios.post(`http://whatu1.kro.kr:8080/contents/${contentId}/favorite`,JSON.stringify({}),
+      {
+      headers: {
+        "Content-Type": 'application/json',
+        "Authorization": localStorage.getItem("accessToken"),
+      }
+      })
+      .then ((res) => {
+        setIsFavorite(res.data.data.favoriteSelected)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
+    // FIXME : recommendCounts 가 number 로 따로 변환해 줘야 함         
+          
   return (
     <S.DetailContainer>
       <S.DetailHeader>
@@ -90,17 +143,17 @@ const Detail = () => {
           <S.DetailItem>
             {/*아이콘 박스*/}
             <div className="itemIcon" onClick={handleRecommend}>
-              {recommend === true ? <AiTwotoneLike size="48" color="#58BFAD" /> : 
+              {isrecommend === true ? <AiTwotoneLike size="48" color="#58BFAD" /> : 
               <AiOutlineLike size="48" />}
               {movies.recommendCount}
             </div>
             <div className="itemIcon" onClick={handleDecommend}>
-              {decommend === true ? <AiTwotoneDislike size="48" color="#58BFAD" /> : 
+              {isdeprecate === true ? <AiTwotoneDislike size="48" color="#58BFAD" /> : 
               <AiOutlineDislike size="48" />}
               {movies.deprecateCount}
             </div>
             <div className="itemIcon" onClick={handleChoose}>
-              {choose === true ? (
+              {ischoice === true ? (
                 <FcLike size="48" />
               ) : (
                 <FcLikePlaceholder size="48" />
@@ -108,7 +161,7 @@ const Detail = () => {
               찜하기
             </div>
             <div className="itemIcon" onClick={handleFavorite}>
-              {favorite ? (
+              {isFavorite ? (
                 <AiFillStar size="48" color="#167E6C" />
               ) : (
                 <AiOutlineStar size="48" />

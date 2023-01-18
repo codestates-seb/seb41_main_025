@@ -27,16 +27,24 @@ export const DetailFont = styled.div`
     }
 `
 export const EachItem = styled.div `
-    margin: 70px 5% 5% 90px;
+    margin: 70px 3% 3% 90px;
+    @media only screen and (max-width: ${'1200px'}) {
+      margin: 20px;
+        }
     .poster {
         width: 100%;
         height: auto;
         min-width: 60%;
         border-radius: 40px;
         @media only screen and (max-width: ${'1200px'}) {
+        max-height: 800px;
+        max-width: 800px;
+        }
+        @media only screen and (max-width: ${'600px'}) {
         min-height: 300px;
         min-width: 300px;
-  }
+        }
+
     }
     `;
 

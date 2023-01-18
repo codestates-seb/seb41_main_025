@@ -14,32 +14,12 @@ const Comment = () => {
   }
 
   const [comments] = useFetch('http://whatu1.kro.kr:8080/comments?page=1&size=10',request);
+  const [movies] = useFetch(`http://whatu1.kro.kr:8080/contents/${contentId}`,request)
   
-
     const [comment, setComment] = useState('');
+    // console.log(comment)
 
-    console.log(comment)
-
-    // TODO : 로그인 하면 작성자 정보 나타나도록 
-  const commitModification = (e) => {
-    // if(comment === '') return alert("내용을 입력하세요")
-    // const updateRequest = {
-    //   method : "POST",
-    //   body : JSON.stringify({comment}),
-    //   headers: {
-    //     "Content-Type":'application/json'
-    //   }
-    // }
-    // fetch(`http://localhost:3000/contents/${contentId}/comments`,JSON.stringify(comment),updateRequest)
-    // .then (() => {
-    //   window.location.reload()
-    // })
-    // .catch(err => {
-    //   console.log(err)
-    // })
-    // console.log(e.target.value)
-  }
-
+  //한 줄 평 입력
   const submitcommit = async (e) => {
     if(comment === '') return alert('내용을 입력하세요')
 
@@ -62,7 +42,8 @@ const Comment = () => {
     console.log(e.target.value)
   }
 
-  const onAnswerEditHandler = (commentMemberId) => {
+  //한줄 평 수정
+  const oncommentEditHandler = (commentMemberId) => {
     const bodyJSON =  JSON.stringify({
       commentBody: comment,
     });
@@ -83,15 +64,16 @@ const Comment = () => {
     });
   }
 
-  const commitDelete = () => {
-    const updateRequest = {
-      method : "DELETE",
-      body : JSON.stringify({comment}),
-      headers: {
-        "Content-Type":'application/json'
+  //한줄 평 삭제
+  const onCommentDeleteHandler = async (commentMemberId) => {
+      await axios({
+        method: "DELETE",
+        url:`http://whatu1.kro.kr:8080/comments/${commentMemberId}`,
+        headers: {
+        "Content-Type":'application/json',
+        "AutHorization": localStorage.getItem("accessToken")
       }
-    }
-    fetch(`http://localhost:3000/contents/${contentId}/comments`,JSON.stringify(comment),updateRequest)
+    })
     .then (() => {
       window.location.reload()
     })
@@ -100,75 +82,80 @@ const Comment = () => {
     })
   }
 
-    return (
-        <>
-        {/* 한 줄 평 작성 */}
+  const moviecomment = comments.filter (comments => movies.contentId === comments.contentId)
 
-        {comments && comments.length !== null ? (
-            <S.DetailCommentList>
-                { comments && comments.map(comment => (
-                <S.DetailCommentItem key={comment.commentId}>
-                <div className="userInfo">
-                    <img
-                    src={comment.memberPicture}
-                    className="memberPicture"
-                    alt="사용자 이미지"
-                    style={{"width" : "40px", "height" : "40px"}}
-                    ></img>
-                    <div className="name">{comment.nickName}</div>
-                </div>
-                <div className="content">{comment.commentBody}</div>
-                <S.Buttons>
-                    <S.InputButton defaultValue={comment.commentBody} onClick={() => onAnswerEditHandler(comment.commentId)}>수정</S.InputButton>
-                    <S.InputButton>삭제</S.InputButton>
-                </S.Buttons>
-              </S.DetailCommentItem>
+    return (
+      <>
+        {moviecomment && moviecomment.length !== null ? (
+          <S.DetailCommentList>
+            { moviecomment && moviecomment.map(comment => (
+            <S.DetailCommentItem key={comment.commentId}>
+            <div className="userInfo">
+              <img
+                src={comment.memberPicture}
+                className="memberPicture"
+                alt="사용자 이미지"
+                style={{"width" : "40px", "height" : "40px"}}
+              ></img>
+              <div className="name">{comment.nickName}</div>
+            </div>
+            <div className="content">{comment.commentBody}</div>
+            <S.Buttons>
+              {/* css 수정하기 */}
+              <S.InputButton 
+                defaultValue={comment.commentBody}
+                onClick={() => oncommentEditHandler(comment.commentId)}>
+                  수정
+              </S.InputButton>
+              <S.InputButton
+                onClick={() => onCommentDeleteHandler(comment.commentId)}>
+                  삭제
+              </S.InputButton>
+            </S.Buttons>
+          </S.DetailCommentItem>
         ))}  
-            <S.InputDiv>
-                <input
-                className="recommendInput"
-                autoComplete="off"
-                name="recommend"
-                type="text"
-                // maxLength="35"
-                placeholder="한줄평을 입력해주세요"
-                onChange = {(e) => setComment(e.target.value)}
-                ></input>
-                <div className="buttonDiv">
-                    <button type="submit" className="submit" onClick={submitcommit}>
-                    등록
-                    </button>
-                </div>
-            
-            </S.InputDiv>
-            {/*  TODO:삭제, 수정 기능 만들기 */}
+          <S.InputDiv>
+            <input
+              className="recommendInput"
+              autoComplete="off"
+              name="recommend"
+              type="text"
+              // maxLength="35"
+              placeholder="한줄평을 입력해주세요"
+              onChange = {(e) => setComment(e.target.value)}
+            ></input>
+            <div className="buttonDiv">
+            <button type="submit" className="submit" onClick={submitcommit}>
+              등록
+            </button>
+            </div>
+          </S.InputDiv>
         </S.DetailCommentList>
         ) : (
         <S.DetailCommentList>
-            <S.InputDiv>
-                <input
-                className="recommendInput"
-                autoComplete="off"
-                name="recommend"
-                type="text"
-                // maxLength="35"
-                placeholder="한줄평을 입력해주세요"
-                onChange = {(e) => setComment(e.target.value)}
-                ></input>
-                <div className="buttonDiv">
-                    <button type="submit" className="submit" onClick={submitcommit} >
-                    등록
-                    </button>
-                </div>
-            </S.InputDiv>
-            <S.Buttons>
-                <S.InputButton onClick={commitModification}>수정</S.InputButton>
-                <S.InputButton onClick={commitDelete}>삭제</S.InputButton>
-            </S.Buttons>
-            {/* TODO:삭제, 수정 기능 만들기 */}
+          <S.InputDiv>
+            <input
+              className="recommendInput"
+              autoComplete="off"
+              name="recommend"
+              type="text"
+              // maxLength="35"
+              placeholder="한줄평을 입력해주세요"
+              onChange = {(e) => setComment(e.target.value)}
+            ></input>
+            <div className="buttonDiv">
+            <button type="submit" className="submit" onClick={submitcommit} >
+              등록
+            </button>
+            </div>
+          </S.InputDiv>
+          <S.Buttons>
+            <S.InputButton defaultValue={comment.commentBody} onClick={() => oncommentEditHandler(comment.commentId)}>수정</S.InputButton>
+            <S.InputButton onClick={() => onCommentDeleteHandler(comment.commentId)}>삭제</S.InputButton>
+          </S.Buttons>
         </S.DetailCommentList>
         )}
-        </>
+      </>
     )};
 
 export default Comment;

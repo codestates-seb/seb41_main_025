@@ -4,12 +4,11 @@ import { useRef, useState } from "react";
 import { useEffect } from "react";
 import { ImSearch } from "react-icons/im";
 
-const Header = (props) => {
+const Header = () => {
     let isLogin = localStorage.getItem("isLogin")
     const [isModal, setIsModalOpen] = useState(false)
 
     const outSection = useRef()
-    // FIXME : 마이페이지를 두 번 누르면 닫히지 않는 현상
     useEffect(() => {
         document.addEventListener('mousedown', clickModalOutside);
     
@@ -20,9 +19,7 @@ const Header = (props) => {
 
     const clickModalOutside = event => {
         if(isLogin && isModal && !outSection.current.contains(event.target)) 
-        {
-            setIsModalOpen(!isModal)
-        }
+        { setIsModalOpen(!isModal) }
 
     }
 
@@ -31,17 +28,13 @@ const Header = (props) => {
 
     const searchHandler = (e) => {
         setSearchItem(e.currentTarget.value);
-        // props.refreshFunction(e.currentTarget.value);
         console.log(e.currentTarget.value);
     }
 
-    
-    
     return (
         <S.HeaderWrap>
             <S.HeaderContainer>
-
-                {/* logo */}
+            {/* logo */}
                 <div className="logo">
                     <Link to="/">
                         <img src="/assets/logo.png" alt =""></img>
@@ -77,9 +70,9 @@ const Header = (props) => {
                             <li
                             className="flexEnd"
                             onClick={clickModalOutside}>
-                                <Modal/>
-                            </li>) 
-                            : null }
+                            <Modal/>
+                            </li>
+                            ) : null }
                     </S.Sign>
                 ) : (
                     <S.Sign>
@@ -87,14 +80,14 @@ const Header = (props) => {
                         <li className="signUp"><Link to='/signup'>회원가입</Link></li>
                     </S.Sign>
                 )}
-
             </S.HeaderContainer>
         </S.HeaderWrap>
     )
 }
 
 const Modal = () => {
-
+    // logout
+    // TODO: 일정 시간이 지나면 로그아웃 될 수 있도록 구현하기
     const LogoutHandle = () => {
         localStorage.clear();
         window.location.reload()
