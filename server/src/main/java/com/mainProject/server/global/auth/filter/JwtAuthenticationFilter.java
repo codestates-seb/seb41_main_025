@@ -1,11 +1,18 @@
 package com.mainProject.server.global.auth.filter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mainProject.server.domain.member.dto.MemberDto;
+import com.mainProject.server.domain.member.entity.Member;
 import com.mainProject.server.global.auth.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
@@ -19,7 +26,12 @@ import java.io.IOException;
 
 @Slf4j
 @RequiredArgsConstructor
-public class JwtAuthenticationFilter extends GenericFilterBean {
+public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter { //(1)
+    //public class JwtAuthenticationFilter extends GenericFilterBean {
+    private final JwtTokenProvider jwtTokenProvider;
+    private final RedisTemplate redisTemplate;
+//    //(2)
+    private final AuthenticationManager authenticationManager;
 
     private static final String AUTHORIZATION_HEADER = "Authorization";
     private static final String BEARER_TYPE = "Bearer";

@@ -1,6 +1,6 @@
 package com.mainProject.server.global.auth.jwt;
 
-import com.mainProject.server.domain.member.dto.MemberResponseDto;
+import com.mainProject.server.domain.member.dto.MemberDto;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;

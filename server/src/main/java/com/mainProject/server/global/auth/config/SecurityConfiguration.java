@@ -1,11 +1,9 @@
 package com.mainProject.server.global.auth.config;
 
-import com.mainProject.server.global.auth.authority.CustomAuthorityUtils;
 import com.mainProject.server.global.auth.filter.JwtAuthenticationFilter;
-import com.mainProject.server.global.auth.filter.JwtVerificationFilter;
-import com.mainProject.server.global.auth.handler.*;
+import com.mainProject.server.global.auth.handler.MemberAuthenticationFailureHandler;
+import com.mainProject.server.global.auth.handler.MemberAuthenticationSuccessHandler;
 import com.mainProject.server.global.auth.jwt.JwtTokenProvider;
-import com.mainProject.server.global.auth.jwt.JwtTokenizer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpMethod;
@@ -15,30 +13,19 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.authentication.logout.LogoutHandler;
-import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
 
 @Slf4j
 @Configuration
 @EnableWebSecurity(debug = true) //테스트 용으로
 @RequiredArgsConstructor
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
- /*   private final JwtTokenizer jwtTokenizer;
-    private final CustomAuthorityUtils authorityUtils;*/
+public class SecurityConfiguration {
+//    private final CustomAuthorityUtils authorityUtils;
 
     private final JwtTokenProvider jwtTokenProvider;
     private final RedisTemplate redisTemplate;
@@ -97,16 +84,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        return new BCryptPasswordEncoder();
     }
 
- /*   public class CustomFilterConfigurer extends AbstractHttpConfigurer<CustomFilterConfigurer, HttpSecurity> {  // (2-1)
+    public class CustomFilterConfigurer extends AbstractHttpConfigurer<CustomFilterConfigurer, HttpSecurity> {  // (2-1)
         @Override
         public void configure(HttpSecurity builder) throws Exception {  // (2-2)
             AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);  // (2-3)
 
-            JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer);
-            jwtAuthenticationFilter.setFilterProcessesUrl("/members/login");          // (2-5)
+            JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(jwtTokenProvider, redisTemplate, authenticationManager);
+//            jwtAuthenticationFilter.setFilterProcessesUrl("/members/login");          // (2-5)
             jwtAuthenticationFilter.setAuthenticationSuccessHandler(new MemberAuthenticationSuccessHandler());  // (3) 추가
             jwtAuthenticationFilter.setAuthenticationFailureHandler(new MemberAuthenticationFailureHandler());  // (4) 추가
 
@@ -116,5 +103,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .addFilter(jwtAuthenticationFilter)
                     .addFilterAfter(jwtVerificationFilter, JwtAuthenticationFilter.class);   // (3)추가 차후 수정
         }
-    }*/
+    }
 }

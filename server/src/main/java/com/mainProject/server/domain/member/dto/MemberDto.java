@@ -2,9 +2,6 @@ package com.mainProject.server.domain.member.dto;
 
 import com.mainProject.server.global.validator.NotSpace;
 import lombok.*;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;

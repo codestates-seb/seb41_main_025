@@ -1,7 +1,8 @@
+/*
 package com.mainProject.server.global.auth.userDetails;
 
+import com.mainProject.server.domain.member.dto.MemberDto;
 import com.mainProject.server.domain.member.dto.MemberRequestDto;
-import com.mainProject.server.domain.member.dto.MemberResponseDto;
 import com.mainProject.server.domain.member.dto.Response;
 import com.mainProject.server.domain.member.entity.Member;
 import com.mainProject.server.domain.member.repository.MemberRepository;
@@ -21,12 +22,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
-import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class UsersService {
 
     private final MemberRepository memberRepository;
@@ -35,25 +35,12 @@ public class UsersService {
     private final JwtTokenProvider jwtTokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final RedisTemplate redisTemplate;
+*/
+/*
 
-    public static ResponseEntity<?> signUp(MemberRequestDto.SignUp signUp) {
-        if (memberRepository.existsByEmail(signUp.getEmail())) {
-            return response.fail("이미 회원가입된 이메일입니다.", HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<?> login(MemberRequestDto.Login login) {
 
-        Member member = Member.builder()
-                .email(signUp.getEmail())
-                .password(passwordEncoder.encode(signUp.getPassword()))
-                .roles(Collections.singletonList(Authority.ROLE_USER.name()))
-                .build();
-        memberRepository.save(member);
-
-        return response.success("회원가입에 성공했습니다.");
-    }
-
-    public static ResponseEntity<?> login(MemberRequestDto.Login login) {
-
-        if (MemberRepository.findByEmail(login.getEmail()).orElse(null) == null) {
+        if (memberRepository.findByEmail(login.getEmail()).orElse(null) == null) {
             return response.fail("해당하는 유저가 존재하지 않습니다.", HttpStatus.BAD_REQUEST);
         }
 
@@ -75,7 +62,8 @@ public class UsersService {
         return response.success(tokenInfo, "로그인에 성공했습니다.", HttpStatus.OK);
     }
 
-    public static ResponseEntity<?> reissue(MemberRequestDto.Reissue reissue) {
+
+    public ResponseEntity<?> reissue(MemberDto.Reissue reissue) {
         // 1. Refresh Token 검증
         if (!jwtTokenProvider.validateToken(reissue.getRefreshToken())) {
             return response.fail("Refresh Token 정보가 유효하지 않습니다.", HttpStatus.BAD_REQUEST);
@@ -104,7 +92,7 @@ public class UsersService {
         return response.success(tokenInfo, "Token 정보가 갱신되었습니다.", HttpStatus.OK);
     }
 
-    public static ResponseEntity<?> logout(MemberRequestDto.Logout logout) {
+    public ResponseEntity<?> logout(MemberDto.Logout logout) {
         // 1. Access Token 검증
         if (!jwtTokenProvider.validateToken(logout.getAccessToken())) {
             return response.fail("잘못된 요청입니다.", HttpStatus.BAD_REQUEST);
@@ -127,11 +115,11 @@ public class UsersService {
         return response.success("로그아웃 되었습니다.");
     }
 
-    public static ResponseEntity<?> authority() {
+    public ResponseEntity<?> authority() {
         // SecurityContext에 담겨 있는 authentication userEamil 정보
         String userEmail = SecurityUtil.getCurrentUserEmail();
 
-        Member member = MemberRepository.findByEmail(userEmail)
+        Member member = memberRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new UsernameNotFoundException("No authentication information."));
 
         // add ROLE_ADMIN
@@ -139,5 +127,7 @@ public class UsersService {
         memberRepository.save(member);
 
         return response.success();
-    }
+    }*//*
+
 }
+*/
