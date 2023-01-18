@@ -26,6 +26,7 @@ const Header = (props) => {
       setIsModalOpen(!isModal);
     }
   };
+
   // 검색기능 구현
   const [searchItem, setSearchItem] = useState("");
 
@@ -53,10 +54,10 @@ const Header = (props) => {
             value={searchItem}
             onChange={searchHandler}
           ></input>
+          <S.SearchIcon>
+            <ImSearch className="searchIcon" size="30" />
+          </S.SearchIcon>
         </S.SearchBar>
-        <S.SearchIcon>
-          <ImSearch className="searchIcon" size="25" />
-        </S.SearchIcon>
 
         {/* sign Up / sign In */}
         {isLogin ? (
@@ -92,13 +93,10 @@ const Header = (props) => {
 };
 
 const Modal = () => {
-
-    const memberId = localStorage.getItem("memberId");
-    console.log(memberId);
-
+  const memberId = localStorage.getItem("memberId");
+  console.log(memberId);
 
   const LogoutHandle = () => {
-
     localStorage.clear();
     window.location.reload();
   };
