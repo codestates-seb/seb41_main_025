@@ -3,17 +3,39 @@ import * as S from "./styled";
 import SeleteItem from "../../components/item/SelectItem/SeleteItem";
 import { MainWarp, MainContainer} from "../Main/styled"
 import useFetch from "../../components/util/useFetch";
+import axios from "axios";
+import { useState } from "react";
 
 const FavoriteMovie = () =>{
 
     const [favorite] = useFetch('http://whatu1.kro.kr:8080/contents/1/recommend')
     console.log(favorite)
 
+    const memberId = localStorage.getItem("memberId");
+    const [nickName, setNickName] = useState("")
+
+    axios
+      .get(`http://whatu1.kro.kr:8080/members/${memberId}`,
+      {
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+          Accept: "application/json",
+          "AutHorization" : localStorage.getItem("accessToken"),
+        },
+      })
+      .then((res) => {
+        setNickName(res.data.data.nickName);
+        console.log(nickName)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
     return (
         <MainWarp>
             <MainContainer>
                 <S.Title>
-                    <span className="title">00님의 인생작품</span>
+                    <span className="title">"{nickName}"님의 인생작품</span>
                     {/* <Item/>
                     TODO : 만약 길이가 3개가 아니라면 검색 창 뜨게하기 */}
                     <S.FavoriteSearch>
