@@ -57,6 +57,7 @@ const Login = () => {
         await axios
         .post("http://whatu1.kro.kr:8080/members/login", jsonData)
         .then((res) => {
+          // console.log(res.data.memberId);
           store.dispatch(addToken(
             {
               accessToken: res.headers.authorization
@@ -67,13 +68,15 @@ const Login = () => {
           localStorage.setItem("accessToken", res.headers.authorization)
           navigate('/')
           localStorage.setItem("isLogin", true)
-          localStorage.setItem("user", res.data.memberId)
-          console.log(res)
+          localStorage.setItem("memberId", res.data.memberId)
+          alert("로그인이 완료되었습니다!");
           window.location.reload();
 
         })
         .catch((err) => {
           console.log(err);
+          alert("입력하신 정보를 다시 확인해주세요!");
+          window.location.reload();
         })
       }
       

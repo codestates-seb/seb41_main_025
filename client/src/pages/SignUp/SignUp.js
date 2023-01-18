@@ -55,7 +55,7 @@ const SignUp = () => {
       .match(/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{10,25}$/);
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   //* post 에러 잡기 위해서 기본 프로필 이미지 생성
   const memberPicture = "https://i.ibb.co/P1TsnM3/2023-01-14-1-35-41.png";
@@ -79,13 +79,15 @@ const SignUp = () => {
         console.log(res.status);
         if (res.status === 201) {
           alert("회원가입이 완료되었습니다!");
-          navigate('/login')
+          navigate("/login");
+        } else if (res.status === 304) {
+          alert("회원가입을 진행해주세요!");
+          window.location.reload();
+        } else if (res.status === 409) {
+          alert("다시 회원가입을 진행해주세요");
+          window.location.reload();
         }
-        return res.json();
       })
-      // .then((res) => {
-      //   console.log(res.status);
-      // })
       .catch((err) => {
         console.log(err);
       });
@@ -140,7 +142,6 @@ const SignUp = () => {
     const currentPwd = e.target.value;
     console.log(currentPwd);
     setPwd(currentPwd);
-
     if (!validatePwd(currentPwd)) {
       setPwdMsg("영문, 숫자, 특수기호 조합으로 10자리 이상 입력해주세요.");
       setIsPassword(false);
@@ -168,53 +169,6 @@ const SignUp = () => {
   );
 
   //todo: 이메일, 닉네임 중복 확인
-  //   const [checkMail, setCheckMail] = useState(false);
-  //   const [checkNickname, setCheckNickname] = useState(false);
-
-  //   const onCheckEmail = async (e) => {
-  //     e.preventDefault();
-
-  //     try {
-  //       const res = await Api.post("user/register/email", {email});
-
-  //       const { result } = res.data;
-
-  //       if (!result) {
-  //           setEmailMsg("이미 등록된 메일입니다. 다시 입력해주세요.");
-  //           setCheckMail(false);
-  //       } else {
-  //         setEmailMsg("사용 가능한 메일입니다.😊");
-  //         setCheckMail(true);
-  //       }
-
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   }
-
-  //   const onCheckNickname = async (e) => {
-  //     e.preventDefault();
-
-  //     try {
-  //       const res = await Api.post("user/register/nickname", {nickname});
-
-  //       const { result } = res.data;
-
-  //       if (!result) {
-  //           setNicknameMsg("이미 등록된 닉네임입니다. 다시 입력해주세요.");
-  //           setCheckNickname(false);
-  //      } else {
-  //         setNicknameMsg("사용 가능한 닉네임입니다.😊");
-  //         setCheckNickname(true);
-  //       }
-
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   }
-  //   const handleEnter = (e) => {
-  //     console.log(e.target.value);
-  //   };
 
   return (
     <Main>

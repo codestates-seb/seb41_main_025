@@ -1,0 +1,19 @@
+{
+  "members": {
+    "memberId": 1,
+    "email": "admin@gmail.com",
+    "memberPicture": "유알엘이 있어서 그리로 이동됨",
+    "name": "관리자",
+    "nickName": "ADMIN권한을 가진 자",
+    "createdAt": "2023-01-10T01:31:59.1539254",
+    "modifiedAt": "2023-01-10T01:31:59.1539254",
+    "recommend" : {
+      "contendId" : 1,
+      "contentPoster" : "https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fb9b0aaa6144724d4b373d4a980b2c51ad6d211cc",
+      "contentTitle": "시맨틱 에러: 더 무비",
+      "contentCountry": "한국",
+      "contentOpenAt": "2022.08.31",
+      "contentScore": "8.1"
+    }
+  }
+}

@@ -1,11 +1,41 @@
-import React from "react";
+import axios from "axios";
+import React, {useEffect, useState} from "react";
 import * as S from "./styled";
+
 
 const ModalBasic = ({ setModalOpen }) => {
   // 모달 끄기
   const closeModal = () => {
     setModalOpen(false);
   };
+
+  const [info, setInfo] = useState([]);
+
+  const token = localStorage.getItem("accessToken");
+  console.log(token);
+
+  useEffect(() => {
+    axios
+      .post(`http://whatu1.kro.kr:8080/members/prevModify`, 
+      {
+        
+      },
+      
+      {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        setInfo(res.data.data);
+        console.log(res.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+
 
   return (
     <S.Container>

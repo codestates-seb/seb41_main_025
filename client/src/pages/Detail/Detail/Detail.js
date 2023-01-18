@@ -1,11 +1,18 @@
 import React from "react";
 import * as S from "./styled";
-import { AiTwotoneLike, AiTwotoneDislike, AiFillStar, AiOutlineLike, AiOutlineDislike, AiOutlineStar } from "react-icons/ai";
+import {
+  AiTwotoneLike,
+  AiTwotoneDislike,
+  AiFillStar,
+  AiOutlineLike,
+  AiOutlineDislike,
+  AiOutlineStar,
+} from "react-icons/ai";
 import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 import { ButtonForm } from "../../../components/item/Button/styled";
 import { useParams } from "react-router-dom";
 import useFetch from "../../../components/util/useFetch";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Comment from "../Comment/Comment";
 import axios from "axios";
 
@@ -15,9 +22,9 @@ const Detail = () => {
   const {contentId} = useParams()
 
   const request = {
-    method : "get",
-    headers : {"Content-Type" : "application/json"}
-  }
+    method: "get",
+    headers: { "Content-Type": "application/json" },
+  };
 
   const [movies] = useFetch(`http://whatu1.kro.kr:8080/contents/${contentId}`,request)
 
@@ -129,17 +136,29 @@ const Detail = () => {
   return (
     <S.DetailContainer>
       <S.DetailHeader>
-        <img className="posterWrap" src={movies && movies.contentPoster} alt='moviePoster'></img>
+        <img
+          className="posterWrap"
+          src={movies && movies.contentPoster}
+          alt="moviePoster"
+        ></img>
         <S.DetailContent>
-            <>
-                <div className="contents">
-                  <div className="title">{movies && movies.contentTitle}</div>
-                  <div className="content">공개일 : {movies && movies.contentOpenAt}</div>
-                  <div className="content">평점 : {movies && movies.contentScore}</div>
-                  <div className="content">장르 : {movies && movies.contentGenre}</div>
-                  <div className="content">영화설명 : {movies && movies.contentBody}</div>
-                </div>
-            </>
+          <>
+            <div className="contents">
+              <div className="title">{movies && movies.contentTitle}</div>
+              <div className="content">
+                공개일 : {movies && movies.contentOpenAt}
+              </div>
+              <div className="content">
+                평점 : {movies && movies.contentScore}
+              </div>
+              <div className="content">
+                장르 : {movies && movies.contentGenre}
+              </div>
+              <div className="content">
+                영화설명 : {movies && movies.contentBody}
+              </div>
+            </div>
+          </>
           <S.DetailItem>
             {/*아이콘 박스*/}
             <div className="itemIcon" onClick={handleRecommend}>
@@ -170,11 +189,10 @@ const Detail = () => {
             </div>
           </S.DetailItem>
         </S.DetailContent>
-        <ButtonForm to='/alltimechat'>실시간 채팅</ButtonForm>
+        <ButtonForm to="/alltimechat">실시간 채팅</ButtonForm>
       </S.DetailHeader>
-      <Comment/>
+      <Comment />
     </S.DetailContainer>
-  
   );
 };
 
