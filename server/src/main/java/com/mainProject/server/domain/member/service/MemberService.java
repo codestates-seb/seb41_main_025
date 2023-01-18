@@ -1,6 +1,7 @@
 package com.mainProject.server.domain.member.service;
 
 
+import com.mainProject.server.domain.member.dto.MemberDto;
 import com.mainProject.server.domain.member.entity.Member;
 import com.mainProject.server.domain.member.repository.MemberRepository;
 

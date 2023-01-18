@@ -83,7 +83,7 @@ public class UsersService {
         }
 
         // 4. 새로운 토큰 생성
-        MemberResponseDto.TokenInfo tokenInfo = jwtTokenProvider.generateToken(authentication);
+        MemberDto.TokenInfo tokenInfo = jwtTokenProvider.generateToken(authentication);
 
         // 5. RefreshToken Redis 업데이트
         redisTemplate.opsForValue()

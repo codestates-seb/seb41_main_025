@@ -12,4 +12,7 @@ public interface MemberMapper {
     Member memberPatchToMember(MemberDto.Patch patchRequest);
     MemberDto.Response memberToMemberResponse(Member member);
     List<MemberDto.Response> memberListToMemberResponseList(List<Member> memberList);
+    Member memberLoginToMember(MemberDto.Login loginRequest);
+    Member memberReissueToMember(MemberDto.Reissue reissueRequest);
+
 }
