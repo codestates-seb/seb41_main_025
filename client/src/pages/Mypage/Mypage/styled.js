@@ -113,14 +113,14 @@ export const MyInput = styled.input`
 `;
 
 export const ModifyBtn = styled.button`
-  width: 240px;
-  height: 60px;
+  width: 120px;
+  height: 40px;
   background-color: #167e6c;
   color: white;
   border: none;
   border-radius: 15px;
-  font-size: 32px;
-  font-weight: 300;
+  font-size: 16px;
+  font-weight: 500;
   @media only screen and (max-width: ${"600px"}) {
     width: 150px;
     height: 40px;
@@ -129,17 +129,21 @@ export const ModifyBtn = styled.button`
 `;
 
 export const SaveBtn = styled(ModifyBtn)`
-  width: 100px;
+  width: 80px;
+  margin: 20px 0 0 385px;
+  font-size: 20px;
   @media only screen and (max-width: ${"600px"}) {
     margin: 10px 0px 0px 220px;
   }
 `;
 
 export const DeleteBtn = styled(ModifyBtn)`
-  width: 160px;
-  height: 80px;
+  width: 80px;
+  height: 40px;
   padding: 10px;
   margin: 50px;
+  margin-left: 400px;
+  font-size: 15px;
   @media only screen and (max-width: ${"600px"}) {
     /* margin: 10px 0px 10px 220px; */
     font-size: 15px;
