@@ -7,22 +7,19 @@ import { useParams, useLocation } from "react-router-dom";
 import useFetch from "../util/useFetch";
 import axios from "axios";
 
-const Header = () => {
-    let isLogin = localStorage.getItem("isLogin")
-    const [isModal, setIsModalOpen] = useState(false)
+const Header = (props) => {
+  let isLogin = localStorage.getItem("isLogin");
+  const [isModal, setIsModalOpen] = useState(false);
 
-    const outSection = useRef()
-    useEffect(() => {
-        document.addEventListener('mousedown', clickModalOutside);
-    
-        return () => {
-            document.removeEventListener('mousedown', clickModalOutside);
-        };
-    });
+  const outSection = useRef();
+  // FIXME : 마이페이지를 두 번 누르면 닫히지 않는 현상
+  useEffect(() => {
+    document.addEventListener("mousedown", clickModalOutside);
 
-    const clickModalOutside = event => {
-        if(isLogin && isModal && !outSection.current.contains(event.target)) 
-        { setIsModalOpen(!isModal) }
+    return () => {
+      document.removeEventListener("mousedown", clickModalOutside);
+    };
+  });
 
   const clickModalOutside = (event) => {
     if (isLogin && isModal && !outSection.current.contains(event.target)) {
@@ -33,72 +30,76 @@ const Header = () => {
   // 검색기능 구현
   const [searchItem, setSearchItem] = useState("");
 
-    const searchHandler = (e) => {
-        setSearchItem(e.currentTarget.value);
-        console.log(e.currentTarget.value);
-    }
+  const searchHandler = (e) => {
+    setSearchItem(e.currentTarget.value);
+    // props.refreshFunction(e.currentTarget.value);
+    console.log(e.currentTarget.value);
+  };
 
-    return (
-        <S.HeaderWrap>
-            <S.HeaderContainer>
-            {/* logo */}
-                <div className="logo">
-                    <Link to="/">
-                        <img src="/assets/logo.png" alt =""></img>
-                    </Link>
-                </div>
+  return (
+    <S.HeaderWrap>
+      <S.HeaderContainer>
+        {/* logo */}
+        <div className="logo">
+          <Link to="/">
+            <img src="/assets/logo.png" alt=""></img>
+          </Link>
+        </div>
 
-                {/* search */}
-                <S.SearchBar>
-                    <input 
-                    type="text" 
-                    placeholder="검색할 내용을 입력하세요."
-                    value={searchItem}
-                    onChange={searchHandler}
-                    >
-                    </input>
-                    <S.SearchIcon>
-                    <ImSearch className="searchIcon" size="30" />
-                    </S.SearchIcon>
-                </S.SearchBar>
+        {/* search */}
+        <S.SearchBar>
+          <input
+            type="text"
+            placeholder="검색할 내용을 입력하세요."
+            value={searchItem}
+            onChange={searchHandler}
+          ></input>
+          <S.SearchIcon>
+            <ImSearch className="searchIcon" size="30" />
+          </S.SearchIcon>
+        </S.SearchBar>
 
-                {/* sign Up / sign In */}
-                {isLogin ? (
-                    <S.Sign ref={outSection}>
-                        {/* ref 위치 확인하기 */}
-                        <li>
-                            <button 
-                            className="modal"
-                            onClick={()=> setIsModalOpen(!isModal)}> 
-                                마이페이지 
-                            </button>
-                        </li>
-                        {isModal === true ? (
-                            <li
-                            className="flexEnd"
-                            onClick={clickModalOutside}>
-                            <Modal/>
-                            </li>
-                            ) : null }
-                    </S.Sign>
-                ) : (
-                    <S.Sign>
-                        <li className="signIn"><Link to='/login'>로그인</Link></li>
-                        <li className="signUp"><Link to='/signup'>회원가입</Link></li>
-                    </S.Sign>
-                )}
-            </S.HeaderContainer>
-        </S.HeaderWrap>
-    )
-}
+        {/* sign Up / sign In */}
+        {isLogin ? (
+          <S.Sign ref={outSection}>
+            {/* ref 위치 확인하기 */}
+            <li>
+              <button
+                className="modal"
+                onClick={() => setIsModalOpen(!isModal)}
+              >
+                마이페이지
+              </button>
+            </li>
+            {isModal === true ? (
+              <li className="flexEnd" onClick={clickModalOutside}>
+                <Modal />
+              </li>
+            ) : null}
+          </S.Sign>
+        ) : (
+          <S.Sign>
+            <li className="signIn">
+              <Link to="/login">로그인</Link>
+            </li>
+            <li className="signUp">
+              <Link to="/signup">회원가입</Link>
+            </li>
+          </S.Sign>
+        )}
+      </S.HeaderContainer>
+    </S.HeaderWrap>
+  );
+};
 
 const Modal = () => {
-    // logout
-    // TODO: 일정 시간이 지나면 로그아웃 될 수 있도록 구현하기
-    const LogoutHandle = () => {
-        localStorage.clear();
-        window.location.reload()
-    }
+  const memberId = localStorage.getItem("memberId");
+  console.log(memberId);
+
+  const LogoutHandle = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
 
   return (
     <S.ModalContainer>
