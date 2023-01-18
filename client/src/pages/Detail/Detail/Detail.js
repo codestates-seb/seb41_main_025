@@ -10,13 +10,9 @@ import Comment from "../Comment/Comment";
 import axios from "axios";
 
 
-const token = localStorage.getItem("accessToken")
-console.log(token)
 const Detail = () => {
 
   const {contentId} = useParams()
-  const {recommendId} = useParams()
-  // console.log(params.data)
 
   const request = {
     method : "get",
@@ -24,47 +20,71 @@ const Detail = () => {
   }
 
   const [movies] = useFetch(`http://whatu1.kro.kr:8080/contents/${contentId}`,request)
-  // const [moviesRecommend] = useFetch(`http://whatu1.kro.kr:8080/contents/${contentId}/recommend`,request)
-  // const [recommend] = useFetch(`http://whatu1.kro.kr:8080/recommend/${recommendId}`,request)
-  // console.log(movies)
 
-  const [isrecommend, setIsRecommend] = useState(false)
-  // console.log(moviesRecommend)
-  const [isRecommendId, setIsRecommendId] = useState()
-  const [recommendCounts, setRecommendCounts] = useState(movies.recommendCount)
-  const [ischoice, setIsChoice] = useState(true)
-  const [isFavorite, setIsFavorite] = useState(true)
-  const [isdeprecate, setIsDeprecate] = useState(false)
-  const [deprecateCounts, setDeprecateCounts] = useState(movies.recommendCount)
+
+  const [isrecommend, setIsRecommend] = useState([
+    {
+      recommendId: 0,
+      memberId: 0,
+      contentId: 0,
+      recommendSelected : false,
+      recommendCount: 0,
+      createdAt: ""
+  }
+  ])
+  const [isrecommendId, setIsRecommendId] = useState()
+  console.log(isrecommendId)
+  const [recommendCounts, setRecommendCounts] = useState()
   
+  const [isdeprecate, setIsDeprecate] = useState('')
+  const [deprecateCounts, setDeprecateCounts] = useState()
+  
+  const [ischoice, setIsChoice] = useState('')
+  const [isFavorite, setIsFavorite] = useState('')
+
+
   //추천
   const handleRecommend = async () => {
-    await axios.post(`http://whatu1.kro.kr:8080/contents/${contentId}/recommend`,
+    await axios.post(`http://whatu1.kro.kr:8080/contents/${contentId}/recommend`,JSON.stringify({}),
       {
       headers: {
-        "Authorization": token,
-        }
-      })
-      .then (() => {
-        setIsRecommend(!isrecommend)
-        console.log("성공")
+        Authorization : localStorage.getItem("accessToken")
+      }
+    })
+      .then ((res) => {
+        setIsRecommend(res.data.data.recommendSelected)
+        setRecommendCounts(res.data.data.recommendCount + 1)
+        setIsRecommendId(res.data.data.recommendId)
+        console.log(res.data.data)
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  
-  //비추천
-  const handleDecommend = () => {
-    axios.post(`http://whatu1.kro.kr:8080/contents/${contentId}/deprecate`,
+      axios.get(`http://whatu1.kro.kr:8080/recommend/${isrecommendId}`,
       {
       headers: {
-        "Content-Type": 'application/json',
+        Authorization : localStorage.getItem("accessToken")
+      }
+    })
+      .then ((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  
+  //비추천
+  const handleDecommend = async () => {
+    await axios.post(`http://whatu1.kro.kr:8080/contents/${contentId}/deprecate`,JSON.stringify({}),
+      {
+      headers: {
         "Authorization": localStorage.getItem("accessToken"),
       }
       })
-      .then (() => {
-        setIsDeprecate(!isdeprecate)
+      .then ((res) => {
+        setIsDeprecate(res.data.data.deprecateSelected)
+        setDeprecateCounts(res.data.data.deprecateCount + 1)
       })
       .catch((err) => {
         console.log(err);
@@ -73,15 +93,15 @@ const Detail = () => {
           
   //찜하기
   const handleChoose = async () => {
-    await axios.post(`http://whatu1.kro.kr:8080/contents/${contentId}/choice`,
+    await axios.post(`http://whatu1.kro.kr:8080/contents/${contentId}/choice`,JSON.stringify({}),
       {
       headers: {
         "Content-Type": 'application/json',
         "Authorization": localStorage.getItem("accessToken")
         }
       })
-      .then (() => {
-        setIsRecommend(!isrecommend)
+      .then ((res) => {
+        setIsChoice(res.data.data.choiceSelected)
       })
       .catch((err) => {
         console.log(err);
@@ -90,15 +110,15 @@ const Detail = () => {
 
   //인생작
   const handleFavorite = () => {
-    axios.post(`http://whatu1.kro.kr:8080/contents/${contentId}/deprecate`,
+    axios.post(`http://whatu1.kro.kr:8080/contents/${contentId}/favorite`,JSON.stringify({}),
       {
       headers: {
         "Content-Type": 'application/json',
         "Authorization": localStorage.getItem("accessToken"),
       }
       })
-      .then (() => {
-        setIsRecommend(!isrecommend)
+      .then ((res) => {
+        setIsFavorite(res.data.data.favoriteSelected)
       })
       .catch((err) => {
         console.log(err);
