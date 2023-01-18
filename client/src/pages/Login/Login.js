@@ -59,16 +59,16 @@ const Login = () => {
         .then((res) => {
           store.dispatch(addToken(
             {
-              accessToken: res.headers.authorization, 
-              refreshToken: res.headers.refresh
+              accessToken: res.headers.authorization
             }
           ));
           store.dispatch(logIn());
           store.dispatch(addUser(res.data));
           localStorage.setItem("accessToken", res.headers.authorization)
           navigate('/')
-          localStorage.setItem("refreshToken", res.headers.refresh)
           localStorage.setItem("isLogin", true)
+          localStorage.setItem("user", res.data.memberId)
+          console.log(res)
           window.location.reload();
 
         })

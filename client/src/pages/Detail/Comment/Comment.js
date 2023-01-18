@@ -85,7 +85,7 @@ const Comment = () => {
   const moviecomment = comments.filter (comments => movies.contentId === comments.contentId)
 
     return (
-        <>
+      <>
         {moviecomment && moviecomment.length !== null ? (
           <S.DetailCommentList>
             { moviecomment && moviecomment.map(comment => (
@@ -102,8 +102,15 @@ const Comment = () => {
             <div className="content">{comment.commentBody}</div>
             <S.Buttons>
               {/* css 수정하기 */}
-                <S.InputButton defaultValue={comment.commentBody} onClick={() => oncommentEditHandler(comment.commentId)}>수정</S.InputButton>
-                <S.InputButton onClick={() => onCommentDeleteHandler(comment.commentId)}>삭제</S.InputButton>
+              <S.InputButton 
+                defaultValue={comment.commentBody}
+                onClick={() => oncommentEditHandler(comment.commentId)}>
+                  수정
+              </S.InputButton>
+              <S.InputButton
+                onClick={() => onCommentDeleteHandler(comment.commentId)}>
+                  삭제
+              </S.InputButton>
             </S.Buttons>
           </S.DetailCommentItem>
         ))}  
@@ -148,7 +155,7 @@ const Comment = () => {
           </S.Buttons>
         </S.DetailCommentList>
         )}
-        </>
+      </>
     )};
 
 export default Comment;
