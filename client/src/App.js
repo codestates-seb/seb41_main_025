@@ -46,7 +46,7 @@ function App() {
           <Route path="/alltimechat" element={<AllTimeChat />} />
           <Route path="/favorite" element={<FavoriteMovie />} />
           <Route path="/choose" element={<Choose />} />
-          <Route path='/mypage' element={<Mypage/>}/>
+          <Route exact path="/members/:memberId" element={<Mypage/>}/>
           <Route path="/recommend" element={<RecommendMovies />}/>
           <Route path="/contents/:contentId" element={<Detail />}/>
         </Routes>

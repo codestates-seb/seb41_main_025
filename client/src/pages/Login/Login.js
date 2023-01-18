@@ -57,6 +57,7 @@ const Login = () => {
         await axios
         .post("http://whatu1.kro.kr:8080/members/login", jsonData)
         .then((res) => {
+          // console.log(res.data.memberId);
           store.dispatch(addToken(
             {
               accessToken: res.headers.authorization, 
@@ -69,6 +70,7 @@ const Login = () => {
           console.log(res.headers)
           localStorage.setItem("refreshToken", res.headers.refresh)
           localStorage.setItem("isLogin", true)
+          localStorage.setItem("memberId", res.data.memberId)
           alert("로그인이 완료되었습니다!");
           window.location.reload();
 
