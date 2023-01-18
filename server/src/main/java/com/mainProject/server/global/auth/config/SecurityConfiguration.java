@@ -6,6 +6,7 @@ import com.mainProject.server.global.auth.filter.JwtVerificationFilter;
 import com.mainProject.server.global.auth.handler.*;
 import com.mainProject.server.global.auth.jwt.JwtTokenizer;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpMethod;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -52,12 +53,13 @@ public class SecurityConfiguration {
                 .accessDeniedHandler(new MemberAccessDeniedHandler())
                 .and()
                 .apply(new CustomFilterConfigurer())   // (1)
-                .and()
-                .logout().logoutUrl("/members/logout")
-                .logoutSuccessUrl("/members/login")
-                .logoutSuccessHandler(new MembersLogoutSuccessHandler())
-                .deleteCookies("JSESSIONID")
-                .addLogoutHandler(new MembersLogoutHandler())
+//                .and()
+//                .logout()
+////                .logoutUrl("/members/logout")
+////                .logoutSuccessUrl("/members/login")
+//                .logoutSuccessHandler(new MembersLogoutSuccessHandler())
+//                .deleteCookies("JSESSIONID")
+//                .addLogoutHandler(new MembersLogoutHandler())
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
                         .antMatchers(HttpMethod.POST, "/members/login").permitAll()
@@ -98,7 +100,7 @@ public class SecurityConfiguration {
         public void configure(HttpSecurity builder) throws Exception {  // (2-2)
             AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);  // (2-3)
 
-            JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer);
+            JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer, redisTemplate);
             jwtAuthenticationFilter.setFilterProcessesUrl("/members/login");          // (2-5)
             jwtAuthenticationFilter.setAuthenticationSuccessHandler(new MemberAuthenticationSuccessHandler());  // (3) 추가
             jwtAuthenticationFilter.setAuthenticationFailureHandler(new MemberAuthenticationFailureHandler());  // (4) 추가

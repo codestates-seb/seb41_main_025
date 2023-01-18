@@ -47,6 +47,54 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
+    public void reissue (MemberDto.Reissue reissue) {
+        // 1. Refresh Token 검증
+        if (!jwtTokenizer.validateToken(reissue.getRefreshToken())) {
+            throw new BusinessLogicException(ExceptionCode.REFRESH_TOKEN_NOT_ALLOW);
+        }
+        // 2. Access Token 에서 User email 을 가져옵니다.
+        Authentication authentication = jwtTokenizer.getAuthentication(reissue.getAccessToken());
+
+        // 3. Redis 에서 User email 을 기반으로 저장된 Refresh Token 값을 가져옵니다.
+        String refreshToken = (String)redisTemplate.opsForValue().get(authentication.getName());
+
+        // (추가) 로그아웃되어 Redis 에 RefreshToken 이 존재하지 않는 경우 처리
+        if(ObjectUtils.isEmpty(refreshToken)) {
+            throw new BusinessLogicException(ExceptionCode.REFRESH_TOKEN_NOT_FOUND);
+        }
+        if(!refreshToken.equals(reissue.getRefreshToken())){
+            throw new BusinessLogicException(ExceptionCode.REFRESH_TOKEN_NOT_EQUAL);
+        }
+
+        // 4. 새로운 토큰 생성
+        MemberDto.TokenInfo tokenInfo = jwtTokenizer.generateToken(authentication);
+
+        // 5. RefreshToken Redis 업데이트
+        redisTemplate.opsForValue()
+                .set(authentication.getName(), tokenInfo.getRefreshToken(), tokenInfo.getRefreshTokenExpirationTime(), TimeUnit.MILLISECONDS);
+    }
+    public void logout(MemberDto.Logout logout) {
+        // 1. Access Token 검증
+        log.info("## logout.getAccessToken = {}",logout.getAccessToken());
+
+        if (!jwtTokenizer.validateToken(logout.getAccessToken())) {
+            throw new BusinessLogicException(ExceptionCode.TOKEN_NOT_ALLOW);
+        }
+        // 2. Access Token 에서 User email 을 가져옵니다.
+        Authentication authentication = jwtTokenizer.getAuthentication(logout.getAccessToken());
+
+        // 3. Redis 에서 해당 User email 로 저장된 Refresh Token 이 있는지 여부를 확인 후 있을 경우 삭제합니다.
+        if (redisTemplate.opsForValue().get(authentication.getName()) != null) {
+            // Refresh Token 삭제
+            redisTemplate.delete(authentication.getName());
+        }
+
+        // 4. 해당 Access Token 유효시간 가지고 와서 BlackList 로 저장하기
+        Long expiration = jwtTokenizer.getExpiration(logout.getAccessToken());
+        redisTemplate.opsForValue()
+                .set(logout.getAccessToken(), "logout", expiration, TimeUnit.MILLISECONDS);
+    }
+
     public Member updateMember(Member member) {
         Member findMember = findVerifiedMember(member.getMemberId());
 

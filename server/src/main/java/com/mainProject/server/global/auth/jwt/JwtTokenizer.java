@@ -1,13 +1,18 @@
 package com.mainProject.server.global.auth.jwt;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwts;
+import com.mainProject.server.domain.member.dto.MemberDto;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.io.Encoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
@@ -17,15 +22,17 @@ import java.util.stream.Collectors;
 
 
 @Component
+@Slf4j
 public class JwtTokenizer {
     // (1)
+    private static final String AUTHORITIES_KEY = "roles";
     @Getter @Value("${jwt.key}")
     private String secretKey;
     @Getter @Value("${jwt.access-token-expiration-minutes}")
-    private int accessTokenExpirationMinutes;
+    private long accessTokenExpirationMinutes;
     @Getter @Value("${jwt.refresh-token-expiration-minutes}")
-    private int refreshTokenExpirationMinutes;
-
+    private long refreshTokenExpirationMinutes;
+    private Key key;
 
     // (2)
     public String encodeBase64SecretKey(String secretKey) {
@@ -36,7 +43,7 @@ public class JwtTokenizer {
     private Key getKeyFromBase64EncodedKey(String base64EncodedSecretKey) {
         byte[] keyBytes = Decoders.BASE64.decode(base64EncodedSecretKey);
         Key key = Keys.hmacShaKeyFor(keyBytes);
-
+        this.key = key;
         return key;
     }
 
@@ -98,6 +105,23 @@ public class JwtTokenizer {
 
         return expiration;
     }
+
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
+            return true;
+        } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
+            log.info("Invalid JWT Token", e);
+        } catch (ExpiredJwtException e) {
+            log.info("Expired JWT Token", e);
+        } catch (UnsupportedJwtException e) {
+            log.info("Unsupported JWT Token", e);
+        } catch (IllegalArgumentException e) {
+            log.info("JWT claims string is empty.", e);
+        }
+        return false;
+    }
+
     private Claims parseToken(String token) {
         Key key = getKeyFromBase64EncodedKey(encodeBase64SecretKey(this.secretKey));
         String jws = token.replace("Bearer ", "");
@@ -107,6 +131,67 @@ public class JwtTokenizer {
                 .build()
                 .parseClaimsJws(jws)
                 .getBody();
+    }
+
+    public Authentication getAuthentication(String accessToken) {
+        // 토큰 복호화
+        Claims claims = parseToken(accessToken);
+
+        if (claims.get(AUTHORITIES_KEY) == null) {
+            throw new RuntimeException("권한 정보가 없는 토큰입니다.");
+        }
+
+        // 클레임에서 권한 정보 가져오기
+        Collection<? extends GrantedAuthority> authorities =
+                Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(","))
+                        .map(SimpleGrantedAuthority::new)
+                        .collect(Collectors.toList());
+
+        log.info("## getSub={}",claims.getSubject());
+        log.info("## authorities={}",authorities.toString());
+
+        // UserDetails 객체를 만들어서 Authentication 리턴
+        UserDetails principal = new User(claims.getSubject(), "", authorities);
+        return new UsernamePasswordAuthenticationToken(principal, "", authorities);
+    }
+
+    // 유저 정보를 가지고 AccessToken, RefreshToken 을 생성하는 메서드
+    public MemberDto.TokenInfo generateToken(Authentication authentication) {
+        // 권한 가져오기
+        String authorities = authentication.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.joining(","));
+
+        long now = (new Date()).getTime();
+        // Access Token 생성
+        Date accessTokenExpiresIn = new Date(now + accessTokenExpirationMinutes);
+        String accessToken = Jwts.builder()
+                .setSubject(authentication.getName())
+                .claim(AUTHORITIES_KEY, authorities)
+                .setExpiration(accessTokenExpiresIn)
+                .signWith(key, SignatureAlgorithm.HS256)
+                .compact();
+
+        // Refresh Token 생성
+        String refreshToken = Jwts.builder()
+                .setExpiration(new Date(now + refreshTokenExpirationMinutes))
+                .signWith(key, SignatureAlgorithm.HS256)
+                .compact();
+
+        return MemberDto.TokenInfo.builder()
+                .grantType("bearer")
+                .accessToken(accessToken)
+                .refreshToken(refreshToken)
+                .refreshTokenExpirationTime(refreshTokenExpirationMinutes)
+                .build();
+    }
+
+    public Long getExpiration(String accessToken) {
+        // accessToken 남은 유효시간
+        Date expiration = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(accessToken).getBody().getExpiration();
+        // 현재 시간
+        Long now = new Date().getTime();
+        return (expiration.getTime() - now);
     }
 
     /*public Long getMemberId(String token) {

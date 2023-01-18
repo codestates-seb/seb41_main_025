@@ -19,6 +19,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.util.List;
 
@@ -36,12 +37,26 @@ public class MemberController {
 
     // TODO POST
     @PostMapping
-    public  ResponseEntity postMember(@RequestBody MemberDto.Post postRequest){
+    public  ResponseEntity postMember(@Valid @RequestBody MemberDto.Post postRequest){
         Member memberForService = mapper.memberPostToMember(postRequest);
         Member memberForResponse = memberService.createMember(memberForService);
         MemberDto.Response response = mapper.memberToMemberResponse(memberForResponse);
 
         return new ResponseEntity(new SingleResponseDto<>(response), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/reissue")
+    public ResponseEntity reissue(@Valid @RequestBody MemberDto.Reissue reissue) {
+        // validation check
+        memberService.reissue(reissue);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(@Valid @RequestBody MemberDto.Logout logout) {
+        // validation check
+        memberService.logout(logout);
+        return new ResponseEntity<>("/members/login",HttpStatus.OK);
     }
 
     // TODO PATCH
@@ -86,7 +101,7 @@ public class MemberController {
 
 
     @PostMapping("prevModify")
-    public String postPrevModify(@RequestParam String pw, RedirectAttributes rttr) {
+    public String postPrevModify(@Valid @RequestParam String pw, RedirectAttributes rttr) {
         String memberpw = memberService.getCurrentMember().getPassword();
         log.info("# memberpw = {}", memberpw);
         log.info("# pw = {}", pw);
