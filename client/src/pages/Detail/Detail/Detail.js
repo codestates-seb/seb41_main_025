@@ -67,6 +67,7 @@ const Detail = () => {
       decommend === true ? Number(decommendCounts) + 1 : decommendCounts
     );
   };
+  
   const handleFavorite = () => {
     const updateRequest = {
       method: "POST",
