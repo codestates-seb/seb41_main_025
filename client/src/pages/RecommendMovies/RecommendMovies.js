@@ -3,52 +3,72 @@ import { MainWarp, MainContainer } from "../Main/styled";
 import { Items, Title } from "../FavoriteMovie/styled";
 import SeleteItem from "../../components/item/SelectItem/SeleteItem" 
 import { useState } from "react";
-import useFetch from "../../components/util/useFetch";
-import { useParams } from "react-router-dom";
+import axios from "axios";
+import Deprecate from "./Deprecate/Deprecate";
+import Recommend from "./Recommend/Recommend";
 
 
 const RecommendMovies = () => {
-    const {memberId} = useParams()
-  // console.log(params.data)
 
-  const request = {
-    method : "get",
-    headers : {
-        "Authorization" : localStorage.getItem("accessToken")
-    }
-  }
+    const memberId = localStorage.getItem("memberId");
+    const [nickName, setNickName] = useState("")
 
-    const [member] = useFetch(`http://whatu1.kro.kr:8080/members/${memberId}`, request)
-    console.log(member)
+    axios
+      .get(`http://whatu1.kro.kr:8080/members/${memberId}`,
+      {
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+          Accept: "application/json",
+          "AutHorization" : localStorage.getItem("accessToken"),
+        },
+      })
+      .then((res) => {
+        setNickName(res.data.data.nickName);
+        console.log(nickName)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-    const [state, SetState] = useState(true);
+
+    // const [state, SetState] = useState(true);
     // const moviecomment = comments.filter (comments => movies.contentId === comments.contentId)
-    const ButtonHandleClick = () => {
-        SetState(!state);
-    }
+    // const ButtonHandleClick = () => {
+    //     SetState(!state);
+    // }
+    const [currentTab, setCurrentTab] = useState(0);
 
+    const selectMenuHandler = (idx) => {
+      setCurrentTab(idx);
+      console.log(idx)
+    };
+  
+    const tabList = [
+      { name: "추천한 작품", content: <Recommend /> },
+      { name: "비추천한 작품", content: <Deprecate /> },
+    ];
+  
     return (
         <MainWarp>
             <MainContainer>
                 <Title style={{"marginBottom" : 0}}>
-                    <span>{member.nicName}님이 </span><br/>
-                    <span className="title">추천/비추천 한 작품</span>
+                    <S.RecommendDiv>
+                        <S.TitleDiv>
+                            <span className="title">"{nickName}"님이 <br/><br/></span>
+                        </S.TitleDiv>
+                        <S.ButtonDiv>
+                        {tabList.map((el, idx) => (
+                        <li
+                            className={idx === currentTab ? "active" : ""}
+                            onClick={() => selectMenuHandler(idx)}
+                        >
+                        {el.name}
+                        </li>
+                        ))}
+                        </S.ButtonDiv>
+                        <S.CommentItem>{tabList[currentTab].content}</S.CommentItem>
+                    </S.RecommendDiv>
                 </Title>
-                <S.RecommendButton onClick={ButtonHandleClick}>{state ? "내가 추천한 작품" : " 내가 비 추천한 작품" }</S.RecommendButton>
-                {state ? (
-                    <Items>
-                        {/*TODO: 추천 값이 true인 것들을 filter 해서 뿌려주기 */}
-                        <SeleteItem />
-                        <SeleteItem />
-                        <SeleteItem />
-                    </Items>
-                ) : (
-                    <Items>
-                        {/*TODO: 추천 값이 true인 것들을 filter 해서 뿌려주기 */}
-                        <SeleteItem />
-                        <SeleteItem />
-                    </Items>
-                )}
             </MainContainer>
         </MainWarp>
     )
