@@ -1,13 +1,11 @@
 package com.mainProject.server.domain.member.dto;
 
 import com.mainProject.server.global.validator.NotSpace;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
 public class MemberDto {
@@ -26,6 +24,36 @@ public class MemberDto {
         private String nickName;
         private String memberPicture;
     }
+    @Builder
+    @Getter
+    @AllArgsConstructor
+    public static class TokenInfo {
+        private String grantType;
+        private String accessToken;
+        private String refreshToken;
+        private Long refreshTokenExpirationTime;
+    }
+
+    @Getter
+    @Setter
+    public static class Reissue {
+        @NotEmpty(message = "accessToken 을 입력해주세요.")
+        private String accessToken;
+
+        @NotEmpty(message = "refreshToken 을 입력해주세요.")
+        private String refreshToken;
+    }
+
+    @Getter
+    @Setter
+    public static class Logout {
+        @NotEmpty(message = "잘못된 요청입니다.")
+        private String accessToken;
+
+        @NotEmpty(message = "잘못된 요청입니다.")
+        private String refreshToken;
+    }
+
     @AllArgsConstructor
     @Setter
     @Getter

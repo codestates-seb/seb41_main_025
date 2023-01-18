@@ -3,6 +3,7 @@ package com.mainProject.server.domain.member.service;
 import com.mainProject.server.domain.member.entity.Member;
 import com.mainProject.server.domain.member.repository.MemberRepository;
 import com.mainProject.server.global.auth.authority.CustomAuthorityUtils;
+import com.mainProject.server.global.auth.jwt.JwtTokenizer;
 import com.mainProject.server.global.exception.BusinessLogicException;
 import com.mainProject.server.global.exception.ExceptionCode;
 import com.mainProject.server.global.utils.CustomBeanUtils;
@@ -31,6 +32,9 @@ public class MemberService {
 
     private final PasswordEncoder passwordEncoder;
     private final CustomAuthorityUtils authorityUtils;
+    private final JwtTokenizer jwtTokenizer;
+    private final RedisTemplate redisTemplate;
+
 
     public Member createMember(Member member) {
         verifyExistsEmail(member.getEmail());
