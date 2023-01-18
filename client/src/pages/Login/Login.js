@@ -60,15 +60,13 @@ const Login = () => {
           // console.log(res.data.memberId);
           store.dispatch(addToken(
             {
-              accessToken: res.headers.authorization, 
-              refreshToken: res.headers.refresh
+              accessToken: res.headers.authorization
             }
           ));
           store.dispatch(logIn());
           store.dispatch(addUser(res.data));
           localStorage.setItem("accessToken", res.headers.authorization)
-          console.log(res.headers)
-          localStorage.setItem("refreshToken", res.headers.refresh)
+          navigate('/')
           localStorage.setItem("isLogin", true)
           localStorage.setItem("memberId", res.data.memberId)
           alert("로그인이 완료되었습니다!");
@@ -81,7 +79,8 @@ const Login = () => {
           window.location.reload();
         })
       }
-    
+      
+    //   enter 키 눌러도 login 함수 실행
       const handleKeypress = e => {
         if (e.keyCode === 13) {
           Login();

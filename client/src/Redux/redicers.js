@@ -1,20 +1,29 @@
-import { ADD_TOKEN, ADD_USER, DELETE_TOKEN, LOGGED_FALSE, LOGGED_TRUE } from './action'
+import { 
+    ADD_TOKEN, 
+    ADD_USER, 
+    DELETE_TOKEN, 
+    LOGGED_FALSE, 
+    LOGGED_TRUE, 
+    RECOMMEND_STATE, 
+    DEPRECATE_STATE,
+    CHOICE_STATE,
+    FAVORITE_STATE } from './action'
 
 // 현재 상태와 액션 객체를 받아 새로운 상태를 리턴하는 함수
-const AuthState = { tokens: {}, user: {}, isLogin: false }
+const initialState = { tokens: {}, user: {}, isLogin: false, isRecommend:false, isFavorite:false, isChoice:false, isDeprecate:false  }
 
-export const AuthReducer = (state = AuthState, action) => {
+export const Reducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_TOKEN:
             return {
                 ...state, 
-                tokens: {accessToken: action.payload.accessToken, refreshToken: action.payload.refreshToken}
+                tokens: {accessToken: action.payload.accessToken}
             }
 
         case DELETE_TOKEN:
             return {
                 ...state, 
-                tokens: {accessToken: null, refreshToken: null}
+                tokens: {accessToken: null}
             }
 
         case LOGGED_TRUE:
@@ -34,8 +43,33 @@ export const AuthReducer = (state = AuthState, action) => {
                 ...state,
                 user: action.payload
             }
+            
+        case RECOMMEND_STATE: 
+            return {
+                ...state,
+                isRecommend : state.isRecommend
+            }
+
+        case DEPRECATE_STATE: 
+            return {
+                ...state,
+                isDeprecate: state.isDeprecate
+            }
+
+        case CHOICE_STATE: 
+            return {
+                ...state,
+                ischoice : state.isChoice
+            }
+
+        case FAVORITE_STATE: 
+            return {
+                ...state,
+                isFavorite : state.isFavorite
+            }
+
 
         default:
-            return AuthState;
+            return initialState;
     }
 }
