@@ -8,37 +8,80 @@ import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 
 public class MemberDto {
-    @AllArgsConstructor
-    @NoArgsConstructor
-    @Setter
-    @Getter
+    @AllArgsConstructor @NoArgsConstructor @Setter @Getter
     public static class Post {
-        @NotBlank
-        @Email
+        @NotEmpty(message = "이메일은 필수 입력값입니다.")
+        @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,6}$", message = "이메일 형식에 맞지 않습니다.")
         private String email;
-        @NotBlank
+
+        @NotEmpty(message = "비밀번호는 필수 입력값입니다.")
+        @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\\d~!@#$%^&*()+|=]{8,16}$", message = "비밀번호는 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.")
         private String password;
+
         @NotBlank(message = "회원 이름은 공백이 아니어야 합니다.")
         private String name;
         private String nickName;
         private String memberPicture;
     }
-    @AllArgsConstructor
-    @Setter
+
+    @Getter @Setter
+    public static class Login {
+        @NotEmpty(message = "이메일은 필수 입력값입니다.")
+        @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,6}$", message = "이메일 형식에 맞지 않습니다.")
+        private String email;
+
+        @NotEmpty(message = "비밀번호는 필수 입력값입니다.")
+        @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\\d~!@#$%^&*()+|=]{8,16}$", message = "비밀번호는 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.")
+        private String password;
+
+//        public UsernamePasswordAuthenticationToken toAuthentication() {
+//            return new UsernamePasswordAuthenticationToken(email, password);
+//        }
+    }
+
+    @Builder
     @Getter
+    @AllArgsConstructor
+    public static class TokenInfo {
+        private String grantType;
+        private String accessToken;
+        private String refreshToken;
+        private Long refreshTokenExpirationTime;
+    }
+
+    @Getter
+    @Setter
+    public static class Reissue {
+        @NotEmpty(message = "accessToken 을 입력해주세요.")
+        private String accessToken;
+
+        @NotEmpty(message = "refreshToken 을 입력해주세요.")
+        private String refreshToken;
+    }
+
+    @Getter
+    @Setter
+    public static class Logout {
+        @NotEmpty(message = "잘못된 요청입니다.")
+        private String accessToken;
+
+        @NotEmpty(message = "잘못된 요청입니다.")
+        private String refreshToken;
+    }
+
+    @AllArgsConstructor @Setter @Getter
     public static class Patch {
 
         @NotSpace(message = "회원 이름은 공백이 아니어야 합니다")
         private String name;
         private String password;
+
         private String memberPicture;
+
         private String nickName;
 
     }
-    @AllArgsConstructor
-    @NoArgsConstructor
-    @Getter
-    @Setter
+    @AllArgsConstructor @NoArgsConstructor @Getter @Setter
     public static class Response {
         private Long memberId;
         private String email;

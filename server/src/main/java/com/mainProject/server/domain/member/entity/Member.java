@@ -8,6 +8,7 @@ import com.mainProject.server.domain.recommend.entity.Recommend;
 import com.mainProject.server.domain.choice.entity.Choice;
 import com.mainProject.server.global.audit.Auditable;
 import lombok.*;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -67,6 +68,10 @@ public class Member extends Auditable implements UserDetails {
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Favorite> favoriteList = new ArrayList<>();
+
+    public UsernamePasswordAuthenticationToken toAuthentication() {
+        return new UsernamePasswordAuthenticationToken(email, password);
+    }
 
 
     @Override

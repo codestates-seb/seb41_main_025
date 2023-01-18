@@ -28,13 +28,35 @@ public class MemberController {
     private final MemberMapper mapper;
 
     // TODO POST
-    @PostMapping
-    public  ResponseEntity postMember(@RequestBody MemberDto.Post postRequest){
+    @PostMapping("/sign-up")
+    public  ResponseEntity postMember(@RequestBody MemberDto.Post postRequest) {
         Member memberForService = mapper.memberPostToMember(postRequest);
         Member memberForResponse = memberService.createMember(memberForService);
         MemberDto.Response response = mapper.memberToMemberResponse(memberForResponse);
 
         return new ResponseEntity(new SingleResponseDto<>(response), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity login(@RequestBody MemberDto.Login login) {
+        Member member = mapper.memberLoginToMember(login);
+
+        memberService.loginMember(member);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/reissue")
+    public ResponseEntity reissue(@RequestBody MemberDto.Reissue reissue) {
+        // validation check
+            memberService.reissue(reissue);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(@RequestBody MemberDto.Logout logout) {
+        // validation check
+        memberService.logout(logout);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     // TODO PATCH

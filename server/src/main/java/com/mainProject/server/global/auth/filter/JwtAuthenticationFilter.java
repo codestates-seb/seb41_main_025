@@ -22,6 +22,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Slf4j
@@ -36,8 +37,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     private static final String AUTHORIZATION_HEADER = "Authorization";
     private static final String BEARER_TYPE = "Bearer";
 
-    private final JwtTokenProvider jwtTokenProvider;
-    private final RedisTemplate redisTemplate;
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -57,15 +56,74 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         }
         chain.doFilter(request, response);
     }
+    //(3)
+    @SneakyThrows
+    @Override
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {//(3-1)
+        //(3-2)
+        ObjectMapper objectMapper = new ObjectMapper();
+        MemberDto.Login loginDto = objectMapper.readValue(request.getInputStream(), MemberDto.Login.class);
+
+        log.info("loginDto email ={}", loginDto.getEmail());
+        log.info("loginDto pw ={}", loginDto.getPassword());
+        //(3-3)
+        UsernamePasswordAuthenticationToken authenticationToken =
+                new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword());
+
+        return authenticationManager.authenticate(authenticationToken);
+    }
+    @Override
+    protected void successfulAuthentication(HttpServletRequest request,
+                                            HttpServletResponse response,
+                                            FilterChain chain,
+                                            Authentication authResult) {
+        Member member = (Member) authResult.getPrincipal();  // (4-1)
+        log.info("member = {}", member);
+
+
+//        String accessToken = delegateAccessToken(member);   // (4-2)
+//        String refreshToken = delegateRefreshToken(member); // (4-3)
+
+//        response.setHeader("Authorization", "Bearer " + accessToken);  // (4-4)
+//        response.setHeader("Refresh", refreshToken);                   // (4-5)
+    }
+//    // (5)
+//    private String delegateAccessToken(Member member) {
+//        Map<String, Object> claims = new HashMap<>();
+//        claims.put("username", member.getEmail());
+//        claims.put("roles", member.getRoles());
+//
+//        String subject = member.getEmail();
+//        long expiration = jwtTokenProvider.getACCESS_TOKEN_EXPIRE_TIME();
+//
+//        String base64EncodedSecretKey = jwtTokenProvider.encodeBase64SecretKey(jwtTokenProvider.getSecretKey());
+//
+//        String accessToken = jwtTokenProvider.generateAccessToken(claims, subject, expiration, base64EncodedSecretKey);
+//
+//        return accessToken;
+//    }
+//
+//    // (6)
+//    private String delegateRefreshToken(Member member) {
+//        String subject = member.getEmail();
+//        Date expiration = jwtTokenProvider.getTokenExpiration(jwtTokenProvider.getRefreshTokenExpirationMinutes());
+//        String base64EncodedSecretKey = jwtTokenProvider.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
+//
+//        String refreshToken = jwtTokenProvider.generateRefreshToken(subject, expiration, base64EncodedSecretKey);
+//
+//        return refreshToken;
+//    }
 
     // Request Header 에서 토큰 정보 추출
     private String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader(AUTHORIZATION_HEADER);
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(BEARER_TYPE)) {
-            return bearerToken.substring(7);
+            log.info("## token is what ={}",bearerToken.split(" ")[1].trim());
+            return bearerToken.split(" ")[1].trim();
         }
         return null;
     }
+
 }
 
 /*

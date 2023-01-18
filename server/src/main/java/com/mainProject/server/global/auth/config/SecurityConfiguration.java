@@ -29,6 +29,7 @@ public class SecurityConfiguration {
 
     private final JwtTokenProvider jwtTokenProvider;
     private final RedisTemplate redisTemplate;
+    private final AuthenticationManager authenticationManager;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -40,34 +41,32 @@ public class SecurityConfiguration {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .formLogin().disable()
-                .httpBasic().disable()
-                .exceptionHandling()
-                .authenticationEntryPoint(new MemberAuthenticationEntryPoint())
-                .accessDeniedHandler(new MemberAccessDeniedHandler())
-//                .and()
-//                .apply(new CustomFilterConfigurer())   // (1)
+//                .httpBasic().disable()
+//                .exceptionHandling()
+//                .authenticationEntryPoint(new MemberAuthenticationEntryPoint())
+//                .accessDeniedHandler(new MemberAccessDeniedHandler())
+////                .and()
+                .apply(new CustomFilterConfigurer())   // (1)
                 .and()
-                /*.logout().logoutUrl("/members/logout")
-                .logoutSuccessUrl("/members/login")
-                .logoutSuccessHandler(new MembersLogoutSuccessHandler())
-                .deleteCookies("JSESSIONID")
-                .addLogoutHandler(new MembersLogoutHandler())*/
-                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider, redisTemplate), UsernamePasswordAuthenticationFilter.class)
+//                /*.logout().logoutUrl("/members/logout")
+//                .logoutSuccessUrl("/members/login")
+//                .logoutSuccessHandler(new MembersLogoutSuccessHandler())
+//                .deleteCookies("JSESSIONID")
+//                .addLogoutHandler(new MembersLogoutHandler())*/
+//                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider, redisTemplate,authenticationManager ), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(authorize -> authorize
-                        .antMatchers(HttpMethod.POST, "/members/login").permitAll()
-                        .antMatchers(HttpMethod.POST, "/members").permitAll()
+                        // 회원 관련 권한
                         .antMatchers(HttpMethod.PATCH, "/members/*").hasRole("USER")
                         .antMatchers(HttpMethod.GET, "/members").hasRole("ADMIN")
                         .antMatchers(HttpMethod.GET, "/members/*").hasAnyRole("USER")
                         .antMatchers(HttpMethod.DELETE, "/members/*").hasRole("USER")
+                        // 컨텐츠 관련 권한
                         .antMatchers(HttpMethod.GET, "/crawlings/contents").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.GET, "/contents/*").permitAll()
-                        .antMatchers(HttpMethod.GET, "/contents").permitAll()
                         .antMatchers(HttpMethod.DELETE, "/contents/*").hasRole("ADMIN")
                         .antMatchers(HttpMethod.POST, "/comments/**").hasRole("USER")
                         .antMatchers(HttpMethod.PATCH, "/contents/*/comments/*").hasRole("USER")
-                        .antMatchers(HttpMethod.GET, "/comments/**").permitAll() //전체 조회가 되는지 확인
                         .antMatchers(HttpMethod.DELETE, "/comments/*").hasRole("USER")
+                        // 찜하기, 인생작, 추천, 비추천 권한
                         .antMatchers(HttpMethod.POST, "/comments/*/choice").hasRole("USER")
                         .antMatchers(HttpMethod.GET, "/choice/**").hasRole("USER")
                         .antMatchers(HttpMethod.POST, "/comments/*/favorite").hasRole("USER")
@@ -76,7 +75,6 @@ public class SecurityConfiguration {
                         .antMatchers(HttpMethod.GET, "/deprecate/**").hasRole("USER")
                         .antMatchers(HttpMethod.POST, "/comments/*/recommend").hasRole("USER")
                         .antMatchers(HttpMethod.GET, "/recommend/**").hasRole("USER")
-
                         .anyRequest().permitAll()
                 );
         return http.build();
@@ -97,11 +95,11 @@ public class SecurityConfiguration {
             jwtAuthenticationFilter.setAuthenticationSuccessHandler(new MemberAuthenticationSuccessHandler());  // (3) 추가
             jwtAuthenticationFilter.setAuthenticationFailureHandler(new MemberAuthenticationFailureHandler());  // (4) 추가
 
-            JwtVerificationFilter jwtVerificationFilter = new JwtVerificationFilter(jwtTokenizer, authorityUtils);  // (2) 추가
+//            JwtVerificationFilter jwtVerificationFilter = new JwtVerificationFilter(jwtTokenizer, authorityUtils);  // (2) 추가
 
             builder
-                    .addFilter(jwtAuthenticationFilter)
-                    .addFilterAfter(jwtVerificationFilter, JwtAuthenticationFilter.class);   // (3)추가 차후 수정
+                    .addFilter(jwtAuthenticationFilter);
+//                    .addFilterAfter(jwtVerificationFilter, JwtAuthenticationFilter.class);   // (3)추가 차후 수정
         }
     }
 }
