@@ -24,7 +24,11 @@ public enum ExceptionCode {
     RECOMMEND_NOT_FOUND(404, "Member not found"),
     DEPRECATE_NOT_FOUND(404, "Member not found"),
     FAVORITE_NOT_FOUND(404, "Member not found"),
-    CHOICE_NOT_FOUND(404, "Member not found");
+    CHOICE_NOT_FOUND(404, "Member not found"),
+    TOKEN_NOT_ALLOW(404, "Token not allow"),
+    REFRESH_TOKEN_NOT_FOUND(404, "Refresh token not found"),
+    REFRESH_TOKEN_NOT_EQUAL(404, "Refresh token doesn't equal"),
+    REFRESH_TOKEN_NOT_ALLOW(404, "Token not allow");
 
     @Getter
     private int status;
