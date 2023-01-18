@@ -4,32 +4,9 @@ import ModalBasic from "../ModalBasic/ModalBasic";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const Mypage = () => {
+const Mypage = (props) => {
   const [info, setInfo] = useState([]);
   const [pwd, setPwd] = useState([]);
-
-  const { memberId } = useParams();
-  console.log(memberId)
-
-  // const request = {
-  //   method : "get",
-  //   headers : {"Content-Type" : "application/json"}
-  // }
-
-  // const userinfo = useFetch(`http://whatu1.kro.kr:8080/members/${memberId}`, request);
-  // console.log(userinfo)
-
-  // useEffect(() => {
-  // axios
-  //   .get(`http://whatu1.kro.kr:8080/members/${memberId}`,{
-  //   })
-  //   .then((res) => {
-  //     setInfo(res.data)
-  //     console.log(res.data);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
 
   const token = localStorage.getItem("accessToken");
   console.log(token);
@@ -38,11 +15,17 @@ const Mypage = () => {
   //* 비밀번호 확인 로직
   // todo: 이미지에 hover 했을 때 이미지 변경 되게 수정
 
+  const memberId = localStorage.getItem("memberId");
+  console.log(memberId);
+
   useEffect(() => {
     axios
-      .get(`http://whatu1.kro.kr:8080/members/19`, {
+      .get(`http://whatu1.kro.kr:8080/members/${memberId}`,
+      {
         headers: {
-          Authorization: token,
+          "Content-Type": "application/json;charset=UTF-8",
+          Accept: "application/json",
+          "AutHorization" : localStorage.getItem("accessToken"),
         },
       })
       .then((res) => {
