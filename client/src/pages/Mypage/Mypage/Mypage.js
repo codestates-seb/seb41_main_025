@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import * as S from "./styled";
 import ModalBasic from "../ModalBasic/ModalBasic";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Mypage = (props) => {
   const [info, setInfo] = useState([]);
@@ -65,6 +65,29 @@ const Mypage = (props) => {
 
   // 이미지 클릭해서 수정
   const fileInput = useRef();
+  const navigate = useNavigate()
+
+  // 회원 탈퇴
+  // TODO: 정말 회원 탈퇴를 진행하시겠습니까? 알림창 띄우기
+  const deleteMember = async() => {
+    await axios({
+      method: "DELETE",
+      url: `http://whatu1.kro.kr:8080/members/${memberId}`,
+      headers: {
+          "Authorization": localStorage.getItem("accessToken"),
+      },
+      }).then(data => {
+        alert("회원탈퇴 되었습니다")
+      })
+      .catch(err => {
+          console.log("err")
+          return
+      })
+  localStorage.clear();
+  window.location.reload();
+  navigate(`/`);
+  window.location.reload();
+  }
 
   return (
     <S.MypageDiv>
@@ -147,7 +170,7 @@ const Mypage = (props) => {
         </S.SaveBtn>
       </S.FormStyle>
 
-      <S.DeleteBtn type="submit" value="저장">
+      <S.DeleteBtn type="submit" value="저장" onClick={deleteMember}>
         회원탈퇴
       </S.DeleteBtn>
     </S.MypageDiv>

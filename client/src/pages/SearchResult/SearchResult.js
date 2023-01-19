@@ -1,3 +1,4 @@
+import { useState } from "react";
 import * as S from "./styled";
 import Item from "../../components/item/Item/item";
 import useFetch from "../../components/util/useFetch";

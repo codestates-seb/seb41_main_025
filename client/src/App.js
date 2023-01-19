@@ -39,7 +39,6 @@ function App() {
     setSearchResult(result);
   }
 
-  console.log(searchResult);
   return (
     <Home>
       <GlobalStyle />

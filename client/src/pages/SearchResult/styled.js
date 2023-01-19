@@ -5,7 +5,7 @@ export const Wrap = styled.div`
   padding-top: 60px;
 
   .active {
-    height:100vh
+    height:100vh;
   }
 `
 

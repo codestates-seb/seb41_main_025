@@ -133,6 +133,8 @@ const Detail = () => {
     }
     // FIXME : recommendCounts 가 number 로 따로 변환해 줘야 함         
           
+    let isLogin = localStorage.getItem("isLogin");
+
   return (
     <S.DetailContainer>
       <S.DetailHeader>
@@ -159,6 +161,7 @@ const Detail = () => {
               </div>
             </div>
           </>
+          {isLogin? (
           <S.DetailItem>
             {/*아이콘 박스*/}
             <div className="itemIcon" onClick={handleRecommend}>
@@ -187,7 +190,7 @@ const Detail = () => {
               )}
               나의 인생 작품
             </div>
-          </S.DetailItem>
+          </S.DetailItem>) : null }
         </S.DetailContent>
         <ButtonForm to="/alltimechat">실시간 채팅</ButtonForm>
       </S.DetailHeader>
