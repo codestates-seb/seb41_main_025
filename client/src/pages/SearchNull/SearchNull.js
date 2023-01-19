@@ -17,7 +17,7 @@ const SearchNull = () => {
                 <S.Main>
                     <S.Window>
                         <S.Font>
-                            아쉽지만 '00000000'에 대한 결과가 없습니다 😢 <br/><br/> 다른 검색어를 입력해주세요 !
+                            아쉽지만 찾으시는 영화에 대한 결과가 없습니다 😢 <br/><br/> 다른 검색어를 입력해주세요 !
                             {/* 아쉽지만 '{value}'에 대한 결과가 없습니다 😢 <br/><br/> 다른 검색어를 입력해주세요 ! */}
                         </S.Font>
                         <img src ='/assets/Character.png' className='character' alt="" />

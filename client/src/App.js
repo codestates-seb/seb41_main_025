@@ -14,6 +14,7 @@ import Choose from "./pages/Choose/Choose";
 import Mypage from "./pages/Mypage/Mypage/Mypage";
 import RecommendMovies from "./pages/RecommendMovies/RecommendMovies";
 import Detail from "./pages/Detail/Detail/Detail";
+import { useState } from "react";
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -32,17 +33,23 @@ const Home = styled.div`
 `;
 
 function App() {
+  const [searchResult,setSearchResult] = useState('');
+
+  const getSearchResult = (result) => {
+    setSearchResult(result);
+  }
+
   return (
     <Home>
       <GlobalStyle />
       <BrowserRouter>
-        <Header />
+        <Header getSearchResult={getSearchResult}/>
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/searchFalse" element={<SearchNull />} />
-          <Route path="/searchResult" element={<SearchResult />} />
+          <Route path="/searchResult" element={<SearchResult searchResult={searchResult}/>} />
           <Route path="/alltimechat" element={<AllTimeChat />} />
           <Route path="/favorite" element={<FavoriteMovie />} />
           <Route path="/choose" element={<Choose />} />
