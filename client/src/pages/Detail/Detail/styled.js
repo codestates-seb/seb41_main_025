@@ -64,6 +64,7 @@ export const DetailItem = styled.div`
     justify-content: space-between;
     width: 100px;
     height: 80px;
+    cursor: pointer;
   }
   @media only screen and (max-width: ${"600px"}) {
   margin: 20px 0 20px 0;

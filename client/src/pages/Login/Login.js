@@ -47,7 +47,7 @@ const Login = () => {
     // }
     const Login = async (e) => {
         const jsonData = JSON.stringify(info);
-        e.preventDefault();
+        // e.preventDefault();
     
         if(info.email === '' || info.password === '') {
           alert("이메일이나 패스워드를 확인하세요");
@@ -82,7 +82,7 @@ const Login = () => {
       
     //   enter 키 눌러도 login 함수 실행
       const handleKeypress = e => {
-        if (e.keyCode === 13) {
+        if (e.key === "Enter") {
           Login();
         }
       };
@@ -101,9 +101,9 @@ const Login = () => {
                         <S.Whitebutton to = '/signUp'>Sign Up</S.Whitebutton>
                     </S.LogoFont>
                 </S.Front>
-                <S.ContentForm onKeyUp={e => handleKeypress(e)}>
+                <S.ContentForm>
                   <span className='LoginFont'>LOGIN</span> 
-                  <S.EnterContent>
+                  <S.EnterContent >
                     <S.Enter
                     type="text"
                     placeholder="Enter email"
@@ -119,6 +119,7 @@ const Login = () => {
                         ...info,
                         password:e.target.value
                     })}
+                    onKeyPress={handleKeypress}
                     />
                   </S.EnterContent>
                   {/* <S.Whitebutton to = '/' onClick={EnterButton}>Login</S.Whitebutton> */}

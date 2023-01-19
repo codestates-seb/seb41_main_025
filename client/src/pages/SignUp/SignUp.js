@@ -4,7 +4,7 @@ import {
   Main,
   // Window,
   Enter,
-  EnterContent,
+  // EnterContent,
   // Whitebutton,
   ContentForm,
 } from "../Login/styled";
@@ -178,7 +178,7 @@ const SignUp = () => {
         </S.Hello>
         <ContentForm>
           <span className="LoginFont">Sign Up</span>
-          <EnterContent>
+          <S.EnterContent>
             <Enter
               type="name"
               placeholder="이름을 입력해 주세요"
@@ -234,7 +234,7 @@ const SignUp = () => {
             >
               Sign Up
             </S.SignUpButton>
-          </EnterContent>
+          </S.EnterContent>
         </ContentForm>
       </S.WindowDiv>
     </Main>
