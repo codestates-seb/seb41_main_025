@@ -42,5 +42,6 @@ public class CommentDto {
         private String nickName;
         private String memberPicture;
         private Long contentId;
+        private Long memberId;
     }
 }

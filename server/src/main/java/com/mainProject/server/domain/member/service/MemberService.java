@@ -19,6 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -109,6 +110,23 @@ public class MemberService {
 // 오 뭔가 눌렀는데 오류가 잠깐 사라진거 같아요
         return memberRepository.save(updateMember);
     }
+
+    public String prevModify(String memberpw,
+                             MemberDto.PrevModify prevModify,
+                             RedirectAttributes rttr) {
+
+        String pw = prevModify.getPassword();
+
+        if(passwordEncoder.matches(pw, memberpw)) {
+            log.info("pw 재확인 완료..");
+            return "/members/"+getCurrentMember().getMemberId();
+        }
+        else {
+            rttr.addFlashAttribute("msg", "비밀번호를 다시 확인해 주세요.");
+            return "/members/prevModify";
+        }
+    }
+
 
     public Member findMember(long memberId) {
         return findVerifiedMember(memberId);

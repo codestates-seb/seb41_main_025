@@ -15,7 +15,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -72,8 +74,12 @@ public class FavoriteService {
             return new Favorite();
         }
     }
-    public Favorite findFavorite(long favoriteId){
-        return findVerifiedFavorite(favoriteId);
+    public List<Favorite> findFavorites(long memberId){
+
+        return favoriteRepository.findAll().stream()
+                .filter(favorite -> favorite.getMember().getMemberId() == memberId)
+                .filter( x -> x.getFavoriteSelected() == Boolean.TRUE)
+                .collect(Collectors.toList());
     }
 
     public Favorite findVerifiedFavorite(long favoriteId){

@@ -29,6 +29,7 @@ public interface CommentMapper {
                 .nickName(comment.getMember().getNickName())
                 .memberPicture(comment.getMember().getMemberPicture())
                 .contentId(comment.getContent().getContentId())
+                .memberId(comment.getMember().getMemberId())
                 .build();
 
         return response;
