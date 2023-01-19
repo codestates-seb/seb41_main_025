@@ -6,6 +6,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface FavoriteMapper {
@@ -21,5 +23,13 @@ public interface FavoriteMapper {
                 .build();
 
         return responseDto;
+    }
+
+    default List<FavoriteResponseDto> favoritesTofavoriteResponseDtos(List<Favorite> favoriteList) {
+        List<FavoriteResponseDto> response = favoriteList.stream()
+                .map(favorite -> favoriteTofavoriteResponseDto(favorite))
+                .collect(Collectors.toList());
+
+        return response;
     }
 }

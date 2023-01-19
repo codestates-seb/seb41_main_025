@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping
@@ -31,9 +33,10 @@ public class FavoriteController {
         return new ResponseEntity<>(new SingleResponseDto<>(mapper.favoriteTofavoriteResponseDto(favorite)), HttpStatus.OK);
     }
 
-    @GetMapping("/favorite/{favorite-id}")
-    public ResponseEntity getFavorite( @PathVariable("favorite-id") long favoriteId){
-        Favorite favorite = favoriteService.findFavorite(favoriteId);
-        return new ResponseEntity(new SingleResponseDto<>(mapper.favoriteTofavoriteResponseDto(favorite)), HttpStatus.OK);
+    @GetMapping("/members/{member-id}/favorite")
+    public ResponseEntity getFavorite( @PathVariable("member-id") long memberId){
+        List<Favorite> favoriteList = favoriteService.findFavorites(memberId);
+
+        return new ResponseEntity(new SingleResponseDto<>(mapper.favoritesTofavoriteResponseDtos(favoriteList)), HttpStatus.OK);
     }
 }

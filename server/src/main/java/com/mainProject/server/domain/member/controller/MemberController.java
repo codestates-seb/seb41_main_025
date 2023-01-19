@@ -32,9 +32,6 @@ public class MemberController {
     private final MemberService memberService;
     private final MemberMapper mapper;
 
-    @Autowired
-    private PasswordEncoder encoder;
-
     // TODO POST
     @PostMapping
     public  ResponseEntity postMember(@Valid @RequestBody MemberDto.Post postRequest){
@@ -101,21 +98,10 @@ public class MemberController {
 
 
     @PostMapping("prevModify")
-    public String postPrevModify(@Valid @RequestParam String pw, RedirectAttributes rttr) {
+    public String postPrevModify(@Valid @RequestBody MemberDto.PrevModify prevModify, RedirectAttributes rttr) {
         String memberpw = memberService.getCurrentMember().getPassword();
-        log.info("# memberpw = {}", memberpw);
-        log.info("# pw = {}", pw);
 
-//        if(encoder.matches(pw, memberpw)) {
-        if(encoder.matches(pw, memberpw)) {
-            log.info("pw 재확인 완료..");
-            return "/members/"+memberService.getCurrentMember().getMemberId();
-        }
-        else {
-            rttr.addFlashAttribute("msg", "비밀번호를 다시 확인해 주세요.");
-            return "/members/prevModify";
-        }
+        return memberService.prevModify(memberpw, prevModify, rttr);
+
     }
-
-
 }

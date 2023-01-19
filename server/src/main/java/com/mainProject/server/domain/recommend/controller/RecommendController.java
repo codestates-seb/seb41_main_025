@@ -15,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping
 @RequiredArgsConstructor
@@ -43,16 +45,15 @@ public class RecommendController {
         return new ResponseEntity(new SingleResponseDto<>(mapper.deprecateToDeprecateResponseDto(deprecate)), HttpStatus.OK);
     }
 
-    @GetMapping("/recommend/{recommend-id}")
-    public ResponseEntity getRecomend(@PathVariable("recommend-id") long recommendId){
-        Recommend recommend = recommendService.findRecommend(recommendId);
-        return new ResponseEntity(new SingleResponseDto<>(mapper.recommendToRecommendDto(recommend)), HttpStatus.OK);
+    @GetMapping("/members/{member-id}/recommend")
+    public ResponseEntity getRecomend(@PathVariable("member-id") long memberId){
+        List<Recommend> recommendList = recommendService.findRecommends(memberId);
+        return new ResponseEntity(new SingleResponseDto<>(mapper.recommendsToRecommendDtos(recommendList)), HttpStatus.OK);
     }
 
-    @GetMapping("/deprecate/{deprecate-id}")
-    public ResponseEntity getDeprecate(@PathVariable("deprecate-id") long deprecateId){
-        Deprecate deprecate = recommendService.findDeprecate(deprecateId);
-        log.info("# deprecate.getId ={}", deprecate.getDeprecatedId());
-        return new ResponseEntity(new SingleResponseDto<>(mapper.deprecateToDeprecateResponseDto(deprecate)), HttpStatus.OK);
+    @GetMapping("/members/{member-id}/deprecate")
+    public ResponseEntity getDeprecate(@PathVariable("member-id") long memberId){
+        List<Deprecate> deprecateList = recommendService.findDeprecates(memberId);
+        return new ResponseEntity(new SingleResponseDto<>(mapper.deprecatesToDeprecateResponseDtos(deprecateList)), HttpStatus.OK);
     }
 }

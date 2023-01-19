@@ -13,7 +13,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -100,12 +102,19 @@ public class RecommendService {
         }
     }
 
-    public Recommend findRecommend(long recommendId){
-        return findVerifiedRecommend(recommendId);
+    public List<Recommend> findRecommends(long memberId){
+        return recommendRepository.findAll().stream()
+                .filter(favorite -> favorite.getMember().getMemberId() == memberId)
+                .filter(x -> x.getRecommendSelected() == Boolean.TRUE)
+                .collect(Collectors.toList());
     }
 
-    public Deprecate findDeprecate(long deprecateId){
-        return findVerifiedDeprecate(deprecateId);
+    public List<Deprecate> findDeprecates(long memberId){
+
+        return deprecateRepository.findAll().stream()
+                .filter(deprecate -> deprecate.getMember().getMemberId() == memberId)
+                .filter(x -> x.getDeprecatedSelected() == Boolean.TRUE)
+                .collect(Collectors.toList());
     }
 
     private Recommend findVerifiedRecommend(long recommendId){

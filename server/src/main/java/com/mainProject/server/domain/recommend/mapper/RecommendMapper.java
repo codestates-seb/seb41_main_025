@@ -6,6 +6,8 @@ import com.mainProject.server.domain.recommend.entity.Recommend;
 import org.mapstruct.Mapper;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface RecommendMapper {
@@ -31,6 +33,20 @@ public interface RecommendMapper {
                 .createdAt(LocalDateTime.now())
                 .build();
 
+        return responseDto;
+    }
+
+    default List<RecommendDto.RecommendResponse> recommendsToRecommendDtos(List<Recommend> recommendList) {
+        List<RecommendDto.RecommendResponse> responseDto =  recommendList.stream()
+                .map(recommend -> recommendToRecommendDto(recommend))
+                .collect(Collectors.toList());
+        return responseDto;
+    }
+
+    default List<RecommendDto.DeprecateResponse> deprecatesToDeprecateResponseDtos(List<Deprecate> deprecateList) {
+        List<RecommendDto.DeprecateResponse> responseDto =  deprecateList.stream()
+                .map(deprecate -> deprecateToDeprecateResponseDto(deprecate))
+                .collect(Collectors.toList());
         return responseDto;
     }
 }
