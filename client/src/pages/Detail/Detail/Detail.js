@@ -40,7 +40,7 @@ const Detail = () => {
   }
   ])
   const [isrecommendId, setIsRecommendId] = useState()
-  console.log(isrecommendId)
+  // console.log(isrecommendId)
   const [recommendCounts, setRecommendCounts] = useState()
   
   const [isdeprecate, setIsDeprecate] = useState('')
@@ -62,25 +62,13 @@ const Detail = () => {
         setIsRecommend(res.data.data.recommendSelected)
         setRecommendCounts(res.data.data.recommendCount + 1)
         setIsRecommendId(res.data.data.recommendId)
-        console.log(res.data.data)
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
       });
   };
-      axios.get(`http://whatu1.kro.kr:8080/recommend/${isrecommendId}`,
-      {
-      headers: {
-        Authorization : localStorage.getItem("accessToken")
-      }
-    })
-      .then ((res) => {
-        console.log(res)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  
+
   //비추천
   const handleDecommend = async () => {
     await axios.post(`http://whatu1.kro.kr:8080/contents/${contentId}/deprecate`,JSON.stringify({}),
@@ -92,6 +80,7 @@ const Detail = () => {
       .then ((res) => {
         setIsDeprecate(res.data.data.deprecateSelected)
         setDeprecateCounts(res.data.data.deprecateCount + 1)
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
@@ -161,7 +150,6 @@ const Detail = () => {
               </div>
             </div>
           </>
-          {isLogin? (
           <S.DetailItem>
             {/*아이콘 박스*/}
             <div className="itemIcon" onClick={handleRecommend}>
@@ -190,7 +178,7 @@ const Detail = () => {
               )}
               나의 인생 작품
             </div>
-          </S.DetailItem>) : null }
+          </S.DetailItem>
         </S.DetailContent>
         <ButtonForm to="/alltimechat">실시간 채팅</ButtonForm>
       </S.DetailHeader>

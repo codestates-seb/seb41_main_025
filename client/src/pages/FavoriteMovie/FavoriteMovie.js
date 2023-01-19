@@ -41,6 +41,7 @@ const FavoriteMovie = () =>{
                     <S.FavoriteSearch>
                         {/* TODO : POST */}
                         <input type="text" placeholder="검색할 내용을 입력하세요."></input>
+                        {/* 인생 작품 3가지를 추천해주세요 ! */}
                     </S.FavoriteSearch>
                 </S.Title>
                     {/*TODO: 인생 영화 값이 true인 것들을 filter 해서 뿌려주기 */}
