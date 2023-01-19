@@ -5,8 +5,8 @@ export const Wrapper = styled.div`
   height: 100vh;
   padding-top: 60px;
   margin: 0 auto;
-  /* display: flex; */
-  /* justify-content: center; */
+  display: flex;
+  justify-content: center;
   /* background-color: #f9f9f9; */
   /* position: absolute; */
   /* overflow: scroll; */
@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
 export const MypageDiv = styled.div`
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+  align-items: center;
   max-width: 1000px;
   /* height: 655px; */
   /* margin-bottom: 30px; */
@@ -33,13 +33,14 @@ export const MypageDiv = styled.div`
 export const UserInfoHeader = styled.div`
   display: flex;
   width: 100%;
+  margin-bottom: 20px;
   /* padding: 60px; */
   @media only screen and (max-width: ${"600px"}) {
     padding: 30px;
     display: grid;
   }
 
-  & > .memberPicture {
+  .memberPicture {
     border-radius: 30%;
     /* &:hover {
         transform: scale(1.5);
