@@ -1,5 +1,5 @@
 import * as S from "./styled";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import { useEffect } from "react";
 import { ImSearch } from "react-icons/im";
@@ -27,15 +27,19 @@ const Header = (props) => {
     }
 
     // 검색기능 구현
-    const [searchItem, setSearchItem] = useState("");
+    const Navigate = useNavigate();
+    const [searchMovie, setSearchMovie] = useState("");
 
-    const searchHandler = (e) => {
-        setSearchItem(e.currentTarget.value);
-        // props.refreshFunction(e.currentTarget.value);
-        console.log(e.currentTarget.value);
+    const onChange = (e) => {
+        setSearchMovie(e.currentTarget.value);
     }
-
-    
+    const onKeyPressEnter = (e) => {
+        if(e.key === "Enter") sendSerachResult();
+    }
+    const sendSerachResult = () => {
+        props.getSearchResult(searchMovie);
+        Navigate('/searchResult')
+    }
     
     return (
         <S.HeaderWrap>
@@ -53,12 +57,15 @@ const Header = (props) => {
                     <input 
                     type="text" 
                     placeholder="검색할 내용을 입력하세요."
-                    value={searchItem}
-                    onChange={searchHandler}
+                    value={searchMovie}
+                    onChange={onChange}
+                    onKeyPress={onKeyPressEnter}
                     >
                     </input>
-                    <S.SearchIcon>
-                    <ImSearch className="searchIcon" size="30" />
+                    <S.SearchIcon
+                    onClick={sendSerachResult}
+                    >
+                        <ImSearch className="searchIcon" size="30" />
                     </S.SearchIcon>
                 </S.SearchBar>
 
