@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping
 @RequiredArgsConstructor
@@ -38,6 +40,15 @@ public class ChoiceController {
     public ResponseEntity getChoice(@PathVariable("choice-id") long choiceId){
         Choice choice = choiceService.findChoice(choiceId);
         return new ResponseEntity(new SingleResponseDto<>(mapper.choiceTochoiceResponseDto(choice)), HttpStatus.OK);
+    }
+
+    // 멤버 아이디에 해당하는 choice 정보들 출력
+    //Service의 findChoice 수정 필요
+    @GetMapping("/members/{member-id}/choice")
+    public ResponseEntity getALLChoice(@PathVariable("member-id") long memberId){
+        List<Choice> choiceList = choiceService.findChoices(memberId);
+
+        return new ResponseEntity(new SingleResponseDto<>(mapper.choicesToChoiceResponseDtos(choiceList)), HttpStatus.OK);
     }
 
 }

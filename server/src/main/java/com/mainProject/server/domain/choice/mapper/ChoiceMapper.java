@@ -6,11 +6,13 @@ import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public class ChoiceMapper {
+public interface ChoiceMapper {
 
-    public ChoiceResponseDto choiceTochoiceResponseDto(Choice choice) {
+    default ChoiceResponseDto choiceTochoiceResponseDto(Choice choice) {
         ChoiceResponseDto responseDto = ChoiceResponseDto.builder()
                 .choiceId(choice.getChoiceId())
                 .memberId(choice.getMember().getMemberId())
@@ -22,5 +24,13 @@ public class ChoiceMapper {
 
         return responseDto;
 
+    }
+
+    default List<ChoiceResponseDto> choicesToChoiceResponseDtos(List<Choice> choiceList) {
+        List<ChoiceResponseDto> response = choiceList.stream()
+                .map(choice -> choiceTochoiceResponseDto(choice))
+                .collect(Collectors.toList());
+
+        return response;
     }
 }

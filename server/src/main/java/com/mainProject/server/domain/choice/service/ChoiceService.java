@@ -11,7 +11,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -61,6 +63,12 @@ public class ChoiceService {
         return choice;
     }
 
+    public List<Choice> findChoices(long memberId) {
+        return choiceRepository.findAll().stream()
+                .filter(choice -> choice.getMember().getMemberId() == memberId)
+                .filter(x -> x.getChoiceSelected() == Boolean.TRUE)
+                .collect(Collectors.toList());
+    }
 
 
 }
