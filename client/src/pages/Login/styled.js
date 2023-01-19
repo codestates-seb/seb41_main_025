@@ -6,22 +6,23 @@ export const Main = styled.div`
   justify-content: center;
   align-items: center;
   padding: 60px 60px 0px;
-  height: 100vh;
+  height: 130vh;
   @media only screen and (max-width: ${"600px"}) {
     display: grid;
+    height: 150vh;
   }
 `;
 
 export const Window = styled.div`
   display: flex;
   width: 983px;
-  height: 637px;
+  height: 700px;
   border-radius: 20px;
   background-color: #58bfad;
   opacity: 0.75;
   @media only screen and (max-width: ${"600px"}) {
     width: 300px;
-    height: 700px;
+    height: 800px;
     display: grid;
     margin-top: 20px;
   }
@@ -91,13 +92,13 @@ export const ContentForm = styled.div`
   .LoginFont {
     margin-left: 30%;
     @media only screen and (max-width: ${"600px"}) {
-      margin-bottom: 30px;
-      margin-top: 0;
+      margin-bottom: 0 0 30px 0 ;
+      font-size: 40px;
+      width: 150px;
     }
   }
   @media only screen and (max-width: ${"600px"}) {
     width: 300px;
-
     margin-top: 80px;
   }
 `;
@@ -126,7 +127,7 @@ export const WhiteLoginbutton = styled.button`
   justify-content: center;
   width: 100px;
   height: 50px;
-  margin-left: 30px;
+  margin-left: 280px;
   background-color: white;
   border-radius: 30px;
   color: #054d40;
@@ -141,7 +142,7 @@ export const WhiteLoginbutton = styled.button`
 export const EnterContent = styled.form`
   display: grid;
   width: 380px;
-  margin-top: 90px;
+  margin-top: 50px;
   @media only screen and (max-width: ${"600px"}) {
     margin: 0;
     display: grid;
@@ -155,5 +156,9 @@ export const Enter = styled.input`
     border: 0;
     border-bottom: 2px solid #054D40;
     font-size: 20px;
-    
+  @media only screen and (max-width: ${"600px"}) {
+    font-size: 15px;
+    margin-right: 5px;
+    width: 250px;
+  }  
 `

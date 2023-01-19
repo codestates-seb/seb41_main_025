@@ -47,7 +47,8 @@ export const DetailCommentItem = styled.div`
 export const InputDiv = styled.div`
   display: flex;
   width: 80%;
-  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 10px;
   .recommendInput {
     width: 100%;
     height: 100px;

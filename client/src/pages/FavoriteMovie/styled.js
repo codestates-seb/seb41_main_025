@@ -18,7 +18,7 @@ export const Title = styled(MainContainer)`
     height: 100%;
     margin: 100px 100px 0 100px;
     .title {
-    font-size: 30px;
+    font-size: 20px;
     text-decoration: underline #167E6C;
     text-decoration-thickness: 4px;
     text-underline-offset: 20px;
