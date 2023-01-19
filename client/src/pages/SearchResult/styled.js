@@ -5,7 +5,7 @@ export const Wrap = styled.div`
   padding-top: 60px;
 
   .active {
-    height: calc(100vh - 378px);
+    height:100vh
   }
 `
 
@@ -27,5 +27,5 @@ export const ItemList = styled.div`
     margin-right: 30px;
     margin-bottom: 30px;
   }
-  a:nth-child(5n) { margin-right: 0px; }
+  /* a:nth-child(5n) { margin-right: 0px; } */
 `
