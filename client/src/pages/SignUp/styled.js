@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { Whitebutton, Enter, Window } from "../Login/styled";
+import { WhiteLoginbutton, Enter, Window } from "../Login/styled";
 
 export const WindowDiv = styled(Window)`
   display: flex;
-  justify-content: space-around;
+  /* justify-content: flex-start; */
   align-items: center;
   /* margin: auto; */
   @media only screen and (max-width: ${"600px"}) {
@@ -25,13 +25,13 @@ export const HelloAnnouncement = styled.span`
     font-size: 0px;
   }
 `;
-export const SignUpButton = styled.button`
+export const SignupButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100px;
   height: 50px;
-  margin-left: 30px;
+  margin: 10px 0px 0px  230px;
   background-color: white;
   border-radius: 30px;
   color: #054d40;
@@ -39,12 +39,14 @@ export const SignUpButton = styled.button`
   border: 0;
   text-decoration: none;
   cursor: pointer;
+
   @media only screen and (max-width: ${"600px"}) {
-    margin-left: 160px;
+    margin-left: 10px;
   }
 `;
 export const EnterContent = styled.form`
   display: grid;
+  justify-items: center;
   width: 380px;
   margin-top: 50px;
   @media only screen and (max-width: ${"600px"}) {
@@ -52,5 +54,12 @@ export const EnterContent = styled.form`
     display: grid;
     justify-content: center;
     width: 80px;
+  }
+`;
+
+export const Enters = styled(Enter)`
+  width: 350px;
+  @media only screen and (max-width: ${"600px"}) {
+    width: 250px;
   }
 `;
