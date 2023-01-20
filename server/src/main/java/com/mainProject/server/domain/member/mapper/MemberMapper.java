@@ -10,6 +10,7 @@ import java.util.List;
 public interface MemberMapper {
     Member memberPostToMember(MemberDto.Post postRequest);
     Member memberPatchToMember(MemberDto.Patch patchRequest);
+    Member memberRrevModifyToMember(MemberDto.PrevModify prevModifyRequest);
     MemberDto.Response memberToMemberResponse(Member member);
     List<MemberDto.Response> memberListToMemberResponseList(List<Member> memberList);
 }

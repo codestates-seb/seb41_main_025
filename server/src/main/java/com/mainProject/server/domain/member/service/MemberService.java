@@ -19,7 +19,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -111,10 +110,19 @@ public class MemberService {
         return memberRepository.save(updateMember);
     }
 
-    public String prevModify(String memberpw,
-                             MemberDto.PrevModify prevModify,
-                             RedirectAttributes rttr) {
+    public boolean prevModify(String memberPw, String prePw) {
 
+        if(passwordEncoder.matches(prePw, memberPw)) {
+            log.info("pw 재확인 완료.. !!!!");
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+/*
+
+    public String prevModify(String memberpw, MemberDto.PrevModify prevModify, RedirectAttributes rttr) {
         String pw = prevModify.getPassword();
 
         if(passwordEncoder.matches(pw, memberpw)) {
@@ -126,6 +134,7 @@ public class MemberService {
             return "/members/prevModify";
         }
     }
+*/
 
 
     public Member findMember(long memberId) {

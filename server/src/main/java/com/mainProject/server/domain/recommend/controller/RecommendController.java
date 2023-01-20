@@ -8,6 +8,8 @@ import com.mainProject.server.domain.recommend.entity.Deprecate;
 import com.mainProject.server.domain.recommend.entity.Recommend;
 import com.mainProject.server.domain.recommend.mapper.RecommendMapper;
 import com.mainProject.server.domain.recommend.service.RecommendService;
+import com.mainProject.server.global.exception.BusinessLogicException;
+import com.mainProject.server.global.exception.ExceptionCode;
 import com.mainProject.server.global.response.SingleResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -47,13 +49,21 @@ public class RecommendController {
 
     @GetMapping("/members/{member-id}/recommend")
     public ResponseEntity getRecomend(@PathVariable("member-id") long memberId){
-        List<Recommend> recommendList = recommendService.findRecommends(memberId);
-        return new ResponseEntity(new SingleResponseDto<>(mapper.recommendsToRecommendDtos(recommendList)), HttpStatus.OK);
+        Member curMember = memberService.getCurrentMember();
+        if (curMember.getMemberId() == memberId) {
+
+            List<Recommend> recommendList = recommendService.findRecommends(memberId);
+            return new ResponseEntity(new SingleResponseDto<>(mapper.recommendsToRecommendDtos(recommendList)), HttpStatus.OK);
+        } throw new BusinessLogicException(ExceptionCode.MEMBER_UNAUTHORIZED);
     }
 
     @GetMapping("/members/{member-id}/deprecate")
     public ResponseEntity getDeprecate(@PathVariable("member-id") long memberId){
-        List<Deprecate> deprecateList = recommendService.findDeprecates(memberId);
+        Member curMember = memberService.getCurrentMember();
+        if (curMember.getMemberId() == memberId) {
+
+            List<Deprecate> deprecateList = recommendService.findDeprecates(memberId);
         return new ResponseEntity(new SingleResponseDto<>(mapper.deprecatesToDeprecateResponseDtos(deprecateList)), HttpStatus.OK);
+        } throw new BusinessLogicException(ExceptionCode.MEMBER_UNAUTHORIZED);
     }
 }

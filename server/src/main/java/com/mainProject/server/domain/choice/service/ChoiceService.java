@@ -70,5 +70,4 @@ public class ChoiceService {
                 .collect(Collectors.toList());
     }
 
-
 }

@@ -4,9 +4,13 @@ import com.mainProject.server.domain.choice.entity.Choice;
 import com.mainProject.server.domain.choice.mapper.ChoiceMapper;
 import com.mainProject.server.domain.choice.service.ChoiceService;
 import com.mainProject.server.domain.content.entity.Content;
+import com.mainProject.server.domain.content.repository.ContentRepository;
 import com.mainProject.server.domain.content.service.ContentService;
+import com.mainProject.server.domain.favorite.eneity.Favorite;
 import com.mainProject.server.domain.member.entity.Member;
 import com.mainProject.server.domain.member.service.MemberService;
+import com.mainProject.server.global.exception.BusinessLogicException;
+import com.mainProject.server.global.exception.ExceptionCode;
 import com.mainProject.server.global.response.SingleResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,6 +26,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class ChoiceController {
+    private final ContentRepository contentRepository;
     private final MemberService memberService;
     private final ContentService contentService;
     private final ChoiceService choiceService;
@@ -46,9 +52,11 @@ public class ChoiceController {
     //Service의 findChoice 수정 필요
     @GetMapping("/members/{member-id}/choice")
     public ResponseEntity getALLChoice(@PathVariable("member-id") long memberId){
-        List<Choice> choiceList = choiceService.findChoices(memberId);
-
-        return new ResponseEntity(new SingleResponseDto<>(mapper.choicesToChoiceResponseDtos(choiceList)), HttpStatus.OK);
+        Member curMember = memberService.getCurrentMember();
+        if(curMember.getMemberId() == memberId) {
+            List<Choice> choiceList = choiceService.findChoices(memberId);
+            return new ResponseEntity(new SingleResponseDto<>(mapper.choicesToChoiceResponseDtos(choiceList)), HttpStatus.OK);
+        } throw new BusinessLogicException(ExceptionCode.MEMBER_UNAUTHORIZED);
     }
 
 }

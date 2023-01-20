@@ -68,10 +68,10 @@ public class MemberDto {
     }
 
     @AllArgsConstructor
+    @NoArgsConstructor
     @Setter
     @Getter
     public static class PrevModify {
-
         @NotSpace(message = "비밀 번호는 공백이 아니어야 합니다")
         private String password;
     }
