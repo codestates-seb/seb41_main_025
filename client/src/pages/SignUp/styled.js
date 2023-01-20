@@ -6,6 +6,9 @@ export const WindowDiv = styled(Window)`
   justify-content: space-around;
   align-items: center;
   /* margin: auto; */
+  @media only screen and (max-width: ${"600px"}) {
+    flex-direction: column;
+  }
 `;
 
 export const Hello = styled.div`
@@ -19,8 +22,7 @@ export const HelloAnnouncement = styled.span`
   font-size: 30px;
 
   @media only screen and (max-width: ${"600px"}) {
-    font-size: 20px;
-    margin-right: 50px;
+    font-size: 0px;
   }
 `;
 export const SignUpButton = styled.button`
@@ -41,4 +43,14 @@ export const SignUpButton = styled.button`
     margin-left: 160px;
   }
 `;
-
+export const EnterContent = styled.form`
+  display: grid;
+  width: 380px;
+  margin-top: 50px;
+  @media only screen and (max-width: ${"600px"}) {
+    margin-left: 30px;
+    display: grid;
+    justify-content: center;
+    width: 80px;
+  }
+`;

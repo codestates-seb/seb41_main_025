@@ -35,6 +35,7 @@ const ModalBasic = ({ setModalOpen }) => {
       });
   }, []);
 
+  // const 
 
 
   return (
@@ -48,7 +49,9 @@ const ModalBasic = ({ setModalOpen }) => {
           placeholder="비밀번호를 입력해주세요"
         />
       </S.InputItem>
-      {/* <p>비밀번호를 입력해주세요</p> */}
+      <S.CloseBtn className="submit" onClick={closeModal}>
+        확인
+      </S.CloseBtn>
     </S.Container>
   );
 };

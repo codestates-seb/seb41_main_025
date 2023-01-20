@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 export const Container = styled.button`
   /* 모달창 크기 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 500px;
   height: 500px;
   //모달창 정중앙에 위치
@@ -14,12 +18,20 @@ export const Container = styled.button`
   box-shadow: 4px 9px 9px rgb(32 33 36 / 30%);
   border: none;
   border-radius: 8px;
+  position: absolute;
   .boxing {
     display: flex;
     flex-direction: column;
     padding: 30px;
     height: 100%;
   }
+  .close {
+    margin-left: 400px ;
+    background-color: #ffffff;
+    color: black;
+    font-size: 150%;
+  }
+
 `;
 
 export const CloseBtn = styled.button`
@@ -31,6 +43,7 @@ export const CloseBtn = styled.button`
   color:#ffffff;
   border: none;
   border-radius: 10px;
+  
 `;
 
 export const InputItem = styled.div`

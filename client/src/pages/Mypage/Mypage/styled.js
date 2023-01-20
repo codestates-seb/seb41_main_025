@@ -1,67 +1,88 @@
 import styled from "styled-components";
 
+export const Wrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  padding-top: 60px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  /* background-color: #f9f9f9; */
+  /* position: absolute; */
+  /* overflow: scroll; */
+`;
+
 export const MypageDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 1440px;
+  max-width: 1000px;
   /* height: 655px; */
-  margin-bottom: 30px;
-  padding: 60px 60px 0px;
-  margin: 0 auto;
-  form {
+  /* margin-bottom: 30px; */
+  padding-top: 60px;
+  /* margin: 0 auto; */
+  /* form {
     display: flex;
     width: 100%;
     height: 300px;
     padding: 60px 0px;
     align-items: center;
-  }
+  } */
 `;
 
 export const UserInfoHeader = styled.div`
   display: flex;
   width: 100%;
-  padding: 60px;
+  margin-bottom: 20px;
+  /* padding: 60px; */
   @media only screen and (max-width: ${"600px"}) {
     padding: 30px;
     display: grid;
   }
-  .userImage {
-    padding-left: 80px;
-    @media only screen and (max-width: ${"600px"}) {
-      padding-left: 0;
-    }
 
-    & > .memberPicture {
-      border-radius: 30%;
-      /* &:hover {
+  .memberPicture {
+    border-radius: 30%;
+    /* &:hover {
         transform: scale(1.5);
       } */
-      @media only screen and (max-width: ${"600px"}) {
-        width: 200px;
-        height: 200px;
-      }
-    }
-  }
-  .userInfo {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding-left: 80px;
     @media only screen and (max-width: ${"600px"}) {
-      padding: 20px 0 0 0;
-    }
-  }
-  .userName {
-    padding: 0px 0px 80px 30px;
-    font-size: 30px;
-    @media only screen and (max-width: ${"600px"}) {
-      padding: 10 0 0 30;
+      width: 200px;
+      height: 200px;
     }
   }
 `;
 
-export const FormDiv = styled.div`
+export const UserImage = styled.div`
+  padding-left: 80px;
+
+  & > .memberPicture {
+    border-radius: 30%;
+    @media screen and (max-width: 390px) and (max-height: 844px) {
+      width: 100px;
+      height: 100px;
+      padding: 10px;
+    }
+  }
+`;
+
+export const UserInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-left: 80px;
+  @media only screen and (max-width: ${"600px"}) {
+    padding: 20px 0 0 0;
+  }
+`;
+export const UserName = styled.div`
+  padding: 0px 0px 80px 30px;
+  font-size: 30px;
+  @media only screen and (max-width: ${"600px"}) {
+    padding: 10 0 0 30;
+  }
+`;
+
+export const FormDiv = styled.form`
   display: flex;
   flex-direction: column;
   max-width: 1000px;
@@ -150,6 +171,6 @@ export const DeleteBtn = styled(ModifyBtn)`
   }
 `;
 
-export const FormStyle = styled.div`
-  display: grid;
-`;
+// export const FormStyle = styled.div`
+//   display: grid;
+// `;

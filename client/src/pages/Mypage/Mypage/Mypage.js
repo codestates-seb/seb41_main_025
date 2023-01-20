@@ -20,17 +20,16 @@ const Mypage = (props) => {
 
   useEffect(() => {
     axios
-      .get(`http://whatu1.kro.kr:8080/members/${memberId}`,
-      {
+      .get(`http://whatu1.kro.kr:8080/members/${memberId}`, {
         headers: {
           "Content-Type": "application/json;charset=UTF-8",
           Accept: "application/json",
-          "AutHorization" : localStorage.getItem("accessToken"),
+          AutHorization: localStorage.getItem("accessToken"),
         },
       })
       .then((res) => {
         setInfo(res.data.data);
-        setPwd()
+        setPwd();
         console.log(res.data.data);
       })
       .catch((error) => {
@@ -40,9 +39,7 @@ const Mypage = (props) => {
 
   const onConfirmPwd = (e) => {
     e.preventDefault();
-    
-  }
-
+  };
 
   // 모달창 노출 여부 state
   const [modalOpen, setModalOpen] = useState(false);
@@ -60,57 +57,61 @@ const Mypage = (props) => {
   const fileChangedHandler = (e) => {
     const files = e.target.files;
     console.log(files);
-    setSelectFile(files)
+    setSelectFile(files);
   };
 
   // 이미지 클릭해서 수정
   const fileInput = useRef();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // 회원 탈퇴
   // TODO: 정말 회원 탈퇴를 진행하시겠습니까? 알림창 띄우기
-  const deleteMember = async() => {
+  const deleteMember = async () => {
     await axios({
       method: "DELETE",
       url: `http://whatu1.kro.kr:8080/members/${memberId}`,
       headers: {
-          "Authorization": localStorage.getItem("accessToken"),
+        Authorization: localStorage.getItem("accessToken"),
       },
-      }).then(data => {
-        alert("회원탈퇴 되었습니다")
+    })
+      .then((data) => {
+        alert("회원탈퇴 되었습니다");
       })
-      .catch(err => {
-          console.log("err")
-          return
-      })
-  localStorage.clear();
-  window.location.reload();
-  navigate(`/`);
-  window.location.reload();
-  }
+      .catch((err) => {
+        console.log("err");
+        return;
+      });
+    localStorage.clear();
+    window.location.reload();
+    navigate(`/`);
+    window.location.reload();
+  };
 
   return (
-    <S.MypageDiv>
-      <S.UserInfoHeader>
-        <div className="userImage">
-          <img
-            src={info.memberPicture}
-            className="memberPicture"
-            alt="사용자 이미지"
-            width={"300px"}
-            onClick={()=>{fileInput.current.click()}}
-          ></img>
-        </div>
-        <div className="userInfo">
-          <div className="userName">{info.name}</div>
-          <S.ModifyBtn type="submit" value="저장" onClick={showModal}>
-            회원 정보 수정
-          </S.ModifyBtn>
-          {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
-        </div>
-      </S.UserInfoHeader>
+    <S.Wrapper>
+      <S.MypageDiv>
+        <S.UserInfoHeader>
+          <S.UserImage>
+            <img
+              src={info.memberPicture}
+              className="memberPicture"
+              alt="사용자 이미지"
+              width={"300px"}
+              onClick={() => {
+                fileInput.current.click();
+              }}
+            ></img>
+          </S.UserImage>
+          <S.UserInfo>
+            <S.UserName>{info.name}</S.UserName>
+            <S.ModifyBtn type="submit" value="저장" onClick={showModal}>
+              회원 정보 수정
+            </S.ModifyBtn>
+            {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
+          </S.UserInfo>
+        </S.UserInfoHeader>
 
-      <S.FormStyle>
+        {/* <S.FormStyle> */}
         <S.FormDiv>
           <S.InputItem>
             <S.InputLabel htmlFor="profile">프로필</S.InputLabel>
@@ -165,15 +166,16 @@ const Mypage = (props) => {
             </S.InputDiv>
           </S.InputItem>
         </S.FormDiv>
-        <S.SaveBtn type="submit"  value="저장">
+        {/* <S.SaveBtn type="submit"  value="저장">
           저장
-        </S.SaveBtn>
-      </S.FormStyle>
+        </S.SaveBtn> */}
+        {/* </S.FormStyle> */}
 
-      <S.DeleteBtn type="submit" value="저장" onClick={deleteMember}>
-        회원탈퇴
-      </S.DeleteBtn>
-    </S.MypageDiv>
+        <S.DeleteBtn type="submit" value="저장" onClick={deleteMember}>
+          회원탈퇴
+        </S.DeleteBtn>
+      </S.MypageDiv>
+    </S.Wrapper>
   );
 };
 
