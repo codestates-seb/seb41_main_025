@@ -7,6 +7,8 @@ import com.mainProject.server.domain.favorite.mapper.FavoriteMapper;
 import com.mainProject.server.domain.favorite.service.FavoriteService;
 import com.mainProject.server.domain.member.entity.Member;
 import com.mainProject.server.domain.member.service.MemberService;
+import com.mainProject.server.global.exception.BusinessLogicException;
+import com.mainProject.server.global.exception.ExceptionCode;
 import com.mainProject.server.global.response.SingleResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -35,8 +37,10 @@ public class FavoriteController {
 
     @GetMapping("/members/{member-id}/favorite")
     public ResponseEntity getFavorite( @PathVariable("member-id") long memberId){
-        List<Favorite> favoriteList = favoriteService.findFavorites(memberId);
-
-        return new ResponseEntity(new SingleResponseDto<>(mapper.favoritesTofavoriteResponseDtos(favoriteList)), HttpStatus.OK);
+        Member curMember = memberService.getCurrentMember();
+        if(curMember.getMemberId() == memberId) {
+            List<Favorite> favoriteList = favoriteService.findFavorites(memberId);
+            return new ResponseEntity(new SingleResponseDto<>(mapper.favoritesToFavoriteResponseDtos(favoriteList)), HttpStatus.OK);
+        } throw new BusinessLogicException(ExceptionCode.MEMBER_UNAUTHORIZED);
     }
 }

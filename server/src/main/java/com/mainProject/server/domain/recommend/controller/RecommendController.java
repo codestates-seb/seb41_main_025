@@ -8,6 +8,8 @@ import com.mainProject.server.domain.recommend.entity.Deprecate;
 import com.mainProject.server.domain.recommend.entity.Recommend;
 import com.mainProject.server.domain.recommend.mapper.RecommendMapper;
 import com.mainProject.server.domain.recommend.service.RecommendService;
+import com.mainProject.server.global.exception.BusinessLogicException;
+import com.mainProject.server.global.exception.ExceptionCode;
 import com.mainProject.server.global.response.SingleResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
