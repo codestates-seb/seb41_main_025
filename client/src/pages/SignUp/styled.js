@@ -3,7 +3,7 @@ import { Whitebutton, Enter, Window } from "../Login/styled";
 
 export const WindowDiv = styled(Window)`
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
   /* margin: auto; */
   @media only screen and (max-width: ${"600px"}) {

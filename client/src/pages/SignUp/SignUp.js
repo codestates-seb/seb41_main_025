@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect } from "react";
 import * as S from "./styled";
 import {
   Main,
+  Logo,
   // Window,
   Enter,
   // EnterContent,
@@ -124,7 +125,7 @@ const SignUp = () => {
   //이메일
   const onChangeEmail = useCallback((e) => {
     const currentEmail = e.target.value;
-    setEmail(currentEmail)
+    setEmail(currentEmail);
 
     if (!validateEmail(currentEmail)) {
       setEmailMsg("이메일 형식이 올바르지 않습니다.");
@@ -150,7 +151,8 @@ const SignUp = () => {
   }, []);
 
   //비밀번호 확인
-  const onChangeConfirmPwd = useCallback((e) => {
+  const onChangeConfirmPwd = useCallback(
+    (e) => {
       const currentConfirmPwd = e.target.value;
       setConfirmPwd(currentConfirmPwd);
 
@@ -161,7 +163,9 @@ const SignUp = () => {
         setConfirmPwdMsg("올바른 비밀번호입니다.");
         setIsPasswordConfirm(true);
       }
-    },[pwd]);
+    },
+    [pwd]
+  );
 
   //todo: 이메일, 닉네임 중복 확인
 
@@ -169,12 +173,13 @@ const SignUp = () => {
     <Main>
       <S.WindowDiv>
         <S.Hello>
-          <S.HelloAnnouncement>
-            반갑습니다 !<br />
-            <br />
-            오른쪽 칸에 정보 입력 후 <br />
-            Sign Up 버튼을 눌러주세요
-          </S.HelloAnnouncement>
+          {/* <S.HelloAnnouncement> */}
+            <Logo>
+              <img src="/assets/GreenLogo.png" className="greenLogo" alt="" />
+              <img src="/assets/Character.png" className="character" alt="" />
+              {/* <GreenLogo/> */}
+            </Logo>
+          {/* </S.HelloAnnouncement> */}
         </S.Hello>
         <ContentForm>
           <span className="LoginFont">Sign Up</span>
@@ -211,7 +216,6 @@ const SignUp = () => {
               placeholder="비밀번호를 입력해 주세요"
               onChange={onChangePwd}
               style={{ margin: "20px 0px" }}
- 
             />
             <span className="message" style={{ fontSize: "20px" }}>
               {pwdMsg}
@@ -228,9 +232,17 @@ const SignUp = () => {
             <S.SignUpButton
               type="submit"
               className="EnterButton"
-              onClick={onSubmit} 
+              onClick={onSubmit}
               style={{ marginBottom: "30px" }}
-              disabled={!(isName && isNickname && isEmail && isPassword && isPasswordConfirm)}
+              disabled={
+                !(
+                  isName &&
+                  isNickname &&
+                  isEmail &&
+                  isPassword &&
+                  isPasswordConfirm
+                )
+              }
             >
               Sign Up
             </S.SignUpButton>
