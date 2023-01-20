@@ -1,4 +1,3 @@
-import React from "react";
 import * as S from "./styled";
 import {
   AiTwotoneLike,
@@ -15,31 +14,100 @@ import useFetch from "../../../components/util/useFetch";
 import { useState, useEffect } from "react";
 import Comment from "../Comment/Comment";
 import axios from "axios";
+import { useCustomQuery } from "../../../components/util/useCustomQuery";
+import { toast } from "react-toastify";
+
+const apiCall = async (url) => {
+  return await axios
+    .get(`http://whatu1.kro.kr:8080${url}`, {
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+        Accept: "application/json",
+        AutHorization: localStorage.getItem("accessToken"),
+      },
+    })
+    .then((res) => res.data.data)
+    .catch((error) => {
+      if (error) return false;
+    });
+};
 
 const Detail = () => {
+
   const { contentId } = useParams();
 
-  const request = {
-    method: "get",
-    headers: { "Content-Type": "application/json" },
-  };
+  const [deprecate, setDeprecate] = useState(false);
+  const [recommend, setRecommend] = useState(false);
+  const [favorite, setFavorite] = useState(false);
+  const [choice, setChoice] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const [movies] = useFetch(
-    `http://whatu1.kro.kr:8080/contents/${contentId}`,
-    request
+  const memberId = localStorage.getItem("memberId");
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (token)
+      Promise.all([
+        apiCall(`/members/${memberId}/recommend`),
+        apiCall(`/members/${memberId}/deprecate`),
+        apiCall(`/members/${memberId}/choice`),
+        apiCall(`/members/${memberId}/favorite`),
+      ])
+        .then(([data1, data2, data3, data4]) => {
+          const numContentId = parseInt(contentId);
+          if (data1[0]) {
+            if (data1.length > 0) {
+              for (let i = 0; i < data1.length; i++) {
+                if (data1[i].contentId === numContentId) setRecommend(true);
+              }
+            } else {
+              setRecommend(data1[0].contentId === numContentId);
+            }
+          }
+          if (data2[0]) {
+            if (data2.length > 0) {
+              for (let i = 0; i < data2.length; i++) {
+                if (data2[i].contentId === numContentId) setDeprecate(true);
+              }
+            } else {
+              setDeprecate(data2[0].contentId === numContentId);
+            }
+          }
+          if (data3[0]) {
+            if (data3.length > 0) {
+              for (let i = 0; i < data3.length; i++) {
+                if (data3[i].contentId === numContentId) setChoice(true);
+              }
+            } else {
+              setChoice(data3[0].contentId === numContentId);
+            }
+          }
+          if (data4[0]) {
+            if (data4.length > 0) {
+              for (let i = 0; i < data4.length; i++) {
+                if (data4[i].contentId === numContentId) setFavorite(true);
+              }
+            } else {
+              setFavorite(data4[0].contentId === numContentId);
+            }
+          }
+        })
+        .then(() => {
+          setLoading(false);
+        });
+  }, []);
+  
+  const { data, isLoading, error, refetch } = useCustomQuery(
+    `/contents/${contentId}`,
+    `contents=${contentId}`
   );
 
-  const [isrecommend, setIsRecommend] = useState(false);
-  const [isrecommendId, setIsRecommendId] = useState();
-  // console.log(isrecommendId)
-  const [recommendCounts, setRecommendCounts] = useState();
-
-  const [isdeprecate, setIsDeprecate] = useState("");
-  const [deprecateCounts, setDeprecateCounts] = useState();
-
-  const [ischoice, setIsChoice] = useState("");
-  const [isFavorite, setIsFavorite] = useState("");
-
+  // TODO: 로딩 컴포넌트
+  if (isLoading) return <></>;
+  if (loading) return <></>;
+  // TODO: error 컴포넌트
+  if (error) return <>error 발생</>;
+  const movies = data.data;
   //추천
   const handleRecommend = async () => {
     await axios
@@ -53,10 +121,11 @@ const Detail = () => {
         }
       )
       .then((res) => {
-        setIsRecommend(res.data.data.recommendSelected);
-        setRecommendCounts(res.data.data.recommendCount + 1);
-        setIsRecommendId(res.data.data.recommendId);
-        window.location.reload();
+        if (deprecate) {
+          setDeprecate(!deprecate);
+        }
+        setRecommend(!recommend);
+        refetch();
       })
       .catch((err) => {
         console.log(err);
@@ -76,9 +145,11 @@ const Detail = () => {
         }
       )
       .then((res) => {
-        setIsDeprecate(res.data.data.deprecateSelected);
-        setDeprecateCounts(res.data.data.deprecateCount + 1);
-        window.location.reload();
+        if (recommend) {
+          setRecommend(!recommend);
+        }
+        setDeprecate(!deprecate);
+        refetch();
       })
       .catch((err) => {
         console.log(err);
@@ -99,8 +170,8 @@ const Detail = () => {
         }
       )
       .then((res) => {
-        setIsChoice(res.data.data.choiceSelected);
-        window.location.reload();
+        setChoice(!choice);
+        refetch();
       })
       .catch((err) => {
         console.log(err);
@@ -121,150 +192,16 @@ const Detail = () => {
         }
       )
       .then((res) => {
-        setIsFavorite(res.data.data.favoriteSelected);
-        console.log(res.data.data.favoriteSelected)
-        window.location.reload();
+        setFavorite(!favorite);
+        refetch();
       })
       .catch((err) => {
+        toast.error("인생작품은 3개만 선택이 가능합니다");
         console.log(err);
       });
   };
 
-  //* url에 있는 contentid 값을 가져와서 각각의 get 요청 보냈을 때 selected true 만 나오니깐
-  //* get 요청의 응답 값 중에 해당 contentid가 있는지 판단 -> 있으면 true, 없으면 false
-
-  const locationHook = useLocation();
-
-  const [currentLastUrl, setCurrentLastUrl] = useState(null);
-  const [location, setLocation] = useState({}); // 현재 페이지의 contentid 값을 경로로 선언
-
-  useEffect(() => {
-      const splitUrl = locationHook?.pathname?.split('/') ?? null;
-      const loca =
-          splitUrl?.length > 1 ? splitUrl[splitUrl.length - 1] : null;
-      setCurrentLastUrl(loca);
-      setLocation(Number(loca)) // 생성
-      // console.log(loca)
-  }, [locationHook]);
-
-  // console.log(loca); 
-  
-  
-  //좋아요
-  const memberId = localStorage.getItem("memberId");
-  const [recommend, setRecommend] = useState([]);
-
-  //*recommend
-  useEffect(() => {
-    axios
-      .get(`http://whatu1.kro.kr:8080/members/${memberId}/recommend`, {
-        headers: {
-          "Content-Type": "application/json;charset=UTF-8",
-          Accept: "application/json",
-          AutHorization: localStorage.getItem("accessToken"),
-        },
-      })
-      .then((res) => {
-        setRecommend(res.data.data);
-        // console.log(res.data.data);
-    
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
-  // console.log(recommend);
-
-  const recommendRes = recommend.some((id) => id.contentId === location)
-  // console.log(recommendRes);   
-
-  // *deprecate
-  const [deprecate, setDeprecate] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get(`http://whatu1.kro.kr:8080/members/${memberId}/deprecate`, {
-        headers: {
-          "Content-Type": "application/json;charset=UTF-8",
-          Accept: "application/json",
-          AutHorization: localStorage.getItem("accessToken"),
-        },
-      })
-      .then((res) => {
-        setDeprecate(res.data.data);
-        // console.log(res.data.data);
-    
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
-  const deprecateRes = deprecate.some((id) => id.contentId === location)
-  // console.log(deprecateRes);   
-
-    //*choice
-    const [choice, setChoice] = useState([]);
-
-    useEffect(() => {
-      axios
-        .get(`http://whatu1.kro.kr:8080/members/${memberId}/choice`, {
-          headers: {
-            "Content-Type": "application/json;charset=UTF-8",
-            Accept: "application/json",
-            AutHorization: localStorage.getItem("accessToken"),
-          },
-        })
-        .then((res) => {
-          setChoice(res.data.data);
-          // console.log(res.data.data);
-      
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }, []);
-  
-    const choiceRes = choice.some((id) => id.contentId === location)
-    // console.log(choiceRes);  
-
-
-  //*FAVORITE
-  const [favorite, setFavorite] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get(`http://whatu1.kro.kr:8080/members/${memberId}/favorite`, {
-        headers: {
-          "Content-Type": "application/json;charset=UTF-8",
-          Accept: "application/json",
-          AutHorization: localStorage.getItem("accessToken"),
-        },
-      })
-      .then((res) => {
-        setFavorite(res.data.data);
-        // console.log(res.data.data);
-    
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
-  const favoriteRes = favorite.some((id) => id.contentId === location)
-  // console.log(favoriteRes);   
-
-
-
-
-
-  // FIXME : recommendCounts 가 number 로 따로 변환해 줘야 함
-
-  let isLogin = localStorage.getItem("isLogin");
-
   return (
-   
     <S.DetailContainer>
       <S.DetailHeader>
         <img
@@ -293,7 +230,7 @@ const Detail = () => {
           <S.DetailItem>
             {/*아이콘 박스*/}
             <div className="itemIcon" onClick={handleRecommend}>
-              {recommendRes === true ? (
+              {recommend ? (
                 <AiTwotoneLike size="48" color="#58BFAD" />
               ) : (
                 <AiOutlineLike size="48" />
@@ -301,7 +238,7 @@ const Detail = () => {
               {movies.recommendCount}
             </div>
             <div className="itemIcon" onClick={handleDecommend}>
-              {deprecateRes === true ? (
+              {deprecate ? (
                 <AiTwotoneDislike size="48" color="#58BFAD" />
               ) : (
                 <AiOutlineDislike size="48" />
@@ -309,15 +246,11 @@ const Detail = () => {
               {movies.deprecateCount}
             </div>
             <div className="itemIcon" onClick={handleChoose}>
-              {choiceRes === true ? (
-                <FcLike size="48" />
-              ) : (
-                <FcLikePlaceholder size="48" />
-              )}
+              {choice ? <FcLike size="48" /> : <FcLikePlaceholder size="48" />}
               찜하기
             </div>
             <div className="itemIcon" onClick={handleFavorite}>
-              {favoriteRes ? (
+              {favorite ? (
                 <AiFillStar size="48" color="#167E6C" />
               ) : (
                 <AiOutlineStar size="48" />
@@ -326,7 +259,7 @@ const Detail = () => {
             </div>
           </S.DetailItem>
         </S.DetailContent>
-        <ButtonForm to="/alltimechat">실시간 채팅</ButtonForm>
+        <ButtonForm to="/alltimechat">게시판</ButtonForm>
       </S.DetailHeader>
       <Comment />
     </S.DetailContainer>
