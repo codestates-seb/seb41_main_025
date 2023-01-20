@@ -10,6 +10,7 @@ import {
   ContentForm,
 } from "../Login/styled";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   // * 이름, 닉네임, 이메일, 비밀번호, 비밀번호 확인
@@ -79,13 +80,13 @@ const SignUp = () => {
       .then((res) => {
         console.log(res.status);
         if (res.status === 201) {
-          alert("회원가입이 완료되었습니다!");
+          toast.success("회원가입이 완료되었습니다!");
           navigate("/login");
         } else if (res.status === 400) {
-          alert("회원가입을 진행해주세요!");
+          toast.error("회원가입을 진행해주세요");
           window.location.reload();
         } else if (res.status === 409) {
-          alert("동일한 회원 정보가존재합니다!");
+          toast.error("동일한 회원 정보가존재합니다!");
           window.location.reload();
         }
       })
@@ -173,13 +174,11 @@ const SignUp = () => {
     <Main>
       <S.WindowDiv>
         <S.Hello>
-          {/* <S.HelloAnnouncement> */}
-            <Logo>
-              <img src="/assets/GreenLogo.png" className="greenLogo" alt="" />
-              <img src="/assets/Character.png" className="character" alt="" />
-              {/* <GreenLogo/> */}
-            </Logo>
-          {/* </S.HelloAnnouncement> */}
+          <Logo>
+            <img src="/assets/GreenLogo.png" className="greenLogo" alt="" />
+            <img src="/assets/Character.png" className="character" alt="" />
+            {/* <GreenLogo/> */}
+          </Logo>
         </S.Hello>
         <ContentForm>
           <span className="LoginFont">Sign Up</span>
