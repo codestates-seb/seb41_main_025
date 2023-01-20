@@ -110,19 +110,14 @@ public class MemberService {
         return memberRepository.save(updateMember);
     }
 
-    public String prevModify(String memberpw,
-                             MemberDto.PrevModify prevModify,
-                             RedirectAttributes rttr) {
+    public boolean prevModify(String memberPw, String prePw) {
 
-        String pw = prevModify.getPassword();
-
-        if(passwordEncoder.matches(pw, memberpw)) {
-            log.info("pw 재확인 완료..");
-            return "/members/"+getCurrentMember().getMemberId();
+        if(passwordEncoder.matches(prePw, memberPw)) {
+            log.info("pw 재확인 완료.. !!!!");
+            return true;
         }
         else {
-            rttr.addFlashAttribute("msg", "비밀번호를 다시 확인해 주세요.");
-            return "/members/prevModify";
+            return false;
         }
     }
 /*
