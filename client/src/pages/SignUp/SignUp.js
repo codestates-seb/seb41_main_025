@@ -184,7 +184,7 @@ const SignUp = () => {
         <ContentForm>
           <span className="LoginFont">Sign Up</span>
           <S.EnterContent>
-            <Enter
+            <S.Enters
               type="name"
               placeholder="이름을 입력해 주세요"
               onChange={onChangeName}
@@ -193,7 +193,7 @@ const SignUp = () => {
             <span className="message" style={{ fontSize: "20px" }}>
               {nameMsg}
             </span>
-            <Enter
+            <S.Enters
               type="text"
               placeholder="닉네임을 입력해 주세요"
               onChange={onChangeNickname}
@@ -202,7 +202,7 @@ const SignUp = () => {
             <span className="message" style={{ fontSize: "20px" }}>
               {nickNameMsg}
             </span>
-            <Enter
+            <S.Enters
               type="email"
               placeholder="이메일을 입력해 주세요"
               onChange={onChangeEmail}
@@ -211,7 +211,7 @@ const SignUp = () => {
             <span className="message" style={{ fontSize: "20px" }}>
               {emailMsg}
             </span>
-            <Enter
+            <S.Enters
               type="password"
               placeholder="비밀번호를 입력해 주세요"
               onChange={onChangePwd}
@@ -220,7 +220,7 @@ const SignUp = () => {
             <span className="message" style={{ fontSize: "20px" }}>
               {pwdMsg}
             </span>
-            <Enter
+            <S.Enters
               type="password"
               placeholder="비밀번호를 확인해 주세요"
               onChange={onChangeConfirmPwd}
@@ -229,11 +229,10 @@ const SignUp = () => {
             <span className="message" style={{ fontSize: "20px" }}>
               {confirmPwdMsg}
             </span>
-            <S.SignUpButton
+            <S.SignupButton
               type="submit"
-              className="EnterButton"
+              className="signupButton"
               onClick={onSubmit}
-              style={{ marginBottom: "30px" }}
               disabled={
                 !(
                   isName &&
@@ -245,7 +244,7 @@ const SignUp = () => {
               }
             >
               Sign Up
-            </S.SignUpButton>
+            </S.SignupButton>
           </S.EnterContent>
         </ContentForm>
       </S.WindowDiv>
