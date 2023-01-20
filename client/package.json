@@ -18,6 +18,7 @@
     "react-slick": "^0.29.0",
     "redux": "^4.2.0",
     "slick-carousel": "^1.8.1",
+    "socketjs-client": "^1.0.2",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },
