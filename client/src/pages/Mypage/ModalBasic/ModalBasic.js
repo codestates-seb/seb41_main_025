@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useState} from "react";
 import * as S from "./styled";
 
 
@@ -14,11 +14,14 @@ const ModalBasic = ({ setModalOpen }) => {
   const token = localStorage.getItem("accessToken");
   console.log(token);
 
-  useEffect(() => {
+  const [pwd, setPwd] = useState("");
+
+  const onSubmit = (e) => {
+    e.preventDefault();
     axios
       .post(`http://whatu1.kro.kr:8080/members/prevModify`, 
       {
-        
+        password: pwd
       },
       
       {
@@ -27,13 +30,28 @@ const ModalBasic = ({ setModalOpen }) => {
         },
       })
       .then((res) => {
-        setInfo(res.data.data);
+        setPwd(res.data.data);
         console.log(res.data.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+    };
+
+    const onChangeConfirmPwd = useCallback((e) => {
+      const currentConfirmPwd = e.target.value;
+      setPwd(currentConfirmPwd);
+
+      // if (currentConfirmPwd !== pwd) {
+      //   setConfirmPwdMsg("비밀번호가 일치하지 않습니다.");
+      //   setIsPasswordConfirm(false);
+      // } else {
+      //   setConfirmPwdMsg("올바른 비밀번호입니다.");
+      //   setIsPasswordConfirm(true);
+      // }
+    },[pwd]);
+
+
 
   // const 
 
@@ -47,9 +65,13 @@ const ModalBasic = ({ setModalOpen }) => {
         <S.MyInput
           id="password"
           placeholder="비밀번호를 입력해주세요"
+          type="text"
+          pwd={pwd}
+          onChange={onChangeConfirmPwd}
+          
         />
       </S.InputItem>
-      <S.CloseBtn className="submit" onClick={closeModal}>
+      <S.CloseBtn className="submit" onClick={onSubmit} >
         확인
       </S.CloseBtn>
     </S.Container>
