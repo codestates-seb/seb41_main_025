@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>오늘은 뭘볼까? 고르기 10분컷</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/><link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="./css/styled.css">
+
+</head>
+<body>
+<div class="floating-chat expand enter">
+    <i class="fa fa-comments" aria-hidden="true"></i>
+    <div class="chat">
+        <div class="header">
+            <span class="title">
+                뭘봐유 채팅방
+            </span>
+        </div>
+        <ul id="msgArea" class="messages">
+        </ul>
+        <div class="footer">
+            <div id="opinion" class="text-box" contenteditable="true" disabled="true" onkeyup="enterkey()"></div>
+        </div>
+    </div>
+</div>
+<!-- partial -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script><script  src="./js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+</body>
+<script th:inline="javascript">
+
+    const username = [[${name}]];
+
+    const websocket = new WebSocket("ws://localhost:8080/ws/chat");
+    websocket.onmessage = onMessage;
+    websocket.onopen = onOpen;
+    websocket.onclose = onClose;
+
+    let isSeeing = true;
+    document.addEventListener("visibilitychange", function() {
+        console.log(document.visibilityState);
+        if(document.visibilityState == "hidden"){
+            isSeeing = false;
+        }else{
+            isSeeing = true;
+        }
+    });
+
+    var newExcitingAlerts = (function () {
+        var oldTitle = document.title;
+        var msg = "★Message!★";
+        var timeoutId;
+        var blink = function() { document.title = document.title == msg ? ' ' : msg;
+            if(isSeeing == true){
+                clear();
+            }
+        };
+        var clear = function() {
+            clearInterval(timeoutId);
+            document.title = oldTitle;
+            window.onmousemove = null;
+            timeoutId = null;
+        };
+        return function () {
+            if (!timeoutId) {
+                timeoutId = setInterval(blink, 1000);
+            }
+        };
+    }());
+
+    setInterval(() => console.log(new Date()), 10000); //prevent chrome refresh
+
+    $(document).ready(function(){
+        $(".floating-chat").click();
+
+        $("#disconn").on("click", (e) => {
+            disconnect();
+        })
+
+        $("#button-send").on("click", (e) => {
+            send();
+        });
+    })
+
+    function enterkey(){
+        if (window.event.keyCode == 13) {
+            send();
+        }
+    }
+    function send(){
+        console.log(username + ":" + $("#opinion").text());
+        if($("#opinion").text() != ""){
+            websocket.send(username + ":" + $("#opinion").text());
+            $("#opinion").text('');
+        }
+    }
+
+    function onClose(evt) {
+        var str = username + ": 님이 방을 나가셨습니다.";
+        websocket.send(str);
+    }
+
+    function onOpen(evt) {
+        var str = username + ": 님이 입장하셨습니다.";
+        websocket.send(str);
+    }
+
+    function onMessage(msg) {
+        var data = msg.data;
+        var sessionId = null;
+        var message = null;
+        var arr = data.split(":");
+
+        for(var i=0; i<arr.length; i++){
+            console.log('arr[' + i + ']: ' + arr[i]);
+        }
+
+        var cur_session = username;
+
+        console.log("cur_session : " + cur_session);
+
+
+        sessionId = arr[0];
+        message = arr[1];
+
+        console.log("sessionID : " + sessionId);
+        console.log("cur_session : " + cur_session);
+
+
+        if(message == " 님이 입장하셨습니다."){
+            message = sessionId + "님이 입장하셨습니다.";
+        }
+        if(message == undefined){
+            message = "채팅이 종료되었습니다.";
+        }
+        if(sessionId == cur_session){
+            var str = "<li class='other'>";
+            str += message;
+            str += "</li>";
+            $("#msgArea").append(str);
+        }
+        else{
+            var str = "<li class='self'>";
+            str += message;
+            str += "</li>";
+            $("#msgArea").append(str);
+
+            if(isSeeing == false){
+                newExcitingAlerts();
+            }
+        }
+
+        document.getElementById("msgArea").scrollTop = document.getElementById("msgArea").scrollHeight;
+    }
+</script>
+<style>
+    .text-box div:nth-child(n+1) {
+        display: none;
+    }
+</style>
+</html>
