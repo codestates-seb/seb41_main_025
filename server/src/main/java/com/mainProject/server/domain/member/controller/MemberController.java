@@ -9,7 +9,6 @@ import com.mainProject.server.global.response.MultiResponseDto;
 import com.mainProject.server.global.response.SingleResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +16,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
@@ -97,11 +95,16 @@ public class MemberController {
     }
 
 
-    @PostMapping("prevModify")
-    public String postPrevModify(@Valid @RequestBody MemberDto.PrevModify prevModify, RedirectAttributes rttr) {
-        String memberpw = memberService.getCurrentMember().getPassword();
-
-        return memberService.prevModify(memberpw, prevModify, rttr);
-
+    @PostMapping("/prevModify")
+    public ResponseEntity postPrevModify(@Valid @RequestBody MemberDto.PrevModify prevRequest) {
+        log.info("## prevModify = {}", prevRequest);
+        boolean check = memberService.prevModify(memberService.getCurrentMember().getPassword(), prevRequest.getPassword());
+        if(check){
+            log.info("pw 재확인 완료");
+            return new ResponseEntity(HttpStatus.OK);
+        }else{
+            log.info("pw 재확인 필요");
+            return  new ResponseEntity(HttpStatus.NON_AUTHORITATIVE_INFORMATION);
+        }
     }
 }

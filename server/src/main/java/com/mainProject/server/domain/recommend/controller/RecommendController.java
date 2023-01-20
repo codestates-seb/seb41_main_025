@@ -47,13 +47,21 @@ public class RecommendController {
 
     @GetMapping("/members/{member-id}/recommend")
     public ResponseEntity getRecomend(@PathVariable("member-id") long memberId){
-        List<Recommend> recommendList = recommendService.findRecommends(memberId);
-        return new ResponseEntity(new SingleResponseDto<>(mapper.recommendsToRecommendDtos(recommendList)), HttpStatus.OK);
+        Member curMember = memberService.getCurrentMember();
+        if (curMember.getMemberId() == memberId) {
+
+            List<Recommend> recommendList = recommendService.findRecommends(memberId);
+            return new ResponseEntity(new SingleResponseDto<>(mapper.recommendsToRecommendDtos(recommendList)), HttpStatus.OK);
+        } throw new BusinessLogicException(ExceptionCode.MEMBER_UNAUTHORIZED);
     }
 
     @GetMapping("/members/{member-id}/deprecate")
     public ResponseEntity getDeprecate(@PathVariable("member-id") long memberId){
-        List<Deprecate> deprecateList = recommendService.findDeprecates(memberId);
+        Member curMember = memberService.getCurrentMember();
+        if (curMember.getMemberId() == memberId) {
+
+            List<Deprecate> deprecateList = recommendService.findDeprecates(memberId);
         return new ResponseEntity(new SingleResponseDto<>(mapper.deprecatesToDeprecateResponseDtos(deprecateList)), HttpStatus.OK);
+        } throw new BusinessLogicException(ExceptionCode.MEMBER_UNAUTHORIZED);
     }
 }

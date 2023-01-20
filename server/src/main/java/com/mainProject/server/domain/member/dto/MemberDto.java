@@ -68,6 +68,7 @@ public class MemberDto {
     }
 
     @AllArgsConstructor
+    @NoArgsConstructor
     @Setter
     @Getter
     public static class PrevModify {
