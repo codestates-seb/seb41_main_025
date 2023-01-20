@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import { useEffect } from "react";
 import { ImSearch } from "react-icons/im";
+import { toast } from "react-toastify";
 
 const Header = (props) => {
   let isLogin = localStorage.getItem("isLogin");
@@ -102,11 +103,12 @@ const Header = (props) => {
 
 const Modal = () => {
   const memberId = localStorage.getItem("memberId");
-  console.log(memberId);
+  const navigate = useNavigate();
 
   const LogoutHandle = () => {
     localStorage.clear();
-    window.location.reload();
+    toast.success("로그아웃이 완료되었습니다!");
+    navigate("/");
   };
 
   return (
