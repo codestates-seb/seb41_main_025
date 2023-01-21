@@ -94,7 +94,7 @@ public class CrawlingService {
         }
 
 
-        driver.close();
+        driver.quit();
     }
 
     public static List<String> innerCrawling(String movieLink){

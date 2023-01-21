@@ -8,6 +8,7 @@ import com.mainProject.server.domain.member.entity.Member;
 import com.mainProject.server.domain.content.entity.Content;
 
 import com.mainProject.server.domain.member.repository.MemberRepository;
+import com.mainProject.server.domain.member.service.MemberService;
 import com.mainProject.server.global.exception.BusinessLogicException;
 import com.mainProject.server.global.exception.ExceptionCode;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ public class FavoriteService {
     private final MemberRepository memberRepository;
     private final FavoriteRepository favoriteRepository;
     private final ContentRepository contentRepository;
+    private final MemberService memberService;
 
     @Transactional
     public Favorite pickFavorite(Member member, Content content){
@@ -35,7 +37,7 @@ public class FavoriteService {
 
 
         if(0 <= member.getFavoriteLimitTotal() && member.getFavoriteLimitTotal() < 3/*멤버의 인생영화가 3보다 작을경우*/){
-            //인생영화가 3개 미만인 경우 추가 가능
+            // 인생영화가 3개 미만인 경우 추가 가능
             if(favorite.getFavoriteSelected() != Boolean.TRUE){
                 favorite.setFavoriteSelected(Boolean.TRUE);
                 favorite.setFavoriteLimit(favorite.getFavoriteLimit() +1);
@@ -48,7 +50,7 @@ public class FavoriteService {
                 content.setFavoriteCount(content.getFavoriteCount()-1);
             }
         } else{
-            //인생영화를 3개 모두 선택한 경우(선택하지 않은 것을 추가할 경우 Exception/선택한 것일 경우 취소
+            // 인생영화를 3개 모두 선택한 경우(선택하지 않은 것을 추가할 경우 Exception/선택한 것일 경우 취소
             if(favorite.getFavoriteSelected() == Boolean.TRUE){
                 favorite.setFavoriteSelected(Boolean.FALSE);
                 favorite.setFavoriteLimit(favorite.getFavoriteLimit() -1);
@@ -88,5 +90,16 @@ public class FavoriteService {
                 = optionalFavorite.orElseThrow(() ->
                 new BusinessLogicException(ExceptionCode.FAVORITE_NOT_FOUND));
         return findFavorite;
+    }
+
+    public void deleteFavorite(long favoriteId) {
+        Favorite findFavorite = findVerifiedFavorite(favoriteId);
+        Member findMember = memberService.findVerifiedMember(findFavorite.getMember().getMemberId());
+
+        if (memberService.getCurrentMember().getMemberId() != findMember.getMemberId()) {
+            throw new BusinessLogicException(ExceptionCode.MEMBER_UNAUTHORIZED);
+        }
+
+        favoriteRepository.delete(findFavorite);
     }
 }
