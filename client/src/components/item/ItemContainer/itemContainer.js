@@ -34,7 +34,7 @@ const ItemContainer = ( {movies, ottName} ) => {
         {movies &&
           movies.map((movie) => {
             return (
-              <Link to={`/contents/${movie.contentId}`} key={movie.ottRank}>
+              <Link to={`/contents/${movie.contentId}`} key={movie.contentId}>
                 <Item contentTitle={movie.contentTitle} contentPoster={movie.contentPoster} contentOpenAt={movie.contentOpenAt} contentCountry={movie.contentCountry} contentScore={movie.contentScore}/>
               </Link>
             );

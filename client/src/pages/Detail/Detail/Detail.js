@@ -9,8 +9,7 @@ import {
 } from "react-icons/ai";
 import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 import { ButtonForm } from "../../../components/item/Button/styled";
-import { useParams, useLocation } from "react-router-dom";
-import useFetch from "../../../components/util/useFetch";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Comment from "../Comment/Comment";
 import axios from "axios";
@@ -46,55 +45,58 @@ const Detail = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
-    if (token)
+    if (token){
       Promise.all([
         apiCall(`/members/${memberId}/recommend`),
         apiCall(`/members/${memberId}/deprecate`),
         apiCall(`/members/${memberId}/choice`),
         apiCall(`/members/${memberId}/favorite`),
       ])
-        .then(([data1, data2, data3, data4]) => {
-          const numContentId = parseInt(contentId);
-          if (data1[0]) {
-            if (data1.length > 0) {
-              for (let i = 0; i < data1.length; i++) {
-                if (data1[i].contentId === numContentId) setRecommend(true);
-              }
-            } else {
-              setRecommend(data1[0].contentId === numContentId);
+      .then(([data1, data2, data3, data4]) => {
+        const numContentId = parseInt(contentId);
+        if (data1[0]) {
+          if (data1.length > 0) {
+            for (let i = 0; i < data1.length; i++) {
+              if (data1[i].contentId === numContentId) setRecommend(true);
             }
+          } else {
+            setRecommend(data1[0].contentId === numContentId);
           }
-          if (data2[0]) {
-            if (data2.length > 0) {
-              for (let i = 0; i < data2.length; i++) {
-                if (data2[i].contentId === numContentId) setDeprecate(true);
-              }
-            } else {
-              setDeprecate(data2[0].contentId === numContentId);
+        }
+        if (data2[0]) {
+          if (data2.length > 0) {
+            for (let i = 0; i < data2.length; i++) {
+              if (data2[i].contentId === numContentId) setDeprecate(true);
             }
+          } else {
+            setDeprecate(data2[0].contentId === numContentId);
           }
-          if (data3[0]) {
-            if (data3.length > 0) {
-              for (let i = 0; i < data3.length; i++) {
-                if (data3[i].contentId === numContentId) setChoice(true);
-              }
-            } else {
-              setChoice(data3[0].contentId === numContentId);
+        }
+        if (data3[0]) {
+          if (data3.length > 0) {
+            for (let i = 0; i < data3.length; i++) {
+              if (data3[i].contentId === numContentId) setChoice(true);
             }
+          } else {
+            setChoice(data3[0].contentId === numContentId);
           }
-          if (data4[0]) {
-            if (data4.length > 0) {
-              for (let i = 0; i < data4.length; i++) {
-                if (data4[i].contentId === numContentId) setFavorite(true);
-              }
-            } else {
-              setFavorite(data4[0].contentId === numContentId);
+        }
+        if (data4[0]) {
+          if (data4.length > 0) {
+            for (let i = 0; i < data4.length; i++) {
+              if (data4[i].contentId === numContentId) setFavorite(true);
             }
+          } else {
+            setFavorite(data4[0].contentId === numContentId);
           }
-        })
-        .then(() => {
-          setLoading(false);
-        });
+        }
+      })
+      .then(() => {
+        setLoading(false);
+      })
+    } else{
+        setLoading(false);
+        }
   }, []);
   
   const { data, isLoading, error, refetch } = useCustomQuery(
@@ -108,6 +110,7 @@ const Detail = () => {
   // TODO: error 컴포넌트
   if (error) return <>error 발생</>;
   const movies = data.data;
+
   //추천
   const handleRecommend = async () => {
     await axios

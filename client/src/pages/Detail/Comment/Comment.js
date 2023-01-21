@@ -16,6 +16,7 @@ const Comment = () => {
   const [comments] = useFetch('http://whatu1.kro.kr:8080/comments?page=1&size=100',request);
   const [movies] = useFetch(`http://whatu1.kro.kr:8080/contents/${contentId}`,request)
   
+    console.log(comments);
     const [comment, setComment] = useState('');
     // console.log(comment)
 
