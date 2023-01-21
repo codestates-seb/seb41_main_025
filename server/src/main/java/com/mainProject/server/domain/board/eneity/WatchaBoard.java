@@ -14,13 +14,10 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class WatchaBoard extends Auditable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long boardId;
+    private long watchaBoardId;
 
     @Column(nullable = false)
-    private String boardTitle;
-
-    @Column(nullable = false)
-    private String boardBody;
+    private String watchaBoardBody;
 
     @ManyToOne
     @JoinColumn(name="MEMBER_ID")
