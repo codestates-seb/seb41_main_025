@@ -6,10 +6,10 @@ export const Items = styled.div`
   align-content: center;
   margin: 20px;
  
-  @media only screen and (max-width: ${'1200px'}) {
+  @media only screen and (max-width: ${'700px'}) {
   
   } 
-  @media only screen and (max-width: ${'600px'}) {
+  @media only screen and (max-width: ${'300px'}) {
     width: 100%;
     height: 100%;
     display: grid;
@@ -22,11 +22,11 @@ export const Item = styled.div`
     width: 100%;
     height: auto;
     border-radius: 40px;
-    @media only screen and (max-width: ${'1200px'}) {
+    @media only screen and (max-width: ${'700px'}) {
     min-height: 250px;
     min-width: 200px;
   }
-  @media only screen and (max-width: ${'600px'}) {
+  @media only screen and (max-width: ${'300px'}) {
     min-height: 350px;
     min-width: 300px;
   } 

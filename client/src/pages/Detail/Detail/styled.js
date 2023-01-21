@@ -20,7 +20,7 @@ export const DetailHeader = styled.div`
     border-radius: 10px;
     background-size: contain;
   }
-  @media only screen and (max-width: ${"1200px"}) {
+  @media only screen and (max-width: ${"700px"}) {
     flex-direction: column;
     justify-content: center;
     }
@@ -32,12 +32,12 @@ export const DetailContent = styled.div`
   max-width: 600px;
   padding-left: 50px;
   justify-content: space-around;
-  @media only screen and (max-width: ${"1200px"}) {
+  @media only screen and (max-width: ${"700px"}) {
   padding-left: 0;
   }
   .title {
     font-size: 35px;
-    @media only screen and (max-width: ${"600px"}) {
+    @media only screen and (max-width: ${"300px"}) {
     font-size: 25px;
   }
   }
@@ -45,11 +45,11 @@ export const DetailContent = styled.div`
     margin-top: 10px;
   }
   .contents{
-    @media only screen and (max-width: ${"600px"}) {
+    @media only screen and (max-width: ${"300px"}) {
       width: 90%;
       margin-top: 20px;
     }
-    @media only screen and (max-width: ${"1200px"}) {
+    @media only screen and (max-width: ${"700px"}) {
       margin-top: 20px;
     }
   }
@@ -66,10 +66,10 @@ export const DetailItem = styled.div`
     height: 80px;
     cursor: pointer;
   }
-  @media only screen and (max-width: ${"600px"}) {
+  @media only screen and (max-width: ${"300px"}) {
   margin: 20px 0 20px 0;
     }
-  @media only screen and (max-width: ${"1200px"}) {
+  @media only screen and (max-width: ${"700px"}) {
   margin: 20px 0;
   }
 `; //아이콘 박스

@@ -8,17 +8,17 @@ export const DetailCommentList = styled.div`
 `;
 
 export const DetailCommentItem = styled.div`
-  width: 1220px;
+  width: 1200px;
   height: 100px;
   padding: 10px;
   background: #58bfad;
   margin-bottom: 10px;
   font-size: 13px;
   border-radius: 10px;
-  @media only screen and (max-width: ${"600px"}) {
+  @media only screen and (max-width: ${"300px"}) {
     width: 90%;
   }
-  @media only screen and (max-width: ${"1200px"}) {
+  @media only screen and (max-width: ${"700px"}) {
     width: 90%;
   }
   .userInfo {
@@ -28,6 +28,7 @@ export const DetailCommentItem = styled.div`
     color: #ffffff;
     .name {
       padding-left: 10px;
+      width: 400px;
     }
   }
   .content {
@@ -85,10 +86,17 @@ export const InputDiv = styled.div`
 `;
 
 export const InputButton = styled.button`
-    width: 30px;
-    height: 30px;
+  width: 60px;
+  height: 30px;
+  background-color: #58bfad;
+  margin-right: 0;
+  border-radius: 20px;
+  border-color: white;
+  color: black;
+  font-weight: 700;
 `
 
 export const Buttons = styled.div`
-    display: flex;
+  margin-left: 50%;
+ 
 `

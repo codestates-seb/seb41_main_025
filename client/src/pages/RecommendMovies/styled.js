@@ -19,7 +19,7 @@ export const RecommendButton = styled.button`
         background-color: whitesmoke;
     }
     
-    @media only screen and (max-width: ${'600px'}) {
+    @media only screen and (max-width: ${'300px'}) {
         width: 200px;
     }
 `
@@ -39,7 +39,7 @@ export const TitleDiv = styled.div`
   .title {
       font-size: 20px;
   }
-  @media only screen and (max-width: ${'600px'}) {
+  @media only screen and (max-width: ${'300px'}) {
     width: 300px;
     margin-left: 90px;
   } 
@@ -59,7 +59,7 @@ export const ButtonDiv = styled.div`
     width: calc(100% / 4);
     border-bottom: 2px solid #000000;
   }
-  @media only screen and (max-width: ${'600px'}) {
+  @media only screen and (max-width: ${'300px'}) {
     width: 450px;
     margin: auto;
     font-size: 20px;
@@ -98,10 +98,10 @@ export const CommentItem = styled.div`
   width: 1000px;
   height: auto;
   margin-bottom: 10px;
-  @media only screen and (max-width: ${'1200px'}) {
+  @media only screen and (max-width: ${'700px'}) {
     width: 100vh;
   } 
-  @media only screen and (max-width: ${'600px'}) {
+  @media only screen and (max-width: ${'300px'}) {
     width: 50px;
     margin-left: 50%;
   } 
@@ -116,14 +116,14 @@ export const Title = styled(MainContainer)`
     text-decoration-thickness: 4px;
     text-underline-offset: 20px;
 
-    @media only screen and (max-width: ${'1200px'}) {
+    @media only screen and (max-width: ${'700px'}) {
         font-size: 25px;
         }
-    @media only screen and (max-width: ${'600px'}) {
+    @media only screen and (max-width: ${'300px'}) {
         font-size: 20px;
         }
     }
-    @media only screen and (max-width: ${'600px'}) {
+    @media only screen and (max-width: ${'300px'}) {
         width: 40vh;
         margin: 80px 0 0 -120px;
     }

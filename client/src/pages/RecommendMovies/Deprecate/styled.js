@@ -6,7 +6,7 @@ export const Items = styled.div`
     align-content: center;
     margin: 20px;
     
-    @media only screen and (max-width: ${'600px'}) {
+    @media only screen and (max-width: ${'300px'}) {
         display: grid;
     }
 `;

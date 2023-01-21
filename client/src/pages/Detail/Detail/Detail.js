@@ -6,10 +6,11 @@ import {
   AiOutlineLike,
   AiOutlineDislike,
   AiOutlineStar,
+  AiOutlineHeart,
+  AiFillHeart
 } from "react-icons/ai";
-import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 import { ButtonForm } from "../../../components/item/Button/styled";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Comment from "../Comment/Comment";
 import axios from "axios";
@@ -34,12 +35,14 @@ const apiCall = async (url) => {
 const Detail = () => {
 
   const { contentId } = useParams();
+  const navigate = useNavigate();
 
   const [deprecate, setDeprecate] = useState(false);
   const [recommend, setRecommend] = useState(false);
   const [favorite, setFavorite] = useState(false);
   const [choice, setChoice] = useState(false);
   const [loading, setLoading] = useState(true);
+  let isLogin = localStorage.getItem("isLogin");
 
   const memberId = localStorage.getItem("memberId");
 
@@ -113,6 +116,7 @@ const Detail = () => {
 
   //추천
   const handleRecommend = async () => {
+    if(!isLogin) return navigate('/login')
     await axios
       .post(
         `http://whatu1.kro.kr:8080/contents/${contentId}/recommend`,
@@ -123,7 +127,7 @@ const Detail = () => {
           },
         }
       )
-      .then((res) => {
+      .then(() => {
         if (deprecate) {
           setDeprecate(!deprecate);
         }
@@ -137,6 +141,7 @@ const Detail = () => {
 
   //비추천
   const handleDecommend = async () => {
+    if(!isLogin) return navigate('/login')
     await axios
       .post(
         `http://whatu1.kro.kr:8080/contents/${contentId}/deprecate`,
@@ -147,7 +152,7 @@ const Detail = () => {
           },
         }
       )
-      .then((res) => {
+      .then(() => {
         if (recommend) {
           setRecommend(!recommend);
         }
@@ -161,6 +166,7 @@ const Detail = () => {
 
   //찜하기
   const handleChoose = async () => {
+    if(!isLogin) return navigate('/login')
     await axios
       .post(
         `http://whatu1.kro.kr:8080/contents/${contentId}/choice`,
@@ -172,7 +178,7 @@ const Detail = () => {
           },
         }
       )
-      .then((res) => {
+      .then(() => {
         setChoice(!choice);
         refetch();
       })
@@ -183,6 +189,7 @@ const Detail = () => {
 
   //인생작
   const handleFavorite = () => {
+    if(!isLogin) return navigate('/login')
     axios
       .post(
         `http://whatu1.kro.kr:8080/contents/${contentId}/favorite`,
@@ -194,7 +201,7 @@ const Detail = () => {
           },
         }
       )
-      .then((res) => {
+      .then(() => {
         setFavorite(!favorite);
         refetch();
       })
@@ -249,7 +256,7 @@ const Detail = () => {
               {movies.deprecateCount}
             </div>
             <div className="itemIcon" onClick={handleChoose}>
-              {choice ? <FcLike size="48" /> : <FcLikePlaceholder size="48" />}
+              {choice ? <AiOutlineHeart size="48" /> : <AiFillHeart size="48" color="red"/>}
               찜하기
             </div>
             <div className="itemIcon" onClick={handleFavorite}>

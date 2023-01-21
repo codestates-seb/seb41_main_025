@@ -8,7 +8,7 @@ export const Items = styled.div`
     align-content: center;
     margin: 20px;
     
-    @media only screen and (max-width: ${'600px'}) {
+    @media only screen and (max-width: ${'300px'}) {
         display: grid;
     }
 `;
@@ -23,14 +23,14 @@ export const Title = styled(MainContainer)`
     text-decoration-thickness: 4px;
     text-underline-offset: 20px;
 
-    @media only screen and (max-width: ${'1200px'}) {
+    @media only screen and (max-width: ${'700px'}) {
         font-size: 25px;
         }
-    @media only screen and (max-width: ${'600px'}) {
+    @media only screen and (max-width: ${'300px'}) {
         font-size: 20px;
         }
     }
-    @media only screen and (max-width: ${'600px'}) {
+    @media only screen and (max-width: ${'300px'}) {
         width: 40vh;
         margin: 80px 0 0 -120px;
     }
@@ -49,12 +49,12 @@ export const FavoriteSearch = styled(SearchBar)`
         font-size: 20px;
         margin-top:30px;
 
-        @media only screen and (max-width: ${'1200px'}) {
+        @media only screen and (max-width: ${'700px'}) {
           width: 300px;
           height: 40px;
           margin: 50px 0 10px -80px;
         }
-        @media only screen and (max-width: ${'600px'}) {
+        @media only screen and (max-width: ${'300px'}) {
           width: 300px;
           height: 40px;
           margin-top: 80px;

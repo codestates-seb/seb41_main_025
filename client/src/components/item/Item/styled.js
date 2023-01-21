@@ -11,7 +11,7 @@ export const ItemContainer = styled.div`
     width: 240px;
     height: 336px;
     border-radius: 10px;
-    background-color: red;
+    background-color: #f7f7f7;
     background-image: url("");
     background-size: contain;
   }
