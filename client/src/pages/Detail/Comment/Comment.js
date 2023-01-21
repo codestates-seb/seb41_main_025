@@ -20,13 +20,13 @@ const Comment = () => {
     const [comment, setComment] = useState('');
     // console.log(comment)
 
-    const getMoreComment = async () => {
-      const res = await fetch(
-        `http://whatu1.kro.kr:8080/comments?page=${page+1}&size=6`
-      );
-      const newPosts = await res.json();
-      setPage((post) => [...post, ...newPosts]);
-    };
+    // const getMoreComment = async () => {
+    //   const res = await fetch(
+    //     `http://whatu1.kro.kr:8080/comments?page=${page+1}&size=6`
+    //   );
+    //   const newPosts = await res.json();
+    //   setPage((post) => [...post, ...newPosts]);
+    // };
 
   //한 줄 평 입력
   const submitcommit = async (e) => {
@@ -127,7 +127,7 @@ const Comment = () => {
 
         {moviecomment && moviecomment.length !== null ? (
           <>
-            <InfiniteScroll
+            {/* <InfiniteScroll
             dataLength={moviecomment.length} //This is important field to render the next data
             next={getMoreComment}
             hasMore={true}
@@ -138,7 +138,7 @@ const Comment = () => {
             </p>
             }
             >
-            </InfiniteScroll>
+            </InfiniteScroll> */}
             <S.DetailCommentList>
               { moviecomment && moviecomment.map(comment => (
               <S.DetailCommentItem key={comment.commentId}>

@@ -4,7 +4,7 @@ import axios from "axios";
 const Item = ({  favoritePoster,favoriteId, favoriteScore ,favoriteTitle }) => {
 
   const memberId = localStorage.getItem("memberId");
-  const handleDelete = async () => {
+  const handleDelete = async (favoriteId) => {
     await axios
       .post(
         `http://whatu1.kro.kr:8080/members/${memberId}/favorite`,
@@ -16,7 +16,7 @@ const Item = ({  favoritePoster,favoriteId, favoriteScore ,favoriteTitle }) => {
         }
       )
       .then((res) => {
-        console.log(res)
+        console.log(favoriteId)
       })
       .catch((err) => {
         console.log(err);
@@ -31,7 +31,7 @@ const Item = ({  favoritePoster,favoriteId, favoriteScore ,favoriteTitle }) => {
           <h4 className="movieTitle">평점 : {favoriteScore}</h4>
         </S.DetailFont>
       {/* <S.DeleteBtn onclick = {() => handleDelete(comment.commentId)}>X</S.DeleteBtn> */}
-      <S.DeleteBtn onclick = {() => handleDelete()}>X</S.DeleteBtn>
+      <S.DeleteBtn onclick = {() => handleDelete(favoriteId)}>X</S.DeleteBtn>
       </S.Details>
     </S.EachItem>
   )
