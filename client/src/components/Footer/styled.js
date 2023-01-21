@@ -20,7 +20,7 @@ export const FooterContainer = styled.div`
     margin: 20px 0px;
     img { width: 100% }
 
-    @media only screen and (max-width: ${'600px'}) {
+    @media only screen and (max-width: ${'300px'}) {
       width: 200px;
       height: 150px;
       margin: 20px 0px 0 0;
@@ -42,7 +42,7 @@ export const Creaters = styled.div`
       display: flex;
     } 
   }
-  @media only screen and (max-width: ${'600px'}) {
+  @media only screen and (max-width: ${'300px'}) {
     display: grid;
     padding-top: 10px;
     justify-items: center;
@@ -53,7 +53,7 @@ export const Creaters = styled.div`
   .title {
     margin-right: 30px;
 
-    @media only screen and (max-width: ${'600px'}) {
+    @media only screen and (max-width: ${'300px'}) {
       padding-top: 20px;
     } 
   }
