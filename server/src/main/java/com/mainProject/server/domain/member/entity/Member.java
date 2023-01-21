@@ -1,6 +1,8 @@
 package com.mainProject.server.domain.member.entity;
 
-import com.mainProject.server.domain.board.eneity.Board;
+import com.mainProject.server.domain.board.eneity.TvingBoard;
+import com.mainProject.server.domain.board.eneity.WatchaBoard;
+import com.mainProject.server.domain.board.eneity.WavveBoard;
 import com.mainProject.server.domain.comment.entity.Comment;
 import com.mainProject.server.domain.favorite.eneity.Favorite;
 import com.mainProject.server.domain.recommend.entity.Deprecate;
@@ -45,7 +47,13 @@ public class Member extends Auditable {
     private List<String> roles = new ArrayList<>();
 
     @OneToMany(mappedBy="member", cascade = CascadeType.ALL)
-    private List<Board> boardList = new ArrayList<>();
+    private List<WatchaBoard> watchaBoardList = new ArrayList<>();
+
+    @OneToMany(mappedBy="member", cascade = CascadeType.ALL)
+    private List<TvingBoard> tvingBoardList = new ArrayList<>();
+
+    @OneToMany(mappedBy="member", cascade = CascadeType.ALL)
+    private List<WavveBoard> wavveBoardList = new ArrayList<>();
 
     @OneToMany(mappedBy="member", cascade = CascadeType.ALL)
     private List<Comment> commentList = new ArrayList<>();

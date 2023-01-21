@@ -91,7 +91,7 @@ public class MemberController {
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
-    
+
     @PostMapping("/prevModify")
     public ResponseEntity postPrevModify(@Valid @RequestBody MemberDto.PrevModify prevRequest) {
         log.info("## prevModify = {}", prevRequest);

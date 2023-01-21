@@ -64,7 +64,6 @@ public class MemberDto {
         private String password;
         private String memberPicture;
         private String nickName;
-
     }
 
     @AllArgsConstructor

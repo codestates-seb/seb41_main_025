@@ -28,7 +28,8 @@ public enum ExceptionCode {
     TOKEN_NOT_ALLOW(404, "Token not allow"),
     REFRESH_TOKEN_NOT_FOUND(404, "Refresh token not found"),
     REFRESH_TOKEN_NOT_EQUAL(404, "Refresh token doesn't equal"),
-    REFRESH_TOKEN_NOT_ALLOW(404, "Token not allow");
+    REFRESH_TOKEN_NOT_ALLOW(404, "Token not allow"),
+    BOARD_NOT_FOUND(404, "board not found");
 
     @Getter
     private int status;
