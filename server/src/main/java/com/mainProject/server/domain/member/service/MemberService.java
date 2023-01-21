@@ -168,10 +168,8 @@ public class MemberService {
 
     public Member getCurrentMember() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
         if(authentication == null || authentication.getName() == null || authentication.getName().equals("anonymousUser"))
             throw new BusinessLogicException(ExceptionCode.MEMBER_UNAUTHORIZED);
-
         Optional<Member> optionalMember = memberRepository.findByEmail(authentication.getName());
         Member member = optionalMember.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
 

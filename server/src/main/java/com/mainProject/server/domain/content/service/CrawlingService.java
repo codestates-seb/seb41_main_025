@@ -31,6 +31,10 @@ public class CrawlingService {
     public void createCrawling(String ottCrawling) {
         System.setProperty(id, path);
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-popup-blocking");       //팝업안띄움
+        options.addArguments("headless");                       //브라우저 안띄움
+        options.addArguments("--disable-gpu");			//gpu 비활성화
+        options.addArguments("--blink-settings=imagesEnabled=false"); //이미지 다운 안받음
 
         String url = "https://movie.daum.net/main";
         WebDriver driver = new ChromeDriver(options);
@@ -100,6 +104,10 @@ public class CrawlingService {
     public static List<String> innerCrawling(String movieLink){
         System.setProperty(id, path);
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-popup-blocking");       //팝업안띄움
+        options.addArguments("headless");                       //브라우저 안띄움
+        options.addArguments("--disable-gpu");			//gpu 비활성화
+        options.addArguments("--blink-settings=imagesEnabled=false"); //이미지 다운 안받음
         String url = movieLink;
         WebDriver driver = new ChromeDriver(options);
         driver.get(url);

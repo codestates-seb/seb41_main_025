@@ -18,6 +18,7 @@ public class CommentDto {
     }
 
     @AllArgsConstructor
+    @NoArgsConstructor
     @Setter
     @Getter
     public static class Patch{
