@@ -20,7 +20,6 @@
     "react-toastify": "^9.1.1",
     "redux": "^4.2.0",
     "slick-carousel": "^1.8.1",
-    "sockjs": "^0.3.24",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },
