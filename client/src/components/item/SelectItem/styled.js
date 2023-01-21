@@ -26,7 +26,7 @@ export const DetailFont = styled.div`
     font-size: 20px;
     }
 `
-export const EachItem = styled.div `
+export const EachItem = styled.div`
     margin: 70px 3% 3% 90px;
     @media only screen and (max-width: ${'1200px'}) {
       margin: 20px;
