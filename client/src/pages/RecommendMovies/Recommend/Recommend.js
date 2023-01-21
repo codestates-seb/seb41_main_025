@@ -1,33 +1,50 @@
 import SeleteItem from "../../../components/item/SelectItem/SeleteItem";
 import * as S from "./styled"
+import {useState,useEffect} from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Recommend = () => {
+
+  const memberId = localStorage.getItem("memberId");
+  const [recommendContent, setRecommendContent] = useState([])
+
+  useEffect(() => {
+    axios
+    .get(`http://whatu1.kro.kr:8080/members/${memberId}/recommend`,
+    {
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+        Accept: "application/json",
+        "AutHorization" : localStorage.getItem("accessToken"),
+      },
+    })
+    .then((res) => {
+      setRecommendContent(res.data.data);
+      // console.log(res.data.data)
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  },[]);
     return(
     <S.Items>
-        {/*TODO: 추천 값이 true인 것들을 filter 해서 뿌려주기 */}
-        <SeleteItem />
-        <SeleteItem />
-        <SeleteItem />
+      {recommendContent && recommendContent.map((recommend) => {
+        console.log(recommend.contentResponseMinDto.contentTitle)
+        return (
+          // <Link to = {`/contents/${recommend.contentResponseMinDto.contentId}`} key={recommend.contentResponseMinDto.contentId}>
+          <SeleteItem 
+            Poster = {recommend.contentResponseMinDto.contentPoster}
+            Id = {recommend.contentResponseMinDto.contentId}
+            Score={recommend.contentResponseMinDto.contentScore}
+            Title= {recommend.contentResponseMinDto.contentTitle}
+            />
+        // </Link>
+        )
+      })}
     </S.Items>
-    // <S.ContentList>
-    //   {dummy.map((item) => {
-    //     return (
-    //       <S.ContentItem key={item.id}>
-    //         <div className="userInfo">
-    //           <img
-    //             src={item.memberPicture}
-    //             className="memberPicture"
-    //             alt="사용자 이미지"
-    //             style={{}}
-    //           ></img>
-    //           {item.name}
-    //         </div>
-    //         <div className="content">{item.commentBody}</div>
-    //       </S.ContentItem>
-    //     );
-    //   })}
-    // </S.ContentList>
+
   );
 
 }
-    export default Recommend
+    export default Recommend;
