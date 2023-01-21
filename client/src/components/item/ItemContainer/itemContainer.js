@@ -1,7 +1,8 @@
 import * as S from "./styled"
 import Item from "../Item/item"
-import { useRef, useCallback } from "react";
+import { useRef, useCallback, useState } from "react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 // slide
 import Slider from "react-slick";
@@ -17,19 +18,45 @@ const ItemContainer = ( {movies, ottName} ) => {
     //autoplay: true,
     autoplayspeed: 1000,
     arrows: false,
-    slidesToShow: 5,
     slidesToScroll: 1,
   };
+
+  // window.width
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
+  const handleResize = () => {
+    setWindowSize(window.innerWidth);
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.addEventListener('resize', handleResize);
+    }
+  }, []);
+
+  console.log(windowSize);
 
   // prev, next
   const slickRef = useRef(null);
   const previous = useCallback(() => slickRef.current.slickPrev(), []);
   const next = useCallback(() => slickRef.current.slickNext(), []);
-
+  
   return (
     <S.Container>
       <h2 className="title">{ottName} 순위</h2>
-      <Slider className="items" ref={slickRef} {...settings}>
+      <Slider 
+      className="items" 
+      ref={slickRef} 
+      {...settings}
+      slidesToShow={
+        windowSize >= 1440 
+        ? 5 : ( windowSize >= 1320
+          ? 4 : ( windowSize >= 1000
+            ? 3 : ( windowSize >= 800
+              ? 2 : ( windowSize >= 600
+                ? 1 : null))))
+      }
+      >
 
         {movies &&
           movies.map((movie) => {
