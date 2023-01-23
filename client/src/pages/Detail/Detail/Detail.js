@@ -11,7 +11,7 @@ import {
 } from "react-icons/ai";
 import { ButtonForm } from "../../../components/item/Button/styled";
 import { useNavigate, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Comment from "../Comment/Comment";
 import axios from "axios";
 import { useCustomQuery } from "../../../components/util/useCustomQuery";
@@ -43,6 +43,9 @@ const Detail = () => {
   const [choice, setChoice] = useState(false);
   const [loading, setLoading] = useState(true);
   let isLogin = localStorage.getItem("isLogin");
+  const contentRef = useRef(null);
+  const [isHide, setIsHide] = useState(false);
+  console.log(isHide)
 
   const memberId = localStorage.getItem("memberId");
 
@@ -210,6 +213,17 @@ const Detail = () => {
         console.log(err);
       });
   };
+  
+  const onClick = (e) => {
+    setIsHide(!isHide);
+    // 숨겨진 멘트가 다 출력된다
+    isHide ? ( 
+    contentRef.current.classList.remove("show") ) : (
+    contentRef.current.classList.add("show") )  
+   
+    // 더보기 버튼이 숨겨진다
+    // e.currentTarget.classList.add("show");
+  };
 
   return (
     <S.DetailContainer>
@@ -222,19 +236,17 @@ const Detail = () => {
         <S.DetailContent>
           <>
             <div className="contents">
+              {/* TODO : 글씨 크기 title : 과 내용 크기를 다르게 주고 싶음 */}
               <div className="title">{movies && movies.contentTitle}</div>
-              <div className="content">
-                공개일 : {movies && movies.contentOpenAt}
-              </div>
-              <div className="content">
-                평점 : {movies && movies.contentScore}
-              </div>
-              <div className="content">
-                장르 : {movies && movies.contentGenre}
-              </div>
-              <div className="content">
+              <div className="content">공개일 : {movies && movies.contentOpenAt}</div>
+              {/* <div className="content">공개 OTT : </div> */}
+              {console.log(movies)}
+              <div className="content">평점 : {movies && movies.contentScore}</div>
+              <div className="content">장르 : {movies && movies.contentGenre}</div>
+              <S.Ellipsis ref={contentRef}>
                 영화설명 : {movies && movies.contentBody}
-              </div>
+                <S.Button onClick={onClick}>{isHide ? "[숨기기]": "...[더보기]" }</S.Button>
+              </S.Ellipsis>
             </div>
           </>
           <S.DetailItem>
@@ -256,7 +268,7 @@ const Detail = () => {
               {movies.deprecateCount}
             </div>
             <div className="itemIcon" onClick={handleChoose}>
-              {choice ? <AiOutlineHeart size="48" /> : <AiFillHeart size="48" color="red"/>}
+              {choice ? <AiFillHeart size="48" color="red"/> : <AiOutlineHeart size="48" />}
               찜하기
             </div>
             <div className="itemIcon" onClick={handleFavorite}>
@@ -269,7 +281,9 @@ const Detail = () => {
             </div>
           </S.DetailItem>
         </S.DetailContent>
-        <ButtonForm to="/alltimechat">게시판</ButtonForm>
+        {isLogin ?
+          (<ButtonForm to='/alltimechat'>게시판</ButtonForm>) : 
+          (<ButtonForm to='/login'>게시판</ButtonForm>) } 
       </S.DetailHeader>
       <Comment />
     </S.DetailContainer>
