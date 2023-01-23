@@ -73,3 +73,38 @@ export const DetailItem = styled.div`
   margin: 20px 0;
   }
 `; //아이콘 박스
+
+export const Ellipsis = styled.div`
+  position: relative;
+  display: -webkit-box;
+  max-height: 6rem;
+  line-height: 2rem;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  &.show {
+      display: block;
+      max-height: none;
+      overflow: auto;
+      -webkit-line-clamp: unset;
+    }
+`;
+
+export const Button = styled.button`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border: 0;
+  max-height: 2rem;
+  line-height: 2rem;
+  padding-left: 20px;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 1) 18%
+  );
+  &.hide {
+    display: none;
+  }
+`;
