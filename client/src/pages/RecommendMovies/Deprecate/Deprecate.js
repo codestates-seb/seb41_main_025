@@ -3,6 +3,7 @@ import * as S from "./styled"
 import {useState,useEffect} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Empty from "../../Empty/Empty";
 
 const Deprecate = () => {
 
@@ -27,23 +28,28 @@ const Deprecate = () => {
       console.log(error);
     });
   },[]);
+  
     return(
-    <S.Items>
-      {/* //TODO : deprecate 리렌더링 후 다시 recommend 창으로 돌아가는 현상 */}
-      {deprecateContent && deprecateContent.map((deprecate) => {
-        console.log(deprecate.contentResponseMinDto.contentTitle)
-        return (
-          // <Link to = {`/contents/${deprecate.contentResponseMinDto.contentId}`} key={deprecate.contentResponseMinDto.contentId}>
-          <SeleteItem 
-            Poster = {deprecate.contentResponseMinDto.contentPoster}
-            Id = {deprecate.contentResponseMinDto.contentId}
-            Score={deprecate.contentResponseMinDto.contentScore}
-            Title= {deprecate.contentResponseMinDto.contentTitle}
-            />
-        // </Link>
-        )
-      })}
-    </S.Items>
+      <>
+      {deprecateContent.length === 0 ? <Empty/> : (    
+        <S.Items>
+          {/* //TODO : deprecate 리렌더링 후 다시 recommend 창으로 돌아가는 현상 */}
+          {deprecateContent && deprecateContent.map((deprecate) => {
+            console.log(deprecate.contentResponseMinDto.contentTitle)
+            return (
+              // <Link to = {`/contents/${deprecate.contentResponseMinDto.contentId}`} key={deprecate.contentResponseMinDto.contentId}>
+              <SeleteItem 
+              Poster = {deprecate.contentResponseMinDto.contentPoster}
+              Id = {deprecate.contentResponseMinDto.contentId}
+              Score={deprecate.contentResponseMinDto.contentScore}
+              Title= {deprecate.contentResponseMinDto.contentTitle}
+              />
+              // </Link>
+              )
+            })}
+        </S.Items>
+      )}
+      </>
 
   );
 

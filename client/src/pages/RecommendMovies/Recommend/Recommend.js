@@ -3,6 +3,7 @@ import * as S from "./styled"
 import {useState,useEffect} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Empty from "../../Empty/Empty";
 
 const Recommend = () => {
 
@@ -27,23 +28,25 @@ const Recommend = () => {
       console.log(error);
     });
   },[]);
+
     return(
-    <S.Items>
-      {recommendContent && recommendContent.map((recommend) => {
-        console.log(recommend.contentResponseMinDto.contentTitle)
-        return (
-          // <Link to = {`/contents/${recommend.contentResponseMinDto.contentId}`} key={recommend.contentResponseMinDto.contentId}>
-          <SeleteItem 
+      <>
+      {recommendContent.length === 0 ? <Empty/> : (
+        <S.Items>
+        {recommendContent && recommendContent.map((recommend) => {
+
+          return (
+            <SeleteItem 
             Poster = {recommend.contentResponseMinDto.contentPoster}
             Id = {recommend.contentResponseMinDto.contentId}
             Score={recommend.contentResponseMinDto.contentScore}
             Title= {recommend.contentResponseMinDto.contentTitle}
             />
-        // </Link>
-        )
-      })}
-    </S.Items>
-
+            )
+          })}
+          </S.Items>
+          )}
+      </>
   );
 
 }

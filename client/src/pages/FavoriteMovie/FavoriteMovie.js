@@ -5,7 +5,8 @@ import { MainWarp, MainContainer} from "../Main/styled"
 // import useFetch from "../../components/util/useFetch";
 import axios from "axios";
 import { useState, useEffect} from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Empty from "../Empty/Empty";
 
 const FavoriteMovie = (props) =>{
 
@@ -31,14 +32,6 @@ const FavoriteMovie = (props) =>{
       Navigate('/searchResult')
   }
 
-  // const request = {
-  //   method : "get",
-  //   headers : {
-  //     "Content-Type" : "application/json",
-  //     "AutHorization" : localStorage.getItem("accessToken")}
-  // }
-  // const [favorite] = useFetch(`http://whatu1.kro.kr:8080/members/${memberId}`,request)
-  // console.log(favorite)
   useEffect(() => {
     axios
     .get(`http://whatu1.kro.kr:8080/members/${memberId}/favorite`,
@@ -70,7 +63,6 @@ const FavoriteMovie = (props) =>{
       })
       .then((res) => {
         setNickName(res.data.data.nickName);
-        // console.log(nickName)
       })
       .catch((error) => {
         console.log(error);
@@ -86,7 +78,6 @@ const FavoriteMovie = (props) =>{
                     {/* 만약 Item 길이가 3개가 아니라면 검색 창 뜨게하기 */}
                     {favoriteContent.length !== 3 ? (
                       <S.FavoriteSearch>
-                        {/* TODO : POST */}
                         <input 
                           type="text"
                           placeholder="검색을 통해 인생 작품 BEST 3를 선택해주세요 :)"
@@ -96,23 +87,23 @@ const FavoriteMovie = (props) =>{
                           ></input>
                       </S.FavoriteSearch>) : null}
                 </S.Title>
-                    {/*TODO: 인생 영화 값이 true인 것들을 filter 해서 뿌려주기 */}
-                <S.Items>
+                {console.log(typeof(nickName))}
+                  {favoriteContent.length === 0 ? <Empty/> : (
+                    // FIXME : porps로 nickname을 내려주면 오류 발생
+                  <S.Items>
                   {favoriteContent && favoriteContent.map((favorite) => {
                     console.log(favorite.contentResponseMinDto.contentTitle)
                     return (
-                    // <Link to = {`/contents/${favorite.contentResponseMinDto.contentId}`} key={favorite.contentResponseMinDto.contentId}>
-                    <SeleteItem 
+                      <SeleteItem 
                       Poster = {favorite.contentResponseMinDto.contentPoster}
                       Id = {favorite.contentResponseMinDto.contentId}
                       Score={favorite.contentResponseMinDto.contentScore}
                       Title= {favorite.contentResponseMinDto.contentTitle}
                       />
-                    // </Link>
-                    )
-                  })}
-                  
-                </S.Items>
+                      )
+                    })}
+                  </S.Items>
+                  )}
 
             </MainContainer>
         </MainWarp>
