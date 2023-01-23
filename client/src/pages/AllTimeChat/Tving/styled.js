@@ -27,3 +27,25 @@ padding: 20px;
   width: 48px;
 }
 `;
+export const ContentItemMe = styled.div`
+  padding: 20px;
+  .userInfo {
+  text-align: right;
+  padding-bottom: 10px;
+}
+.content {
+  margin-left:64%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 356px;
+  height: 50px;
+  color: beige;
+  background: #58bfad;
+  border-radius: 30px;
+}
+.memberPicture {
+  border-radius: 30px;
+  width: 48px;
+}
+`;
