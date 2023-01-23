@@ -5,6 +5,7 @@ import * as S from "./styled";
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { toast } from "react-toastify";
+import EachComment from "./EachComment";
 
 const Comment = () => {
   const {contentId} = useParams()
@@ -21,7 +22,7 @@ const Comment = () => {
   
   const navigate = useNavigate();
 
-    console.log(comments);
+    // console.log(comments);
     const [comment, setComment] = useState('');
     // console.log(comment)
 
@@ -57,7 +58,7 @@ const Comment = () => {
     console.log(e.target.value)
   }
   const [isModify, setIsModify] = useState(false)
-  console.log(isModify)
+  // console.log(isModify)
   //한줄 평 수정
 
   const commentEditButton = (commentMemberId) => {
@@ -184,31 +185,32 @@ const Comment = () => {
                   </div>
                 </S.InputDiv>
                 ) : (
-                  <S.DetailCommentItem key={comment.commentId}>
-                  <div className="userInfo">
-                  <img
-                  src={comment.memberPicture}
-                  className="memberPicture"
-                  alt="사용자 이미지"
-                  style={{"width" : "40px", "height" : "40px"}}
-                  ></img>
-                  <div className="name">{comment.nickName}</div>
-                  {Number(comment.memberId) === Number(member) ? (
-                    <S.Buttons>
-                    <S.InputButton 
-                    // onClick={() => oncommentEditHandler(comment.commentId)}
-                    onClick={() => commentEditButton(comment.commentId)}
-                    > 수정
-                    </S.InputButton>
-                    <S.InputButton
-                    onClick={() => onCommentDeleteHandler(comment.commentId)}>
-                    삭제
-                    </S.InputButton>
-                    </S.Buttons>
-                    ) : null}
-                    </div>
-                    <div className="content">{comment.commentBody}</div>
-                    </S.DetailCommentItem>
+                  <EachComment comment= {comment}/>
+                  // <S.DetailCommentItem key={comment.commentId}>
+                  // <div className="userInfo">
+                  // <img
+                  // src={comment.memberPicture}
+                  // className="memberPicture"
+                  // alt="사용자 이미지"
+                  // style={{"width" : "40px", "height" : "40px"}}
+                  // ></img>
+                  // <div className="name">{comment.nickName}</div>
+                  // {Number(comment.memberId) === Number(member) ? (
+                  //   <S.Buttons>
+                  //   <S.InputButton 
+                  //   // onClick={() => oncommentEditHandler(comment.commentId)}
+                  //   onClick={() => commentEditButton(comment.commentId)}
+                  //   > 수정
+                  //   </S.InputButton>
+                  //   <S.InputButton
+                  //   onClick={() => onCommentDeleteHandler(comment.commentId)}>
+                  //   삭제
+                  //   </S.InputButton>
+                  //   </S.Buttons>
+                  //   ) : null}
+                  //   </div>
+                  //   <div className="content">{comment.commentBody}</div>
+                  //   </S.DetailCommentItem>
                     )
                     ))}
           </S.DetailCommentList>
