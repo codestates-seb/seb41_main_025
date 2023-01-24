@@ -84,11 +84,12 @@ const SignUp = () => {
           navigate("/login");
         } else if (res.status === 400) {
           toast.error("회원가입을 진행해주세요");
-          window.location.reload();
         } else if (res.status === 409) {
           toast.error("동일한 회원 정보가존재합니다!");
-          window.location.reload();
         }
+        setTimeout(() => {
+          return window.location.reload();
+        }, 1000);
       })
       .catch((err) => {
         console.log(err);
