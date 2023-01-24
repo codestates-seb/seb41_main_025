@@ -51,17 +51,6 @@ const Mypage = (props) => {
 
   // const userinfo = [info]
   console.log(info);
-
-  // input으로 이미지 수정
-  const [selectFile, setSelectFile] = useState(null);
-  const fileChangedHandler = (e) => {
-    const files = e.target.files;
-    console.log(files);
-    setSelectFile(files);
-  };
-
-  // 이미지 클릭해서 수정
-  const fileInput = useRef();
   const navigate = useNavigate();
 
   // 회원 탈퇴
@@ -97,9 +86,6 @@ const Mypage = (props) => {
               className="memberPicture"
               alt="사용자 이미지"
               width={"300px"}
-              onClick={() => {
-                fileInput.current.click();
-              }}
             ></img>
           </S.UserImage>
           <S.UserInfo>
@@ -113,17 +99,15 @@ const Mypage = (props) => {
 
         {/* <S.FormStyle> */}
         <S.FormDiv>
+         
           <S.InputItem>
-            <S.InputLabel htmlFor="profile">프로필</S.InputLabel>
+            <S.InputLabel htmlFor="name">이름</S.InputLabel>
             <S.InputDiv>
               <S.MyInput
-                type="file"
-                // style={{display:"none"}}
-                id="profile"
-                // value={info.memberPicture}
-                // value={id}
-                onChange={fileChangedHandler}
-                placeholder="수정할 프로필을 적용해주세요"
+                id="user_pwd"
+                value={info.name}
+                // onChange={onChangePwd}
+                placeholder="수정할 비밀번호를 입력해주세요"
                 required
               />
             </S.InputDiv>
@@ -141,6 +125,21 @@ const Mypage = (props) => {
             </S.InputDiv>
           </S.InputItem>
           <S.InputItem>
+            <S.InputLabel htmlFor="profile">프로필</S.InputLabel>
+            <S.InputDiv>
+              <S.MyInput
+                // type="file"
+                // style={{display:"none"}}
+                id="profile"
+                value={info.memberPicture}
+                // value={id}
+
+                placeholder="수정할 프로필을 적용해주세요"
+                required
+              />
+            </S.InputDiv>
+          </S.InputItem>
+          <S.InputItem>
             <S.InputLabel htmlFor="user_pwd">이메일</S.InputLabel>
             <S.InputDiv>
               <S.MyInput
@@ -149,18 +148,6 @@ const Mypage = (props) => {
                 // value={pwd}
                 // onChange={onChangePwd}
                 placeholder="수정할 이메일을 입력해주세요"
-                required
-              />
-            </S.InputDiv>
-          </S.InputItem>
-          <S.InputItem>
-            <S.InputLabel htmlFor="user_pwd">비밀번호</S.InputLabel>
-            <S.InputDiv>
-              <S.MyInput
-                id="user_pwd"
-                // value={pwd}
-                // onChange={onChangePwd}
-                placeholder="수정할 비밀번호를 입력해주세요"
                 required
               />
             </S.InputDiv>
