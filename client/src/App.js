@@ -16,6 +16,7 @@ import RecommendMovies from "./pages/RecommendMovies/RecommendMovies";
 import Detail from "./pages/Detail/Detail/Detail";
 import { useState } from "react";
 import Toast from "./components/Toast/Toast"
+import Modify from "./pages/Mypage/Modify/Modify";
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -57,6 +58,7 @@ function App() {
           <Route exact path="/members/:memberId" element={<Mypage />} />
           <Route path="/recommend" element={<RecommendMovies />} />
           <Route path="/contents/:contentId" element={<Detail />} />
+          <Route exact path="/modify" element={<Modify />} />
         </Routes>
         <Footer />
         <Toast/>
