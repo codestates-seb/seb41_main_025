@@ -15,6 +15,7 @@ import Mypage from "./pages/Mypage/Mypage/Mypage";
 import RecommendMovies from "./pages/RecommendMovies/RecommendMovies";
 import Detail from "./pages/Detail/Detail/Detail";
 import { useState } from "react";
+import Toast from "./components/Toast/Toast"
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -58,6 +59,7 @@ function App() {
           <Route path="/contents/:contentId" element={<Detail />} />
         </Routes>
         <Footer />
+        <Toast/>
       </BrowserRouter>
     </Home>
   );
