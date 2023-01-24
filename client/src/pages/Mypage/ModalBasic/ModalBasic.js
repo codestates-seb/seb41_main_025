@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, {useCallback, useState} from "react";
 import * as S from "./styled";
+import { useNavigate } from "react-router-dom";
 
 
 const ModalBasic = ({ setModalOpen }) => {
@@ -10,11 +11,11 @@ const ModalBasic = ({ setModalOpen }) => {
   };
 
   const [info, setInfo] = useState([]);
-
-  const token = localStorage.getItem("accessToken");
-  console.log(token);
-
   const [pwd, setPwd] = useState("");
+
+  const Navigate = useNavigate();
+
+  //todo : 회원정보 수정 patch 성공해야 수정 페이지로 연결되게 추후 변경 예정
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -26,15 +27,17 @@ const ModalBasic = ({ setModalOpen }) => {
       
       {
         headers: {
-          Authorization: token,
+          Authorization: localStorage.getItem("accessToken"),
         },
       })
       .then((res) => {
         setPwd(res.data.data);
         console.log(res.data.data);
+        Navigate("/modify")
       })
       .catch((error) => {
         console.log(error);
+        Navigate("/modify")
       });
     };
 
@@ -67,7 +70,7 @@ const ModalBasic = ({ setModalOpen }) => {
           placeholder="비밀번호를 입력해주세요"
           type="text"
           pwd={pwd}
-          onChange={onChangeConfirmPwd}
+          // onChange={onChangeConfirmPwd}
           
         />
       </S.InputItem>
