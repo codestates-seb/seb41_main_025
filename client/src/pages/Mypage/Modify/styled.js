@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ModifyBtn } from "../Mypage";
+import { ModifyBtn } from "../Mypage/styled";
 
 export const MypageDiv = styled.div`
   display: flex;
