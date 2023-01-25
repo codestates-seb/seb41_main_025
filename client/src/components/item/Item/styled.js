@@ -5,7 +5,7 @@ export const ItemContainer = styled.div`
   flex-direction: column;
 
   width: 240px;
-  height: 400px;
+  /* height: 400px; */
 
   .posterWrap {
     width: 240px;
