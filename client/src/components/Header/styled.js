@@ -9,6 +9,11 @@ export const HeaderWrap = styled.div`
     border-bottom: 1px solid #d0d0d0;
     background: white;
     z-index: 10;
+    @media only screen and (max-width: ${'350px'}) {
+        height: 50px;
+        max-width: 350px;
+    }
+
 `
 export const HeaderContainer = styled.div`
     display: flex;
@@ -17,7 +22,7 @@ export const HeaderContainer = styled.div`
     max-width: 1440px;
     height: 60px;
     margin: 0 auto;
-    @media only screen and (max-width: ${'600px'}) {
+    @media only screen and (max-width: ${'350px'}) {
         margin: 0 0;
     }
 
@@ -34,14 +39,15 @@ export const HeaderContainer = styled.div`
             width: 120px;
             height: 60px;
             img { width: 100% };
-            @media only screen and (max-width: ${'1200px'}) {
+            @media only screen and (max-width: ${'700px'}) {
             max-width: 40%;
             min-width: 100px;
             height: auto;
             }
-            @media only screen and (max-width: ${'600px'}) {
-            min-width: 100px;
-            height: 80px;
+            @media only screen and (max-width: ${'350px'}) {
+            min-width: 60px;
+            height: 40px;
+            margin-right: 0;
             }
         } 
     }
@@ -55,16 +61,16 @@ export const SearchBar = styled.div`
         padding-left: 15px;
         border: 1px solid #e5e5e5;
         border-radius: 15px;
-        @media only screen and (max-width: ${'1200px'}) {
+        @media only screen and (max-width: ${'700px'}) {
         margin-left: 10px;
         /* max-width: 512px; */
         width: 300px;
         height: 40px;
         } 
-        @media only screen and (max-width: ${'600px'}) {
-        margin-left: 10px;
-        width: 150px;
-        height: 40px;
+        @media only screen and (max-width: ${'350px'}) {
+        margin-left: -120px;
+        width: 90px;
+        height: 30px;
         } 
 
     }
@@ -79,6 +85,11 @@ export const SearchIcon = styled.button`
     color: #7e7e7e;
     border: 0;
     background-color: white;
+    @media only screen and (max-width: ${'350px'}) {
+        top: 50%;
+        right: 50%;
+        transform: translate(0%,-50%);
+    }
 `;
 
 
@@ -88,7 +99,7 @@ export const Sign = styled.ul`
     position: relative;
     min-width: 150px;
     padding-left: 10px;
-    @media only screen and (max-width: ${'600px'}) {
+    @media only screen and (max-width: ${'350px'}) {
         padding: 0;
         min-width: 100px;
     }
@@ -96,11 +107,15 @@ export const Sign = styled.ul`
         font-weight: bold;
         font-size : 16px;
         color: #7E7E7E;
+        @media only screen and (max-width: ${'350px'}) {
+        width: 0;
+        height: 0;
+    }
     }
 
     .signUp {
         margin-left: 24px;
-        @media only screen and (max-width: ${'600px'}) {
+        @media only screen and (max-width: ${'350px'}) {
         width: 0;
         height: 0;
     }

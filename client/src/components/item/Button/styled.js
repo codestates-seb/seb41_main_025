@@ -11,4 +11,8 @@ export const ButtonForm = styled(NavLink)`
     border-radius: 15px;
     color: white;
     font-size: 20px;
+    @media only screen and (max-width: ${'350px'}) {
+      width: 100px;
+      height: 50px;
+    } 
 `

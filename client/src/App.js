@@ -15,6 +15,7 @@ import Mypage from "./pages/Mypage/Mypage/Mypage";
 import RecommendMovies from "./pages/RecommendMovies/RecommendMovies";
 import Detail from "./pages/Detail/Detail/Detail";
 import { useState } from "react";
+import Toast from "./components/Toast/Toast";
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -33,32 +34,36 @@ const Home = styled.div`
 `;
 
 function App() {
-  const [searchResult,setSearchResult] = useState('');
+  const [searchResult, setSearchResult] = useState("");
 
   const getSearchResult = (result) => {
     setSearchResult(result);
-  }
+  };
 
   return (
     <Home>
       <GlobalStyle />
       <BrowserRouter>
-        <Header getSearchResult={getSearchResult}/>
+        <Header getSearchResult={getSearchResult} />
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/searchFalse" element={<SearchNull />} />
-          <Route path="/searchResult" element={<SearchResult searchResult={searchResult}/>} />
+          <Route
+            path="/searchResult"
+            element={<SearchResult searchResult={searchResult} />}
+          />
           <Route path="/alltimechat" element={<AllTimeChat />} />
-          <Route path="/favorite" element={<FavoriteMovie />} />
-          <Route path="/choose" element={<Choose />} />
+          <Route path="/favorite" element={<FavoriteMovie getSearchResult={getSearchResult}/>} />
+          <Route path="/choice" element={<Choose />} />
           <Route exact path="/members/:memberId" element={<Mypage />} />
           <Route path="/recommend" element={<RecommendMovies />} />
           <Route path="/contents/:contentId" element={<Detail />} />
         </Routes>
         <Footer />
       </BrowserRouter>
+      <Toast />
     </Home>
   );
 }
