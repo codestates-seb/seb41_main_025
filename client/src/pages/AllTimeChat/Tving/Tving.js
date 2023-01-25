@@ -9,7 +9,8 @@ import axios from "axios";
 const Tving = () => {
 
   const [comment, setComment] = useState('');
-  const [memberId] = localStorage.getItem("memberId")
+  const memberId = localStorage.getItem("memberId")
+  console.log(memberId)
   
   const request = {
     method : "get",
@@ -85,10 +86,12 @@ const Tving = () => {
   <>
     <S.ContentList>
   {borards.map((item) => {
+    console.log("local",memberId)
+    console.log(item.memberId)
 
     return (
       Number(memberId) === Number(item.memberId) ? 
-        (
+      (
         <S.ContentItemMe key={item.tvingBoardId}>
         <div className="userInfo">
           <button>수정</button>
