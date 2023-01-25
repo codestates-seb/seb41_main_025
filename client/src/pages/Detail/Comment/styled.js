@@ -5,6 +5,10 @@ export const DetailCommentList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media only screen and (max-width: ${'350px'}) {
+      height: 20px;
+
+    } 
 `;
 
 export const DetailCommentItem = styled.div`
@@ -47,7 +51,7 @@ export const DetailCommentItem = styled.div`
 
 export const InputDiv = styled.div`
   display: flex;
-  width: 80%;
+  width: 100%;
   margin-bottom: 20px;
   margin-left: 10px;
   .recommendInput {
@@ -59,6 +63,11 @@ export const InputDiv = styled.div`
     font-size: 20px;
     border: none;
     border-radius: 10px;
+    @media only screen and (max-width: ${'350px'}) {
+      font-size: 10px;
+      height: 60px;
+      width: 300px;
+    } 
     &:focus {
       outline: none;
     }
@@ -74,6 +83,9 @@ export const InputDiv = styled.div`
     height: 100px;
     background-color: #d9d9d9;
     border-radius: 10px;
+    @media only screen and (max-width: ${'350px'}) {
+      height: 60px;
+    } 
   }
   .submit {
     width: 48px;
@@ -82,6 +94,11 @@ export const InputDiv = styled.div`
     background-color: #58bfad;
     border: none;
     border-radius: 10px;
+    @media only screen and (max-width: ${'350px'}) {
+      width: 40px;
+      height: 20px;
+      font-size: 10px;
+    } 
   }
 `;
 

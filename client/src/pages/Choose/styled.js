@@ -9,7 +9,7 @@ export const Items = styled.div`
   @media only screen and (max-width: ${'700px'}) {
   
   } 
-  @media only screen and (max-width: ${'300px'}) {
+  @media only screen and (max-width: ${'350px'}) {
     width: 100%;
     height: 100%;
     display: grid;
@@ -26,7 +26,7 @@ export const Item = styled.div`
     min-height: 250px;
     min-width: 200px;
   }
-  @media only screen and (max-width: ${'300px'}) {
+  @media only screen and (max-width: ${'350px'}) {
     min-height: 350px;
     min-width: 300px;
   } 

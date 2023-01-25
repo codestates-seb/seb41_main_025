@@ -37,17 +37,18 @@ export const DetailContent = styled.div`
   }
   .title {
     font-size: 35px;
-    @media only screen and (max-width: ${"300px"}) {
-    font-size: 25px;
+    @media only screen and (max-width: ${"350px"}) {
+    font-size: 20px;
   }
   }
   .content {
     margin-top: 10px;
   }
   .contents{
-    @media only screen and (max-width: ${"300px"}) {
+    @media only screen and (max-width: ${"350px"}) {
       width: 90%;
       margin-top: 20px;
+      font-size: 10px;
     }
     @media only screen and (max-width: ${"700px"}) {
       margin-top: 20px;
@@ -66,9 +67,10 @@ export const DetailItem = styled.div`
     height: 80px;
     cursor: pointer;
   }
-  @media only screen and (max-width: ${"300px"}) {
+  @media only screen and (max-width: ${"350px"}) {
   margin: 20px 0 20px 0;
-    }
+  font-size: 15px;
+  }
   @media only screen and (max-width: ${"700px"}) {
   margin: 20px 0;
   }

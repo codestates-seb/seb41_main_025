@@ -25,6 +25,9 @@ export const DetailFont = styled.div`
   @media only screen and (max-width: ${'700px'}) {
     font-size: 20px;
     }
+  @media only screen and (max-width: ${'350px'}) {
+    font-size: 15px;
+    }
 `
 export const EachItem = styled.div`
     margin: 70px 3% 3% 90px;
@@ -40,9 +43,9 @@ export const EachItem = styled.div`
         max-height: 800px;
         max-width: 800px;
         }
-        @media only screen and (max-width: ${'300px'}) {
-        min-height: 300px;
-        min-width: 300px;
+        @media only screen and (max-width: ${'350px'}) {
+        height: 300px;
+        width: 200px;
         }
 
     }
@@ -51,4 +54,7 @@ export const EachItem = styled.div`
 export const MovieTitle = styled(NavLink)`
   font-size: 25px;
   color: black;
+  @media only screen and (max-width: ${'350px'}) {
+    font-size: 20px;
+    }
 `;

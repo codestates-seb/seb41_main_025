@@ -8,13 +8,13 @@ export const Items = styled.div`
     align-content: center;
     margin: 20px;
     
-    @media only screen and (max-width: ${'300px'}) {
+    @media only screen and (max-width: ${'350px'}) {
         display: grid;
     }
 `;
 
 export const Title = styled(MainContainer)`
-    width: 500px;
+    max-width: 500px;
     height: 100%;
     margin: 100px 100px 0 100px;
     .title {
@@ -26,11 +26,11 @@ export const Title = styled(MainContainer)`
     @media only screen and (max-width: ${'700px'}) {
         font-size: 25px;
         }
-    @media only screen and (max-width: ${'300px'}) {
-        font-size: 20px;
+    @media only screen and (max-width: ${'350px'}) {
+        font-size: 15px;
         }
     }
-    @media only screen and (max-width: ${'300px'}) {
+    @media only screen and (max-width: ${'350px'}) {
         width: 40vh;
         margin: 80px 0 0 -120px;
     }
@@ -54,7 +54,7 @@ export const FavoriteSearch = styled(SearchBar)`
           height: 40px;
           margin: 50px 0 10px -80px;
         }
-        @media only screen and (max-width: ${'300px'}) {
+        @media only screen and (max-width: ${'350px'}) {
           width: 300px;
           height: 40px;
           margin-top: 80px;
