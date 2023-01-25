@@ -5,6 +5,7 @@ export const RecommendDiv = styled.div`
   flex-direction: column;
   align-items: center;
   max-width: 1440px;
+  margin: 0 auto;
   margin-bottom: 30px;
   `;
 
