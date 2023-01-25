@@ -12,7 +12,6 @@ const ModalBasic = ({ setModalOpen }) => {
   };
 
   const [pwd, setPwd] = useState("");
-
   const Navigate = useNavigate();
 
   //todo : 회원정보 수정 patch 성공해야 수정 페이지로 연결되게 추후 변경 예정
@@ -24,7 +23,6 @@ const ModalBasic = ({ setModalOpen }) => {
       {
         password: pwd
       },
-      
       {
         headers: {
           Authorization: localStorage.getItem("accessToken"),
@@ -37,7 +35,7 @@ const ModalBasic = ({ setModalOpen }) => {
       })
       .catch((error) => {
         console.log(error);
-
+        toast.error("비밀번호를 확인해주세요")
       });
     };
 
