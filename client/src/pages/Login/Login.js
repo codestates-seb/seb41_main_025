@@ -77,7 +77,6 @@ const Login = () => {
       })
       .catch((err) => {
         toast.error("입력하신 정보를 다시 확인해주세요!");
-        window.location.reload();
         console.log(err);
       });
   };
