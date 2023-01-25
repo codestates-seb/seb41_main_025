@@ -162,6 +162,9 @@ export const Enter = styled.input`
     border: 0;
     border-bottom: 2px solid #054D40;
     font-size: 20px;
+    &::placeholder {
+      color: #f9f9f9;
+    }
   @media only screen and (max-width: ${"350px"}) {
     font-size: 15px;
     margin-right: 50px;
