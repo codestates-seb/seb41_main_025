@@ -96,7 +96,7 @@ export const CommentList = styled.div`
 `;
 export const CommentItem = styled.div`
   width: 1000px;
-  height: auto;
+  margin: 0 auto;
   margin-bottom: 10px;
   @media only screen and (max-width: ${'700px'}) {
     width: 100vh;
