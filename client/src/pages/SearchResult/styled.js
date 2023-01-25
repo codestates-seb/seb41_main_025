@@ -22,10 +22,5 @@ export const Result = styled.div`
 export const ItemList = styled.div`
   display: flex;
   flex-wrap: wrap;
-
-  a { 
-    margin-right: 30px;
-    margin-bottom: 30px;
-  }
-  /* a:nth-child(5n) { margin-right: 0px; } */
+  gap: 30px;
 `
