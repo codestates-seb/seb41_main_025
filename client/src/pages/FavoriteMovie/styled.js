@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { SearchBar } from "../../components/Header/styled"
-import { MainContainer} from "../Main/styled"
 
 export const Items = styled.div`
     display: flex;
@@ -13,9 +12,15 @@ export const Items = styled.div`
     }
 `;
 
-export const Title = styled(MainContainer)`
+export const MainContainer = styled.div`
+    max-width: 1440px;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 0 60px;
+`
+
+export const Title = styled.div`
     max-width: 500px;
-    height: 100%;
     margin: 100px 100px 0 100px;
     .title {
     font-size: 20px;
@@ -50,15 +55,15 @@ export const FavoriteSearch = styled(SearchBar)`
         margin-top:30px;
 
         @media only screen and (max-width: ${'700px'}) {
-          width: 300px;
-          height: 40px;
-          margin: 50px 0 10px -80px;
+            width: 300px;
+            height: 40px;
+            margin: 50px 0 10px -80px;
         }
         @media only screen and (max-width: ${'350px'}) {
-          width: 300px;
-          height: 40px;
-          margin-top: 80px;
-          margin: 30px 0 10px 0px;
+            width: 300px;
+            height: 40px;
+            margin-top: 80px;
+            margin: 30px 0 10px 0px;
         }
     }
 `
