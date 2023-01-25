@@ -2,6 +2,8 @@ import axios from "axios";
 import React, {useCallback, useState} from "react";
 import * as S from "./styled";
 import { useNavigate } from "react-router-dom";
+import Toast from "../../../components/Toast/Toast";
+import { toast } from "react-toastify";
 
 
 const ModalBasic = ({ setModalOpen }) => {
@@ -31,28 +33,19 @@ const ModalBasic = ({ setModalOpen }) => {
         },
       })
       .then((res) => {
-        setPwd(res.data.data);
-        console.log(res.data.data);
+        setPwd(res.data.data);  
+        toast.success("비밀번호가 확인되었습니다")
         Navigate("/modify")
       })
       .catch((error) => {
         console.log(error);
-        Navigate("/modify")
+
       });
     };
 
-    const onChangeConfirmPwd = useCallback((e) => {
-      const currentConfirmPwd = e.target.value;
-      setPwd(currentConfirmPwd);
-
-      // if (currentConfirmPwd !== pwd) {
-      //   setConfirmPwdMsg("비밀번호가 일치하지 않습니다.");
-      //   setIsPasswordConfirm(false);
-      // } else {
-      //   setConfirmPwdMsg("올바른 비밀번호입니다.");
-      //   setIsPasswordConfirm(true);
-      // }
-    },[pwd]);
+    const onChangePwd = (e) => {
+      setPwd(e.target.value);
+    }
 
 
 
@@ -68,8 +61,9 @@ const ModalBasic = ({ setModalOpen }) => {
         <S.MyInput
           id="password"
           placeholder="비밀번호를 입력해주세요"
-          type="text"
+          type="password"
           pwd={pwd}
+          onChange={onChangePwd}
           // onChange={onChangeConfirmPwd}
           
         />
