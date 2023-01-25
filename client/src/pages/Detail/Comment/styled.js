@@ -94,6 +94,8 @@ export const InputDiv = styled.div`
     background-color: #58bfad;
     border: none;
     border-radius: 10px;
+    cursor: pointer;
+    
     @media only screen and (max-width: ${'350px'}) {
       width: 40px;
       height: 20px;

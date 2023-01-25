@@ -14,13 +14,14 @@ export const ItemContainer = styled.div`
     background-color: #f7f7f7;
     background-image: url("");
     background-size: contain;
+    margin-bottom: 10px;
   }
   .poster {
     width: 240px;
     height: 336px;
     border-radius: 10px;
   }
-`;
+  `;
 
 export const Contents = styled.div`
   color: #000000;
