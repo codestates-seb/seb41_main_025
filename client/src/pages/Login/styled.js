@@ -6,10 +6,10 @@ export const Main = styled.div`
   justify-content: center;
   align-items: center;
   padding: 60px 60px 0px;
-  height: 130vh;
+  height: 100vh;
   @media only screen and (max-width: ${"350px"}) {
     display: grid;
-    height: 150vh;
+    height: 100vh;
     width: 100%;
   }
 `;
