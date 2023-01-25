@@ -277,7 +277,8 @@ const Detail = () => {
               ) : (
                 <AiOutlineStar size="48" />
               )}
-              나의 인생 작품
+              인생 작품
+              <span style={{"fontSize" : "12px"}}>BEST 3</span>
             </div>
           </S.DetailItem>
         </S.DetailContent>

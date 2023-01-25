@@ -59,7 +59,6 @@ const Choose = () => {
             {choice.length === 0 ? <Empty/> : (
               <S.Items>
               {choice && choice.map((choice) => {
-                console.log(choice.contentResponseMinDto.contentTitle)
                 return (
                   // <Link to = {`/contents/${choice.contentResponseMinDto.contentId}`} key={choice.contentResponseMinDto.contentId}>
                   <SeleteItem 
