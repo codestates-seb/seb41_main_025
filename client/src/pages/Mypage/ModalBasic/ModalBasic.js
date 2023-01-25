@@ -1,8 +1,7 @@
 import axios from "axios";
-import React, {useCallback, useState} from "react";
+import React, { useState } from "react";
 import * as S from "./styled";
 import { useNavigate } from "react-router-dom";
-import Toast from "../../../components/Toast/Toast";
 import { toast } from "react-toastify";
 
 
@@ -12,7 +11,6 @@ const ModalBasic = ({ setModalOpen }) => {
     setModalOpen(false);
   };
 
-  const [info, setInfo] = useState([]);
   const [pwd, setPwd] = useState("");
 
   const Navigate = useNavigate();
@@ -47,11 +45,6 @@ const ModalBasic = ({ setModalOpen }) => {
       setPwd(e.target.value);
     }
 
-
-
-  // const 
-
-
   return (
     <S.Container>
       <S.CloseBtn className="close" onClick={closeModal}>
@@ -64,8 +57,6 @@ const ModalBasic = ({ setModalOpen }) => {
           type="password"
           pwd={pwd}
           onChange={onChangePwd}
-          // onChange={onChangeConfirmPwd}
-          
         />
       </S.InputItem>
       <S.CloseBtn className="submit" onClick={onSubmit} >
