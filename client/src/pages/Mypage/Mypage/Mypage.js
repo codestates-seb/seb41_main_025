@@ -3,13 +3,12 @@ import * as S from "./styled";
 import ModalBasic from "../ModalBasic/ModalBasic";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Mypage = (props) => {
   const [info, setInfo] = useState([]);
   const [pwd, setPwd] = useState([]);
 
-  const token = localStorage.getItem("accessToken");
-  console.log(token);
 
   //todo: memberid 에 따라서 내 정보를 받아올 수 있도록 url 수정
   //* 비밀번호 확인 로직
@@ -37,10 +36,6 @@ const Mypage = (props) => {
       });
   }, []);
 
-  const onConfirmPwd = (e) => {
-    e.preventDefault();
-  };
-
   // 모달창 노출 여부 state
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -64,7 +59,7 @@ const Mypage = (props) => {
       },
     })
       .then((data) => {
-        alert("회원탈퇴 되었습니다");
+        toast.success("회원탈퇴 되었습니다");
       })
       .catch((err) => {
         console.log("err");
@@ -99,14 +94,12 @@ const Mypage = (props) => {
 
         {/* <S.FormStyle> */}
         <S.FormDiv>
-         
           <S.InputItem>
             <S.InputLabel htmlFor="name">이름</S.InputLabel>
             <S.InputDiv>
               <S.MyInput
                 id="user_pwd"
                 value={info.name}
-                // onChange={onChangePwd}
                 placeholder="수정할 비밀번호를 입력해주세요"
                 required
               />
