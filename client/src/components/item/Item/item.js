@@ -1,6 +1,6 @@
 import * as S from "./styled";
 
-const Item = ( { contentTitle, contentPoster, contentOpenAt, contentCountry, contentScore } ) => {
+const Item = ( { contentTitle, contentPoster, contentOpenAt, contentCountry, contentScore, contentOttRank } ) => {
 
   // { contentTitle, contentPoster, contentOpenAt }
   // const movies = { contentTitle };
@@ -8,6 +8,7 @@ const Item = ( { contentTitle, contentPoster, contentOpenAt, contentCountry, con
 
   return (
     <S.ItemContainer>
+      <S.Rank className={contentOttRank >= 1 ? "active" : null}>{contentOttRank}</S.Rank>
       <div className="posterWrap">
         <img
           src={contentPoster}
