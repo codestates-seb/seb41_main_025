@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./styled";
-import { MainWarp, MainContainer } from "../Main/styled";
+import { MainWarp } from "../Main/styled";
 import { Title } from "../FavoriteMovie/styled";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -52,7 +52,7 @@ const Choose = () => {
 
   return (
     <MainWarp>
-        <MainContainer>
+        <S.MainContainer>
             <Title>
                 <span className="title">"{nickName}"님의 찜한 목록</span>
             </Title>
@@ -72,7 +72,7 @@ const Choose = () => {
                 })}
               </S.Items>
               )}
-        </MainContainer>
+        </S.MainContainer>
     </MainWarp>
 )
 };

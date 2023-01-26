@@ -1,7 +1,7 @@
 import * as S from "./styled";
 // import GreenButton from "../components/item/Button";
 import SeleteItem from "../../components/item/SelectItem/SeleteItem";
-import { MainWarp, MainContainer} from "../Main/styled"
+import { MainWarp } from "../Main/styled"
 // import useFetch from "../../components/util/useFetch";
 import axios from "axios";
 import { useState, useEffect} from "react";
@@ -72,7 +72,7 @@ const FavoriteMovie = (props) =>{
     console.log(favoriteContent)
     return (
         <MainWarp>
-            <MainContainer>
+            <S.MainContainer>
                 <S.Title>
                     <span className="title">"{nickName}"님의 인생작품</span>
                     {/* 만약 Item 길이가 3개가 아니라면 검색 창 뜨게하기 */}
@@ -105,7 +105,7 @@ const FavoriteMovie = (props) =>{
                   </S.Items>
                   )}
 
-            </MainContainer>
+            </S.MainContainer>
         </MainWarp>
     )
 };

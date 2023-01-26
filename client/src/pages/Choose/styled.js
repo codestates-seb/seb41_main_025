@@ -5,7 +5,7 @@ export const Items = styled.div`
   justify-content: center;
   align-content: center;
   margin: 20px;
- 
+
   @media only screen and (max-width: ${'700px'}) {
   
   } 
@@ -15,6 +15,13 @@ export const Items = styled.div`
     display: grid;
   } 
 `;
+
+export const MainContainer = styled.div`
+  max-width: 1440px;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 0 60px;
+`
 
 export const Item = styled.div`
   margin: 70px 90px 90px 60px;

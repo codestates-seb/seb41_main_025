@@ -6,10 +6,10 @@ export const Main = styled.div`
   justify-content: center;
   align-items: center;
   padding: 60px 60px 0px;
-  height: 130vh;
+  height: 100vh;
   @media only screen and (max-width: ${"350px"}) {
     display: grid;
-    height: 150vh;
+    height: 100vh;
     width: 100%;
   }
 `;
@@ -162,6 +162,9 @@ export const Enter = styled.input`
     border: 0;
     border-bottom: 2px solid #054D40;
     font-size: 20px;
+    &::placeholder {
+      color: #f9f9f9;
+    }
   @media only screen and (max-width: ${"350px"}) {
     font-size: 15px;
     margin-right: 50px;

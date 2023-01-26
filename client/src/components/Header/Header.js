@@ -34,6 +34,7 @@ const Header = (props) => {
   }
   const onKeyPressEnter = (e) => {
       if(e.key === "Enter") sendSerachResult();
+      setSearchMovie("")
   }
   const sendSerachResult = () => {
       props.getSearchResult(searchMovie);

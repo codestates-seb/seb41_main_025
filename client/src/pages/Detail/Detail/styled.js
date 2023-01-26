@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const DetailContainer = styled.div`
   max-width: 1440px;
-  height: 1800px;
+  min-height: 1800px;
   margin-bottom: 30px;
   padding: 60px 60px 0px;
   margin: 0 auto;
