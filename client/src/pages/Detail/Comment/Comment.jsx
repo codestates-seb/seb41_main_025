@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useFetch from "../../../components/util/useFetch";
 import { useState, useEffect } from "react";
 import * as S from "./styled";

@@ -5,7 +5,6 @@ const GreenButton = ({ name }) => {
 
     return (
         <S.ButtonForm >{name}</S.ButtonForm>
-        // FIXME : searchNull에서 nevlink가 되지 않음
     )
 }
 

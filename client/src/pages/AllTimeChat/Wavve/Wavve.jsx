@@ -29,7 +29,7 @@ const Wavve = () => {
     if(betweenTimeMin < 60) return `${betweenTimeMin}분전`
     if(betweenTimeHour < 24) return `${betweenTimeHour} hours ago`
     if(betweenTimeDay < 365) return `${betweenTimeDay} days ago`
-  
+   
     return `${Math.floor(betweenTimeDay / 365)} years ago`
   }
 
