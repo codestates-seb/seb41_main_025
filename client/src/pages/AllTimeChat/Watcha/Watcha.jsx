@@ -75,10 +75,10 @@ const Watcha = () => {
                 style={{}}
                 ></img>
               {item.nickName}
-              {timeForToday(item.createAt)}
             </div>
               <div className="content">{item.watchaBoardBody}
             </div>
+            <p>{timeForToday(item.createAt)}</p>
           </S.ContentItem>
         );
       })}
