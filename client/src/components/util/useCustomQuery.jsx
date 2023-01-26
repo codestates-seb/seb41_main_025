@@ -1,5 +1,4 @@
 import { useQuery } from "react-query";
-import axios from "axios";
 
 export const useCustomQuery = (url, queryKey) => {
   const { data, isLoading, error, status, refetch } = useQuery(
