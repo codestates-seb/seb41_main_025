@@ -3,6 +3,7 @@ package com.mainProject.server.domain.recommend.service;
 import com.mainProject.server.domain.content.entity.Content;
 import com.mainProject.server.domain.content.repository.ContentRepository;
 import com.mainProject.server.domain.member.entity.Member;
+import com.mainProject.server.domain.member.service.MemberService;
 import com.mainProject.server.domain.recommend.entity.Deprecate;
 import com.mainProject.server.domain.recommend.entity.Recommend;
 import com.mainProject.server.domain.recommend.repository.DeprecateRepository;
@@ -24,6 +25,7 @@ public class RecommendService {
     private final RecommendRepository recommendRepository;
     private final ContentRepository contentRepository;
     private final DeprecateRepository deprecateRepository;
+    private final MemberService memberService;
 
     public Recommend pickRecommend(Member member, Content content) {
         Recommend recommend = findByRecommendMemberAndContent(member, content);
@@ -131,6 +133,28 @@ public class RecommendService {
                 = optionalDeprecate.orElseThrow(() ->
                 new BusinessLogicException(ExceptionCode.DEPRECATE_NOT_FOUND));
         return findDeprecate;
+    }
+
+    public void deleteRecommend(long recommendId) {
+        Recommend findRecommend = findVerifiedRecommend(recommendId);
+        Member findMember = memberService.findVerifiedMember(findRecommend.getMember().getMemberId());
+
+        if (memberService.getCurrentMember().getMemberId() != findMember.getMemberId()) {
+            throw new BusinessLogicException(ExceptionCode.MEMBER_UNAUTHORIZED);
+        }
+
+        recommendRepository.delete(findRecommend);
+    }
+
+    public void deleteDeprecate(long deprecateId) {
+        Recommend findDeprecate = findVerifiedRecommend(deprecateId);
+        Member findMember = memberService.findVerifiedMember(findDeprecate.getMember().getMemberId());
+
+        if (memberService.getCurrentMember().getMemberId() != findMember.getMemberId()) {
+            throw new BusinessLogicException(ExceptionCode.MEMBER_UNAUTHORIZED);
+        }
+
+        recommendRepository.delete(findDeprecate);
     }
 
 

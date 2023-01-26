@@ -11,6 +11,7 @@ public class ContentResponseDto {
 
     private String contentOttName;
     private String contentOttRank;
+    private String contentOttList;
     private long contentId;
     private String contentOpenAt; // 개봉 0
     private String contentGenre; // 장르 1

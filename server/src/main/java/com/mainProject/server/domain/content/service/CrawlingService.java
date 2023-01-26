@@ -11,11 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import java.util.*;
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -32,10 +28,10 @@ public class CrawlingService {
         System.setProperty(id, path);
         ChromeOptions options = new ChromeOptions();
 //        options.setHeadless(true);
-        options.addArguments("--disable-popup-blocking");       //팝업안띄움
-        options.addArguments("headless");                       //브라우저 안띄움
-        options.addArguments("--disable-gpu");			//gpu 비활성화
-        options.addArguments("--blink-settings=imagesEnabled=false"); //이미지 다운 안받음
+        options.addArguments("--disable-popup-blocking");       // 팝업안띄움
+        options.addArguments("headless");                       // 브라우저 안띄움
+        options.addArguments("--disable-gpu");			// gpu 비활성화
+        options.addArguments("--blink-settings=imagesEnabled=false"); // 이미지 다운 안받음
 
         String url = "https://movie.daum.net/main";
         WebDriver driver = new ChromeDriver(options);
@@ -106,10 +102,10 @@ public class CrawlingService {
         System.setProperty(id, path);
         ChromeOptions options = new ChromeOptions();
 //      options.setHeadless(true);
-        options.addArguments("--disable-popup-blocking");       //팝업안띄움
-        options.addArguments("headless");                       //브라우저 안띄움
-        options.addArguments("--disable-gpu");			//gpu 비활성화
-        options.addArguments("--blink-settings=imagesEnabled=false"); //이미지 다운 안받음
+        options.addArguments("--disable-popup-blocking");       // 팝업안띄움
+        options.addArguments("headless");                       // 브라우저 안띄움
+        options.addArguments("--disable-gpu");			// gpu 비활성화
+        options.addArguments("--blink-settings=imagesEnabled=false"); // 이미지 다운 안받음
         String url = movieLink;
         WebDriver driver = new ChromeDriver(options);
         driver.get(url);
@@ -141,16 +137,16 @@ public class CrawlingService {
             infoMap.put(key, value);
         }
 
-        result.add(infoMap.get("개봉"));
-        result.add(infoMap.get("장르"));
-        result.add(infoMap.get("국가"));
-        result.add(infoMap.get("러닝타임"));
-        result.add(infoMap.get("평점"));
-        result.add(infoMap.get("등급"));
-        result.add(infoMap.get("누적관객"));
-        result.add(titleList);
-        result.add(descList);
-        result.add(ottList);
+        result.add(infoMap.get("개봉")); //0
+        result.add(infoMap.get("장르")); //1
+        result.add(infoMap.get("국가")); //2
+        result.add(infoMap.get("러닝타임")); //3
+        result.add(infoMap.get("평점")); //4
+        result.add(infoMap.get("등급")); //5
+        result.add(infoMap.get("누적관객")); //6
+        result.add(titleList); //7
+        result.add(descList); //8
+        result.add(ottList); //9
         driver.close();
 
         return result;
