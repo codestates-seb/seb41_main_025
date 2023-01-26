@@ -114,15 +114,15 @@ public class BoardService {
 
     // TODO FIND ALL
     public Page<WatchaBoard> findWatchaBoards(int page, int size){
-        return watchaBoardRepository.findAll(PageRequest.of(page, size, Sort.by("watchaBoardId").descending()));
+        return watchaBoardRepository.findAll(PageRequest.of(page, size, Sort.by("watchaBoardId").ascending()));
     }
 
     public Page<TvingBoard> findTvingBoards(int page, int size){
-        return tvingBoardRepository.findAll(PageRequest.of(page, size, Sort.by("tvingBoardId").descending()));
+        return tvingBoardRepository.findAll(PageRequest.of(page, size, Sort.by("tvingBoardId").ascending()));
     }
 
     public Page<WavveBoard> findWavveBoards(int page, int size){
-        return wavveBoardRepository.findAll(PageRequest.of(page, size, Sort.by("wavveBoardId").descending()));
+        return wavveBoardRepository.findAll(PageRequest.of(page, size, Sort.by("wavveBoardId").ascending()));
     }
 
 
