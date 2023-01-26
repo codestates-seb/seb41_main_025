@@ -40,7 +40,7 @@ const AllTimeChat = () => {
       <S.TitleDiv>
         <h1>게시판</h1>
       </S.TitleDiv>
-        <div>각 OTT에 대해서 자유롭게 이야기 나눌 수 있는 곳 :)</div>
+      <S.Introduce>각 OTT에 대해서 자유롭게 이야기 나눌 수 있는 곳 :)</S.Introduce>
 
       <S.ButtonDiv>
         {/* {tabArray.map((el, idx) => (

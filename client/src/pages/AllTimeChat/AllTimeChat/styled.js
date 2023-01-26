@@ -74,3 +74,7 @@ export const CommentItem = styled.div`
   height: auto;
   margin-bottom: 10px;
 `;
+
+export const Introduce = styled.div`
+  margin-bottom: 50px;
+`
