@@ -58,7 +58,7 @@ function App() {
           <Route exact path="/members/:memberId" element={<Mypage />} />
           <Route path="/recommend" element={<RecommendMovies />} />
           <Route path="/contents/:contentId" element={<Detail />} />
-          <Route exact path="/modify" element={<Modify />} />
+          <Route exact path="/members/:memberId/modify" element={<Modify />} />
         </Routes>
         <Footer />
         <Toast/>
