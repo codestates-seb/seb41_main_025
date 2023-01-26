@@ -1,6 +1,8 @@
 import axios from "axios";
-import React, {useCallback, useState} from "react";
+import React, { useState } from "react";
 import * as S from "./styled";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 const ModalBasic = ({ setModalOpen }) => {
@@ -9,12 +11,9 @@ const ModalBasic = ({ setModalOpen }) => {
     setModalOpen(false);
   };
 
-  const [info, setInfo] = useState([]);
-
-  const token = localStorage.getItem("accessToken");
-  console.log(token);
-
   const [pwd, setPwd] = useState("");
+  const Navigate = useNavigate();
+  const memberId = localStorage.getItem("memberId");
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -23,38 +22,25 @@ const ModalBasic = ({ setModalOpen }) => {
       {
         password: pwd
       },
-      
       {
         headers: {
-          Authorization: token,
-        },
+          Authorization: localStorage.getItem("accessToken"),
+        }
       })
       .then((res) => {
-        setPwd(res.data.data);
-        console.log(res.data.data);
+        setPwd(res.data.data);  
+        toast.success("비밀번호가 확인되었습니다")
+        Navigate(`/members/${memberId}/modify`)
       })
       .catch((error) => {
         console.log(error);
+        toast.error("비밀번호를 확인해주세요")
       });
     };
 
-    const onChangeConfirmPwd = useCallback((e) => {
-      const currentConfirmPwd = e.target.value;
-      setPwd(currentConfirmPwd);
-
-      // if (currentConfirmPwd !== pwd) {
-      //   setConfirmPwdMsg("비밀번호가 일치하지 않습니다.");
-      //   setIsPasswordConfirm(false);
-      // } else {
-      //   setConfirmPwdMsg("올바른 비밀번호입니다.");
-      //   setIsPasswordConfirm(true);
-      // }
-    },[pwd]);
-
-
-
-  // const 
-
+    const onChangePwd = (e) => {
+      setPwd(e.target.value);
+    }
 
   return (
     <S.Container>
@@ -65,10 +51,9 @@ const ModalBasic = ({ setModalOpen }) => {
         <S.MyInput
           id="password"
           placeholder="비밀번호를 입력해주세요"
-          type="text"
+          type="password"
           pwd={pwd}
-          onChange={onChangeConfirmPwd}
-          
+          onChange={onChangePwd}
         />
       </S.InputItem>
       <S.CloseBtn className="submit" onClick={onSubmit} >

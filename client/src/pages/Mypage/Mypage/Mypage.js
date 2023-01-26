@@ -3,20 +3,13 @@ import * as S from "./styled";
 import ModalBasic from "../ModalBasic/ModalBasic";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-const Mypage = (props) => {
+const Mypage = () => {
+
   const [info, setInfo] = useState([]);
-  const [pwd, setPwd] = useState([]);
-
-  const token = localStorage.getItem("accessToken");
-  console.log(token);
-
-  //todo: memberid 에 따라서 내 정보를 받아올 수 있도록 url 수정
-  //* 비밀번호 확인 로직
-  // todo: 이미지에 hover 했을 때 이미지 변경 되게 수정
-
   const memberId = localStorage.getItem("memberId");
-  console.log(memberId);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -29,17 +22,11 @@ const Mypage = (props) => {
       })
       .then((res) => {
         setInfo(res.data.data);
-        setPwd();
-        console.log(res.data.data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-
-  const onConfirmPwd = (e) => {
-    e.preventDefault();
-  };
 
   // 모달창 노출 여부 state
   const [modalOpen, setModalOpen] = useState(false);
@@ -48,21 +35,6 @@ const Mypage = (props) => {
   const showModal = () => {
     setModalOpen(true);
   };
-
-  // const userinfo = [info]
-  console.log(info);
-
-  // input으로 이미지 수정
-  const [selectFile, setSelectFile] = useState(null);
-  const fileChangedHandler = (e) => {
-    const files = e.target.files;
-    console.log(files);
-    setSelectFile(files);
-  };
-
-  // 이미지 클릭해서 수정
-  const fileInput = useRef();
-  const navigate = useNavigate();
 
   // 회원 탈퇴
   // TODO: 정말 회원 탈퇴를 진행하시겠습니까? 알림창 띄우기
@@ -75,7 +47,7 @@ const Mypage = (props) => {
       },
     })
       .then((data) => {
-        alert("회원탈퇴 되었습니다");
+        toast.success("회원탈퇴 되었습니다");
       })
       .catch((err) => {
         console.log("err");
@@ -87,6 +59,7 @@ const Mypage = (props) => {
     window.location.reload();
   };
 
+  console.log(info)
   return (
     <S.Wrapper>
       <S.MypageDiv>
@@ -97,9 +70,6 @@ const Mypage = (props) => {
               className="memberPicture"
               alt="사용자 이미지"
               width={"300px"}
-              onClick={() => {
-                fileInput.current.click();
-              }}
             ></img>
           </S.UserImage>
           <S.UserInfo>
@@ -110,20 +80,14 @@ const Mypage = (props) => {
             {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
           </S.UserInfo>
         </S.UserInfoHeader>
-
-        {/* <S.FormStyle> */}
         <S.FormDiv>
           <S.InputItem>
-            <S.InputLabel htmlFor="profile">프로필</S.InputLabel>
+            <S.InputLabel htmlFor="name">이름</S.InputLabel>
             <S.InputDiv>
               <S.MyInput
-                type="file"
-                // style={{display:"none"}}
-                id="profile"
-                // value={info.memberPicture}
-                // value={id}
-                onChange={fileChangedHandler}
-                placeholder="수정할 프로필을 적용해주세요"
+                id="name"
+                defaultValue={info.name}
+                placeholder="수정할 이름을 입력해주세요"
                 required
               />
             </S.InputDiv>
@@ -133,8 +97,7 @@ const Mypage = (props) => {
             <S.InputDiv>
               <S.MyInput
                 id="nickName"
-                value={info.nickName}
-                // onChange={onChangePwd}
+                defaultValue={info.nickName}
                 placeholder="수정할 닉네임을 적어주세요"
                 required
               />
@@ -146,31 +109,12 @@ const Mypage = (props) => {
               <S.MyInput
                 id="user_pwd"
                 value={info.email}
-                // value={pwd}
-                // onChange={onChangePwd}
                 placeholder="수정할 이메일을 입력해주세요"
                 required
               />
             </S.InputDiv>
           </S.InputItem>
-          <S.InputItem>
-            <S.InputLabel htmlFor="user_pwd">비밀번호</S.InputLabel>
-            <S.InputDiv>
-              <S.MyInput
-                id="user_pwd"
-                // value={pwd}
-                // onChange={onChangePwd}
-                placeholder="수정할 비밀번호를 입력해주세요"
-                required
-              />
-            </S.InputDiv>
-          </S.InputItem>
         </S.FormDiv>
-        {/* <S.SaveBtn type="submit"  value="저장">
-          저장
-        </S.SaveBtn> */}
-        {/* </S.FormStyle> */}
-
         <S.DeleteBtn type="submit" value="저장" onClick={deleteMember}>
           회원탈퇴
         </S.DeleteBtn>
