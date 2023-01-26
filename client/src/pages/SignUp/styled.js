@@ -6,7 +6,7 @@ export const WindowDiv = styled(Window)`
   /* justify-content: flex-start; */
   align-items: center;
   /* margin: auto; */
-  @media only screen and (max-width: ${"600px"}) {
+  @media only screen and (max-width: ${"350px"}) {
     flex-direction: column;
   }
 `;
@@ -21,7 +21,7 @@ export const HelloAnnouncement = styled.span`
   /* margin-right: 90px; */
   font-size: 30px;
 
-  @media only screen and (max-width: ${"600px"}) {
+  @media only screen and (max-width: ${"350px"}) {
     font-size: 0px;
   }
 `;
@@ -40,8 +40,10 @@ export const SignupButton = styled.button`
   text-decoration: none;
   cursor: pointer;
 
-  @media only screen and (max-width: ${"600px"}) {
+  @media only screen and (max-width: ${"350px"}) {
     margin-left: 10px;
+    width:80px;
+    height: 40px;
   }
 `;
 export const EnterContent = styled.form`
@@ -49,7 +51,7 @@ export const EnterContent = styled.form`
   justify-items: center;
   width: 380px;
   margin-top: 50px;
-  @media only screen and (max-width: ${"600px"}) {
+  @media only screen and (max-width: ${"350px"}) {
     margin-left: 30px;
     display: grid;
     justify-content: center;
@@ -59,7 +61,10 @@ export const EnterContent = styled.form`
 
 export const Enters = styled(Enter)`
   width: 350px;
-  @media only screen and (max-width: ${"600px"}) {
-    width: 250px;
+  @media only screen and (max-width: ${"350px"}) {
+    width: 200px;
+  }
+  .message { 
+    font-size: 10px;
   }
 `;

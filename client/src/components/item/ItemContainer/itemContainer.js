@@ -34,7 +34,7 @@ const ItemContainer = ( {movies, ottName} ) => {
     }
   }, []);
 
-  console.log(windowSize);
+  // console.log(windowSize);
 
   // prev, next
   const slickRef = useRef(null);

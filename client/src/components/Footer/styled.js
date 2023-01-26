@@ -13,6 +13,10 @@ export const FooterContainer = styled.div`
   max-width: 1440px;
   margin: 0 auto;
   color: #ffffff;
+  @media only screen and (max-width: ${'350px'}) {
+    height: 200px;
+    margin: 20px 0px 0 0;
+    } 
 
   .logo {
     width: 300px;
@@ -20,8 +24,8 @@ export const FooterContainer = styled.div`
     margin: 20px 0px;
     img { width: 100% }
 
-    @media only screen and (max-width: ${'600px'}) {
-      width: 200px;
+    @media only screen and (max-width: ${'350px'}) {
+      width: 100px;
       height: 150px;
       margin: 20px 0px 0 0;
     } 
@@ -42,7 +46,7 @@ export const Creaters = styled.div`
       display: flex;
     } 
   }
-  @media only screen and (max-width: ${'600px'}) {
+  @media only screen and (max-width: ${'350px'}) {
     display: grid;
     padding-top: 10px;
     justify-items: center;
@@ -53,8 +57,9 @@ export const Creaters = styled.div`
   .title {
     margin-right: 30px;
 
-    @media only screen and (max-width: ${'600px'}) {
+    @media only screen and (max-width: ${'350px'}) {
       padding-top: 20px;
+      font-size: 10px;
     } 
   }
 `

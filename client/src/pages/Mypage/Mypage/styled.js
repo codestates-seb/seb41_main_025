@@ -35,7 +35,7 @@ export const UserInfoHeader = styled.div`
   width: 100%;
   margin-bottom: 20px;
   /* padding: 60px; */
-  @media only screen and (max-width: ${"600px"}) {
+  @media only screen and (max-width: ${"300px"}) {
     padding: 30px;
     display: grid;
   }
@@ -45,7 +45,7 @@ export const UserInfoHeader = styled.div`
     /* &:hover {
         transform: scale(1.5);
       } */
-    @media only screen and (max-width: ${"600px"}) {
+    @media only screen and (max-width: ${"300px"}) {
       width: 200px;
       height: 200px;
     }
@@ -70,14 +70,14 @@ export const UserInfo = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   padding-left: 80px;
-  @media only screen and (max-width: ${"600px"}) {
+  @media only screen and (max-width: ${"300px"}) {
     padding: 20px 0 0 0;
   }
 `;
 export const UserName = styled.div`
   padding: 0px 0px 80px 30px;
   font-size: 30px;
-  @media only screen and (max-width: ${"600px"}) {
+  @media only screen and (max-width: ${"300px"}) {
     padding: 10 0 0 30;
   }
 `;
@@ -90,7 +90,7 @@ export const FormDiv = styled.form`
   padding-right: 100px;
   margin-right: 120px;
 
-  @media only screen and (max-width: ${"600px"}) {
+  @media only screen and (max-width: ${"300px"}) {
     display: grid;
     margin: 0;
     padding: 0;
@@ -103,7 +103,7 @@ export const InputItem = styled.div`
   display: flex;
   align-items: center;
   height: 200x;
-  @media only screen and (max-width: ${"600px"}) {
+  @media only screen and (max-width: ${"300px"}) {
     display: grid;
     margin: 10px;
     width: 30px;
@@ -113,7 +113,7 @@ export const InputItem = styled.div`
 export const InputLabel = styled.div`
   padding-right: 30px;
 
-  @media only screen and (max-width: ${"600px"}) {
+  @media only screen and (max-width: ${"300px"}) {
     font-size: 20px;
     padding-right: 0;
   }
@@ -142,7 +142,7 @@ export const ModifyBtn = styled.button`
   border-radius: 15px;
   font-size: 16px;
   font-weight: 500;
-  @media only screen and (max-width: ${"600px"}) {
+  @media only screen and (max-width: ${"300px"}) {
     width: 150px;
     height: 40px;
     font-size: 20px;
@@ -153,7 +153,7 @@ export const SaveBtn = styled(ModifyBtn)`
   width: 80px;
   margin: 20px 0 0 385px;
   font-size: 20px;
-  @media only screen and (max-width: ${"600px"}) {
+  @media only screen and (max-width: ${"300px"}) {
     margin: 10px 0px 0px 220px;
   }
 `;
@@ -165,7 +165,7 @@ export const DeleteBtn = styled(ModifyBtn)`
   margin: 50px;
   margin-left: 400px;
   font-size: 15px;
-  @media only screen and (max-width: ${"600px"}) {
+  @media only screen and (max-width: ${"300px"}) {
     /* margin: 10px 0px 10px 220px; */
     font-size: 15px;
   }

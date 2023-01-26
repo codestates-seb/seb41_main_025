@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useFetch from "../../../components/util/useFetch";
 import { useState } from "react";
 import * as S from "./styled";
@@ -26,9 +26,19 @@ const Comment = () => {
   const [comment, setComment] = useState("");
   // console.log(comment)
 
+    // const getMoreComment = async () => {
+    //   const res = await fetch(
+    //     `http://whatu1.kro.kr:8080/comments?page=${page+1}&size=6`
+    //   );
+    //   const newPosts = await res.json();
+    //   setPage((post) => [...post, ...newPosts]);
+    // };
+
   //한 줄 평 입력
   const submitcommit = async (e) => {
-    if (comment === "") return toast.info("한줄평 내용을 입력하세요");
+
+    // if(!isLogin) return navigate('/login')
+    if(comment === '') return toast.error("한줄 평 내용을 입력해주세요");
 
     const bodyJSON = JSON.stringify({
       commentBody: comment,

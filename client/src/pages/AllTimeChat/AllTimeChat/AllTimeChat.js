@@ -29,7 +29,6 @@ const AllTimeChat = () => {
     { name: "Watcha", content: <Watcha /> },
     { name: "Tving", content: <Tving /> },
     { name: "Wavve", content: <Wavve /> },
-    { name: "Netflix", content: <Netflix /> },
   ];
 
   // const selectMenuHandler = (idx) => {
@@ -39,8 +38,9 @@ const AllTimeChat = () => {
   return (
     <S.RecommendDiv>
       <S.TitleDiv>
-        <h1>실시간 채팅</h1>
+        <h1>게시판</h1>
       </S.TitleDiv>
+        <div>각 OTT에 대해서 자유롭게 이야기 나눌 수 있는 곳 :)</div>
 
       <S.ButtonDiv>
         {/* {tabArray.map((el, idx) => (
@@ -70,14 +70,14 @@ const AllTimeChat = () => {
       <S.CommentList>
         <S.CommentItem>{tabList[currentTab].content}</S.CommentItem>
 
-        <input
+        {/* <input
           className="recommendInput"
           autoComplete="off"
           name="recommend"
           type="text"
           // maxLength="35"
-          placeholder="한줄평을 입력해주세요"
-        ></input>
+          placeholder="작품에 대해서 자유롭게 입력해주세요"
+        ></input> */}
       </S.CommentList>
     </S.RecommendDiv>
   );

@@ -5,20 +5,24 @@ export const DetailCommentList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media only screen and (max-width: ${'350px'}) {
+      height: 20px;
+
+    } 
 `;
 
 export const DetailCommentItem = styled.div`
-  width: 1220px;
+  width: 1200px;
   height: 100px;
   padding: 10px;
   background: #58bfad;
   margin-bottom: 10px;
   font-size: 13px;
   border-radius: 10px;
-  @media only screen and (max-width: ${"600px"}) {
+  @media only screen and (max-width: ${"300px"}) {
     width: 90%;
   }
-  @media only screen and (max-width: ${"1200px"}) {
+  @media only screen and (max-width: ${"700px"}) {
     width: 90%;
   }
   .userInfo {
@@ -28,6 +32,7 @@ export const DetailCommentItem = styled.div`
     color: #ffffff;
     .name {
       padding-left: 10px;
+      width: 400px;
     }
   }
   .content {
@@ -46,7 +51,7 @@ export const DetailCommentItem = styled.div`
 
 export const InputDiv = styled.div`
   display: flex;
-  width: 80%;
+  width: 100%;
   margin-bottom: 20px;
   margin-left: 10px;
   .recommendInput {
@@ -58,6 +63,11 @@ export const InputDiv = styled.div`
     font-size: 20px;
     border: none;
     border-radius: 10px;
+    @media only screen and (max-width: ${'350px'}) {
+      font-size: 10px;
+      height: 60px;
+      width: 300px;
+    } 
     &:focus {
       outline: none;
     }
@@ -73,6 +83,9 @@ export const InputDiv = styled.div`
     height: 100px;
     background-color: #d9d9d9;
     border-radius: 10px;
+    @media only screen and (max-width: ${'350px'}) {
+      height: 60px;
+    } 
   }
   .submit {
     width: 48px;
@@ -81,14 +94,26 @@ export const InputDiv = styled.div`
     background-color: #58bfad;
     border: none;
     border-radius: 10px;
+    @media only screen and (max-width: ${'350px'}) {
+      width: 40px;
+      height: 20px;
+      font-size: 10px;
+    } 
   }
 `;
 
 export const InputButton = styled.button`
-    width: 30px;
-    height: 30px;
+  width: 60px;
+  height: 30px;
+  background-color: #58bfad;
+  margin-right: 0;
+  border-radius: 20px;
+  border-color: white;
+  color: black;
+  font-weight: 700;
 `
 
 export const Buttons = styled.div`
-    display: flex;
+  margin-left: 50%;
+ 
 `

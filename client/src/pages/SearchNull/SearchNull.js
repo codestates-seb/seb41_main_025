@@ -3,6 +3,8 @@ import { ButtonForm } from '../../components/item/Button/styled'
 
 const SearchNull = () => {
 
+    const isLogin = localStorage.getItem("isLogin")
+
     return (
         <S.SerachWrap>
             <S.SearchConatiner>
@@ -24,7 +26,11 @@ const SearchNull = () => {
                     </S.Window>
                 </S.Main>
 
-                <ButtonForm to='/alltimechat'>실시간 채팅</ButtonForm>
+                {isLogin ?
+                (<ButtonForm to='/alltimechat'>게시판</ButtonForm>)
+                : 
+                (<ButtonForm to='/login'>게시판</ButtonForm>) } 
+                
             </S.SearchConatiner>
         </S.SerachWrap>
     )
