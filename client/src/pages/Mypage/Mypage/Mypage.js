@@ -59,6 +59,7 @@ const Mypage = () => {
     window.location.reload();
   };
 
+  console.log(info)
   return (
     <S.Wrapper>
       <S.MypageDiv>
@@ -85,8 +86,8 @@ const Mypage = () => {
             <S.InputDiv>
               <S.MyInput
                 id="name"
-                value={info.name}
-                placeholder="수정할 비밀번호를 입력해주세요"
+                defaultValue={info.name}
+                placeholder="수정할 이름을 입력해주세요"
                 required
               />
             </S.InputDiv>
@@ -96,19 +97,8 @@ const Mypage = () => {
             <S.InputDiv>
               <S.MyInput
                 id="nickName"
-                value={info.nickName}
+                defaultValue={info.nickName}
                 placeholder="수정할 닉네임을 적어주세요"
-                required
-              />
-            </S.InputDiv>
-          </S.InputItem>
-          <S.InputItem>
-            <S.InputLabel htmlFor="profile">프로필</S.InputLabel>
-            <S.InputDiv>
-              <S.MyInput
-                id="profile"
-                value={info.memberPicture}
-                placeholder="수정할 프로필을 적용해주세요"
                 required
               />
             </S.InputDiv>
