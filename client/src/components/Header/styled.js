@@ -85,6 +85,7 @@ export const SearchIcon = styled.button`
     color: #7e7e7e;
     border: 0;
     background-color: white;
+    cursor: pointer;
     @media only screen and (max-width: ${'350px'}) {
         top: 50%;
         right: 50%;
