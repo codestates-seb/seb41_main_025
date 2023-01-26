@@ -4,19 +4,27 @@ import useFetch from "../../../components/util/useFetch";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useCustomQuery } from "../../../components/util/useCustomQuery";
+
 const Wavve = () => {
 
   const [comment, setComment] = useState('');
-  
-  const request = {
-    method : "get",
-    headers :
-    {
-    "Content-Type" : "application/json",
-    "Authorization": localStorage.getItem("accessToken")}
-  }
+  const [commentOTT, setCommentOTT] = useState('');
 
-  const [borards] = useFetch(`http://whatu1.kro.kr:8080/boards/wavve?page=1&size=10`, request)
+  // const request = {
+  //   method : "get",
+  //   headers :
+  //   {
+  //   "Content-Type" : "application/json",
+  //   "Authorization": localStorage.getItem("accessToken")}
+  // }
+
+  // const [borards] = useFetch(`http://whatu1.kro.kr:8080/boards/wavve?page=1&size=10`, request)
+  const { data, isLoading, error, refetch } = useCustomQuery(
+    `/boards/wavve?page=1&size=10`,
+    `boards=wavve`
+  );
+  // console.log(data)
   
   const timeForToday = (time) => {
     const today = new window.Date();
@@ -47,7 +55,8 @@ const Wavve = () => {
       }
     })
     .then (() => {
-      window.location.reload()
+     refetch()
+    //  setCommentOTT('')
     })
     .catch(err => {
       console.log(err)
@@ -58,12 +67,13 @@ const Wavve = () => {
   const handleKeypress = e => {
     if (e.key === "Enter") {
       submitcommit();
+      setCommentOTT()
     }
   }
   return (
 <>
     <S.ContentList>
-      {borards.map((item) => {
+      {data && data.data.map((item) => {
         return (
           <S.ContentItem key={item.wavveBoardId}>
             <div className="userInfo">
@@ -85,6 +95,7 @@ const Wavve = () => {
     <>
       <input
         className="recommendInput"
+        defaultValue={commentOTT}
         autoComplete="off"
         name="recommend"
         type="text"
