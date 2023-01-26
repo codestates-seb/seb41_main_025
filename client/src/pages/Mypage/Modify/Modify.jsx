@@ -1,11 +1,12 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import * as S from "./styled";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import ModifyImage from "../ModifyImage/ModifyImage";
 
 const Modify = () => {
-  const [files, setFiles] = useState("");
-  const [memberPicture, setMemberPicture] = useState("");
+
+  //todo: 인풋창 한번에 관리하기
+
   const [nickname, setNickname] = useState("");
   const [name, setName] = useState("");
   const [pwd, setPwd] = useState("");
@@ -83,77 +84,26 @@ const Modify = () => {
     console.log(e.target.value);
   };
 
- 
-  //todo: 이미지 업로드를 링크 형식으로 해야함
-  // input으로 이미지 수정
-
-  const fileChangedHandler = (e) => {
-    const file = e.target.files[0];
-    setFiles(file);
-
-    const formData = new FormData();
-    formData.append("memberPicture", files);
-    console.log(memberPicture);
-  };
-
-  const onSubmitImage = () => {
-
-   
-
-    // const pictureURL = URL.createObjectURL(files);
-    // setMemberPicture(pictureURL);
-    // console.log(memberPicture);
-
-    const reader = new FileReader();
-    reader.readAsDataURL(files);
-    reader.onload = () => setMemberPicture(reader.result);
-
-    axios
-      .patch(
-        `http://whatu1.kro.kr:8080/members/${memberId}`,
-        { memberPicture: memberPicture },
-        {
-          headers: {
-            Authorization: localStorage.getItem("accessToken"),
-            "content-type" : "multipart/form-data"
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-
-
   return (
     <S.MypageDiv>
       <S.UserInfoHeader>
         <div className="userImage">
           <img
-            src={memberPicture}
-            // defaultValue={info.memberPicture}
+            src={info.memberPicture}
             className="memberPicture"
             alt="사용자 이미지"
             width={"300px"}
-            // onClick={() => {
-            //   fileInput.current.click();
-            // }}
           ></img>
-          <input
+          {/* <input
             type="file"
             accept="image/*"
             // style={{ display: "none" }}
             // ref={inputRef}
             onChange={fileChangedHandler}
             // onChange={(e) => onSubmitImage(e)}
-          />
-          <button label="이미지 업로드" onClick={onSubmitImage}>
-            이미지 업로드
-          </button>
+          /> */}
+          <ModifyImage/>
+       
         </div>
         <div className="userInfo">
           <div className="userName">{info.nickName}</div>
