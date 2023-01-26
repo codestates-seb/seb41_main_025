@@ -17,7 +17,8 @@ export const ContentItem = styled.div`
     justify-content: center;
     align-items: center;
     width: 356px;
-    height: 50px;
+    min-height: 50px;
+    padding: 15px;
     color: #ffffff;
     background: #58bfad;
     border-radius: 30px;
