@@ -25,18 +25,21 @@ export const ButtonDiv = styled.div`
   width: 1120px;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  /* align-items: center; */
   list-style: none;
   /* height: 85px; */
   /* background-color: #167e6c; */
   font-size: 28px;
+  text-align: center;
   color: black;
   border: none;
   border-bottom: 1px solid #898989;
 
   .active {
-    width: calc(100% / 4);
+    width: calc(100% / 3);
     border-bottom: 2px solid #000000;
+    text-align: center;
+    border-bottom: 2px solid #167e6c;
   }
 `;
 
