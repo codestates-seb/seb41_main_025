@@ -137,16 +137,16 @@ public class CrawlingService {
             infoMap.put(key, value);
         }
 
-        result.add(infoMap.get("개봉"));
-        result.add(infoMap.get("장르"));
-        result.add(infoMap.get("국가"));
-        result.add(infoMap.get("러닝타임"));
-        result.add(infoMap.get("평점"));
-        result.add(infoMap.get("등급"));
-        result.add(infoMap.get("누적관객"));
-        result.add(titleList);
-        result.add(descList);
-        result.add(ottList);
+        result.add(infoMap.get("개봉")); //0
+        result.add(infoMap.get("장르")); //1
+        result.add(infoMap.get("국가")); //2
+        result.add(infoMap.get("러닝타임")); //3
+        result.add(infoMap.get("평점")); //4
+        result.add(infoMap.get("등급")); //5
+        result.add(infoMap.get("누적관객")); //6
+        result.add(titleList); //7
+        result.add(descList); //8
+        result.add(ottList); //9
         driver.close();
 
         return result;

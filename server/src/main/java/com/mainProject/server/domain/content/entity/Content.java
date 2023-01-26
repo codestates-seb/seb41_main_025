@@ -60,8 +60,8 @@ public class Content extends Auditable {
     @Column
     private String contentAttendance; // 누적관객 6
 
-    @Column(nullable = false)
-    private String contentOttList; // Ott 9
+    @Column
+    private String contentOttList;
 
     @Column
     private Long choiceCount;
