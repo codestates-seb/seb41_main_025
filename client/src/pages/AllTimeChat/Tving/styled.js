@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { InputDiv } from "../../Detail/Comment/styled"
+
 
 export const ContentList = styled.div`
 width: 100%;
@@ -49,4 +51,16 @@ export const ContentItemMe = styled.div`
   border-radius: 30px;
   width: 48px;
 }
+`;
+
+export const InputDivs = styled(InputDiv)`
+  display: flex;
+  justify-content: center;
+  
+
+  .recommendInput{
+    width: 800px;
+    font-size: 15px;
+  }
+
 `;
