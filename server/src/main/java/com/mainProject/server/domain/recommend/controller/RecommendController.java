@@ -66,4 +66,18 @@ public class RecommendController {
         return new ResponseEntity(new SingleResponseDto<>(mapper.deprecatesToDeprecateResponseDtos(deprecateList)), HttpStatus.OK);
         } throw new BusinessLogicException(ExceptionCode.MEMBER_UNAUTHORIZED);
     }
+
+    @DeleteMapping("/recommend/{recommend-id}")
+    public ResponseEntity deleteOneRecommend(@PathVariable("recommend-id") long recommendId) {
+        recommendService.deleteRecommend(recommendId);
+
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping("/deprecate/{deprecate-id}")
+    public ResponseEntity deleteOneDeprecate(@PathVariable("deprecate-id") long deprecateId) {
+        recommendService.deleteDeprecate(deprecateId);
+
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
 }
