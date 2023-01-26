@@ -6,7 +6,6 @@ import com.mainProject.server.domain.choice.service.ChoiceService;
 import com.mainProject.server.domain.content.entity.Content;
 import com.mainProject.server.domain.content.repository.ContentRepository;
 import com.mainProject.server.domain.content.service.ContentService;
-import com.mainProject.server.domain.favorite.eneity.Favorite;
 import com.mainProject.server.domain.member.entity.Member;
 import com.mainProject.server.domain.member.service.MemberService;
 import com.mainProject.server.global.exception.BusinessLogicException;
@@ -18,7 +17,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
