@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as S from "./styled";
 import axios from "axios";
-// import { ReactComponent as GreenLogo } from "../assets/GreenLogo.svg"
-import { useNavigate, NavLink } from "react-router-dom";
-// import { ReactComponent as GreenLogo } from "../assets/GreenLogo.svg"
-import store from "../../Redux/store";
-import { addToken, addUser, logIn } from "../../Redux/action";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Login = () => {
@@ -16,36 +12,6 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  // const EnterButton = async(e) => {
-
-  //     await fetch('http://whatu1.kro.kr:8080/members/login', {
-  //     method : "POST",
-  //     body : JSON.stringify(info),
-  //     headers : {
-  //         "Content-Type" : "text/plain"
-  //     }
-  //     })
-  //     .then ((res) => {
-  //     store.dispatch(addToken(
-  //       {
-  //         accessToken: res.headers.Authorization,
-  //         refreshToken: res.headers.Refresh
-  //       }
-  //     ));
-  //     store.dispatch(logIn())
-  //     store.dispatch(addUser(res.data))
-  //     localStorage.setItem("accessToken", res.headers.Authorization)
-  //     localStorage.setItem("refreshToken", res.headers.Refresh)
-  //     console.log(res)
-  //     localStorage.setItem("isLogin",true)
-
-  //     console.log("로그인 성공")
-  //     })
-
-  //     .catch(err => {
-  //     console.log(err)
-  //     })
-  // }
   const Login = async (e) => {
     const jsonData = JSON.stringify(info);
     // e.preventDefault();
@@ -59,14 +25,6 @@ const Login = () => {
     await axios
       .post("http://whatu1.kro.kr:8080/members/login", jsonData)
       .then((res) => {
-        // console.log(res.data.memberId);
-        store.dispatch(
-          addToken({
-            accessToken: res.headers.authorization,
-          })
-        );
-        store.dispatch(logIn());
-        store.dispatch(addUser(res.data));
         localStorage.setItem("accessToken", res.headers.authorization);
         localStorage.setItem("isLogin", true);
         localStorage.setItem("memberId", res.data.memberId)
