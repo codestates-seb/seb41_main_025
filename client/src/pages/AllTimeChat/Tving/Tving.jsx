@@ -117,10 +117,10 @@ const Tving = () => {
         style={{}}
         ></img>
         {item.nickName}
-        {timeForToday(item.createAt)}
         </div>
         <div className="content">{item.tvingBoardBody}
       </div>
+      {timeForToday(item.createAt)}
       </S.ContentItem>
       )
       );

@@ -17,7 +17,7 @@ export const Main = styled.div`
 export const Window = styled.div`
   display: flex;
   width: 983px;
-  height: 700px;
+  min-height: 700px;
   border-radius: 20px;
   background-color: #58bfad;
   opacity: 0.75;
