@@ -13,8 +13,7 @@ const ModalBasic = ({ setModalOpen }) => {
 
   const [pwd, setPwd] = useState("");
   const Navigate = useNavigate();
-
-  //todo : 회원정보 수정 patch 성공해야 수정 페이지로 연결되게 추후 변경 예정
+  const memberId = localStorage.getItem("memberId");
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -26,12 +25,12 @@ const ModalBasic = ({ setModalOpen }) => {
       {
         headers: {
           Authorization: localStorage.getItem("accessToken"),
-        },
+        }
       })
       .then((res) => {
         setPwd(res.data.data);  
         toast.success("비밀번호가 확인되었습니다")
-        Navigate("/modify")
+        Navigate(`/members/${memberId}/modify`)
       })
       .catch((error) => {
         console.log(error);
