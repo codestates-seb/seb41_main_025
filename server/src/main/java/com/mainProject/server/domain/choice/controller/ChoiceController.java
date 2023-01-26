@@ -59,4 +59,11 @@ public class ChoiceController {
         } throw new BusinessLogicException(ExceptionCode.MEMBER_UNAUTHORIZED);
     }
 
+    @DeleteMapping("/choice/{choice-id}")
+    public ResponseEntity deleteOneChoice(@PathVariable("choice-id") long choiceId) {
+        choiceService.deleteChoice(choiceId);
+
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
 }

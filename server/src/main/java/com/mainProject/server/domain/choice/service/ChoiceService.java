@@ -5,6 +5,7 @@ import com.mainProject.server.domain.choice.repository.ChoiceRepository;
 import com.mainProject.server.domain.content.entity.Content;
 import com.mainProject.server.domain.content.repository.ContentRepository;
 import com.mainProject.server.domain.member.entity.Member;
+import com.mainProject.server.domain.member.service.MemberService;
 import com.mainProject.server.global.exception.BusinessLogicException;
 import com.mainProject.server.global.exception.ExceptionCode;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,7 @@ public class ChoiceService {
 
     private final ChoiceRepository choiceRepository;
     private final ContentRepository contentRepository;
+    private final MemberService memberService;
 
     public Choice pickChoice(Member member, Content content) {
         Choice choice = findByMemberAndContent(member, content);
@@ -68,6 +70,17 @@ public class ChoiceService {
                 .filter(choice -> choice.getMember().getMemberId() == memberId)
                 .filter(x -> x.getChoiceSelected() == Boolean.TRUE)
                 .collect(Collectors.toList());
+    }
+
+    public void deleteChoice(long choiceId) {
+        Choice findChoice = findVerifiedChoice(choiceId);
+        Member findMember = memberService.findVerifiedMember(findChoice.getMember().getMemberId());
+
+        if (memberService.getCurrentMember().getMemberId() != findMember.getMemberId()) {
+            throw new BusinessLogicException(ExceptionCode.MEMBER_UNAUTHORIZED);
+        }
+
+        choiceRepository.delete(findChoice);
     }
 
 }
