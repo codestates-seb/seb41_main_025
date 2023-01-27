@@ -40,7 +40,6 @@ public class MemberService {
     private final RedisTemplate redisTemplate;
 
 
-
     public Member createMember(Member member) {
         verifyExistsEmail(member.getEmail());
 
@@ -107,10 +106,6 @@ public class MemberService {
             throw new BusinessLogicException(ExceptionCode.MEMBER_NOT_ALLOW);
 
         Member updateMember = beanUtils.copyNonNullProperties(member, findMember);
-
-        String encryptPassword = passwordEncoder.encode(updateMember.getPassword());
-        updateMember.setPassword(encryptPassword);
-
 // 오 뭔가 눌렀는데 오류가 잠깐 사라진거 같아요
         return memberRepository.save(updateMember);
     }

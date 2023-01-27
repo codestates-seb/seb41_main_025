@@ -75,7 +75,6 @@ public class MemberController {
     @PostMapping("/upload")
     public ResponseEntity upload(@RequestBody MultipartFile memberPicture) throws IOException {
         String memberPictureUrl = s3UploadService.upload(memberPicture, "image");
-        memberService.getCurrentMember().setMemberPicture(memberPictureUrl);
         return new ResponseEntity(new SingleResponseDto<>((memberPictureUrl)), HttpStatus.OK);
     }
 

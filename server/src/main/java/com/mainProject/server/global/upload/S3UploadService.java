@@ -3,6 +3,9 @@ package com.mainProject.server.global.upload;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.mainProject.server.domain.member.entity.Member;
+import com.mainProject.server.domain.member.repository.MemberRepository;
+import com.mainProject.server.domain.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,6 +25,8 @@ import java.util.Optional;
 public class S3UploadService {
 
     private final AmazonS3Client amazonS3Client;
+    private final MemberService memberService;
+    private final MemberRepository memberRepository;
 
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
@@ -38,6 +43,10 @@ public class S3UploadService {
         String uploadImageUrl = putS3(uploadFile, fileName);
 
         removeNewFile(uploadFile);  // 로컬에 생성된 File 삭제 (MultipartFile -> File 전환 하며 로컬에 파일 생성됨)
+
+        Member member = memberService.getCurrentMember();
+        member.setMemberPicture(uploadImageUrl);
+        memberRepository.save(member);
 
         return uploadImageUrl;      // 업로드된 파일의 S3 URL 주소 반환
     }
