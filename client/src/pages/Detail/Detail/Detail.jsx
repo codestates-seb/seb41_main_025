@@ -120,6 +120,10 @@ const Detail = () => {
 
   console.log(ottlist)
 
+  // data 
+
+  const otts = data.ottList;
+  
   //추천
   const handleRecommend = async () => {
     if(!isLogin) return navigate('/login')
@@ -227,7 +231,7 @@ const Detail = () => {
     isHide ? ( 
     contentRef.current.classList.remove("show") ) : (
     contentRef.current.classList.add("show") )  
-   
+    
     // 더보기 버튼이 숨겨진다
     // e.currentTarget.classList.add("show");
   };
@@ -293,6 +297,19 @@ const Detail = () => {
           (<ButtonForm to='/alltimechat'>게시판</ButtonForm>) : 
           (<ButtonForm to='/login'>게시판</ButtonForm>) } 
       </S.DetailHeader>
+        <h2>해당 영화 상영 OTT</h2>
+      <S.OttList>
+        {otts.map((otts) => {
+          return(
+            <>
+              { otts === "티빙" ? <a href="https://www.tving.com/"><img src="/assets/tving.png" alt="스티커" /></a> : null }
+              { otts === "넷플릭스" ? <a href="https://www.netflix.com/"><img src="/assets/netflix.png" alt="스티커" /></a> : null }
+              { otts === "왓챠" ? <a href="https://watcha.com/"><img src="/assets/watcha.png" alt="스티커" /></a> : null }
+              { otts === "웨이브" ? <a href="https://www.wavve.com/"><img src="/assets/wavve.png" alt="스티커" /></a> : null }
+            </>
+            )
+          })}
+      </S.OttList>
       <Comment />
     </S.DetailContainer>
   );

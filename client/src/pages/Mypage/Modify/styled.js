@@ -38,8 +38,11 @@ export const UserInfoHeader = styled.div`
   
   .userImage {
     padding-left: 80px;
+    width: 300px;
+    height: 300px;
     @media only screen and (max-width: ${'350px'}) {
     width: 100px;
+    height: 100px;
     }
 
     & > .memberPicture {

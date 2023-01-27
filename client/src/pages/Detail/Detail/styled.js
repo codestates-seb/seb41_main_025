@@ -110,3 +110,28 @@ export const Button = styled.button`
     display: none;
   }
 `;
+
+export const OttList = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px 30px;
+  margin: 30px 0px 30px 0px;
+  @media only screen and (max-width: ${"350px"}) {
+  /* flex-direction: column; */
+  }
+  h2{
+    @media only screen and (max-width: ${"350px"}) {
+    font-size: 15px;
+  }
+  }
+
+  img {
+    width: 50px;
+    height: 50px;
+    @media only screen and (max-width: ${"350px"}) {
+    width: 50px;
+    height: 50px;
+  }
+  }
+`

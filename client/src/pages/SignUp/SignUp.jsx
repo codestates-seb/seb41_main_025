@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import * as S from "./styled";
 import {
   Main,
@@ -175,14 +175,14 @@ const SignUp = () => {
     <Main>
       <S.WindowDiv>
         <S.Hello>
-          <Logo>
+          <S.Logo>
             <img src="/assets/GreenLogo.png" className="greenLogo" alt="" />
             <img src="/assets/Character.png" className="character" alt="" />
             {/* <GreenLogo/> */}
-          </Logo>
+          </S.Logo>
         </S.Hello>
         <ContentForm>
-          <span className="LoginFont">Sign Up</span>
+          <S.LoginFont>Sign Up</S.LoginFont>
           <S.EnterContent>
             <S.Enters
               type="name"
@@ -226,7 +226,7 @@ const SignUp = () => {
               onChange={onChangeConfirmPwd}
               style={{ margin: "20px 0px" }}
             />
-            <span className="message" style={{ fontSize: "20px" }}>
+            <span className="message" style={{ fontSize: "20px", margin: "0px 0px 10px 0px "}}>
               {confirmPwdMsg}
             </span>
             <S.SignupButton

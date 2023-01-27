@@ -4,32 +4,35 @@ import ModalBasic from "../ModalBasic/ModalBasic";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useCustomQuery } from "../../../components/util/useCustomQuery";
 
 const Mypage = () => {
-
-  const [info, setInfo] = useState([]);
+  // const [info, setInfo] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
   const memberId = localStorage.getItem("memberId");
   const navigate = useNavigate();
-
-  useEffect(() => {
-    axios
-      .get(`http://whatu1.kro.kr:8080/members/${memberId}`, {
-        headers: {
-          "Content-Type": "application/json;charset=UTF-8",
-          Accept: "application/json",
-          AutHorization: localStorage.getItem("accessToken"),
-        },
-      })
-      .then((res) => {
-        setInfo(res.data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
   // 모달창 노출 여부 state
-  const [modalOpen, setModalOpen] = useState(false);
+  const { data, isLoading, error } = useCustomQuery(`/members/${memberId}`, [
+    "members",
+    memberId,
+  ]);
+
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://whatu1.kro.kr:8080/members/${memberId}`, {
+  //       headers: {
+  //         "Content-Type": "application/json;charset=UTF-8",
+  //         Accept: "application/json",
+  //         AutHorization: localStorage.getItem("accessToken"),
+  //       },
+  //     })
+  //     .then((res) => {
+  //       setInfo(res.data.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, []);
 
   // 모달창 노출
   const showModal = () => {
@@ -59,7 +62,10 @@ const Mypage = () => {
     window.location.reload();
   };
 
-  console.log(info)
+  if (isLoading) return <></>;
+  const info = data.data;
+  // console.log(data.data);
+  // console.log(info);
   return (
     <S.Wrapper>
       <S.MypageDiv>
@@ -70,6 +76,7 @@ const Mypage = () => {
               className="memberPicture"
               alt="사용자 이미지"
               width={"300px"}
+              height={"300px"}
             ></img>
           </S.UserImage>
           <S.UserInfo>

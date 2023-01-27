@@ -45,9 +45,9 @@ export const Window = styled.div`
     border-radius: 20px;
     font-size: 20px;
     font-weight: 800;
-    color: white;
     background-color : #58BFAD;
-    opacity:0.75;
+    color: white;
+    opacity:0.90;
     @media only screen and (max-width: ${'350px'}) {
     width: 300px;
     flex-direction: column;

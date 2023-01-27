@@ -56,6 +56,7 @@ export const DetailCommentItem = styled.div`
   .memberPicture {
     border-radius: 30px;
     width: 48px;
+    height: 48px;
     @media only screen and (max-width: ${'350px'}) {
     width: 20px;
   } 
