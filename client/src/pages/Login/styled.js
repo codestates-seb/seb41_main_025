@@ -138,6 +138,7 @@ export const WhiteLoginbutton = styled.button`
   border-radius: 30px;
   color: #054d40;
   font-size: 17px;
+  font-weight: 600;
   border: 0;
   text-decoration: none;
   @media only screen and (max-width: ${"350px"}) {
