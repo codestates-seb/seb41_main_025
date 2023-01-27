@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import * as S from "./styled";
 import axios from "axios";
 import ModifyImage from "../ModifyImage/ModifyImage";
@@ -23,32 +23,17 @@ export default Modify;
 const ModifySecond = ({ refetch, info, memberId }) => {
   const [nickname, setNickname] = useState(info.nickName);
   const [name, setName] = useState(info.name);
-  const [pwd, setPwd] = useState("");
-  // const [input, setInput] = useState({
-  //   password: "",
-  //   name: "",
-  //   nickName: "",
-  //   memberPicture: "",
-  // });
+  const [pwd, setPwd] = useState("")
 
-  //todo: input창의 값이 여러가지 일때 빈값이 아니고 기존의 값을 유지한채 변경되게
-  // const onChangeInput = (e) => {
-  //   setInput(...e.target.value);
-  //   console.log(e.target.value);
+  // const onChangeName = (e) => {
+  //   setName(e.target.value);
   // };
-
-  const onChangeName = (e) => {
-    setName(e.target.value);
-    console.log(e.target.value);
-  };
-  const onChangeNickname = (e) => {
-    setNickname(e.target.value);
-    console.log(e.target.value);
-  };
-  const onChangePwd = (e) => {
-    setPwd(e.target.value);
-    console.log(e.target.value);
-  };
+  // const onChangeNickname = (e) => {
+  //   setNickname(e.target.value);
+  // };
+  // const onChangePwd = (e) => {
+  //   setPwd(e.target.value);
+  // };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -56,11 +41,9 @@ const ModifySecond = ({ refetch, info, memberId }) => {
       .patch(
         `http://whatu1.kro.kr:8080/members/${memberId}`,
         {
-          // ...info,
-          // password: pwd,
+          password: pwd,
           name: name,
           nickName: nickname,
-          // memberPicture: memberPicture,
         },
         {
           headers: {
@@ -88,21 +71,10 @@ const ModifySecond = ({ refetch, info, memberId }) => {
             width={"300px"}
             height={"300px"}
           ></img>
-          {/* <input
-            type="file"
-            accept="image/*"
-            // style={{ display: "none" }}
-            // ref={inputRef}
-            onChange={fileChangedHandler}
-            // onChange={(e) => onSubmitImage(e)}
-          /> */}
           <ModifyImage refetch={refetch} />
         </div>
         <div className="userInfo">
           <div className="userName">{nickname}</div>
-          {/* <S.ModifyBtn type="submit" value="저장">
-            회원 정보 수정
-          </S.ModifyBtn> */}
         </div>
       </S.UserInfoHeader>
 
@@ -114,7 +86,7 @@ const ModifySecond = ({ refetch, info, memberId }) => {
               <S.MyInput
                 id="name"
                 defaultValue={name}
-                onChange={onChangeName}
+                onChange={(e) => setName(e.target.value)}
                 placeholder="수정할 이름를 입력해주세요"
               />
             </S.InputDiv>
@@ -125,7 +97,7 @@ const ModifySecond = ({ refetch, info, memberId }) => {
               <S.MyInput
                 id="nickName"
                 defaultValue={nickname}
-                onChange={onChangeNickname}
+                onChange={(e) => setNickname(e.target.value)}
                 placeholder="수정할 닉네임을 적어주세요"
               />
             </S.InputDiv>
@@ -137,7 +109,7 @@ const ModifySecond = ({ refetch, info, memberId }) => {
                 id="user_pwd"
                 type="password"
                 defaultvalue={pwd}
-                onChange={onChangePwd}
+                onChange={(e) => setPwd(e.target.value)}
                 placeholder="수정할 비밀번호를 입력해주세요"
               />
             </S.InputDiv>
