@@ -1,6 +1,5 @@
 import React from "react";
 import * as S from "./styled";
-import useFetch from "../../../components/util/useFetch";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -13,7 +12,7 @@ const Wavve = () => {
   const memberId = localStorage.getItem("memberId");
 
   const { data, isLoading, error, refetch } = useCustomQuery(
-    `/boards/wavve?page=1&size=10`,
+    `/boards/wavve?page=1&size=100`,
     `boards=wavve`
   );
   // console.log(data)
@@ -134,11 +133,11 @@ const Wavve = () => {
           onChange={(e) => setComment(e.target.value)}
           onKeyPress={handleKeypress}
         ></input>
-        <div className="buttonDiv">
+        <S.ButtonDiv>
           <button type="submit" className="submit" onClick={submitcommit}>
             등록
           </button>
-        </div>
+        </S.ButtonDiv>
       </InputDivs>
     </>
   );

@@ -116,6 +116,9 @@ const Detail = () => {
   // TODO: error 컴포넌트
   if (error) return <>error 발생</>;
   const movies = data.data;
+  const ottlist = data.ottList;
+
+  console.log(ottlist)
 
   //추천
   const handleRecommend = async () => {
@@ -136,6 +139,7 @@ const Detail = () => {
         }
         setRecommend(!recommend);
         refetch();
+        // toast.success("추천이 완료되었습니다");
       })
       .catch((err) => {
         console.log(err);
@@ -161,6 +165,7 @@ const Detail = () => {
         }
         setDeprecate(!deprecate);
         refetch();
+        // toast.success("비추천이 완료되었습니다");
       })
       .catch((err) => {
         console.log(err);
@@ -184,6 +189,7 @@ const Detail = () => {
       .then(() => {
         setChoice(!choice);
         refetch();
+        
       })
       .catch((err) => {
         console.log(err);
@@ -207,12 +213,13 @@ const Detail = () => {
       .then(() => {
         setFavorite(!favorite);
         refetch();
+        // toast.success("인생작품에 추가되었습니다");
       })
       .catch((err) => {
         toast.error("인생작품은 3개만 선택이 가능합니다");
         console.log(err);
       });
-  };
+    };
   
   const onClick = (e) => {
     setIsHide(!isHide);

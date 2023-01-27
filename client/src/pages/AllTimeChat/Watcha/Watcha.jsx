@@ -1,7 +1,6 @@
 import React from "react";
 import * as S from "./styled";
 import { InputDivs } from "../Tving/styled";
-import useFetch from "../../../components/util/useFetch";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -9,13 +8,15 @@ import { useCustomQuery } from "../../../components/util/useCustomQuery";
 
 const Watcha = () => {
   const [comment, setComment] = useState("");
-  const [commentOTT, setCommentOTT] = useState('');
   const memberId = localStorage.getItem("memberId");
 
   const { data, isLoading, error, refetch } = useCustomQuery(
-    `/boards/watcha?page=1&size=10`,
+    `/boards/watcha?page=1&size=100`,
     `boards=watcha`
   );
+  if (isLoading) return <></>;
+  // TODO: error 컴포넌트
+  if (error) return <>error 발생</>;
   
 
   const timeForToday = (time) => {
@@ -50,10 +51,12 @@ const Watcha = () => {
         },
       })
       .then(() => {
-        window.location.reload();
+        // window.location.reload();
+        refetch()
+        setComment('')
       })
       .catch((err) => {
-        refetch()
+        console.log(err)
       });
     console.log(e.target.value);
   };
@@ -134,11 +137,11 @@ const Watcha = () => {
           onChange={(e) => setComment(e.target.value)}
           onKeyPress={handleKeypress}
         ></input>
-        <div className="buttonDiv">
+        <S.ButtonDiv>
           <button type="submit" className="submit" onClick={submitcommit}>
             등록
           </button>
-        </div>
+        </S.ButtonDiv>
       </InputDivs>
     </>
   );

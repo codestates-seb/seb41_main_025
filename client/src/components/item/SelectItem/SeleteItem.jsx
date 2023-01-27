@@ -23,6 +23,7 @@ const Item = ({  dataId, Poster, Id, Score ,Title, refetch }) => {
       .then((res) => {
         console.log(res)
         refetch()
+        // window.location.reload();
         toast.success("삭제가 완료되었습니다");
       })
       .catch((err) => {

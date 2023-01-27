@@ -1,6 +1,5 @@
 import React from "react";
 import * as S from "./styled";
-import useFetch from "../../../components/util/useFetch";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -14,7 +13,7 @@ const Tving = () => {
   const [commentOTT, setCommentOTT] = useState('');
 
   const { data, isLoading, error, refetch } = useCustomQuery(
-    `/boards/tving?page=1&size=10`,
+    `/boards/tving?page=1&size=100`,
     `boards=tving`
   );
 
@@ -74,7 +73,7 @@ const Tving = () => {
         },
       })
       .then(() => {
-        window.location.reload();
+        // window.location.reload();
       })
       .catch((err) => {
         console.log(err);
