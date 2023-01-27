@@ -1,11 +1,18 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import ImageModal from "./imageModal";
 
 const ModifyImage = () => {
-
   //todo: 이미지 미리보기
   const [memberPicture, setMemberPicture] = useState(null);
+
+  const [image, setImage] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const showModal = () => {
+    setModalOpen(true);
+  };
 
   const memberId = localStorage.getItem("memberId");
 
@@ -73,6 +80,17 @@ const ModifyImage = () => {
 
   return (
     <div>
+      {/* <img src={image} width={165} height={165} alt="test" /> */}
+      {/* <button className="Modal_Open_Button" onClick={showModal}>
+        이미지 바꾸기
+      </button>
+      {modalOpen && (
+        <ImageModal
+          setModalOpen={setModalOpen}
+          userProfileImage={image}
+          setImage={setImage}
+        />
+      )} */}
       <input type="file" onChange={handleFileInput} ></input>
       <button label="이미지 업로드" onClick={onSubmitImage}>
         이미지 업로드
