@@ -7,16 +7,20 @@ import com.mainProject.server.domain.member.mapper.MemberMapper;
 import com.mainProject.server.domain.member.service.MemberService;
 import com.mainProject.server.global.response.MultiResponseDto;
 import com.mainProject.server.global.response.SingleResponseDto;
+import com.mainProject.server.global.upload.S3UploadService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
+import java.io.IOException;
 import java.util.List;
 
 @Slf4j
@@ -56,12 +60,20 @@ public class MemberController {
     @PatchMapping("/{member-id}")
     public ResponseEntity patchMember(@PathVariable("member-id") long memberId,
                                       @RequestBody MemberDto.Patch patchRequest){
+
         Member memberForService = mapper.memberPatchToMember(patchRequest);
         memberForService.setMemberId(memberId);
         Member memberForResponse = memberService.updateMember(memberForService);
         MemberDto.Response response = mapper.memberToMemberResponse(memberForResponse);
 
         return new ResponseEntity(new SingleResponseDto<>(response), HttpStatus.OK);
+    }
+
+    @PostMapping("/upload")
+    public ResponseEntity upload(@RequestBody MultipartFile memberPicture) throws IOException {
+        String memberPictureUrl = s3UploadService.upload(memberPicture, "image");
+        memberService.getCurrentMember().setMemberPicture(memberPictureUrl);
+        return new ResponseEntity(new SingleResponseDto<>((memberPictureUrl)), HttpStatus.OK);
     }
 
     // TODO GET ONE

@@ -40,6 +40,7 @@ public class MemberService {
     private final RedisTemplate redisTemplate;
 
 
+
     public Member createMember(Member member) {
         verifyExistsEmail(member.getEmail());
 

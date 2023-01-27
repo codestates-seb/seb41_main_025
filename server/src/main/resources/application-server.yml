@@ -1,4 +1,19 @@
+cloud:
+  aws:
+    credentials:
+      access-key: ${S3_ACCESS_KEY}
+      secret-key: ${S3_SECRET_KEY}
+    s3: #버킷이름
+      bucket: ${S3_BUCKET}
+    region: #S3 지역
+      static: ${S3_REGION}
+    stack:
+      auto: false
 spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
   redis:
     host: localhost
     port: 6379
