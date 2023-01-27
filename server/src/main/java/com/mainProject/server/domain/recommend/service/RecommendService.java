@@ -156,10 +156,6 @@ public class RecommendService {
 
         deprecateRepository.delete(findDeprecate);
     }
-
-
-
-
 }
 
 
