@@ -10,7 +10,7 @@ const ModifyImage = () => {
   const memberId = localStorage.getItem("memberId");
 
   const region = "ap-northeast-2";
-  const bucket = "mypicture123";
+  const bucket = "s3-image-whatu1";
 
   const AWS = require("aws-sdk");
 

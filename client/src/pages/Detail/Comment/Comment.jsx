@@ -13,7 +13,7 @@ const fetchPostList = async (pageParam) => {
   const res = await axios.get(
     `http://whatu1.kro.kr:8080/comments?page=${pageParam}&size=100`
   );
-  // console.log(res.data)
+  console.log(res.data)
   // const { posts, isLast } = res.data;
   const posts = res.data.data;
   const isLast = res.data.pageInfo.totalPages;
@@ -26,8 +26,11 @@ const Comment = () => {
   const { contentId } = useParams();
   //창 뷰트 들어오고 나갈 때  요소의 가시성 추적
   const [ ref, inView ] = useInView();
+
+
   //밑으로 내리면 true 반환
   console.log(inView)
+  //isfetchingNextpage 가 패칭 중인가 
   const { data, status, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
     //query KEY
     "posts",
@@ -40,7 +43,7 @@ const Comment = () => {
       console.log(data)
 
   useEffect(() => {
-    if (inView && isFetchingNextPage) fetchNextPage();
+    if (inView && !isFetchingNextPage) fetchNextPage();
   }, [inView]);
 
 
@@ -140,7 +143,7 @@ const Comment = () => {
             {/* TODO:Loading 화면 구현 */}
         {/* {isFetchingNextPage ? <Loading /> : <div ref={ref}></div>} */}
         {/* {isFetchingNextPage ? '로딩' : <div ref={ref}></div>} */}
-        <div ref={ref}>나를 봤다면, 이벤트 실행!!</div>
+        {/* <div ref={ref}>나를 봤다면, 이벤트 실행!!</div> */}
         </S.DetailCommentList>
       ) : (
         <S.DetailCommentList>
