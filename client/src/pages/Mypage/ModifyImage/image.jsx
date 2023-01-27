@@ -1,30 +1,31 @@
-import { useState } from 'react';
-import axios from 'axios';
-import ImageUploading from 'react-images-uploading';
+import { useState } from "react";
+import axios from "axios";
+import ImageUploading from "react-images-uploading";
+import "./Styles/image.css";
 
-import './Styles/image.css';
-
-const ImageUpload = ({ setModalOpen, setImage }) => {
+const ImageUpload = ({ refetch, setModalOpen, setImage }) => {
   const [images, setImages] = useState([]);
   const maxNumber = 1;
 
   const onSubmit = async () => {
-    //   setImage();
-    //   const host = 'http://43.201.92.36';
-    // if (images.length === 0) return;
-    // const { data } = await axios
-    //   .post(`${host}/api/v1/user/setting/profileimage`, {
-    //     userId,
-    //     image: images[0].data_url,
-    //   })
-    //   .catch((e) => {
-    //     setImages([]);
-    //   });
-    // if (data) {
-    //   setModalOpen(false);
-    // } else {
-    //   setImages([]);
-    // }
+    axios
+      .post(
+        `http://whatu1.kro.kr:8080/members/upload`,
+        { memberPicture: images[0].file },
+        {
+          headers: {
+            Authorization: localStorage.getItem("accessToken"),
+            "content-type": "multipart/form-data",
+          },
+        }
+      )
+      .then((res) => {
+        setModalOpen(false);
+        refetch();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const onChange = (imageList, addUpdateIndex) => {
@@ -39,7 +40,7 @@ const ImageUpload = ({ setModalOpen, setImage }) => {
         onChange={onChange}
         maxNumber={maxNumber}
         dataURLKey="data_url"
-        acceptType={['jpg', 'jpeg', 'svg', 'png']}
+        acceptType={["jpg", "jpeg", "svg", "png"]}
       >
         {({ imageList, onImageUpdate, onImageRemove, dragProps, errors }) => (
           <div className="Upload_Image_Container">
@@ -49,8 +50,8 @@ const ImageUpload = ({ setModalOpen, setImage }) => {
                   <img
                     src={imageList[0].data_url}
                     alt="profileImage"
-                    width="200"
-                    height="200"
+                    width="300"
+                    height="300"
                   />
                 ) : (
                   <button
@@ -61,8 +62,8 @@ const ImageUpload = ({ setModalOpen, setImage }) => {
                     <div className="Upload_Image_Modal_Image">
                       <div className="Upload_Image_Text_Container">
                         <div className="Upload_Image_Text">
-                          <b>Drag and drop or click here</b>
-                          <p>to upload your image (max 2mb)</p>
+                          <b>여기로 이미지 파일을 드래그 해주세요!</b>
+                          <p>to upload your image </p>
                         </div>
                       </div>
                     </div>
@@ -88,12 +89,12 @@ const ImageUpload = ({ setModalOpen, setImage }) => {
               <div className="Upload_Image_Remove_Container">
                 {errors.acceptType && (
                   <span className="Upload_Image_Error">
-                    Your selected file type is not allow
+                    지원하는 파일 형식이 아닙니다.
                   </span>
                 )}
                 {errors.maxFileSize && (
                   <span className="Upload_Image_Error">
-                    Selected file size exceed maxFileSize
+                    너무 큰 사이즈입니다.
                   </span>
                 )}
                 {errors.resolution && (

@@ -1,7 +1,7 @@
-import './Styles/image.css';
-import ImageUpload from './image';
+import "./Styles/image.css";
+import ImageUpload from "./image";
 
-function ImageModal({ setModalOpen, userProfileImage, setImage }) {
+function ImageModal({ refetch, setModalOpen, userProfileImage, setImage }) {
   const closeModal = () => {
     setModalOpen(false);
   };
@@ -13,6 +13,7 @@ function ImageModal({ setModalOpen, userProfileImage, setImage }) {
           userProfileImage={userProfileImage}
           setModalOpen={setModalOpen}
           setImage={setImage}
+          refetch={refetch}
         />
         <svg
           className="Image_Modal_Close"
