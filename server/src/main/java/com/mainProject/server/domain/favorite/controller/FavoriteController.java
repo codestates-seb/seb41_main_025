@@ -43,7 +43,7 @@ public class FavoriteController {
             return new ResponseEntity(new SingleResponseDto<>(mapper.favoritesToFavoriteResponseDtos(favoriteList)), HttpStatus.OK);
         } throw new BusinessLogicException(ExceptionCode.MEMBER_UNAUTHORIZED);
     }
-    @DeleteMapping("/favorites/{favorite-id}")
+    @DeleteMapping("/favorite/{favorite-id}")
     public ResponseEntity deleteOneFavorite(@PathVariable("favorite-id") long favoriteId) {
         favoriteService.deleteFavorite(favoriteId);
 

@@ -147,14 +147,14 @@ public class RecommendService {
     }
 
     public void deleteDeprecate(long deprecateId) {
-        Recommend findDeprecate = findVerifiedRecommend(deprecateId);
+        Deprecate findDeprecate = findVerifiedDeprecate(deprecateId);
         Member findMember = memberService.findVerifiedMember(findDeprecate.getMember().getMemberId());
 
         if (memberService.getCurrentMember().getMemberId() != findMember.getMemberId()) {
             throw new BusinessLogicException(ExceptionCode.MEMBER_UNAUTHORIZED);
         }
 
-        recommendRepository.delete(findDeprecate);
+        deprecateRepository.delete(findDeprecate);
     }
 
 
