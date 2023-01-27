@@ -1,7 +1,6 @@
 import * as S from "./styled";
 import { MainWarp, MainContainer } from "../Main/styled";
-import { Items, Title } from "../FavoriteMovie/styled";
-import SeleteItem from "../../components/item/SelectItem/SeleteItem" 
+import { Title } from "../FavoriteMovie/styled";
 import { useState } from "react";
 import axios from "axios";
 import Deprecate from "./Deprecate/Deprecate";
@@ -30,12 +29,6 @@ const RecommendMovies = () => {
         console.log(error);
       });
 
-
-    // const [state, SetState] = useState(true);
-    // const moviecomment = comments.filter (comments => movies.contentId === comments.contentId)
-    // const ButtonHandleClick = () => {
-    //     SetState(!state);
-    // }
     const [currentTab, setCurrentTab] = useState(0);
 
     const selectMenuHandler = (idx) => {

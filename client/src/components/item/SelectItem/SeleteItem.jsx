@@ -1,19 +1,19 @@
 import * as S from "./styled";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 
-const Item = ({  Poster, Id, Score ,Title }) => {
+const Item = ({  dataId, Poster, Id, Score ,Title, refetch }) => {
 
   const params = useLocation()
-  // console.log(params.pathname)
+  console.log(params.pathname)
 
   //list 삭제
-  const handleDelete = async (Id) => {
+  const handleDelete = async (dataId) => {
     console.log("clicked")
     await axios
-      .post(
-        `http://whatu1.kro.kr:8080/contents/${Id}${params.pathname}`,
-        JSON.stringify({}),
+      .delete(
+        `http://whatu1.kro.kr:8080${params.pathname}/${dataId}`,
         {
           headers: {
             Authorization: localStorage.getItem("accessToken"),
@@ -22,12 +22,14 @@ const Item = ({  Poster, Id, Score ,Title }) => {
       )
       .then((res) => {
         console.log(res)
-        window.location.reload()
+        refetch()
+        toast.success("삭제가 완료되었습니다");
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
   return (
     <S.EachItem>
       <a href={`/contents/${Id}`}>
@@ -36,9 +38,9 @@ const Item = ({  Poster, Id, Score ,Title }) => {
       <S.Details>
         <S.DetailFont>
           <S.MovieTitle to ={`/contents/${Id}`}>{Title}</S.MovieTitle>
-          <h4 className="movieTitle">평점 : {Score}</h4>
+          <h4 className="movieTitle"> 평점 : {Score}</h4>
         </S.DetailFont>
-      <S.DeleteBtn onClick = {() => handleDelete(Id)}>X</S.DeleteBtn>
+      <S.DeleteBtn onClick = {() => handleDelete(dataId)}>X</S.DeleteBtn>
       </S.Details>
     </S.EachItem>
   )

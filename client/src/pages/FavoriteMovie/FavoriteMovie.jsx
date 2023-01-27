@@ -1,8 +1,6 @@
 import * as S from "./styled";
-// import GreenButton from "../components/item/Button";
 import SeleteItem from "../../components/item/SelectItem/SeleteItem";
 import { MainWarp } from "../Main/styled"
-// import useFetch from "../../components/util/useFetch";
 import axios from "axios";
 import { useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
@@ -95,6 +93,7 @@ const FavoriteMovie = (props) =>{
                     console.log(favorite.contentResponseMinDto.contentTitle)
                     return (
                       <SeleteItem 
+                      dataId = {favorite.favoriteId}
                       Poster = {favorite.contentResponseMinDto.contentPoster}
                       Id = {favorite.contentResponseMinDto.contentId}
                       Score={favorite.contentResponseMinDto.contentScore}
