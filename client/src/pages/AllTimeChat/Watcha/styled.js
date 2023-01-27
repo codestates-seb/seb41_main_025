@@ -26,5 +26,6 @@ export const ContentItem = styled.div`
   .memberPicture {
     border-radius: 30px;
     width: 48px;
+    height: 48px;
   }
 `;

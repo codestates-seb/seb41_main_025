@@ -28,6 +28,7 @@ padding: 20px;
 .memberPicture {
   border-radius: 30px;
   width: 48px;
+  height: 48px;
 }
 `;
 export const ContentItemMe = styled.div`
