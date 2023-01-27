@@ -35,7 +35,7 @@ export const Window = styled.div`
     font-weight: 800;
     color: white;
     background-color : #58BFAD;
-    opacity:0.75;
+    opacity:0.90;
     .character {
         width: 230px;
         height: 230px;

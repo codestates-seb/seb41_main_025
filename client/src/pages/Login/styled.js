@@ -20,7 +20,7 @@ export const Window = styled.div`
   min-height: 700px;
   border-radius: 20px;
   background-color: #58bfad;
-  opacity: 0.75;
+  opacity: 0.90;
   @media only screen and (max-width: ${"350px"}) {
     width: 250px;
     height: 800px;
