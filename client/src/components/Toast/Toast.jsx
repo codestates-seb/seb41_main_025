@@ -2,16 +2,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Toast = () => {
-  // const notify = () => toast.info("toastify test!");
-  // // 성공 알람 ( 초록색 창 )
-  // const success = () => toast.success("Success!");
-  // // 실패 알람 ( 빨간색 창 )
-  // const error = () => toast.error("Error!");
-  // // 경고 알람 ( 노란색 창 )
-  // const warning = () => toast.warning("Warnning!");
-  // // 정보 알람
-  // const info = () => toast.info("Info...");
+
   return (
+    
     <ToastContainer
       position="top-right" // 알람 위치 지정
       autoClose={3000} // 자동 off 시간
