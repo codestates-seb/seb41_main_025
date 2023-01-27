@@ -10,7 +10,7 @@ const Header = (props) => {
   const [isModal, setIsModalOpen] = useState(false);
 
   const outSection = useRef();
- 
+
   useEffect(() => {
     document.addEventListener("mousedown", clickModalOutside);
 
@@ -30,43 +30,47 @@ const Header = (props) => {
   const [searchMovie, setSearchMovie] = useState("");
 
   const onChange = (e) => {
-      setSearchMovie(e.currentTarget.value);
-  }
+    setSearchMovie(e.target.value);
+  };
   const onKeyPressEnter = (e) => {
-      if(e.key === "Enter") sendSerachResult();
-      setSearchMovie("")
-  }
+    if (searchMovie === "") {
+      toast.info("검색어를 입력하세요");
+    } else if (e.key === "Enter") {
+      sendSerachResult();
+      setSearchMovie();
+    }
+  };
   const sendSerachResult = () => {
-      props.getSearchResult(searchMovie);
-      Navigate('/searchResult')
-  }
+    props.getSearchResult(searchMovie);
+    Navigate("/searchResult");
+  };
 
   return (
     <S.HeaderWrap>
       <S.HeaderContainer>
-
         {/* logo */}
         <div className="logo">
-            <Link to="/">
-                <img src="/assets/logo.png" alt =""></img>
-            </Link>
+          <Link to="/">
+            <img src="/assets/logo.png" alt=""></img>
+          </Link>
         </div>
 
         {/* search */}
         <S.SearchBar>
-            <input 
-            type="text" 
+          <input
+            type="text"
             placeholder="검색할 내용을 입력하세요."
             value={searchMovie}
             onChange={onChange}
             onKeyPress={onKeyPressEnter}
-            >
-            </input>
-            <S.SearchIcon
-            onClick={sendSerachResult}
-            >
-                <ImSearch className="searchIcon" size="30" />
-            </S.SearchIcon>
+          ></input>
+          <S.SearchIcon>
+            <ImSearch
+              className="searchIcon"
+              size="30"
+              onClick={sendSerachResult}
+            />
+          </S.SearchIcon>
         </S.SearchBar>
 
         {/* sign Up / sign In */}
