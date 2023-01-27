@@ -90,6 +90,10 @@ export const InputDiv = styled.div`
 export const InputButton = styled.button`
   width: 30px;
   height: 30px;
+  background-color: #D9D9D9;
+  /* color: #FFFFFF; */
+  border: none;
+  margin-right: 5px;
 `;
 
 export const Buttons = styled.div`
