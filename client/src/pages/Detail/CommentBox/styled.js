@@ -15,10 +15,10 @@ export const DetailCommentItem = styled.div`
   margin-bottom: 10px;
   font-size: 13px;
   border-radius: 10px;
-  @media only screen and (max-width: ${"600px"}) {
+  @media only screen and (max-width: ${"350"}) {
     width: 90%;
   }
-  @media only screen and (max-width: ${"1200px"}) {
+  @media only screen and (max-width: ${"700"}) {
     width: 90%;
   }
   .userInfo {

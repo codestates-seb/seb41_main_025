@@ -8,6 +8,11 @@ export const Container = styled.div`
 
   h2.title {
     margin-bottom: 14px;
+    @media only screen and (max-width: ${'350px'}) {
+    font-size: 17px;
+    margin-top: 30px;
+  } 
+    
   }
   /* .items {
     display: flex;

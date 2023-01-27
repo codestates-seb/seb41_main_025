@@ -19,6 +19,10 @@ export const Container = styled.button`
   border: none;
   border-radius: 8px;
   position: absolute;
+  @media only screen and (max-width: ${'350px'}) {
+    width: 300px;
+    height: 300px;
+  } 
   .boxing {
     display: flex;
     flex-direction: column;
@@ -30,6 +34,10 @@ export const Container = styled.button`
     background-color: #ffffff;
     color: black;
     font-size: 150%;
+    @media only screen and (max-width: ${'350px'}) {
+    margin-left:230px;
+
+    }
   }
 
 `;
@@ -43,7 +51,8 @@ export const CloseBtn = styled.button`
   color:#ffffff;
   border: none;
   border-radius: 10px;
-  
+  @media only screen and (max-width: ${'350px'}) {
+  }
 `;
 
 export const InputItem = styled.div`
@@ -53,17 +62,21 @@ export const InputItem = styled.div`
   
   //인풋창 배치
   padding: 150px 30px;
+  @media only screen and (max-width: ${'350px'}) {
+    padding: 70px 30px;
+    }
 `;
 
 export const MyInput = styled.input`
   display: flex;
-
   width: 360px;
   height: 50px;
   padding-left: 40px;
-  
   border: none;
   border-bottom: 1px solid #999999;
+  @media only screen and (max-width: ${'350px'}) {
+    width: 270px;
+  }
   :focus {
     outline: none;
     border-bottom: 2px solid #167e6c;

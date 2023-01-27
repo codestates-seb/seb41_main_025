@@ -7,6 +7,9 @@ export const RecommendDiv = styled.div`
   max-width: 1440px;
   margin: 0 auto;
   margin-bottom: 30px;
+  @media only screen and (max-width: ${'350px'}) {
+   width: 300px;
+  } 
   `;
 
 export const TitleDiv = styled.div`
@@ -14,10 +17,17 @@ export const TitleDiv = styled.div`
   align-content: flex-start;
   width: 1120px;
   margin: 80px;
+  @media only screen and (max-width: ${'350px'}) {
+    width: 300px;
+  } 
   
   h1 {
     font-size: 32px;
     border-bottom: 2px solid #167e6c;
+    @media only screen and (max-width: ${'350px'}) {
+    font-size: 25px;
+    margin: 20px;
+  } 
   }
 `;
 
@@ -34,6 +44,10 @@ export const ButtonDiv = styled.div`
   color: black;
   border: none;
   border-bottom: 1px solid #898989;
+  @media only screen and (max-width: ${'350px'}) {
+    width: 300px;
+    font-size: 20px;
+  } 
 
   .active {
     width: calc(100% / 3);
@@ -51,6 +65,9 @@ export const CommentList = styled.div`
   margin-top: 20px;
   background: #bcede4;
   padding-bottom: 30px;
+  @media only screen and (max-width: ${'350px'}) {
+    width: 300px;
+  } 
 
   .inputDiv {
     width: 80%;
@@ -80,4 +97,7 @@ export const CommentItem = styled.div`
 
 export const Introduce = styled.div`
   margin-bottom: 50px;
+  @media only screen and (max-width: ${'350px'}) {
+    font-size: 15px;
+  } 
 `

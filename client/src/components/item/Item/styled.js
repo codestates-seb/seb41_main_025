@@ -17,11 +17,19 @@ export const ItemContainer = styled.div`
     background-image: url("");
     background-size: contain;
     margin-bottom: 10px;
+    @media only screen and (max-width: ${'350px'}) {
+    width: 200px;
+    height: 250px;
+  } 
   }
   .poster {
     width: 240px;
     height: 336px;
     border-radius: 10px;
+    @media only screen and (max-width: ${'350px'}) {
+    width: 200px;
+    height: 250px;
+  } 
   }
   `;
 
@@ -42,6 +50,9 @@ export const Contents = styled.div`
 
   .title {
     font-size: 20px;
+    @media only screen and (max-width: ${'350px'}) {
+    font-size: 17px;
+  } 
   }
   .comeout,
   .score {

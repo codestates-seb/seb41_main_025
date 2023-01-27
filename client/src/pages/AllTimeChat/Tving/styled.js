@@ -6,13 +6,22 @@ export const ContentList = styled.div`
 width: 100%;
 height: auto;
 padding-top: 10px;
+@media only screen and (max-width: ${'350px'}) {
+  width: 300px;
+  } 
 `;
 
 export const ContentItem = styled.div`
 padding: 20px;
+@media only screen and (max-width: ${'350px'}) {
+    font-size: 5px;
+  } 
 .userInfo {
   text-align: left;
   padding-bottom: 10px;
+  @media only screen and (max-width: ${'350px'}) {
+  font-size: 7px;
+  } 
 }
 .content {
   display: flex;
@@ -24,10 +33,19 @@ padding: 20px;
   color: #ffffff;
   background: #58bfad;
   border-radius: 30px;
+  @media only screen and (max-width: ${'350px'}) {
+    font-size: 5px;
+    width: 100px;
+  } 
 }
 .memberPicture {
   border-radius: 30px;
   width: 48px;
+  height: 48px;
+  @media only screen and (max-width: ${'350px'}) {
+    width: 30px;
+    height: 30px;
+    } 
 }
 `;
 export const ContentItemMe = styled.div`
@@ -35,6 +53,9 @@ export const ContentItemMe = styled.div`
   .userInfo {
   text-align: right;
   padding-bottom: 10px;
+  @media only screen and (max-width: ${'350px'}) {
+  font-size: 7px;
+  } 
 }
 .content {
   margin-left:64%;
@@ -46,10 +67,18 @@ export const ContentItemMe = styled.div`
   color: beige;
   background: #58bfad;
   border-radius: 30px;
+  @media only screen and (max-width: ${'350px'}) {
+    font-size: 5px;
+    width: 100px;
+  } 
 }
 .memberPicture {
   border-radius: 30px;
   width: 48px;
+  @media only screen and (max-width: ${'350px'}) {
+    width: 30px;
+    height: 30px;
+    } 
 }
 `;
 
@@ -61,6 +90,21 @@ export const InputDivs = styled(InputDiv)`
   .recommendInput{
     width: 800px;
     font-size: 15px;
+    @media only screen and (max-width: ${'350px'}) {
+    font-size: 10px;
+    width: 200px;
+    height: 60px;
+  } 
   }
 
+`;
+
+export const ButtonDiv = styled.button`
+  width: 100px;
+  border: none;
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  @media only screen and (max-width: ${'350px'}) {
+    width: 60px;
+    } 
 `;

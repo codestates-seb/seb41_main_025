@@ -6,6 +6,10 @@ export const MainWarp = styled.div`
   @media only screen and (max-width: ${'700px'}) {
     background-color: beige;
   }
+  @media only screen and (max-width: ${'350px'}) {
+    width: 350px;
+    padding: 10px;
+  } 
 `
 
 export const MainContainer = styled.div`

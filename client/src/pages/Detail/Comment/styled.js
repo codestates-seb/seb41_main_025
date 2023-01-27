@@ -6,8 +6,7 @@ export const DetailCommentList = styled.div`
   flex-direction: column;
   align-items: center;
   @media only screen and (max-width: ${'350px'}) {
-      height: 20px;
-
+    height: 20px;
     } 
 `;
 
@@ -19,8 +18,9 @@ export const DetailCommentItem = styled.div`
   margin-bottom: 10px;
   font-size: 13px;
   border-radius: 10px;
-  @media only screen and (max-width: ${"300px"}) {
+  @media only screen and (max-width: ${"350px"}) {
     width: 90%;
+    height: 60px;
   }
   @media only screen and (max-width: ${"700px"}) {
     width: 90%;
@@ -30,9 +30,15 @@ export const DetailCommentItem = styled.div`
     align-items: center;
     padding-bottom: 10px;
     color: #ffffff;
+    @media only screen and (max-width: ${'350px'}) {
+    
+  } 
     .name {
       padding-left: 10px;
-      width: 400px;
+      font-size: 15px;
+      @media only screen and (max-width: ${'350px'}) {
+      font-size: 7px;
+  } 
     }
   }
   .content {
@@ -42,10 +48,17 @@ export const DetailCommentItem = styled.div`
     color: #ffffff;
     font-size: 17px;
     border-radius: 30px;
+    @media only screen and (max-width: ${'350px'}) {
+    font-size: 5px;
+    
+  } 
   }
   .memberPicture {
     border-radius: 30px;
     width: 48px;
+    @media only screen and (max-width: ${'350px'}) {
+    width: 20px;
+  } 
   }
 `;
 

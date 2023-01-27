@@ -29,6 +29,9 @@ export const RecommendDiv = styled.div`
   align-items: center;
   max-width: 1440px;
   margin-bottom: 30px;
+  @media only screen and (max-width: ${'350px'}) {
+    width: 300px;
+  } 
   `;
 
 export const TitleDiv = styled.div`
@@ -37,11 +40,14 @@ export const TitleDiv = styled.div`
   width: 500px;
   margin-bottom: 80px;
   .title {
-      font-size: 20px;
+    font-size: 20px;
+    @media only screen and (max-width: ${'350px'}) {
+    font-size: 15px;
+  } 
   }
   @media only screen and (max-width: ${'350px'}) {
     width: 300px;
-    margin-left: 90px;
+    margin-left: 190px;
   } 
 `;
 
@@ -58,11 +64,16 @@ export const ButtonDiv = styled.div`
   .active {
     width: calc(100% / 4);
     border-bottom: 2px solid #000000;
+    @media only screen and (max-width: ${'350px'}) {
+    width: 200px;
+    margin: auto;
+    font-size: 17px;
+  } 
   }
   @media only screen and (max-width: ${'350px'}) {
-    width: 450px;
-    margin: auto;
-    font-size: 20px;
+    width: 300px;
+    margin-left: 110px;
+    font-size: 15px;
   } 
 `;
 
@@ -124,7 +135,8 @@ export const Title = styled(MainContainer)`
         }
     }
     @media only screen and (max-width: ${'350px'}) {
-        width: 40vh;
-        margin: 80px 0 0 -120px;
+      width: 300px;
+      margin: 80px 0 0 -170px;
     }
 `
+
