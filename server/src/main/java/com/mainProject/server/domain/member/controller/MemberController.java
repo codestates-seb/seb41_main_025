@@ -32,6 +32,9 @@ public class MemberController {
     private final MemberService memberService;
     private final MemberMapper mapper;
 
+    @Autowired
+    private S3UploadService s3UploadService;
+
     // TODO POST
     @PostMapping
     public  ResponseEntity postMember(@Valid @RequestBody MemberDto.Post postRequest){
