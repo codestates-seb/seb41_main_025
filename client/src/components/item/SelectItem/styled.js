@@ -30,31 +30,40 @@ export const DetailFont = styled.div`
     }
 `
 export const EachItem = styled.div`
-    margin: 70px 3% 3% 90px;
+  margin: 30px 15px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+
     @media only screen and (max-width: ${'700px'}) {
       margin: 20px;
         }
+    @media only screen and (max-width: ${'350px'}) {
+    margin: 20px 0 10px -40px;
+  } 
     .poster {
-        width: 100%;
-        height: auto;
-        min-width: 60%;
+        /* width: 100%; */
+        height: 100%;
+        width: 250px;
         border-radius: 40px;
         @media only screen and (max-width: ${'700px'}) {
         max-height: 800px;
         max-width: 800px;
         }
         @media only screen and (max-width: ${'350px'}) {
-        height: 300px;
-        width: 200px;
+        height: 200px;
+        width: 150px;
         }
 
     }
     `;
 
 export const MovieTitle = styled(NavLink)`
-  font-size: 25px;
+  font-size: 20px;
   color: black;
+  width: 20px;
+  overflow: hidden;
   @media only screen and (max-width: ${'350px'}) {
-    font-size: 20px;
+    font-size: 15px;
     }
 `;

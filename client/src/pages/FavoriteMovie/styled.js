@@ -9,14 +9,18 @@ export const Items = styled.div`
     
     @media only screen and (max-width: ${'350px'}) {
         display: grid;
+        width: 200px;
     }
 `;
 
 export const MainContainer = styled.div`
     max-width: 1440px;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0 auto;
     padding: 0 60px;
+    @media only screen and (max-width: ${'350px'}) {
+        display: grid;
+    }
 `
 
 export const Title = styled.div`
@@ -36,8 +40,7 @@ export const Title = styled.div`
         }
     }
     @media only screen and (max-width: ${'350px'}) {
-        width: 40vh;
-        margin: 80px 0 0 -120px;
+        margin: 100px 0 0 -40px;
     }
 `
 
@@ -57,13 +60,25 @@ export const FavoriteSearch = styled(SearchBar)`
         @media only screen and (max-width: ${'700px'}) {
             width: 300px;
             height: 40px;
-            margin: 50px 0 10px -80px;
+            margin: 50px 0 10px -120px;
         }
         @media only screen and (max-width: ${'350px'}) {
-            width: 300px;
-            height: 40px;
+            width: 250px;
+            height: 30px;
             margin-top: 80px;
             margin: 30px 0 10px 0px;
+            font-size:10px;
         }
     }
+`
+export const MainWarp = styled.div`
+  padding: 60px 60px;
+  width: 100%;
+  @media only screen and (max-width: ${'700px'}) {
+    background-color: beige;
+  }
+  @media only screen and (max-width: ${'350px'}) {
+    width: 350px;
+    padding:0;
+  } 
 `

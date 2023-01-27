@@ -6,10 +6,9 @@ export const Main = styled.div`
   justify-content: center;
   align-items: center;
   padding: 60px 60px 0px;
-  height: 100vh;
+  min-height: 100vh;
   @media only screen and (max-width: ${"350px"}) {
     display: grid;
-    height: 100vh;
     width: 100%;
   }
 `;
@@ -51,7 +50,7 @@ export const Logo = styled.div`
     margin: 150px 0 20px 40px;
     @media only screen and (max-width: ${'350px'}) {
         width: 200px;
-        margin: 10px 0 20px 20px;
+        margin: 10px 0 20px 0px;
     }
     .greenLogo {
       height: 260px;

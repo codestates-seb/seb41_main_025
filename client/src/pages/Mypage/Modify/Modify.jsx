@@ -113,7 +113,7 @@ const Modify = () => {
         </div>
       </S.UserInfoHeader>
 
-      <form>
+      <S.Form>
         <S.FormDiv>
           <S.InputItem>
             <S.InputLabel htmlFor="name">이름</S.InputLabel>
@@ -153,7 +153,7 @@ const Modify = () => {
         <S.SaveBtn type="submit" value="저장" onClick={onSubmit}>
           저장
         </S.SaveBtn>
-      </form>
+      </S.Form>
 
       <S.DeleteBtn type="submit" value="저장">
         회원탈퇴

@@ -1,6 +1,5 @@
 import * as S from "./styled";
 import { MainWarp, MainContainer } from "../Main/styled";
-import { Title } from "../FavoriteMovie/styled";
 import { useState } from "react";
 import axios from "axios";
 import Deprecate from "./Deprecate/Deprecate";
@@ -44,7 +43,7 @@ const RecommendMovies = () => {
     return (
         <MainWarp>
             <MainContainer>
-                <Title style={{"marginBottom" : 0}}>
+                <S.Title style={{"marginBottom" : 0}}>
                     <S.RecommendDiv>
                         <S.TitleDiv>
                             <span className="title">"{nickName}"님이 <br/><br/></span>
@@ -61,7 +60,7 @@ const RecommendMovies = () => {
                         </S.ButtonDiv>
                         <S.CommentItem>{tabList[currentTab].content}</S.CommentItem>
                     </S.RecommendDiv>
-                </Title>
+                </S.Title>
             </MainContainer>
         </MainWarp>
     )
