@@ -99,7 +99,9 @@ public class FavoriteService {
         if (memberService.getCurrentMember().getMemberId() != findMember.getMemberId()) {
             throw new BusinessLogicException(ExceptionCode.MEMBER_UNAUTHORIZED);
         }
+        findMember.setFavoriteLimitTotal(findMember.getFavoriteLimitTotal() -1);
 
+        memberRepository.save(findMember);
         favoriteRepository.delete(findFavorite);
     }
 }
