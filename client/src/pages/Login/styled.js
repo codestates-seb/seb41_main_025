@@ -16,11 +16,13 @@ export const Main = styled.div`
 
 export const Window = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 983px;
   min-height: 700px;
   border-radius: 20px;
   background-color: #58bfad;
-  opacity: 0.75;
+  opacity: 0.90;
   @media only screen and (max-width: ${"350px"}) {
     width: 250px;
     height: 800px;
@@ -36,6 +38,7 @@ export const Front = styled.div`
 export const LogoFont = styled.div`
     display: flex;
     justify-content: center;
+    align-items: center;
     font-size: 20px;
     font-weight: 600;
     @media only screen and (max-width: ${"350px"}) {
@@ -48,13 +51,13 @@ export const Logo = styled.div`
     display: flex;
     align-items: flex-end;
     width: 450px;
-    margin: 150px 0 20px 40px;
+    margin: 150px 0px 40px 0px;
     @media only screen and (max-width: ${'350px'}) {
         width: 200px;
         margin: 10px 0 20px 20px;
     }
     .greenLogo {
-      height: 260px;
+      height: 230px;
       width: 260px;
       @media only screen and (max-width: ${'350px'}) {
         width: 150px;
@@ -78,7 +81,6 @@ export const ContentForm = styled.div`
   display: grid;
   justify-content: center;
   align-items: center;
-  margin-top: 60px;
   font-size: 50px;
   font-weight: 600;
   color: white;
@@ -91,6 +93,7 @@ export const ContentForm = styled.div`
   }
   .LoginFont {
     margin-left: 30%;
+    margin-bottom: 50px;
     @media only screen and (max-width: ${"350px"}) {
       margin-bottom: 0 0 30px 0 ;
       font-size: 40px;
@@ -130,11 +133,12 @@ export const WhiteLoginbutton = styled.button`
   justify-content: center;
   width: 100px;
   height: 50px;
-  margin-left: 280px;
+  margin: 60px 0px 0px 280px;
   background-color: white;
   border-radius: 30px;
   color: #054d40;
   font-size: 17px;
+  font-weight: 600;
   border: 0;
   text-decoration: none;
   @media only screen and (max-width: ${"350px"}) {

@@ -24,6 +24,8 @@ export const UserInfoHeader = styled.div`
   padding: 60px;
   .userImage {
     padding-left: 80px;
+    width: 300px;
+    height: 300px;
 
     & > .memberPicture {
       border-radius: 30%;
@@ -59,8 +61,7 @@ export const InputItem = styled.div`
 export const InputLabel = styled.div`
   padding-right: 30px;
 `;
-export const InputDiv = styled.div`
-`;
+export const InputDiv = styled.div``;
 
 export const MyInput = styled.input`
   display: flex;

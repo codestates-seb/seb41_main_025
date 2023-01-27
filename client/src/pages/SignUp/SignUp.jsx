@@ -182,7 +182,7 @@ const SignUp = () => {
           </Logo>
         </S.Hello>
         <ContentForm>
-          <span className="LoginFont">Sign Up</span>
+          <S.LoginFont>Sign Up</S.LoginFont>
           <S.EnterContent>
             <S.Enters
               type="name"
@@ -226,7 +226,7 @@ const SignUp = () => {
               onChange={onChangeConfirmPwd}
               style={{ margin: "20px 0px" }}
             />
-            <span className="message" style={{ fontSize: "20px" }}>
+            <span className="message" style={{ fontSize: "20px", margin: "0px 0px 10px 0px "}}>
               {confirmPwdMsg}
             </span>
             <S.SignupButton

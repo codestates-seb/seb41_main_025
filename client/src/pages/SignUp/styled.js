@@ -16,6 +16,11 @@ export const Hello = styled.div`
   text-align: left;
   /* margin: 0auto; */
 `;
+
+export const LoginFont = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 export const HelloAnnouncement = styled.span`
   /* margin-top: 60px; */
   /* margin-right: 90px; */
@@ -36,6 +41,7 @@ export const SignupButton = styled.button`
   border-radius: 30px;
   color: #054d40;
   font-size: 17px;
+  font-weight: 600;
   border: 0;
   text-decoration: none;
   cursor: pointer;
@@ -50,7 +56,7 @@ export const EnterContent = styled.form`
   display: grid;
   justify-items: center;
   width: 380px;
-  margin-top: 50px;
+  margin-top: 30px;
   @media only screen and (max-width: ${"350px"}) {
     margin-left: 30px;
     display: grid;
