@@ -68,6 +68,7 @@ const Header = (props) => {
             <ImSearch
               className="searchIcon"
               size="30"
+              style={{ padding: "4px" }}
               onClick={sendSerachResult}
             />
           </S.SearchIcon>
