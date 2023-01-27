@@ -2,13 +2,27 @@ import { useState, useEffect } from "react";
 import * as S from "./styled";
 import axios from "axios";
 import ModifyImage from "../ModifyImage/ModifyImage";
+import { useCustomQuery } from "../../../components/util/useCustomQuery";
 
 const Modify = () => {
+  const memberId = localStorage.getItem("memberId");
 
-  //todo: 인풋창 한번에 관리하기
+  const { data, isLoading, error, refetch } = useCustomQuery(
+    `/members/${memberId}`,
+    ["members", memberId]
+  );
 
-  const [nickname, setNickname] = useState("");
-  const [name, setName] = useState("");
+  if (isLoading) return <></>;
+  return (
+    <ModifySecond refetch={refetch} info={data.data} memberId={memberId} />
+  );
+};
+
+export default Modify;
+
+const ModifySecond = ({ refetch, info, memberId }) => {
+  const [nickname, setNickname] = useState(info.nickName);
+  const [name, setName] = useState(info.name);
   const [pwd, setPwd] = useState("");
   // const [input, setInput] = useState({
   //   password: "",
@@ -17,55 +31,7 @@ const Modify = () => {
   //   memberPicture: "",
   // });
 
-  const memberId = localStorage.getItem("memberId");
-  const [info, setInfo] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get(`http://whatu1.kro.kr:8080/members/${memberId}`, {
-        headers: {
-          "Content-Type": "application/json;charset=UTF-8",
-          Accept: "application/json",
-          AutHorization: localStorage.getItem("accessToken"),
-        },
-      })
-      .then((res) => {
-        setInfo(res.data.data);
-        console.log(res.data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
-  //todo: 사진 업로드 형태 수정
   //todo: input창의 값이 여러가지 일때 빈값이 아니고 기존의 값을 유지한채 변경되게
-  const onSubmit = (e) => {
-    e.preventDefault();
-    axios
-      .patch(
-        `http://whatu1.kro.kr:8080/members/${memberId}`,
-        {
-          ...info,
-          // password: pwd,
-          name: name,
-          // nickName: nickname,
-          // memberPicture: memberPicture,
-        },
-        {
-          headers: {
-            Authorization: localStorage.getItem("accessToken"),
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   // const onChangeInput = (e) => {
   //   setInput(...e.target.value);
   //   console.log(e.target.value);
@@ -84,6 +50,33 @@ const Modify = () => {
     console.log(e.target.value);
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .patch(
+        `http://whatu1.kro.kr:8080/members/${memberId}`,
+        {
+          // ...info,
+          // password: pwd,
+          name: name,
+          nickName: nickname,
+          // memberPicture: memberPicture,
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem("accessToken"),
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        refetch();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <S.MypageDiv>
       <S.UserInfoHeader>
@@ -93,6 +86,7 @@ const Modify = () => {
             className="memberPicture"
             alt="사용자 이미지"
             width={"300px"}
+            height={"300px"}
           ></img>
           {/* <input
             type="file"
@@ -102,11 +96,10 @@ const Modify = () => {
             onChange={fileChangedHandler}
             // onChange={(e) => onSubmitImage(e)}
           /> */}
-          <ModifyImage/>
-       
+          <ModifyImage refetch={refetch} />
         </div>
         <div className="userInfo">
-          <div className="userName">{info.nickName}</div>
+          <div className="userName">{nickname}</div>
           {/* <S.ModifyBtn type="submit" value="저장">
             회원 정보 수정
           </S.ModifyBtn> */}
@@ -120,7 +113,7 @@ const Modify = () => {
             <S.InputDiv>
               <S.MyInput
                 id="name"
-                defaultValue={info.name}
+                defaultValue={name}
                 onChange={onChangeName}
                 placeholder="수정할 이름를 입력해주세요"
               />
@@ -131,7 +124,7 @@ const Modify = () => {
             <S.InputDiv>
               <S.MyInput
                 id="nickName"
-                defaultValue={info.nickName}
+                defaultValue={nickname}
                 onChange={onChangeNickname}
                 placeholder="수정할 닉네임을 적어주세요"
               />
@@ -162,4 +155,4 @@ const Modify = () => {
   );
 };
 
-export default Modify;
+
