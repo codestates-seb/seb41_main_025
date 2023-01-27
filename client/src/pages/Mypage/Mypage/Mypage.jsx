@@ -7,8 +7,8 @@ import { toast } from "react-toastify";
 import { useCustomQuery } from "../../../components/util/useCustomQuery";
 
 const Mypage = () => {
-  // const [info, setInfo] = useState([]);
-  const [modalOpen, setModalOpen] = useState(false);
+
+  // const [modalOpen, setModalOpen] = useState(false);
   const memberId = localStorage.getItem("memberId");
   const navigate = useNavigate();
   // 모달창 노출 여부 state
@@ -17,27 +17,11 @@ const Mypage = () => {
     memberId,
   ]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://whatu1.kro.kr:8080/members/${memberId}`, {
-  //       headers: {
-  //         "Content-Type": "application/json;charset=UTF-8",
-  //         Accept: "application/json",
-  //         AutHorization: localStorage.getItem("accessToken"),
-  //       },
-  //     })
-  //     .then((res) => {
-  //       setInfo(res.data.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
 
   // 모달창 노출
-  const showModal = () => {
-    setModalOpen(true);
-  };
+  // const showModal = () => {
+  //   setModalOpen(true);
+  // };
 
   // 회원 탈퇴
   // TODO: 정말 회원 탈퇴를 진행하시겠습니까? 알림창 띄우기
@@ -62,10 +46,14 @@ const Mypage = () => {
     window.location.reload();
   };
 
+  const handleNavigate = () => {
+    navigate(`/members/${memberId}/modify`)
+  }
+
   if (isLoading) return <></>;
   const info = data.data;
-  // console.log(data.data);
-  // console.log(info);
+
+  
   return (
     <S.Wrapper>
       <S.MypageDiv>
@@ -81,10 +69,14 @@ const Mypage = () => {
           </S.UserImage>
           <S.UserInfo>
             <S.UserName>{info.name}</S.UserName>
-            <S.ModifyBtn type="submit" value="저장" onClick={showModal}>
+            <S.ModifyBtn type="submit" value="저장" onClick={handleNavigate} >
               회원 정보 수정
             </S.ModifyBtn>
-            {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
+            {/*비밀번호 확인 로직 모달 */}
+            {/* <S.ModifyBtn type="submit" value="저장" onClick={showModal}>
+              회원 정보 수정
+            </S.ModifyBtn> */}
+            {/* {modalOpen && <ModalBasic setModalOpen={setModalOpen} />} */}
           </S.UserInfo>
         </S.UserInfoHeader>
         <S.FormDiv>
