@@ -61,6 +61,7 @@ public class MemberDto {
 
         @NotSpace(message = "회원 이름은 공백이 아니어야 합니다")
         private String name;
+        private String memberPicture;
         private String password;
         private String nickName;
     }
