@@ -190,7 +190,7 @@ const SignUp = () => {
               onChange={onChangeName}
               style={{ margin: "20px 0px" }}
             />
-            <span className="message" style={{ fontSize: "20px" }}>
+            <span className="message" >
               {nameMsg}
             </span>
             <S.Enters
@@ -199,7 +199,7 @@ const SignUp = () => {
               onChange={onChangeNickname}
               style={{ margin: "20px 0px" }}
             />
-            <span className="message" style={{ fontSize: "20px" }}>
+            <span className="message" >
               {nickNameMsg}
             </span>
             <S.Enters
@@ -208,7 +208,7 @@ const SignUp = () => {
               onChange={onChangeEmail}
               style={{ margin: "20px 0px" }}
             />
-            <span className="message" style={{ fontSize: "20px" }}>
+            <span className="message" >
               {emailMsg}
             </span>
             <S.Enters
@@ -217,7 +217,7 @@ const SignUp = () => {
               onChange={onChangePwd}
               style={{ margin: "20px 0px" }}
             />
-            <span className="message" style={{ fontSize: "20px" }}>
+            <span className="message" >
               {pwdMsg}
             </span>
             <S.Enters
@@ -226,7 +226,7 @@ const SignUp = () => {
               onChange={onChangeConfirmPwd}
               style={{ margin: "20px 0px" }}
             />
-            <span className="message" style={{ fontSize: "20px", margin: "0px 0px 10px 0px "}}>
+            <span className="message" >
               {confirmPwdMsg}
             </span>
             <S.SignupButton
