@@ -7,9 +7,6 @@ export const Wrapper = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  /* background-color: #f9f9f9; */
-  /* position: absolute; */
-  /* overflow: scroll; */
 `;
 
 export const MypageDiv = styled.div`
@@ -17,24 +14,13 @@ export const MypageDiv = styled.div`
   flex-direction: column;
   align-items: center;
   max-width: 1000px;
-  /* height: 655px; */
-  /* margin-bottom: 30px; */
   padding-top: 60px;
-  /* margin: 0 auto; */
-  /* form {
-    display: flex;
-    width: 100%;
-    height: 300px;
-    padding: 60px 0px;
-    align-items: center;
-  } */
 `;
 
 export const UserInfoHeader = styled.div`
   display: flex;
   width: 100%;
   margin-bottom: 20px;
-  /* padding: 60px; */
   @media only screen and (max-width: ${"350px"}) {
     padding: 30px;
     display: grid;
@@ -42,9 +28,6 @@ export const UserInfoHeader = styled.div`
 
   .memberPicture {
     border-radius: 30%;
-    /* &:hover {
-        transform: scale(1.5);
-      } */
     @media only screen and (max-width: ${"350px"}) {
       width: 200px;
       height: 200px;
@@ -124,10 +107,6 @@ export const InputLabel = styled.div`
 `;
 
 export const InputDiv = styled.div`
- 
-  /* @media only screen and (max-width: ${"350px"}) {
-    width: 100px;
-  } */
 `;
 
 
@@ -180,12 +159,9 @@ export const DeleteBtn = styled(ModifyBtn)`
   margin-left: 400px;
   font-size: 15px;
   @media only screen and (max-width: ${"350px"}) {
-    /* margin: 10px 0px 10px 220px; */
     font-size: 15px;
     margin-left: 200px;
   }
 `;
 
-// export const FormStyle = styled.div`
-//   display: grid;
-// `;
+
