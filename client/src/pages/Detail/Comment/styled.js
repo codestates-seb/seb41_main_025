@@ -12,7 +12,7 @@ export const DetailCommentList = styled.div`
 
 export const DetailCommentItem = styled.div`
   width: 1200px;
-  height: 120px;
+  min-height: 100px;
   padding: 10px;
   background: #ECECEC;
   margin-bottom: 10px;
@@ -28,14 +28,14 @@ export const DetailCommentItem = styled.div`
   .userInfo {
     display: flex;
     align-items: center;
-    padding-bottom: 10px;
+    margin-bottom: 10px;
     color: #000000;
     @media only screen and (max-width: ${'350px'}) {
     
   } 
     .name {
-      padding-left: 10px;
-      font-size: 15px;
+      padding-left: 20px;
+      font-size: 17px;
       @media only screen and (max-width: ${'350px'}) {
       font-size: 7px;
   } 
@@ -43,10 +43,11 @@ export const DetailCommentItem = styled.div`
   }
   .content {
     display: flex;
-    padding-left: 50px;
+    /* margin-top: 5px; */
+    padding-top: 15px;
+    border-top: 1px solid #D9D9D9;
     color: #000000;
     font-size: 20px;
-    border-radius: 30px;
     @media only screen and (max-width: ${'350px'}) {
     font-size: 5px;
     
@@ -54,8 +55,8 @@ export const DetailCommentItem = styled.div`
   }
   .memberPicture {
     border-radius: 30px;
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
     @media only screen and (max-width: ${'350px'}) {
     width: 20px;
   } 
@@ -74,7 +75,7 @@ export const InputDiv = styled.div`
     padding-left: 30px;
     background-color: #F9f9f9;
     /* color: #ffffff; */
-    font-size: 20px;
+    font-size: 17px;
     border: none;
     border: 2px solid #D9D9D9;
     border-radius: 10px;
@@ -110,6 +111,7 @@ export const InputDiv = styled.div`
     background-color: #4BA6B2;
     border: none;
     border-radius: 10px;
+    font-size: 17px;
     cursor: pointer;
     
     @media only screen and (max-width: ${'350px'}) {
