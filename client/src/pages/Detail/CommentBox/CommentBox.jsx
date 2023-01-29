@@ -62,7 +62,7 @@ const CommentBox = ({ comment }) => {
   };
 
   return (
-    <div>
+    <S.CommentBoxDiv>
       <div className="userInfo">
         <img
           src={comment.memberPicture}
@@ -109,7 +109,7 @@ const CommentBox = ({ comment }) => {
           )}
         </S.Buttons>
       ) : null}
-    </div>
+    </S.CommentBoxDiv>
   );
 };
 
