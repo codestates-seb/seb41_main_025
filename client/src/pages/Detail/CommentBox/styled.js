@@ -57,7 +57,7 @@ export const InputDiv = styled.div`
     width: 100%;
     height: 100px;
     padding-left: 30px;
-    background-color: #58bfad;
+    background-color: #ECECEC;
     color: #ffffff;
     font-size: 20px;
     border: none;

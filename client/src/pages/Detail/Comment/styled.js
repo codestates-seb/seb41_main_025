@@ -14,7 +14,7 @@ export const DetailCommentItem = styled.div`
   width: 1200px;
   height: 100px;
   padding: 10px;
-  background: #58bfad;
+  background: #ECECEC;
   margin-bottom: 10px;
   font-size: 13px;
   border-radius: 10px;
@@ -29,7 +29,7 @@ export const DetailCommentItem = styled.div`
     display: flex;
     align-items: center;
     padding-bottom: 10px;
-    color: #ffffff;
+    color: #000000;
     @media only screen and (max-width: ${'350px'}) {
     
   } 
@@ -45,7 +45,7 @@ export const DetailCommentItem = styled.div`
     display: flex;
     /* justify-content: center; */
     align-items: center;
-    color: #ffffff;
+    color: #000000;
     font-size: 17px;
     border-radius: 30px;
     @media only screen and (max-width: ${'350px'}) {
@@ -72,7 +72,7 @@ export const InputDiv = styled.div`
     width: 100%;
     height: 100px;
     padding-left: 30px;
-    background-color: #58bfad;
+    background-color: #4BA6B2;
     color: #ffffff;
     font-size: 20px;
     border: none;
@@ -105,7 +105,7 @@ export const InputDiv = styled.div`
     width: 48px;
     height: 28px;
     color: #ffffff;
-    background-color: #58bfad;
+    background-color: #d9d9d9;
     border: none;
     border-radius: 10px;
     cursor: pointer;

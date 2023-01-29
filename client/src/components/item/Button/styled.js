@@ -7,7 +7,7 @@ export const ButtonForm = styled(NavLink)`
     align-items: center;
     width: 170px;
     height: 60px;
-    background-color: #167E6C;
+    background-color: #4BA6B2;
     border-radius: 15px;
     color: white;
     font-size: 20px;
