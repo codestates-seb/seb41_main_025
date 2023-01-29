@@ -131,6 +131,7 @@ export const Sign = styled.ul`
         font-weight: bold;
         font-size : 16px;
         font-weight: 500;
+        cursor: pointer;
         @media only screen and (max-width: ${'350px'}) {
         font-size: 13px;
     }
