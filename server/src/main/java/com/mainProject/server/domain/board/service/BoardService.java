@@ -148,13 +148,13 @@ public class BoardService {
     }
 
     public void deleteWavveBoard(long wavveBoardId) {
-        WatchaBoard findWavveBoard = findVerifiedWatchaBoard(wavveBoardId);
+        WavveBoard findWavveBoard = findVerifiedWavveBoard(wavveBoardId);
         Member member = memberService.findVerifiedMember(findWavveBoard.getMember().getMemberId());
 
         if(memberService.getCurrentMember().getMemberId() != member.getMemberId()) {
             throw  new BusinessLogicException(ExceptionCode.MEMBER_UNAUTHORIZED);
         }
-        watchaBoardRepository.delete(findWavveBoard);
+        wavveBoardRepository.delete(findWavveBoard);
     }
 
 
