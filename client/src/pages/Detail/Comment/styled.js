@@ -43,7 +43,6 @@ export const DetailCommentItem = styled.div`
   }
   .content {
     display: flex;
-    /* margin-top: 5px; */
     padding-top: 15px;
     border-top: 1px solid #D9D9D9;
     color: #000000;
@@ -74,7 +73,6 @@ export const InputDiv = styled.div`
     height: 100px;
     padding-left: 30px;
     background-color: #F9f9f9;
-    /* color: #ffffff; */
     font-size: 17px;
     border: none;
     border: 2px solid #D9D9D9;
