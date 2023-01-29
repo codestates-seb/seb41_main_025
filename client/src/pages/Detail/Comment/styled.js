@@ -12,7 +12,7 @@ export const DetailCommentList = styled.div`
 
 export const DetailCommentItem = styled.div`
   width: 1200px;
-  height: 100px;
+  height: 120px;
   padding: 10px;
   background: #ECECEC;
   margin-bottom: 10px;
@@ -68,14 +68,16 @@ export const InputDiv = styled.div`
   width: 100%;
   margin-bottom: 20px;
   margin-left: 10px;
+
   .recommendInput {
     width: 100%;
     height: 100px;
     padding-left: 30px;
-    background-color: #4BA6B2;
-    color: #ffffff;
+    background-color: #F9f9f9;
+    /* color: #ffffff; */
     font-size: 20px;
     border: none;
+    border: 2px solid #D9D9D9;
     border-radius: 10px;
     @media only screen and (max-width: ${'350px'}) {
       font-size: 10px;
@@ -84,9 +86,10 @@ export const InputDiv = styled.div`
     } 
     &:focus {
       outline: none;
+      border: 2px solid #4BA6B2;
     }
     ::placeholder {
-      color: #ffffff;
+      color: #7e7e7e;
     }
   }
    .buttonDiv {
@@ -102,10 +105,10 @@ export const InputDiv = styled.div`
     } 
   }
   .submit {
-    width: 48px;
-    height: 28px;
+    width: 110px;
+    height: 100px;
     color: #ffffff;
-    background-color: #d9d9d9;
+    background-color: #4BA6B2;
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -118,18 +121,4 @@ export const InputDiv = styled.div`
   }
 `;
 
-export const InputButton = styled.button`
-  width: 60px;
-  height: 30px;
-  background-color: #58bfad;
-  margin-right: 0;
-  border-radius: 20px;
-  border-color: white;
-  color: black;
-  font-weight: 700;
-`
 
-export const Buttons = styled.div`
-  margin-left: 50%;
- 
-`
