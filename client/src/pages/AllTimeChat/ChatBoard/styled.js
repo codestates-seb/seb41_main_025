@@ -73,8 +73,9 @@ export const ContentItemMe = styled.div`
     justify-content: center;
     align-items: center;
     width: 356px;
-    height: 50px;
-    color: beige;
+    min-height: 50px;
+    padding: 15px;
+    color: #ffffff;
     background: #4ba6b2;
     border-radius: 30px;
     @media only screen and (max-width: ${"350px"}) {
