@@ -65,7 +65,7 @@ const Wavve = () => {
 
   const deleteBoard = async (wavveBoardId) => {
     await axios
-      .delete(`http://whatu1.kro.kr:8080/boards/watcha/${wavveBoardId}`, {
+      .delete(`http://whatu1.kro.kr:8080/boards/wavve/${wavveBoardId}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: localStorage.getItem("accessToken"),
