@@ -103,6 +103,7 @@ export const InputButton = styled.button`
   border: none;
   border-radius: 5px;
   margin-right: 5px;
+  cursor: pointer;
 `;
 
 export const Buttons = styled.div`
