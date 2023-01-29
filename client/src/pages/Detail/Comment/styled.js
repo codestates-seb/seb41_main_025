@@ -43,10 +43,9 @@ export const DetailCommentItem = styled.div`
   }
   .content {
     display: flex;
-    /* justify-content: center; */
-    align-items: center;
+    padding-left: 50px;
     color: #000000;
-    font-size: 17px;
+    font-size: 20px;
     border-radius: 30px;
     @media only screen and (max-width: ${'350px'}) {
     font-size: 5px;
