@@ -270,19 +270,21 @@ const Detail = () => {
             {/*아이콘 박스*/}
             <div className="itemIcon" onClick={handleRecommend}>
               {recommend ? (
-                <AiTwotoneLike size="48" color="#58BFAD" />
+                <AiTwotoneLike size="48" color="#4BA6B2" />
               ) : (
                 <AiOutlineLike size="48" />
               )}
-              {movies.recommendCount}
+              <div className="itemIconText">{movies.recommendCount}</div>
             </div>
             <div className="itemIcon" onClick={handleDecommend}>
               {deprecate ? (
-                <AiTwotoneDislike size="48" color="#58BFAD" />
+                <AiTwotoneDislike size="48" color="#4BA6B2" />
               ) : (
                 <AiOutlineDislike size="48" />
               )}
-              {movies.deprecateCount}
+              <div div className="itemIconText">
+                {movies.deprecateCount}
+              </div>
             </div>
             <div className="itemIcon" onClick={handleChoose}>
               {choice ? (
@@ -290,16 +292,23 @@ const Detail = () => {
               ) : (
                 <AiOutlineHeart size="48" />
               )}
-              찜하기
+              <div div className="itemIconText">
+                찜하기
+              </div>
             </div>
             <div className="itemIcon" onClick={handleFavorite}>
               {favorite ? (
-                <AiFillStar size="48" color="#167E6C" />
+                <AiFillStar size="48" color="#4BA6B2" />
               ) : (
                 <AiOutlineStar size="48" />
               )}
-              인생 작품
-              <span style={{ fontSize: "12px" }}>BEST 3</span>
+              {/* <div> */}
+              <div className="itemIconText" >
+                인생작품
+                <div style={{ fontSize: "12px" }}>BEST 3</div>
+              </div>
+
+              {/* </div> */}
             </div>
           </S.DetailItem>
         </S.DetailContent>
