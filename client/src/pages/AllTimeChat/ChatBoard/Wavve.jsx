@@ -112,8 +112,10 @@ const Wavve = () => {
                   >
                     삭제
                   </button>
-                  {timeForToday(item.createAt)}
-                  {item.nickName}
+                  <span className="userInfText">
+                    {timeForToday(item.createAt)}
+                  </span>
+                  <span className="userInfText">{item.nickName}</span>
                   <img
                     src={item.memberPicture}
                     className="memberPicture"
