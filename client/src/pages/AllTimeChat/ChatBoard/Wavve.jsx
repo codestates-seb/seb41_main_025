@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { useCustomQuery } from "../../../components/util/useCustomQuery";
 import {ContentList, ContentItem, ContentItemMe, ButtonDiv, InputDivs } from "./styled"
+import { useCustomMutation } from "../../../components/util/useMutation";
 
 const Wavve = () => {
   const [comment, setComment] = useState("");
@@ -14,7 +15,7 @@ const Wavve = () => {
     `/boards/wavve?page=1&size=100`,
     `boards=wavve`
   );
-  // console.log(data)
+
 
   const timeForToday = (time) => {
     const today = new window.Date();
@@ -32,6 +33,21 @@ const Wavve = () => {
 
     return `${Math.floor(betweenTimeDay / 365)} years ago`;
   };
+
+  //todo : mutate
+  // const { mutate } = useCustomMutation(`/boards/wavve`, ['wavveBoardBody',comment ], "POST" );
+
+
+  // const submitcommit = async (e) => {
+  //   if (comment === "") return toast.error("한줄 평 내용을 입력해주세요");
+
+  //   const submitcommitValue = JSON.stringify({
+  //     wavveBoardBody: comment,
+  //   });
+
+  //   mutate(submitcommitValue);
+
+  // };
 
   const submitcommit = async (e) => {
     if (comment === "") return toast.error("한줄 평 내용을 입력해주세요");
@@ -53,7 +69,7 @@ const Wavve = () => {
       .catch((err) => {
         console.log(err);
       });
-    console.log(e.target.value);
+
   };
 
   const handleKeypress = (e) => {
@@ -73,6 +89,7 @@ const Wavve = () => {
       })
       .then(() => {
         refetch();
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
