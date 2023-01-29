@@ -125,7 +125,7 @@ export const Sign = styled.ul`
     .modal {
         width: 90px;
         height: 30px;
-        margin-left: 0px;
+        margin: 15px;
         background-color: white;
         border: 0;
         font-weight: bold;
