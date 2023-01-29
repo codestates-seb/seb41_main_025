@@ -68,7 +68,6 @@ const CommentBox = ({ comment }) => {
           src={comment.memberPicture}
           className="memberPicture"
           alt="사용자 이미지"
-          style={{ width: "40px", height: "40px" }}
         ></img>
         <div className="name">{comment.nickName}</div>
       </div>
