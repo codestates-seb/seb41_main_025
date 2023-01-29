@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
+import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 export const Main = styled.div`
   display: flex;
@@ -20,8 +20,8 @@ export const Window = styled.div`
   width: 983px;
   min-height: 700px;
   border-radius: 20px;
-  background-color: #58bfad;
-  opacity: 0.90;
+  background-color: #4ba6b2;
+  opacity: 0.9;
   @media only screen and (max-width: ${"350px"}) {
     width: 250px;
     height: 800px;
@@ -31,49 +31,49 @@ export const Window = styled.div`
 `;
 
 export const Front = styled.div`
-    display: grid;
-`
+  display: grid;
+`;
 
 export const LogoFont = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    font-weight: 600;
-    @media only screen and (max-width: ${"350px"}) {
-      font-size: 13px;
-      display: grid;
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 600;
+  @media only screen and (max-width: ${"350px"}) {
+    font-size: 13px;
+    display: grid;
+  }
 `;
 
 export const Logo = styled.div`
-    display: flex;
-    align-items: flex-end;
-    width: 450px;
-    margin: 150px 0px 40px 0px;
-    @media only screen and (max-width: ${'350px'}) {
-        width: 200px;
-        margin: 10px 0 20px 35px;
+  display: flex;
+  align-items: flex-end;
+  width: 450px;
+  margin: 150px 0px 40px 0px;
+  @media only screen and (max-width: ${"350px"}) {
+    width: 200px;
+    margin: 10px 0 20px 35px;
+  }
+  .greenLogo {
+    height: 230px;
+    width: 260px;
+    @media only screen and (max-width: ${"350px"}) {
+      width: 150px;
+      height: 150px;
     }
-    .greenLogo {
-      height: 230px;
-      width: 260px;
-      @media only screen and (max-width: ${'350px'}) {
-        width: 150px;
-        height: 150px;
-    }
-    }
+  }
 
-    .character {
-      height: 130px;
-      width: 130px;
-      margin: 0 0px 80px -10px;
-      @media only screen and (max-width: ${"350px"}) {
-        width: 100px;
-        height: 80px;
-        margin: 0 0px 20px -10px;
-      }
+  .character {
+    height: 130px;
+    width: 130px;
+    margin: 0 0px 80px -10px;
+    @media only screen and (max-width: ${"350px"}) {
+      width: 100px;
+      height: 80px;
+      margin: 0 0px 20px -10px;
     }
+  }
 `;
 
 export const ContentForm = styled.div`
@@ -94,7 +94,7 @@ export const ContentForm = styled.div`
     margin-left: 30%;
     margin-bottom: 50px;
     @media only screen and (max-width: ${"350px"}) {
-      margin-bottom: 0 0 30px 0 ;
+      margin-bottom: 0 0 30px 0;
       font-size: 40px;
       width: 150px;
     }
@@ -161,17 +161,21 @@ export const EnterContent = styled.form`
 `;
 
 export const Enter = styled.input`
-    margin-bottom: 70px;
-    background-color: #58BFAD;
-    border: 0;
-    border-bottom: 2px solid #054D40;
-    font-size: 20px;
-    &::placeholder {
-      color: #f9f9f9;
-    }
+  margin-bottom: 70px;
+  background-color: #4ba6b2;
+  border: 0;
+  border-bottom: 2px solid #054d40;
+  font-size: 20px;
+  color: #ffffff;
+  :focus {
+    outline: none;
+  }
+  &::placeholder {
+    color: #f9f9f9;
+  }
   @media only screen and (max-width: ${"350px"}) {
     font-size: 15px;
     margin-right: 10px;
     width: 200px;
-  }  
-`
+  }
+`;
