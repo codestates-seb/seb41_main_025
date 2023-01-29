@@ -40,7 +40,7 @@ export const SignupButton = styled.button`
   justify-content: center;
   width: 100px;
   height: 50px;
-  margin: 10px 0px 0px  230px;
+  margin: 10px 0px 0px 230px;
   background-color: white;
   border-radius: 30px;
   color: #054d40;
@@ -52,7 +52,7 @@ export const SignupButton = styled.button`
 
   @media only screen and (max-width: ${"350px"}) {
     margin-left: 10px;
-    width:80px;
+    width: 80px;
     height: 40px;
   }
 `;
@@ -68,43 +68,48 @@ export const EnterContent = styled.form`
     width: 80px;
     margin-top: 0;
   }
+  .message {
+    font-size: 15px;
+  }
 `;
 
 export const Enters = styled(Enter)`
   width: 350px;
+  color: #ffffff;
+  :focus {
+    outline: none;
+  }
   @media only screen and (max-width: ${"350px"}) {
     width: 200px;
   }
-  .message { 
-    font-size: 10px;
-  }
+
 `;
 export const Logo = styled.div`
-    display: flex;
-    align-items: flex-end;
-    width: 450px;
-    margin: 150px 0px 40px 0px;
-    @media only screen and (max-width: ${'350px'}) {
-        width: 200px;
-        margin: 90px 0 20px 0px;
+  display: flex;
+  align-items: flex-end;
+  width: 450px;
+  margin: 150px 0px 40px 0px;
+  @media only screen and (max-width: ${"350px"}) {
+    width: 200px;
+    margin: 90px 0 20px 0px;
+  }
+  .greenLogo {
+    height: 230px;
+    width: 260px;
+    @media only screen and (max-width: ${"350px"}) {
+      width: 150px;
+      height: 150px;
     }
-    .greenLogo {
-      height: 230px;
-      width: 260px;
-      @media only screen and (max-width: ${'350px'}) {
-        width: 150px;
-        height: 150px;
-    }
-    }
+  }
 
-    .character {
-      height: 130px;
-      width: 130px;
-      margin: 0 0px 80px -10px;
-      @media only screen and (max-width: ${"350px"}) {
-        width: 100px;
-        height: 80px;
-        margin: 0 0px 20px -10px;
-      }
+  .character {
+    height: 130px;
+    width: 130px;
+    margin: 0 0px 80px -10px;
+    @media only screen and (max-width: ${"350px"}) {
+      width: 100px;
+      height: 80px;
+      margin: 0 0px 20px -10px;
     }
+  }
 `;
