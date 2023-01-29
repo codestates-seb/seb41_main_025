@@ -60,7 +60,7 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   //* post 에러 잡기 위해서 기본 프로필 이미지 생성
-  const memberPicture = "https://i.ibb.co/P1TsnM3/2023-01-14-1-35-41.png";
+  const memberPicture = "https://i.ibb.co/qCq9p5J/2023-01-30-4-32-41.png";
 
   const onSubmit = (e) => {
     e.preventDefault();
