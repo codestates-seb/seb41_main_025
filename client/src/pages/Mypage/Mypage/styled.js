@@ -68,8 +68,7 @@ export const FormDiv = styled.form`
   flex-direction: column;
   max-width: 1000px;
   align-items: end;
-  padding-right: 100px;
-  margin-right: 120px;
+  margin-left: 120px;
   @media only screen and (max-width: ${'350px'}) {
     max-width: 350px;
     padding-right: 0px;
@@ -114,22 +113,23 @@ export const MyInput = styled.input`
   display: flex;
   width: 360px;
   height: 50px;
+  background-color: #F9f9f9;
+  padding-left: 10px;
+  font-size: large;
   border: none;
-  border-bottom: 1px solid #999999;
+  /* border-bottom: 2px solid #4BA6B2; */
   @media only screen and (max-width: ${'350px'}) {
     width: 200px;
   }
-
   :focus {
     outline: none;
-    border-bottom: 2px solid #167e6c;
   }
 `;
 
 export const ModifyBtn = styled.button`
   width: 120px;
   height: 40px;
-  background-color: #167e6c;
+  background-color: #4BA6B2;
   color: white;
   border: none;
   border-radius: 15px;
@@ -158,6 +158,7 @@ export const DeleteBtn = styled(ModifyBtn)`
   margin: 50px;
   margin-left: 400px;
   font-size: 15px;
+  cursor: pointer;
   @media only screen and (max-width: ${"350px"}) {
     font-size: 15px;
     margin-left: 200px;

@@ -22,28 +22,11 @@ const Mypage = () => {
     setModalOpen(true);
   };
 
-  // 회원 탈퇴
-  // TODO: 정말 회원 탈퇴를 진행하시겠습니까? 알림창 띄우기
-  const deleteMember = async () => {
-    await axios({
-      method: "DELETE",
-      url: `http://whatu1.kro.kr:8080/members/${memberId}`,
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-      },
-    })
-      .then((data) => {
-        toast.success("회원탈퇴 되었습니다");
-      })
-      .catch((err) => {
-        console.log("err");
-        return;
-      });
-    localStorage.clear();
-    window.location.reload();
-    navigate(`/`);
-    window.location.reload();
+  const navigatModify = () => {
+    navigate(`/members/${memberId}/modify`)
   };
+
+
 
   if (isLoading) return <></>;
   const info = data.data;
@@ -64,10 +47,10 @@ const Mypage = () => {
           </S.UserImage>
           <S.UserInfo>
             <S.UserName>{info.name}</S.UserName>
-            <S.ModifyBtn type="submit" value="저장" onClick={showModal}>
+            <S.ModifyBtn type="submit" value="저장" onClick={navigatModify} >
               회원 정보 수정
             </S.ModifyBtn>
-            {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
+            {/* {modalOpen && <ModalBasic setModalOpen={setModalOpen} />} */}
           </S.UserInfo>
         </S.UserInfoHeader>
         <S.FormDiv>
@@ -76,9 +59,9 @@ const Mypage = () => {
             <S.InputDiv>
               <S.MyInput
                 id="name"
-                defaultValue={info.name}
+                value={info.name}
                 placeholder="수정할 이름을 입력해주세요"
-                required
+                readOnly
               />
             </S.InputDiv>
           </S.InputItem>
@@ -87,9 +70,9 @@ const Mypage = () => {
             <S.InputDiv>
               <S.MyInput
                 id="nickName"
-                defaultValue={info.nickName}
+                value={info.nickName}
                 placeholder="수정할 닉네임을 적어주세요"
-                required
+                readOnly
               />
             </S.InputDiv>
           </S.InputItem>
@@ -98,16 +81,17 @@ const Mypage = () => {
             <S.InputDiv>
               <S.MyInput
                 id="user_pwd"
-                defaultValue={info.email}
+                value={info.email}
                 placeholder="수정할 이메일을 입력해주세요"
-                required
+                readOnly
               />
             </S.InputDiv>
           </S.InputItem>
         </S.FormDiv>
-        <S.DeleteBtn type="submit" value="저장" onClick={deleteMember}>
+        <S.DeleteBtn type="submit" value="저장" onClick={showModal}>
           회원탈퇴
         </S.DeleteBtn>
+        {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
       </S.MypageDiv>
     </S.Wrapper>
   );
