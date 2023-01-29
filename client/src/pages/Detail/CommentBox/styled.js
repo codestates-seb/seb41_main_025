@@ -4,6 +4,15 @@ export const CommentBoxDiv = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 5px ;
+  .commentToggleInput{
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 17px;
+    border: 1px solid #D9D9D9;
+    border-radius: 5px;
+    outline: none;
+  }
 
 `;
 
