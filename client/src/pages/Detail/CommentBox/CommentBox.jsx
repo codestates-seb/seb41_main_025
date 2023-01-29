@@ -74,6 +74,7 @@ const CommentBox = ({ comment }) => {
       <div className="content">
         {toggle ? (
           <input
+          className="commentToggleInput"
             defaultValue={comment.commentBody}
             onChange={(e) => {
               setEditComment(e.target.value);
