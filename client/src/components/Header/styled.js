@@ -107,7 +107,7 @@ export const Sign = styled.ul`
     min-width: 100px;
   }
   a {
-    font-weight: bold;
+    font-weight: 500;
     font-size: 16px;
     color: #7e7e7e;
     @media only screen and (max-width: ${"350px"}) {
@@ -130,7 +130,6 @@ export const Sign = styled.ul`
     margin: 15px;
     background-color: white;
     border: 0;
-    font-weight: bold;
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
