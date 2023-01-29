@@ -100,6 +100,7 @@ export const Sign = styled.ul`
     position: relative;
     min-width: 150px;
     padding-left: 10px;
+    margin: 30px;
     @media only screen and (max-width: ${'350px'}) {
         padding: 0;
         min-width: 100px;
