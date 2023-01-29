@@ -47,7 +47,7 @@ export const DetailCommentItem = styled.div`
     padding-top: 15px;
     border-top: 1px solid #D9D9D9;
     color: #000000;
-    font-size: 20px;
+    font-size: 17px;
     @media only screen and (max-width: ${'350px'}) {
     font-size: 5px;
     
