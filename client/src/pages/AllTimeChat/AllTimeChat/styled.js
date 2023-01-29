@@ -44,10 +44,14 @@ export const ButtonDiv = styled.div`
   color: black;
   border: none;
   border-bottom: 1px solid #898989;
+  cursor: pointer;
   @media only screen and (max-width: ${'350px'}) {
     width: 300px;
     font-size: 20px;
   } 
+  .none{
+    width: calc(100% / 3);
+  }
 
   .active {
     width: calc(100% / 3);
@@ -65,6 +69,7 @@ export const CommentList = styled.div`
   margin-top: 20px;
   background: #ececec;
   padding-bottom: 30px;
+  cursor: pointer;
   @media only screen and (max-width: ${'350px'}) {
     width: 300px;
   } 
