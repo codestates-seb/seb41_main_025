@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import * as S from "./styled";
-import Tving from "../Tving/Tving";
-import Watcha from "../Watcha/Watcha";
-import Wavve from "../Wavve/Wavve";
+import Tving from "../ChatBoard/Tving";
+import Watcha from "../ChatBoard/Watcha";
+import Wavve from "../ChatBoard/Wavve";
 
 const AllTimeChat = () => {
 
