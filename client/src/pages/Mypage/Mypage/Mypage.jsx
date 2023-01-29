@@ -17,23 +17,6 @@ const Mypage = () => {
     memberId,
   ]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://whatu1.kro.kr:8080/members/${memberId}`, {
-  //       headers: {
-  //         "Content-Type": "application/json;charset=UTF-8",
-  //         Accept: "application/json",
-  //         AutHorization: localStorage.getItem("accessToken"),
-  //       },
-  //     })
-  //     .then((res) => {
-  //       setInfo(res.data.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
-
   // 모달창 노출
   const showModal = () => {
     setModalOpen(true);
@@ -115,7 +98,7 @@ const Mypage = () => {
             <S.InputDiv>
               <S.MyInput
                 id="user_pwd"
-                value={info.email}
+                defaultValue={info.email}
                 placeholder="수정할 이메일을 입력해주세요"
                 required
               />
