@@ -108,7 +108,6 @@ export const Button = styled.button`
   border: 0;
   max-height: 2rem;
   line-height: 2rem;
-  margin-top: 40px;
   padding-left: 20px;
   background: #f9f9f9;
 
