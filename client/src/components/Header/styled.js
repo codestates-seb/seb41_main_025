@@ -10,7 +10,6 @@ export const HeaderWrap = styled.div`
     background: white;
     z-index: 10;
     @media only screen and (max-width: ${'350px'}) {
-        height: 50px;
         max-width: 350px;
     }
 
@@ -157,7 +156,6 @@ export const ModalContainer = styled.div`
     @media only screen and (max-width: ${'350px'}) {
         width: 200px;
         height: 250px;
-        top: calc(0% + 50px);
     }
 
     h5 {
