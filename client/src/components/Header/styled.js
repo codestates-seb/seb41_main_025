@@ -143,7 +143,6 @@ export const Sign = styled.ul`
         font-size: 13px;
         }
     }
-  }
 
   .flexEnd {
     display: flex;
