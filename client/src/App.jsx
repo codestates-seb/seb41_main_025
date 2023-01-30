@@ -51,7 +51,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signUp" element={<SignUp />} />
           <Route path="/searchFalse" element={<SearchNull />} />
           <Route
             path="/searchResult"

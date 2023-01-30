@@ -4,6 +4,8 @@ import axios from "axios";
 import ModifyImage from "../ModifyImage/ModifyImage";
 import { useCustomQuery } from "../../../components/util/useCustomQuery";
 import Loading from "../../../components/Loading/Loading";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Modify = () => {
   const memberId = localStorage.getItem("memberId");
@@ -26,18 +28,11 @@ const ModifySecond = ({ refetch, info, memberId }) => {
   const [name, setName] = useState(info.name);
   const [pwd, setPwd] = useState("");
 
-  // const onChangeName = (e) => {
-  //   setName(e.target.value);
-  // };
-  // const onChangeNickname = (e) => {
-  //   setNickname(e.target.value);
-  // };
-  // const onChangePwd = (e) => {
-  //   setPwd(e.target.value);
-  // };
+  const navigate = useNavigate();
 
   const onSubmit = (e) => {
     e.preventDefault();
+    
     axios
       .patch(
         `http://whatu1.kro.kr:8080/members/${memberId}`,
@@ -53,8 +48,8 @@ const ModifySecond = ({ refetch, info, memberId }) => {
         }
       )
       .then((res) => {
-        console.log(res);
-        refetch();
+        navigate(`/members/${memberId}`);
+        toast.success("회원정보 수정이 완료되었습니다");
       })
       .catch((error) => {
         console.log(error);
@@ -69,8 +64,8 @@ const ModifySecond = ({ refetch, info, memberId }) => {
             src={info.memberPicture}
             className="memberPicture"
             alt="사용자 이미지"
-            width={"300px"}
-            height={"300px"}
+            width={"200px"}
+            height={"200px"}
           ></img>
         </div>
         <div className="userInfo">

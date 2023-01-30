@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 export const HeaderWrap = styled.div`
+
     position: fixed;
     width: 100%;
     height: 60px;
@@ -12,8 +13,8 @@ export const HeaderWrap = styled.div`
     @media only screen and (max-width: ${'350px'}) {
         max-width: 350px;
     }
-
 `
+
 export const HeaderContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -93,6 +94,7 @@ export const SearchIcon = styled.button`
 `;
 
 export const Sign = styled.ul`
+
     display: flex;
     justify-content: flex-end;
     position: relative;
@@ -112,6 +114,7 @@ export const Sign = styled.ul`
             font-size: 12px;
         }
     }
+  }
 
     .signUp {
         margin-left: 24px;
@@ -125,7 +128,6 @@ export const Sign = styled.ul`
         @media only screen and (max-width: ${'350px'}) {
             display: none;
         }
-    }
 
     .modal {
         width: 90px;
@@ -141,6 +143,7 @@ export const Sign = styled.ul`
         font-size: 13px;
         }
     }
+  }
 
   .flexEnd {
     display: flex;
@@ -157,8 +160,9 @@ export const ModalContainer = styled.div`
   height: 300px;
   top: calc(0% + 60px);
   background-color: #ffffff;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  border-radius: 20px 20px 20px 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 20px;
+
   z-index: 10;
   @media only screen and (max-width: ${"350px"}) {
     width: 200px;
@@ -193,3 +197,4 @@ export const LogoutButton = styled.button`
     color: #ffffff;
   }
 `;
+

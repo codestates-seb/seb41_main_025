@@ -6,7 +6,10 @@ export const useCustomMutation = (url, queryKey, method) => {
     (suggest) => {
       return fetch(`http://whatu1.kro.kr:8080${url}`, {
         body: JSON.stringify(suggest),
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          AutHorization: localStorage.getItem("accessToken"),
+        },
         method: method,
       });
     },

@@ -14,11 +14,8 @@ const ModifyImage = ({ refetch }) => {
   };
 
   return (
-    <div>
+    <div style={{margin:"160px 0px 0px"}}>
       <TfiPencilAlt size="30px" color="#4BA6B2" cursor="pointer" onClick={showModal} />
-      {/* <button className="Modal_Open_Button" onClick={showModal}>
-        이미지 바꾸기
-      </button> */}
       {modalOpen && (
         <ImageModal
           refetch={refetch}

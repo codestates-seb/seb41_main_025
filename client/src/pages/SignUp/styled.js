@@ -44,11 +44,18 @@ export const SignupButton = styled.button`
   background-color: white;
   border-radius: 30px;
   color: #054d40;
+  background-color: #ffffff;
   font-size: 17px;
   font-weight: 600;
   border: 0;
   text-decoration: none;
   cursor: pointer;
+
+  :disabled {
+    background-color: #ffffff;
+    opacity:0.5;
+    cursor:Default;
+  }
 
   @media only screen and (max-width: ${"350px"}) {
     margin-left: 10px;
@@ -82,7 +89,6 @@ export const Enters = styled(Enter)`
   @media only screen and (max-width: ${"350px"}) {
     width: 200px;
   }
-
 `;
 export const Logo = styled.div`
   display: flex;

@@ -4,7 +4,7 @@ export const DetailContainer = styled.div`
   max-width: 1440px;
   min-height: 1800px;
   margin-bottom: 30px;
-  padding: 60px 60px 0px;
+  padding: 60px 60px 50px;
   margin: 0 auto;
 `;
 

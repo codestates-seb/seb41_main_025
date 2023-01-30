@@ -13,7 +13,7 @@ export const DetailCommentList = styled.div`
 export const DetailCommentItem = styled.div`
   width: 1200px;
   min-height: 100px;
-  padding: 10px;
+  padding: 20px;
   background: #ECECEC;
   margin-bottom: 10px;
   font-size: 13px;

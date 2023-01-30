@@ -68,6 +68,7 @@ export const CommentList = styled.div`
   height: 100%;
   margin-top: 20px;
   background: #ececec;
+  border-radius: 10px;
   padding-bottom: 30px;
   cursor: pointer;
   @media only screen and (max-width: ${'350px'}) {

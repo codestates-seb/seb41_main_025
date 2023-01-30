@@ -42,8 +42,8 @@ const Mypage = () => {
               src={info.memberPicture}
               className="memberPicture"
               alt="사용자 이미지"
-              width={"300px"}
-              height={"300px"}
+              width={"200px"}
+              height={"200px"}
             ></img>
           </S.UserImage>
           <S.UserInfo>
