@@ -66,6 +66,9 @@ export const DetailItem = styled.div`
     width: 100px;
     height: 90px;
     cursor: pointer;
+    @media only screen and (max-width: ${"350px"}) {
+      svg { width: 30px; }
+    }
   }
   @media only screen and (max-width: ${"350px"}) {
     margin: 20px 0 20px 0;
@@ -82,7 +85,7 @@ export const DetailItem = styled.div`
     padding-top: 5px;
     @media only screen and (max-width: ${"350px"}) {
     font-size: 10px;
-  }
+    }
   }
 `; //아이콘 박스
 

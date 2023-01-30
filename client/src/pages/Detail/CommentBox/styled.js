@@ -25,11 +25,12 @@ export const InputButton = styled.button`
   border-radius: 5px;
   margin-right: 5px;
   cursor: pointer;
+  @media only screen and (max-width: ${"350px"}) {
+    font-size: 10px;
+  }
 `;
 
 export const Buttons = styled.div`
   display: flex;
   justify-content: flex-end;
-
-
 `;

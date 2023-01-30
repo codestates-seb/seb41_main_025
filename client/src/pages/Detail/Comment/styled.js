@@ -5,9 +5,6 @@ export const DetailCommentList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media only screen and (max-width: ${'350px'}) {
-    height: 20px;
-    } 
 `;
 
 export const DetailCommentItem = styled.div`
@@ -19,26 +16,19 @@ export const DetailCommentItem = styled.div`
   font-size: 13px;
   border-radius: 10px;
   @media only screen and (max-width: ${"350px"}) {
-    width: 90%;
-    height: 60px;
-  }
-  @media only screen and (max-width: ${"700px"}) {
-    width: 90%;
+    width: 300px;
   }
   .userInfo {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
     color: #000000;
-    @media only screen and (max-width: ${'350px'}) {
-    
-  } 
     .name {
       padding-left: 20px;
       font-size: 17px;
       @media only screen and (max-width: ${'350px'}) {
-      font-size: 7px;
-  } 
+        font-size: 7px;
+      } 
     }
   }
   .content {
@@ -48,17 +38,15 @@ export const DetailCommentItem = styled.div`
     color: #000000;
     font-size: 17px;
     @media only screen and (max-width: ${'350px'}) {
-    font-size: 5px;
-    
-  } 
+      font-size: 5px;
+    } 
   }
   .memberPicture {
     border-radius: 30px;
     width: 50px;
-    height: 50px;
     @media only screen and (max-width: ${'350px'}) {
-    width: 20px;
-  } 
+      width: 20px;
+    } 
   }
 `;
 
@@ -90,7 +78,7 @@ export const InputDiv = styled.div`
       color: #7e7e7e;
     }
   }
-   .buttonDiv {
+  .buttonDiv {
     display: flex;
     justify-content: center;
     align-items: center;
