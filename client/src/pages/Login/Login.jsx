@@ -84,7 +84,7 @@ const Login = () => {
                   password: e.target.value,
                 })
               }
-              // onKeyPress={handleKeypress}
+              onKeyPress={handleKeypress}
             />
           </S.EnterContent>
           {/* <S.Whitebutton to = '/' onClick={EnterButton}>Login</S.Whitebutton> */}
