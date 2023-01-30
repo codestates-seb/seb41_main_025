@@ -109,7 +109,7 @@ export const Button = styled.button`
   max-height: 2rem;
   line-height: 2rem;
   padding-left: 20px;
-  background: rgb(2, 0, 36);
+  background: #f9f9f9;
   background: linear-gradient(
     90deg,
     rgba(2, 0, 36, 1) 0%,
