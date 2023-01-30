@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useCustomQuery } from "../../../components/util/useCustomQuery";
+import Loading from "../../../components/Loading/Loading";
 
 const Mypage = () => {
   // const [info, setInfo] = useState([]);
@@ -28,7 +29,7 @@ const Mypage = () => {
 
 
 
-  if (isLoading) return <></>;
+  if (isLoading) return <Loading />;
   const info = data.data;
   // console.log(data.data);
   // console.log(info);

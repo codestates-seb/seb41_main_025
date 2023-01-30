@@ -16,6 +16,7 @@ import Comment from "../Comment/Comment";
 import axios from "axios";
 import { useCustomQuery } from "../../../components/util/useCustomQuery";
 import { toast } from "react-toastify";
+import Loading from "../../../components/Loading/Loading";
 
 const apiCall = async (url) => {
   return await axios
@@ -110,8 +111,8 @@ const Detail = () => {
   );
 
   // TODO: 로딩 컴포넌트
-  if (isLoading) return <></>;
-  if (loading) return <></>;
+  if (isLoading) return <Loading />;
+  if (loading) return <Loading />;
   // TODO: error 컴포넌트
   if (error) return <>error 발생</>;
   const movies = data.data;
