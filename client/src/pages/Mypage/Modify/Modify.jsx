@@ -3,6 +3,7 @@ import * as S from "./styled";
 import axios from "axios";
 import ModifyImage from "../ModifyImage/ModifyImage";
 import { useCustomQuery } from "../../../components/util/useCustomQuery";
+import Loading from "../../../components/Loading/Loading";
 
 const Modify = () => {
   const memberId = localStorage.getItem("memberId");
@@ -12,7 +13,7 @@ const Modify = () => {
     ["members", memberId]
   );
 
-  if (isLoading) return <></>;
+  if (isLoading) return <Loading />;
   return (
     <ModifySecond refetch={refetch} info={data.data} memberId={memberId} />
   );

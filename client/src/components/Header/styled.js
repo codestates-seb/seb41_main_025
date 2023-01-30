@@ -151,7 +151,7 @@ export const ModalContainer = styled.div`
     position: absolute;
     width: 250px;
     height: 300px;
-    top: calc(0% + 45px);
+    top: calc(0% + 60px);
     background-color: aliceblue;
     border-radius: 20px 0px 20px 20px;
     z-index: 10;
