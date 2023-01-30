@@ -138,22 +138,25 @@ public class RecommendService {
     public void deleteRecommend(long recommendId) {
         Recommend findRecommend = findVerifiedRecommend(recommendId);
         Member findMember = memberService.findVerifiedMember(findRecommend.getMember().getMemberId());
+        Content content = findRecommend.getContent();
 
         if (memberService.getCurrentMember().getMemberId() != findMember.getMemberId()) {
             throw new BusinessLogicException(ExceptionCode.MEMBER_UNAUTHORIZED);
         }
-
+        content.setRecommendCount(content.getRecommendCount()-1);
+        contentRepository.save(content);
         recommendRepository.delete(findRecommend);
     }
 
     public void deleteDeprecate(long deprecateId) {
         Deprecate findDeprecate = findVerifiedDeprecate(deprecateId);
         Member findMember = memberService.findVerifiedMember(findDeprecate.getMember().getMemberId());
-
+        Content content = findDeprecate.getContent();
         if (memberService.getCurrentMember().getMemberId() != findMember.getMemberId()) {
             throw new BusinessLogicException(ExceptionCode.MEMBER_UNAUTHORIZED);
         }
-
+        content.setDeprecateCount(content.getDeprecateCount()-1);
+        contentRepository.save(content);
         deprecateRepository.delete(findDeprecate);
     }
 }
