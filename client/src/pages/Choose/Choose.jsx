@@ -3,9 +3,9 @@ import * as S from "./styled";
 import { MainWarp } from "../Main/styled";
 import { Title } from "../FavoriteMovie/styled";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import SeleteItem from "../../components/item/SelectItem/SeleteItem"
 import Empty from "../Empty/Empty";
+import { useCustomQuery } from "../../components/util/useCustomQuery";
 
 const Choose = () => {
   const memberId = localStorage.getItem("memberId");
@@ -14,22 +14,22 @@ const Choose = () => {
 
   console.log(choice)
   //Choice
-  useEffect(() => {
-  axios
-    .get(`http://whatu1.kro.kr:8080/members/${memberId}/choice`, {
-      headers: {
-        "Content-Type": "application/json;charset=UTF-8",
-        Accept: "application/json",
-        AutHorization: localStorage.getItem("accessToken"),
-      },
-    })
-    .then((res) => {
-      setChoice(res.data.data)
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  }, []);
+  // useEffect(() => {
+  // axios
+  //   .get(`http://whatu1.kro.kr:8080/members/${memberId}/choice`, {
+  //     headers: {
+  //       "Content-Type": "application/json;charset=UTF-8",
+  //       Accept: "application/json",
+  //       AutHorization: localStorage.getItem("accessToken"),
+  //     },
+  //   })
+  //   .then((res) => {
+  //     setChoice(res.data.data)
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
+  // }, []);
 
   useEffect(() => {
     axios
@@ -50,24 +50,39 @@ const Choose = () => {
       });
     }, []);
 
+
+  const { data, isLoading, error, refetch } = useCustomQuery(
+    `/members/${memberId}/choice`,
+    `memberId=${memberId}/choice`
+  );
+    // TODO: 로딩 컴포넌트
+    if (isLoading) return <></>;
+    // if (loading) return <></>;
+    // TODO: error 컴포넌트
+    if (error) return <>error 발생</>;
+
+  const choiceMovieList = data.data;
+
+  console.log(choiceMovieList)
+
   return (
     <MainWarp>
         <S.MainContainer>
             <Title>
                 <span className="title">"{nickName}"님의 찜한 목록</span>
             </Title>
-            {choice.length === 0 ? <Empty/> : (
+            {choiceMovieList && choiceMovieList.length === 0 ? <Empty/> : (
               <S.Items>
-              {choice && choice.map((choice) => {
+              {choiceMovieList && choiceMovieList.map((choice) => {
                 return (
-                  // <Link to = {`/contents/${choice.contentResponseMinDto.contentId}`} key={choice.contentResponseMinDto.contentId}>
                   <SeleteItem 
+                  dataId = {choice.choiceId}
                   Poster = {choice.contentResponseMinDto.contentPoster}
                   Id = {choice.contentResponseMinDto.contentId}
                   Score={choice.contentResponseMinDto.contentScore}
                   Title= {choice.contentResponseMinDto.contentTitle}
+                  refetch= {refetch}
                   />
-                  // </Link>
                   )
                 })}
               </S.Items>

@@ -23,7 +23,7 @@ export default Modify;
 const ModifySecond = ({ refetch, info, memberId }) => {
   const [nickname, setNickname] = useState(info.nickName);
   const [name, setName] = useState(info.name);
-  const [pwd, setPwd] = useState("")
+  const [pwd, setPwd] = useState("");
 
   // const onChangeName = (e) => {
   //   setName(e.target.value);
@@ -71,14 +71,14 @@ const ModifySecond = ({ refetch, info, memberId }) => {
             width={"300px"}
             height={"300px"}
           ></img>
+        </div>
+        <div className="userInfo">
           <ModifyImage refetch={refetch} />
         </div>
         <div className="userInfo">
           <div className="userName">{nickname}</div>
         </div>
       </S.UserInfoHeader>
-
-      <form>
         <S.FormDiv>
           <S.InputItem>
             <S.InputLabel htmlFor="name">이름</S.InputLabel>
@@ -114,17 +114,11 @@ const ModifySecond = ({ refetch, info, memberId }) => {
               />
             </S.InputDiv>
           </S.InputItem>
-        </S.FormDiv>
-        <S.SaveBtn type="submit" value="저장" onClick={onSubmit}>
+          <S.SaveBtn type="submit" value="저장" onClick={onSubmit}>
           저장
         </S.SaveBtn>
-      </form>
-
-      <S.DeleteBtn type="submit" value="저장">
-        회원탈퇴
-      </S.DeleteBtn>
+        </S.FormDiv>
+    
     </S.MypageDiv>
   );
 };
-
-

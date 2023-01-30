@@ -100,6 +100,7 @@ export const Sign = styled.ul`
     position: relative;
     min-width: 150px;
     padding-left: 10px;
+    margin: 30px;
     @media only screen and (max-width: ${'350px'}) {
         padding: 0;
         min-width: 100px;
@@ -125,12 +126,16 @@ export const Sign = styled.ul`
     .modal {
         width: 90px;
         height: 30px;
-        margin-left: 0px;
+        margin: 15px;
         background-color: white;
         border: 0;
         font-weight: bold;
         font-size : 16px;
         font-weight: 500;
+        cursor: pointer;
+        @media only screen and (max-width: ${'350px'}) {
+        font-size: 13px;
+    }
     }
 
     .flexEnd {
@@ -149,8 +154,11 @@ export const ModalContainer = styled.div`
     top: calc(0% + 45px);
     background-color: aliceblue;
     border-radius: 20px 0px 20px 20px;
-
     z-index: 10;
+    @media only screen and (max-width: ${'350px'}) {
+    width: 200px;
+    height: 250px;
+    }
 
     h5 {
         text-align: end;
@@ -160,12 +168,17 @@ export const ModalContainer = styled.div`
 
 export const NevFont = styled(NavLink)`
     padding: 20px;
+    @media only screen and (max-width: ${'350px'}) {
+    font-size: 10px;
+    }
 `;
 
 export const LogoutButton = styled.button`
     font-size: 15px;
     color: gray;
     border: 0;
+    cursor: pointer;
+    height: 30px;
     :active{
         background-color: aliceblue;
     }

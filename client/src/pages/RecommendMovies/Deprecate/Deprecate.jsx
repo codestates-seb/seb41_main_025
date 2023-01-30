@@ -1,50 +1,66 @@
-import SeleteItem from "../../../components/item/SelectItem/SeleteItem";
-import * as S from "./styled"
-import {useState,useEffect} from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import * as S from "./styled"
 import Empty from "../../Empty/Empty";
+import { useCustomQuery } from "../../../components/util/useCustomQuery";
+import { toast } from "react-toastify";
 
 const Deprecate = () => {
 
   const memberId = localStorage.getItem("memberId");
-  const [deprecateContent, setDeprecateContent] = useState([])
 
-  useEffect(() => {
-    axios
-    .get(`http://whatu1.kro.kr:8080/members/${memberId}/deprecate`,
-    {
-      headers: {
-        "Content-Type": "application/json;charset=UTF-8",
-        Accept: "application/json",
-        "AutHorization" : localStorage.getItem("accessToken"),
-      },
-    })
-    .then((res) => {
-        setDeprecateContent(res.data.data);
-      // console.log(res.data.data)
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  },[]);
-  
+  const { data, isLoading, error, refetch } = useCustomQuery(
+    `/members/${memberId}/deprecate`,
+    `memberId=${memberId}/deprecate`
+  );
+    // TODO: 로딩 컴포넌트
+    if (isLoading) return <></>;
+    // if (loading) return <></>;
+    // TODO: error 컴포넌트
+    if (error) return <>error 발생</>;
+
+    const deprecateMovieList = data.data;
+
+    const handleDelete = async (dataId) => {
+      console.log("clicked")
+      await axios
+        .delete(
+          `http://whatu1.kro.kr:8080/deprecate/${dataId}`,
+          {
+            headers: {
+              Authorization: localStorage.getItem("accessToken"),
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res)
+          refetch()
+          toast.success("삭제가 완료되었습니다");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
     return(
       <>
-      {deprecateContent.length === 0 ? <Empty/> : (    
+      {deprecateMovieList.length === 0 ? <Empty/> : (    
         <S.Items>
           {/* //TODO : deprecate 리렌더링 후 다시 recommend 창으로 돌아가는 현상 */}
-          {deprecateContent && deprecateContent.map((deprecate) => {
+          {deprecateMovieList && deprecateMovieList.map((deprecate) => {
             console.log(deprecate.contentResponseMinDto.contentTitle)
             return (
-              // <Link to = {`/contents/${deprecate.contentResponseMinDto.contentId}`} key={deprecate.contentResponseMinDto.contentId}>
-              <SeleteItem 
-              Poster = {deprecate.contentResponseMinDto.contentPoster}
-              Id = {deprecate.contentResponseMinDto.contentId}
-              Score={deprecate.contentResponseMinDto.contentScore}
-              Title= {deprecate.contentResponseMinDto.contentTitle}
-              />
-              // </Link>
+              <S.EachItem>
+                {console.log(deprecate.deprecateId)}
+              <a href={`/contents/${deprecate.contentId}`}>
+                <img src ={deprecate.contentResponseMinDto.contentPoster} className='poster' alt="" />
+              </a>
+              <S.Details>
+                <S.DetailFont>
+                  <S.MovieTitle to ={`/contents/${deprecate.contentId}`}>{deprecate.contentResponseMinDto.contentTitle}</S.MovieTitle>
+                  <h4 className="movieTitle"> 평점 : {deprecate.contentResponseMinDto.contentScore}</h4>
+                </S.DetailFont>
+              <S.DeleteBtn onClick = {() => handleDelete(deprecate.deprecateId)}>X</S.DeleteBtn>
+              </S.Details>
+            </S.EachItem>
               )
             })}
         </S.Items>

@@ -1,26 +1,20 @@
 import React from "react";
 import * as S from "./styled";
-import useFetch from "../../../components/util/useFetch";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useCustomQuery } from "../../../components/util/useCustomQuery";
 
 const Tving = () => {
   const [comment, setComment] = useState("");
   const memberId = localStorage.getItem("memberId");
-  console.log(memberId);
+  // console.log(memberId);
 
-  const request = {
-    method: "get",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: localStorage.getItem("accessToken"),
-    },
-  };
+  const [commentOTT, setCommentOTT] = useState("");
 
-  const [borards] = useFetch(
-    `http://whatu1.kro.kr:8080/boards/tving?page=1&size=10`,
-    request
+  const { data, isLoading, error, refetch } = useCustomQuery(
+    `/boards/tving?page=1&size=100`,
+    `boards=tving`
   );
 
   const timeForToday = (time) => {
@@ -56,7 +50,7 @@ const Tving = () => {
         },
       })
       .then(() => {
-        window.location.reload();
+        refetch();
       })
       .catch((err) => {
         console.log(err);
@@ -79,7 +73,7 @@ const Tving = () => {
         },
       })
       .then(() => {
-        window.location.reload();
+        refetch();
       })
       .catch((err) => {
         console.log(err);
@@ -88,48 +82,52 @@ const Tving = () => {
   return (
     <>
       <S.ContentList>
-        {borards.map((item) => {
-          console.log("local", memberId);
-          console.log(item.memberId);
+        {data &&
+          data.data.map((item) => {
+            // console.log("local", memberId);
+            // console.log(item.memberId);
 
-          return Number(memberId) === Number(item.memberId) ? (
-            <S.ContentItemMe key={item.tvingBoardId}>
-              <div className="userInfo">
-                <button>수정</button>
-                <button
-                  onClick={() => {
-                    deleteBoard(item.tvingBoardId);
-                  }}
-                >
-                  삭제
-                </button>
-                {timeForToday(item.createAt)}
-                {item.nickName}
-                <img
-                  src={item.memberPicture}
-                  className="memberPicture"
-                  alt="사용자 이미지"
-                  style={{}}
-                ></img>
+            return Number(memberId) === Number(item.memberId) ? (
+              <S.ContentItemMe key={item.tvingBoardId}>
+                <div className="userInfo">
+                  <button
+                    className="deleteChat"
+                    onClick={() => {
+                      deleteBoard(item.tvingBoardId);
+                    }}
+                  >
+                    삭제
+                  </button>
+                  <span className="userInfText">
+                    {timeForToday(item.createAt)}
+                  </span>
+                  <span className="userInfText">{item.nickName}</span>
+
+                  <img
+                    src={item.memberPicture}
+                    className="memberPicture"
+                    alt="사용자 이미지"
+                    style={{}}
+                  ></img>
+                  <div className="content">{item.tvingBoardBody}</div>
+                </div>
+              </S.ContentItemMe>
+            ) : (
+              <S.ContentItem key={item.tvingBoardId}>
+                <div className="userInfo">
+                  <img
+                    src={item.memberPicture}
+                    className="memberPicture"
+                    alt="사용자 이미지"
+                    style={{}}
+                  ></img>
+                  {item.nickName}
+                </div>
                 <div className="content">{item.tvingBoardBody}</div>
-              </div>
-            </S.ContentItemMe>
-          ) : (
-            <S.ContentItem key={item.tvingBoardId}>
-              <div className="userInfo">
-                <img
-                  src={item.memberPicture}
-                  className="memberPicture"
-                  alt="사용자 이미지"
-                  style={{}}
-                ></img>
-                {item.nickName}
-              </div>
-              <div className="content">{item.tvingBoardBody}</div>
-              {timeForToday(item.createAt)}
-            </S.ContentItem>
-          );
-        })}
+                <div className="userInfText">{timeForToday(item.createAt)}</div>
+              </S.ContentItem>
+            );
+          })}
       </S.ContentList>
       <S.InputDivs>
         <input
@@ -137,7 +135,6 @@ const Tving = () => {
           autoComplete="off"
           name="recommend"
           type="text"
-          // maxLength="35"
           placeholder="TVING 작품에 대해서 자유롭게 입력해주세요"
           onChange={(e) => setComment(e.target.value)}
           onKeyPress={handleKeypress}

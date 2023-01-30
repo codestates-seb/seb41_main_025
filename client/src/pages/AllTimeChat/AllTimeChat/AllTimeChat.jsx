@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import * as S from "./styled";
-import Tving from "../Tving/Tving";
-import Watcha from "../Watcha/Watcha";
-import Wavve from "../Wavve/Wavve";
+import Tving from "../ChatBoard/Tving";
+import Watcha from "../ChatBoard/Watcha";
+import Wavve from "../ChatBoard/Wavve";
 
 const AllTimeChat = () => {
-
   const [currentTab, setCurrentTab] = useState(0);
-
 
   const selectMenuHandler = (idx) => {
     setCurrentTab(idx);
@@ -22,26 +20,25 @@ const AllTimeChat = () => {
     { name: "Wavve", content: <Wavve /> },
   ];
 
-
   return (
     <S.RecommendDiv>
       <S.TitleDiv>
         <h1>게시판</h1>
       </S.TitleDiv>
-      <S.Introduce>각 OTT에 대해서 자유롭게 이야기 나눌 수 있는 곳 :)</S.Introduce>
+      <S.Introduce>
+        각 OTT에 대해서 자유롭게 이야기 나눌 수 있는 곳 :)
+      </S.Introduce>
 
       <S.ButtonDiv>
-
         {tabList.map((el, idx) => (
-          <li
-            className={idx === currentTab ? "active" : ""}
+          <div
+            className={idx === currentTab ? "active" : "none"}
             onClick={() => selectMenuHandler(idx)}
           >
             {el.name}
-          </li>
+          </div>
         ))}
       </S.ButtonDiv>
-
       <S.CommentList>
         <S.CommentItem>{tabList[currentTab].content}</S.CommentItem>
       </S.CommentList>

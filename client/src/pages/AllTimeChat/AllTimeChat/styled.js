@@ -7,6 +7,9 @@ export const RecommendDiv = styled.div`
   max-width: 1440px;
   margin: 0 auto;
   margin-bottom: 30px;
+  @media only screen and (max-width: ${'350px'}) {
+   width: 300px;
+  } 
   `;
 
 export const TitleDiv = styled.div`
@@ -14,10 +17,17 @@ export const TitleDiv = styled.div`
   align-content: flex-start;
   width: 1120px;
   margin: 80px;
+  @media only screen and (max-width: ${'350px'}) {
+    width: 300px;
+  } 
   
   h1 {
     font-size: 32px;
-    border-bottom: 2px solid #167e6c;
+    /* border-bottom: 3px solid #4BA6B2; */
+    @media only screen and (max-width: ${'350px'}) {
+    font-size: 25px;
+    margin: 20px;
+  } 
   }
 `;
 
@@ -34,12 +44,20 @@ export const ButtonDiv = styled.div`
   color: black;
   border: none;
   border-bottom: 1px solid #898989;
+  cursor: pointer;
+  @media only screen and (max-width: ${'350px'}) {
+    width: 300px;
+    font-size: 20px;
+  } 
+  .none{
+    width: calc(100% / 3);
+  }
 
   .active {
     width: calc(100% / 3);
     border-bottom: 2px solid #000000;
     text-align: center;
-    border-bottom: 2px solid #167e6c;
+    border-bottom: 2px solid #4BA6B2;
   }
 `;
 
@@ -49,27 +67,12 @@ export const CommentList = styled.div`
   width: 1120px;
   height: 100%;
   margin-top: 20px;
-  background: #bcede4;
+  background: #ececec;
   padding-bottom: 30px;
-
-  .inputDiv {
-    width: 80%;
-  }
-  .recommendInput {
-    width: 70%;
-    height: 100px;
-    background-color: #58bfad;
-    color: #ffffff;
-    border: none;
-    &:active {
-      border: none;
-    }
-
-    ::placeholder {
-      padding-left: 30px;
-      color: #ffffff;
-    }
-  }
+  cursor: pointer;
+  @media only screen and (max-width: ${'350px'}) {
+    width: 300px;
+  } 
 `;
 
 export const CommentItem = styled.div`
@@ -80,4 +83,7 @@ export const CommentItem = styled.div`
 
 export const Introduce = styled.div`
   margin-bottom: 50px;
+  @media only screen and (max-width: ${'350px'}) {
+    font-size: 15px;
+  } 
 `

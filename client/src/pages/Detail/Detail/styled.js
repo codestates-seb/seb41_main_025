@@ -6,7 +6,6 @@ export const DetailContainer = styled.div`
   margin-bottom: 30px;
   padding: 60px 60px 0px;
   margin: 0 auto;
-
 `;
 
 export const DetailHeader = styled.div`
@@ -23,28 +22,29 @@ export const DetailHeader = styled.div`
   @media only screen and (max-width: ${"700px"}) {
     flex-direction: column;
     justify-content: center;
-    }
+  }
 `;
 
 export const DetailContent = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 600px;
-  padding-left: 50px;
   justify-content: space-around;
+  max-width: 600px;
+  max-height: 590px;
+  padding-left: 50px;
   @media only screen and (max-width: ${"700px"}) {
-  padding-left: 0;
+    padding-left: 0;
   }
   .title {
     font-size: 35px;
     @media only screen and (max-width: ${"350px"}) {
-    font-size: 20px;
-  }
+      font-size: 20px;
+    }
   }
   .content {
     margin-top: 10px;
   }
-  .contents{
+  .contents {
     @media only screen and (max-width: ${"350px"}) {
       width: 90%;
       margin-top: 20px;
@@ -62,17 +62,27 @@ export const DetailItem = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100px;
-    height: 80px;
+    height: 90px;
     cursor: pointer;
   }
   @media only screen and (max-width: ${"350px"}) {
-  margin: 20px 0 20px 0;
-  font-size: 15px;
+    margin: 20px 0 20px 0;
+    font-size: 15px;
   }
   @media only screen and (max-width: ${"700px"}) {
-  margin: 20px 0;
+    margin: 20px 0;
+  }
+  .itemIconText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+    padding-top: 5px;
+    @media only screen and (max-width: ${"350px"}) {
+    font-size: 10px;
+  }
   }
 `; //아이콘 박스
 
@@ -84,11 +94,11 @@ export const Ellipsis = styled.div`
   overflow: hidden;
   -webkit-line-clamp: 3;
   &.show {
-      display: block;
-      max-height: none;
-      overflow: auto;
-      -webkit-line-clamp: unset;
-    }
+    display: block;
+    max-height: none;
+    overflow: auto;
+    -webkit-line-clamp: unset;
+  }
 `;
 
 export const Button = styled.button`
@@ -117,9 +127,21 @@ export const OttList = styled.div`
   justify-content: center;
   gap: 30px 30px;
   margin: 30px 0px 30px 0px;
+  @media only screen and (max-width: ${"350px"}) {
+    /* flex-direction: column; */
+  }
+  h2 {
+    @media only screen and (max-width: ${"350px"}) {
+      font-size: 15px;
+    }
+  }
 
   img {
     width: 50px;
     height: 50px;
+    @media only screen and (max-width: ${"350px"}) {
+      width: 50px;
+      height: 50px;
+    }
   }
-`
+`;

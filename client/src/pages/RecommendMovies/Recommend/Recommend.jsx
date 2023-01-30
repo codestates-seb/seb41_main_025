@@ -1,46 +1,37 @@
 import SeleteItem from "../../../components/item/SelectItem/SeleteItem";
 import * as S from "./styled"
-import {useState,useEffect} from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
 import Empty from "../../Empty/Empty";
+import { useCustomQuery } from "../../../components/util/useCustomQuery";
 
 const Recommend = () => {
-
+  //새로고침을 해줘야 업데이트됨
   const memberId = localStorage.getItem("memberId");
-  const [recommendContent, setRecommendContent] = useState([])
 
-  useEffect(() => {
-    axios
-    .get(`http://whatu1.kro.kr:8080/members/${memberId}/recommend`,
-    {
-      headers: {
-        "Content-Type": "application/json;charset=UTF-8",
-        Accept: "application/json",
-        "AutHorization" : localStorage.getItem("accessToken"),
-      },
-    })
-    .then((res) => {
-      setRecommendContent(res.data.data);
-      // console.log(res.data.data)
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  },[]);
 
+  const { data, isLoading, error, refetch } = useCustomQuery(
+    `/members/${memberId}/recommend`,
+    `memberId=${memberId}/recommend`
+  );
+    // TODO: 로딩 컴포넌트
+    if (isLoading) return <></>;
+    // if (loading) return <></>;
+    // TODO: error 컴포넌트
+    if (error) return <>error 발생</>;
+
+  const recommendMovieList = data.data;
     return(
       <>
-      {recommendContent.length === 0 ? <Empty/> : (
+      {recommendMovieList.length === 0 ? <Empty/> : (
         <S.Items>
-        {recommendContent && recommendContent.map((recommend) => {
-
+        {recommendMovieList && recommendMovieList.map((recommend) => {
           return (
-            <SeleteItem 
+            <SeleteItem key = {recommend.contentResponseMinDto.recommendId}
+            dataId = {recommend.recommendId}
             Poster = {recommend.contentResponseMinDto.contentPoster}
             Id = {recommend.contentResponseMinDto.contentId}
             Score={recommend.contentResponseMinDto.contentScore}
             Title= {recommend.contentResponseMinDto.contentTitle}
+            refetch={refetch}
             />
             )
           })}

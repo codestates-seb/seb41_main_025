@@ -62,8 +62,8 @@ const ImageUpload = ({ refetch, setModalOpen, setImage }) => {
                     <div className="Upload_Image_Modal_Image">
                       <div className="Upload_Image_Text_Container">
                         <div className="Upload_Image_Text">
-                          <b>여기로 이미지 파일을 드래그 해주세요!</b>
-                          <p>to upload your image </p>
+                          <b>업로드 하고 싶은 이미지를 드래그 하세요!</b>
+                          <p>여기를 누르면 이미지 선택이 가능해요</p>
                         </div>
                       </div>
                     </div>
@@ -99,7 +99,7 @@ const ImageUpload = ({ refetch, setModalOpen, setImage }) => {
                 )}
                 {errors.resolution && (
                   <span className="Upload_Image_Error">
-                    Selected file is not match your desired resolution
+                    다른 이미지를 선택해주세요
                   </span>
                 )}
               </div>
@@ -108,7 +108,7 @@ const ImageUpload = ({ refetch, setModalOpen, setImage }) => {
         )}
       </ImageUploading>
       <div className="UploadImage_Submit_Container">
-        <button width="130px" height="50px" onClick={onSubmit}>
+        <button width="130px" height="50px" style={{color:"#4BA6B2", fontSize:"20px", border:"none", backgroundColor:"#ffffff", cursor:"Pointer"}} onClick={onSubmit}>
           이미지 등록하기
         </button>
       </div>

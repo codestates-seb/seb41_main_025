@@ -52,8 +52,8 @@ const ItemContainer = ( {movies, ottName} ) => {
         windowSize >= 1440 
         ? 5 : ( windowSize >= 1320
           ? 4 : ( windowSize >= 1000
-            ? 3 : ( windowSize >= 800
-              ? 2 : ( windowSize >= 600
+            ? 3 : ( windowSize >= 720
+              ? 2 : ( windowSize >= 300
                 ? 1 : null))))
       }
       >

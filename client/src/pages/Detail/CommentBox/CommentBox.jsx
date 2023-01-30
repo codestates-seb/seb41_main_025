@@ -62,19 +62,19 @@ const CommentBox = ({ comment }) => {
   };
 
   return (
-    <div>
+    <S.CommentBoxDiv>
       <div className="userInfo">
         <img
           src={comment.memberPicture}
           className="memberPicture"
           alt="사용자 이미지"
-          style={{ width: "40px", height: "40px" }}
         ></img>
         <div className="name">{comment.nickName}</div>
       </div>
       <div className="content">
         {toggle ? (
           <input
+          className="commentToggleInput"
             defaultValue={comment.commentBody}
             onChange={(e) => {
               setEditComment(e.target.value);
@@ -109,7 +109,7 @@ const CommentBox = ({ comment }) => {
           )}
         </S.Buttons>
       ) : null}
-    </div>
+    </S.CommentBoxDiv>
   );
 };
 

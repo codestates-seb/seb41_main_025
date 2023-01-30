@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import * as S from "./styled";
 import {
   Main,
@@ -175,11 +175,11 @@ const SignUp = () => {
     <Main>
       <S.WindowDiv>
         <S.Hello>
-          <Logo>
+          <S.Logo>
             <img src="/assets/GreenLogo.png" className="greenLogo" alt="" />
             <img src="/assets/Character.png" className="character" alt="" />
             {/* <GreenLogo/> */}
-          </Logo>
+          </S.Logo>
         </S.Hello>
         <ContentForm>
           <S.LoginFont>Sign Up</S.LoginFont>
@@ -190,7 +190,7 @@ const SignUp = () => {
               onChange={onChangeName}
               style={{ margin: "20px 0px" }}
             />
-            <span className="message" style={{ fontSize: "20px" }}>
+            <span className="message" >
               {nameMsg}
             </span>
             <S.Enters
@@ -199,7 +199,7 @@ const SignUp = () => {
               onChange={onChangeNickname}
               style={{ margin: "20px 0px" }}
             />
-            <span className="message" style={{ fontSize: "20px" }}>
+            <span className="message" >
               {nickNameMsg}
             </span>
             <S.Enters
@@ -208,7 +208,7 @@ const SignUp = () => {
               onChange={onChangeEmail}
               style={{ margin: "20px 0px" }}
             />
-            <span className="message" style={{ fontSize: "20px" }}>
+            <span className="message" >
               {emailMsg}
             </span>
             <S.Enters
@@ -217,7 +217,7 @@ const SignUp = () => {
               onChange={onChangePwd}
               style={{ margin: "20px 0px" }}
             />
-            <span className="message" style={{ fontSize: "20px" }}>
+            <span className="message" >
               {pwdMsg}
             </span>
             <S.Enters
@@ -226,7 +226,7 @@ const SignUp = () => {
               onChange={onChangeConfirmPwd}
               style={{ margin: "20px 0px" }}
             />
-            <span className="message" style={{ fontSize: "20px", margin: "0px 0px 10px 0px "}}>
+            <span className="message" >
               {confirmPwdMsg}
             </span>
             <S.SignupButton
