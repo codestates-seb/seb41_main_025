@@ -98,7 +98,7 @@ const Header = (props) => {
               <Link to="/login">로그인</Link>
             </li>
             <li className="signUp">
-              <Link to="/signup">회원가입</Link>
+              <Link to="/signUp">회원가입</Link>
             </li>
           </S.Sign>
         )}
