@@ -37,7 +37,7 @@ const Header = (props) => {
       toast.info("검색어를 입력하세요");
     } else if (e.key === "Enter") {
       sendSerachResult();
-      setSearchMovie('');
+      setSearchMovie("");
     }
   };
   const sendSerachResult = () => {
