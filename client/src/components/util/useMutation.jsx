@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useCustomMutation = (url, queryKey, method) => {
   const queryClient = useQueryClient();
