@@ -2,11 +2,6 @@ import React, { useState, useCallback } from "react";
 import * as S from "./styled";
 import {
   Main,
-  Logo,
-  // Window,
-  Enter,
-  // EnterContent,
-  // Whitebutton,
   ContentForm,
 } from "../Login/styled";
 import { useNavigate } from "react-router-dom";
@@ -36,7 +31,7 @@ const SignUp = () => {
 
   //*  유효성 검사 함수
   const validateName = (name) => {
-    return name.toLowerCase().match(/^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|].{1,5}$/);
+    return name.toLowerCase().match(/^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|].{1,4}$/);
   };
 
   const validateNickname = (nickname) => {
