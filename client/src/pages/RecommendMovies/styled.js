@@ -39,12 +39,12 @@ export const TitleDiv = styled.div`
   align-content: flex-start;
   width: 500px;
   margin-bottom: 80px;
-  .title {
-    font-size: 20px;
+  /* .title {
+    font-size: 0px;
     @media only screen and (max-width: ${"350px"}) {
-      font-size: 15px;
+      font-size: 10px;
     }
-  }
+  } */
   @media only screen and (max-width: ${"350px"}) {
     width: 300px;
     margin-left: 190px;
@@ -122,7 +122,7 @@ export const Title = styled(MainContainer)`
   height: 100%;
   margin: 100px 100px 0 100px;
   .title {
-    font-size: 30px;
+    font-size: 20px;
     text-decoration: underline #4BA6B2;
     text-decoration-thickness: 4px;
     text-underline-offset: 20px;
@@ -131,7 +131,7 @@ export const Title = styled(MainContainer)`
       font-size: 25px;
     }
     @media only screen and (max-width: ${"350px"}) {
-      font-size: 20px;
+      font-size: 15px;
     }
   }
   @media only screen and (max-width: ${"350px"}) {

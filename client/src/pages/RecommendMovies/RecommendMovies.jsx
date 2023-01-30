@@ -46,7 +46,7 @@ const RecommendMovies = () => {
                 <S.Title style={{"marginBottom" : 0}}>
                     <S.RecommendDiv>
                         <S.TitleDiv>
-                            <span className="title">"{nickName}"님이 <br/><br/></span>
+                            <span className="title">"{nickName}"님이 평가한 작품<br/><br/></span>
                         </S.TitleDiv>
                         <S.ButtonDiv>
                         {tabList.map((el, idx) => (
