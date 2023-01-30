@@ -110,9 +110,8 @@ export const Sign = styled.ul`
         font-size : 16px;
         color: #7E7E7E;
         @media only screen and (max-width: ${'350px'}) {
-        width: 0;
-        height: 0;
-    }
+            font-size: 12px;
+        }
     }
 
     .signUp {
