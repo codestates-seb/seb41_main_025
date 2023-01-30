@@ -67,9 +67,9 @@ export const SearchBar = styled.div`
         height: 40px;
         } 
         @media only screen and (max-width: ${'350px'}) {
-        margin-left: -120px;
-        width: 90px;
-        height: 30px;
+            margin-left: -130px;
+            width: 100px;
+            height: 30px;
         } 
 
     }
