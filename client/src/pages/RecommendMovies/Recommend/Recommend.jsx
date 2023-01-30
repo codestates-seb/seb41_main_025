@@ -1,6 +1,6 @@
 import SeleteItem from "../../../components/item/SelectItem/SeleteItem";
 import * as S from "./styled"
-import Empty from "../../Empty/Empty";
+import Empty from "../../../components/Empty/Empty";
 import { useCustomQuery } from "../../../components/util/useCustomQuery";
 
 const Recommend = () => {
