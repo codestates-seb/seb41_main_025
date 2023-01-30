@@ -114,8 +114,7 @@ export const Sign = styled.ul`
             font-size: 12px;
         }
     }
-  }
-
+  
     .signUp {
         margin-left: 24px;
         @media only screen and (max-width: ${'350px'}) {
@@ -139,10 +138,12 @@ export const Sign = styled.ul`
         font-size : 16px;
         font-weight: 500;
         cursor: pointer;
+        color: #7E7E7E;
         @media only screen and (max-width: ${'350px'}) {
         font-size: 13px;
         }
     }
+  }
 
   .flexEnd {
     display: flex;
@@ -157,7 +158,7 @@ export const ModalContainer = styled.div`
   position: absolute;
   width: 250px;
   height: 300px;
-  top: calc(0% + 60px);
+  top: calc(0% + 45px);
   background-color: #ffffff;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 20px;
@@ -196,4 +197,3 @@ export const LogoutButton = styled.button`
     color: #ffffff;
   }
 `;
-

@@ -28,7 +28,7 @@ export const Title = styled.div`
     margin: 100px 100px 0 100px;
     .title {
     font-size: 20px;
-    text-decoration: underline #167E6C;
+    text-decoration: underline #4ba6b3;
     text-decoration-thickness: 4px;
     text-underline-offset: 20px;
 

@@ -108,14 +108,10 @@ export const Button = styled.button`
   border: 0;
   max-height: 2rem;
   line-height: 2rem;
+  margin-top: 40px;
   padding-left: 20px;
   background: #f9f9f9;
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 1) 18%
-  );
+
   &.hide {
     display: none;
   }
