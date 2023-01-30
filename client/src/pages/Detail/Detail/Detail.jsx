@@ -44,7 +44,7 @@ const Detail = () => {
   let isLogin = localStorage.getItem("isLogin");
   const contentRef = useRef(null);
   const [isHide, setIsHide] = useState(false);
-  console.log(isHide);
+  // console.log(isHide)
 
   const memberId = localStorage.getItem("memberId");
 

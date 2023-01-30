@@ -1,67 +1,62 @@
 import { useParams } from "react-router-dom";
-import useFetch from "../../../components/util/useFetch";
 import { useState, useEffect } from "react";
 import * as S from "./styled";
 import axios from "axios";
 import { toast } from "react-toastify";
 import CommentBox from "../CommentBox/CommentBox";
-import { useInView } from 'react-intersection-observer';
-import { useInfiniteQuery } from "react-query";
-
+import { useInView } from "react-intersection-observer";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 const fetchPostList = async (pageParam) => {
   const res = await axios.get(
-    `http://whatu1.kro.kr:8080/comments?page=${pageParam}&size=100`
+    `http://whatu1.kro.kr:8080/comments?page=${pageParam}&size=10`
   );
-  console.log(res.data)
+
   // const { posts, isLast } = res.data;
   const posts = res.data.data;
   const isLast = res.data.pageInfo.totalPages;
-  console.log(res.data)
   return { posts, nextPage: pageParam + 1, isLast };
 };
-// console.log(fetchPostList)
 
 const Comment = () => {
   const { contentId } = useParams();
   //창 뷰트 들어오고 나갈 때  요소의 가시성 추적
-  const [ ref, inView ] = useInView();
-
+  const [ref, inView] = useInView();
 
   //밑으로 내리면 true 반환
-  console.log(inView)
-  //isfetchingNextpage 가 패칭 중인가 
+  console.log("inview : ", inView);
+  // const {
+  //   fetchNextPage, // 다음 페이지 데이터를 불러올 수 있는 함수
+  //   fetchPreviousPage, // 이전 페이지 데이터를 불러올 수 있는 함수
+  //   hasNextPage, // 다음 페이지가 존재하는지 구분할 수 있는 식별자
+  //   hasPreviousPage, // 이전 페이지가 존재하는지 구분할 수 있는 식별자
+  //   isFetchingNextPage, // 다음 페이지를 불러오고 있는 중인지 구분할 수 있는 식별자
+  //   isFetchingPreviousPage, // 이전 데이터를 불러오고 있는 중인지 구분할 수 있는 식별자
+  //   ...result // etc...
+  // } = useInfiniteQuery(queryKey, ({ pageParam = 1 }) => fetchPage(pageParam), {
+  //   ...options,
+  //   getNextPageParam: (lastPage, allPages) => lastPage.nextCursor,
+  //   getPreviousPageParam: (firstPage, allPages) => firstPage.prevCursor,
+  // })
   const { data, status, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
     //query KEY
-    "posts",
+    ['posts'],
     ({ pageParam = 1 }) => fetchPostList(pageParam),
     {
       getNextPageParam: (lastPage) =>
         !lastPage.isLast ? lastPage.nextPage : undefined,
-      }
-      );
-      console.log(data)
+    }
+  );
+
+  console.log("data : ", data);
 
   useEffect(() => {
     if (inView && !isFetchingNextPage) fetchNextPage();
   }, [inView]);
 
-
-  const request = {
-    method: "get",
-    headers: { "Content-Type": "application/json" },
-  };
-
-  const [comments] = useFetch(
-    "http://whatu1.kro.kr:8080/comments?page=1&size=100",
-    request
-  );
-  const [movies] = useFetch(
-    `http://whatu1.kro.kr:8080/contents/${contentId}`,
-    request
-  );
-
   const [comment, setComment] = useState("");
+
+  if (status === "loading") return <></>;
 
   //한 줄 평 입력
   const submitcommit = async (e) => {
@@ -88,7 +83,6 @@ const Comment = () => {
       .catch((err) => {
         console.log(err);
       });
-    console.log(e.target.value);
   };
 
   //enter치면 submitcommit 함수 실행
@@ -98,74 +92,54 @@ const Comment = () => {
     }
   };
 
-  const moviecomment = comments.filter(
-    (comments) => movies.contentId === comments.contentId
-  );
-
-  // const movieDataComment = data.pages[0].posts.filter(
-  //   (comments) => movies.contentId === comments.contentId
+  // const moviecomment = comments.filter(
+  //   (comments) => contentId == comments.contentId
   // );
 
-  // console.log(movieDataComment)
-  // console.log(moviecomment)
+  const moviecomment = data.pages[0].posts.filter(
+    (comments) => contentId == comments.contentId
+  );
 
   return (
     <>
-      <S.InputDiv>
-        <input
-          className="recommendInput"
-          autoComplete="off"
-          name="recommend"
-          type="text"
-          // maxLength="35"
-          placeholder="한줄평을 입력해주세요"
-          onChange={(e) => setComment(e.target.value)}
-          onKeyPress={handleKeypress}
-          defaultValue={moviecomment.commentBody}
-        ></input>
-        <div className="buttonDiv">
-          <button type="submit" className="submit" onClick={submitcommit}>
-            등록
-          </button>
-        </div>
-      </S.InputDiv>
-      {moviecomment && moviecomment.length !== null ? (
-      // {data?.pages.map ((page,index)=> (
+      {true && (
+        // {data?.pages.map ((page,index)=> (
 
-      // ))}
+        // ))}
+          <S.DetailCommentList>
+            <S.InputDiv>
+              <input
+                className="recommendInput"
+                autoComplete="off"
+                name="recommend"
+                type="text"
+                // maxLength="35"
+                placeholder="한줄평을 입력해주세요"
+                onChange={(e) => setComment(e.target.value)}
+                onKeyPress={handleKeypress}
+              ></input>
+              <div className="buttonDiv">
+                <button type="submit" className="submit" onClick={submitcommit}>
+                  등록
+                </button>
+              </div>
+            </S.InputDiv>
+          </S.DetailCommentList>
+          )}{" "}
         <S.DetailCommentList>
           {moviecomment &&
             moviecomment.map((comment) => (
               <S.DetailCommentItem key={comment.commentId}>
-                <CommentBox comment={comment}/>
+                <CommentBox comment={comment} />
               </S.DetailCommentItem>
             ))}
-            {/* TODO:Loading 화면 구현 */}
-        {/* {isFetchingNextPage ? <Loading /> : <div ref={ref}></div>} */}
-        {/* {isFetchingNextPage ? '로딩' : <div ref={ref}></div>} */}
-        {/* <div ref={ref}>나를 봤다면, 이벤트 실행!!</div> */}
+          {/* TODO:Loading 화면 구현 */}
+          {/* {isFetchingNextPage ? <Loading /> : <div ref={ref}></div>} */}
+          {/* {isFetchingNextPage ? '로딩' : <div ref={ref}></div>} */}
+          {/* <div ref={ref}>나를 봤다면, 이벤트 실행!!</div> */}
         </S.DetailCommentList>
-      ) : (
-        <S.DetailCommentList>
-          <S.InputDiv>
-            <input
-              className="recommendInput"
-              autoComplete="off"
-              name="recommend"
-              type="text"
-              // maxLength="35"
-              placeholder="한줄평을 입력해주세요"
-              onChange={(e) => setComment(e.target.value)}
-              onKeyPress={handleKeypress}
-            ></input>
-            <div className="buttonDiv">
-              <button type="submit" className="submit" onClick={submitcommit}>
-                등록
-              </button>
-            </div>
-          </S.InputDiv>
-        </S.DetailCommentList>
-      )}
+      {/* : ( */}
+      {/* ) */}
     </>
   );
 };
