@@ -122,6 +122,12 @@ export const Sign = styled.ul`
         }
     }
 
+    .off {
+        @media only screen and (max-width: ${'350px'}) {
+            display: none;
+        }
+    }
+
     .modal {
         width: 90px;
         height: 30px;

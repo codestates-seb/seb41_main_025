@@ -10,6 +10,7 @@ export const Main = styled.div`
   @media only screen and (max-width: ${"350px"}) {
     display: grid;
     width: 100%;
+    overflow: hidden;
   }
 `;
 
