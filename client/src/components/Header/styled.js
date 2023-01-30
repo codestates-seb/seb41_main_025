@@ -102,6 +102,7 @@ export const Sign = styled.ul`
     margin: 30px;
     @media only screen and (max-width: ${'350px'}) {
         padding: 0;
+        margin: 0;
         min-width: 100px;
     }
     a {
@@ -116,9 +117,9 @@ export const Sign = styled.ul`
     .signUp {
         margin-left: 24px;
         @media only screen and (max-width: ${'350px'}) {
-        width: 0;
-        height: 0;
-    }
+            width: 0;
+            height: 0;
+        }
     }
 
     .modal {
