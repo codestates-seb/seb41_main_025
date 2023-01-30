@@ -7,10 +7,11 @@ import Empty from "../Empty/Empty";
 
 const FavoriteMovie = (props) =>{
 
-  
+  let isLogin = localStorage.getItem("isLogin");
   const memberId = localStorage.getItem("memberId");
   const [nickName, setNickName] = useState("")
   const [favoriteContent, setFavoriteContent] = useState([]);
+  const navigate = useNavigate();
 
   //검색기능
   const Navigate = useNavigate();
@@ -30,6 +31,7 @@ const FavoriteMovie = (props) =>{
   }
 
   useEffect(() => {
+    if (!isLogin) return navigate("/error");
     axios
     .get(`http://whatu1.kro.kr:8080/members/${memberId}/favorite`,
     {
