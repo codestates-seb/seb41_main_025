@@ -100,6 +100,7 @@ export const Sign = styled.ul`
     position: relative;
     min-width: 150px;
     padding-left: 10px;
+    margin: 30px;
     @media only screen and (max-width: ${'350px'}) {
         padding: 0;
         min-width: 100px;
@@ -125,12 +126,13 @@ export const Sign = styled.ul`
     .modal {
         width: 90px;
         height: 30px;
-        margin-left: 0px;
+        margin: 15px;
         background-color: white;
         border: 0;
         font-weight: bold;
         font-size : 16px;
         font-weight: 500;
+        cursor: pointer;
         @media only screen and (max-width: ${'350px'}) {
         font-size: 13px;
     }

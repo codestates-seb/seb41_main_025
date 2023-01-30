@@ -106,6 +106,26 @@ const Comment = () => {
         // {data?.pages.map ((page,index)=> (
 
         // ))}
+          <S.DetailCommentList>
+            <S.InputDiv>
+              <input
+                className="recommendInput"
+                autoComplete="off"
+                name="recommend"
+                type="text"
+                // maxLength="35"
+                placeholder="한줄평을 입력해주세요"
+                onChange={(e) => setComment(e.target.value)}
+                onKeyPress={handleKeypress}
+              ></input>
+              <div className="buttonDiv">
+                <button type="submit" className="submit" onClick={submitcommit}>
+                  등록
+                </button>
+              </div>
+            </S.InputDiv>
+          </S.DetailCommentList>
+          )}{" "}
         <S.DetailCommentList>
           {moviecomment &&
             moviecomment.map((comment) => (
@@ -118,27 +138,7 @@ const Comment = () => {
           {/* {isFetchingNextPage ? '로딩' : <div ref={ref}></div>} */}
           {/* <div ref={ref}>나를 봤다면, 이벤트 실행!!</div> */}
         </S.DetailCommentList>
-      )}{" "}
       {/* : ( */}
-      <S.DetailCommentList>
-        <S.InputDiv>
-          <input
-            className="recommendInput"
-            autoComplete="off"
-            name="recommend"
-            type="text"
-            // maxLength="35"
-            placeholder="한줄평을 입력해주세요"
-            onChange={(e) => setComment(e.target.value)}
-            onKeyPress={handleKeypress}
-          ></input>
-          <div className="buttonDiv">
-            <button type="submit" className="submit" onClick={submitcommit}>
-              등록
-            </button>
-          </div>
-        </S.InputDiv>
-      </S.DetailCommentList>
       {/* ) */}
     </>
   );

@@ -1,10 +1,15 @@
 import React from "react";
-import * as S from "./styled";
-import { InputDivs } from "../Tving/styled";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useCustomQuery } from "../../../components/util/useCustomQuery";
+import {
+  ContentList,
+  ContentItem,
+  ContentItemMe,
+  ButtonDiv,
+  InputDivs,
+} from "./styled";
 
 const Watcha = () => {
   const [comment, setComment] = useState("");
@@ -17,7 +22,6 @@ const Watcha = () => {
   if (isLoading) return <></>;
   // TODO: error 컴포넌트
   if (error) return <>error 발생</>;
-  
 
   const timeForToday = (time) => {
     const today = new window.Date();
@@ -52,11 +56,11 @@ const Watcha = () => {
       })
       .then(() => {
         // window.location.reload();
-        refetch()
-        setComment('')
+        refetch();
+        setComment("");
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
       });
     console.log(e.target.value);
   };
@@ -66,7 +70,7 @@ const Watcha = () => {
       submitcommit();
     }
   };
-  
+
   //게시판 삭제
   const deleteBoard = async (watchaBoardId) => {
     await axios
@@ -77,55 +81,59 @@ const Watcha = () => {
         },
       })
       .then(() => {
-        window.location.reload();
+        refetch();
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  
+
   return (
     <>
-      <S.ContentList>
-        {data && data.data.map((item) => {
-          return Number(memberId) === Number(item.memberId) ? (
-            <S.ContentItemMe key={item.watchaBoardId}>
-              <div className="userInfo">
-                <button
-                  onClick={() => {
-                    deleteBoard(item.watchaBoardId);
-                  }}
-                >
-                  삭제
-                </button>
-                {timeForToday(item.createAt)}
-                {item.nickName}
-                <img
-                  src={item.memberPicture}
-                  className="memberPicture"
-                  alt="사용자 이미지"
-                  style={{}}
-                ></img>
+      <ContentList>
+        {data &&
+          data.data.map((item) => {
+            return Number(memberId) === Number(item.memberId) ? (
+              <ContentItemMe key={item.watchaBoardId}>
+                <div className="userInfo">
+                  <button
+                    className="deleteChat"
+                    onClick={() => {
+                      deleteBoard(item.watchaBoardId);
+                    }}
+                  >
+                    삭제
+                  </button>
+                  <span className="userInfText">
+                    {timeForToday(item.createAt)}
+                  </span>
+                  <span className="userInfText">{item.nickName}</span>
+                  <img
+                    src={item.memberPicture}
+                    className="memberPicture"
+                    alt="사용자 이미지"
+                    style={{}}
+                  ></img>
+                  <div className="content">{item.watchaBoardBody}</div>
+                </div>
+              </ContentItemMe>
+            ) : (
+              <ContentItem key={item.watchaBoardId}>
+                <div className="userInfo">
+                  <img
+                    src={item.memberPicture}
+                    className="memberPicture"
+                    alt="사용자 이미지"
+                    style={{}}
+                  ></img>
+                  {item.nickName}
+                </div>
                 <div className="content">{item.watchaBoardBody}</div>
-              </div>
-            </S.ContentItemMe>
-          ) : (
-            <S.ContentItem key={item.watchaBoardId}>
-              <div className="userInfo">
-                <img
-                  src={item.memberPicture}
-                  className="memberPicture"
-                  alt="사용자 이미지"
-                  style={{}}
-                ></img>
-                {item.nickName}
-              </div>
-              <div className="content">{item.watchaBoardBody}</div>
-              {timeForToday(item.createAt)}
-            </S.ContentItem>
-          );
-        })}
-      </S.ContentList>
+                {timeForToday(item.createAt)}
+              </ContentItem>
+            );
+          })}
+      </ContentList>
       <InputDivs>
         <input
           className="recommendInput"
@@ -137,11 +145,11 @@ const Watcha = () => {
           onChange={(e) => setComment(e.target.value)}
           onKeyPress={handleKeypress}
         ></input>
-        <S.ButtonDiv>
+        <ButtonDiv>
           <button type="submit" className="submit" onClick={submitcommit}>
             등록
           </button>
-        </S.ButtonDiv>
+        </ButtonDiv>
       </InputDivs>
     </>
   );

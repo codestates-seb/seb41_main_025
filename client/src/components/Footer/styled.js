@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const FooterWrap = styled.div`
   width: 100%;
-  background: #167E6C;
+  /* border-top: 1px solid #d0d0d0; */
+  background: #4BA6B2;
 `
 
 export const FooterContainer = styled.div`

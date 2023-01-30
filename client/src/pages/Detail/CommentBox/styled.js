@@ -1,102 +1,35 @@
 import styled from "styled-components";
 
-export const DetailCommentList = styled.div`
-  width: 100%;
+export const CommentBoxDiv = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-`;
-
-export const DetailCommentItem = styled.div`
-  width: 1220px;
-  height: 100px;
-  padding: 10px;
-  background: #58bfad;
-  margin-bottom: 10px;
-  font-size: 13px;
-  border-radius: 10px;
-  @media only screen and (max-width: ${"350"}) {
-    width: 90%;
-  }
-  @media only screen and (max-width: ${"700"}) {
-    width: 90%;
-  }
-  .userInfo {
-    display: flex;
-    align-items: center;
-    padding-bottom: 10px;
-    color: #ffffff;
-    .name {
-      padding-left: 10px;
-    }
-  }
-  .content {
-    display: flex;
-    /* justify-content: center; */
-    align-items: center;
-    color: #ffffff;
-    font-size: 17px;
-    border-radius: 30px;
-    input {
-      width: 1100px;
-    }
-  }
-  .memberPicture {
-    border-radius: 30px;
-    width: 48px;
-    height: 48px;
-  }
-`;
-
-export const InputDiv = styled.div`
-  display: flex;
-  width: 80%;
-  margin-bottom: 20px;
-  margin-left: 10px;
-  .recommendInput {
+  padding-left: 5px ;
+  .commentToggleInput{
     width: 100%;
-    height: 100px;
-    padding-left: 30px;
-    background-color: #58bfad;
-    color: #ffffff;
-    font-size: 20px;
-    border: none;
-    border-radius: 10px;
-    &:focus {
-      outline: none;
-    }
-    ::placeholder {
-      color: #ffffff;
-    }
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 17px;
+    border: 1px solid #D9D9D9;
+    border-radius: 5px;
+    outline: none;
   }
-  .buttonDiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 110px;
-    height: 100px;
-    background-color: #d9d9d9;
-    border-radius: 10px;
-  }
-  .submit {
-    width: 48px;
-    height: 28px;
-    color: #ffffff;
-    background-color: #58bfad;
-    border: none;
-    border-radius: 10px;
-  }
+
 `;
 
 export const InputButton = styled.button`
   width: 30px;
   height: 30px;
-  background-color: #D9D9D9;
-  /* color: #FFFFFF; */
+  background-color: #4BA6B2;
+  color: #FFFFFF;
   border: none;
+  border-radius: 5px;
   margin-right: 5px;
+  cursor: pointer;
 `;
 
 export const Buttons = styled.div`
   display: flex;
+  justify-content: flex-end;
+
+
 `;

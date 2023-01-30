@@ -12,9 +12,9 @@ export const DetailCommentList = styled.div`
 
 export const DetailCommentItem = styled.div`
   width: 1200px;
-  height: 100px;
+  min-height: 100px;
   padding: 10px;
-  background: #58bfad;
+  background: #ECECEC;
   margin-bottom: 10px;
   font-size: 13px;
   border-radius: 10px;
@@ -28,14 +28,14 @@ export const DetailCommentItem = styled.div`
   .userInfo {
     display: flex;
     align-items: center;
-    padding-bottom: 10px;
-    color: #ffffff;
+    margin-bottom: 10px;
+    color: #000000;
     @media only screen and (max-width: ${'350px'}) {
     
   } 
     .name {
-      padding-left: 10px;
-      font-size: 15px;
+      padding-left: 20px;
+      font-size: 17px;
       @media only screen and (max-width: ${'350px'}) {
       font-size: 7px;
   } 
@@ -43,11 +43,10 @@ export const DetailCommentItem = styled.div`
   }
   .content {
     display: flex;
-    /* justify-content: center; */
-    align-items: center;
-    color: #ffffff;
+    padding-top: 15px;
+    border-top: 1px solid #D9D9D9;
+    color: #000000;
     font-size: 17px;
-    border-radius: 30px;
     @media only screen and (max-width: ${'350px'}) {
     font-size: 5px;
     
@@ -55,8 +54,8 @@ export const DetailCommentItem = styled.div`
   }
   .memberPicture {
     border-radius: 30px;
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
     @media only screen and (max-width: ${'350px'}) {
     width: 20px;
   } 
@@ -68,14 +67,15 @@ export const InputDiv = styled.div`
   width: 100%;
   margin-bottom: 20px;
   margin-left: 10px;
+
   .recommendInput {
     width: 100%;
     height: 100px;
     padding-left: 30px;
-    background-color: #58bfad;
-    color: #ffffff;
-    font-size: 20px;
+    background-color: #F9f9f9;
+    font-size: 17px;
     border: none;
+    border: 2px solid #D9D9D9;
     border-radius: 10px;
     @media only screen and (max-width: ${'350px'}) {
       font-size: 10px;
@@ -84,9 +84,10 @@ export const InputDiv = styled.div`
     } 
     &:focus {
       outline: none;
+      border: 2px solid #4BA6B2;
     }
     ::placeholder {
-      color: #ffffff;
+      color: #7e7e7e;
     }
   }
    .buttonDiv {
@@ -102,12 +103,13 @@ export const InputDiv = styled.div`
     } 
   }
   .submit {
-    width: 48px;
-    height: 28px;
+    width: 110px;
+    height: 100px;
     color: #ffffff;
-    background-color: #58bfad;
+    background-color: #4BA6B2;
     border: none;
     border-radius: 10px;
+    font-size: 17px;
     cursor: pointer;
     
     @media only screen and (max-width: ${'350px'}) {
@@ -118,18 +120,4 @@ export const InputDiv = styled.div`
   }
 `;
 
-export const InputButton = styled.button`
-  width: 60px;
-  height: 30px;
-  background-color: #58bfad;
-  margin-right: 0;
-  border-radius: 20px;
-  border-color: white;
-  color: black;
-  font-weight: 700;
-`
 
-export const Buttons = styled.div`
-  margin-left: 50%;
- 
-`
