@@ -28,6 +28,7 @@ export const UserInfoHeader = styled.div`
 
   .memberPicture {
     border-radius: 30%;
+    border: 1px solid #e5e5e5;
     @media only screen and (max-width: ${"350px"}) {
       width: 200px;
       height: 200px;
