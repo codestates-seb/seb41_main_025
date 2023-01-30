@@ -1,9 +1,10 @@
 import * as S from "./styled"
+import Spinner from "./Spinner.svg"
 
 const Loading = () => {
   return (
     <S.LoadingWrap>
-      <img src="./assets/Spinner.svg" alt="로딩중" />
+      <img src={Spinner} alt="로딩중" />
     </S.LoadingWrap>
   )
 }
