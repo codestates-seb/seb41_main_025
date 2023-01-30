@@ -135,7 +135,7 @@ export const Sign = styled.ul`
         cursor: pointer;
         @media only screen and (max-width: ${'350px'}) {
         font-size: 13px;
-    }
+        }
     }
 
     .flexEnd {
@@ -156,8 +156,9 @@ export const ModalContainer = styled.div`
     border-radius: 20px 0px 20px 20px;
     z-index: 10;
     @media only screen and (max-width: ${'350px'}) {
-    width: 200px;
-    height: 250px;
+        width: 200px;
+        height: 250px;
+        top: calc(0% + 50px);
     }
 
     h5 {
