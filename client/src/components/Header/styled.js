@@ -39,7 +39,7 @@ export const HeaderContainer = styled.div`
             height: 60px;
             img { width: 100% };
             @media only screen and (max-width: ${'700px'}) {
-            max-width: 40%;
+            max-width: 30%;
             min-width: 100px;
             height: auto;
             }
