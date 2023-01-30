@@ -85,7 +85,7 @@ const SignUp = () => {
         } else if (res.status === 400) {
           toast.error("회원가입을 진행해주세요");
         } else if (res.status === 409) {
-          toast.error("동일한 회원 정보가존재합니다!");
+          toast.error("동일한 회원 정보가 존재합니다!");
         }
         setTimeout(() => {
           return window.location.reload();
