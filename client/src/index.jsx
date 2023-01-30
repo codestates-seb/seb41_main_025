@@ -5,6 +5,7 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import App from './App';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 
 const queryClient = new QueryClient({
@@ -25,7 +26,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <QueryClientProvider client={queryClient}>
   <React.StrictMode>
+    <Router>
       <App />
+    </Router>
   </React.StrictMode>
     </QueryClientProvider>
 );
