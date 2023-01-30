@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import CommentBox from "../CommentBox/CommentBox";
 import { useInView } from "react-intersection-observer";
 import { useInfiniteQuery } from "@tanstack/react-query";
+import Loading from "../../../components/Loading/Loading"
 
 const fetchPostList = async (pageParam) => {
   const res = await axios.get(
@@ -56,7 +57,7 @@ const Comment = () => {
 
   const [comment, setComment] = useState("");
 
-  if (status === "loading") return <></>;
+  if (status === "loading") return <Loading/>;
 
   //한 줄 평 입력
   const submitcommit = async (e) => {
@@ -136,10 +137,8 @@ const Comment = () => {
           {/* TODO:Loading 화면 구현 */}
           {/* {isFetchingNextPage ? <Loading /> : <div ref={ref}></div>} */}
           {/* {isFetchingNextPage ? '로딩' : <div ref={ref}></div>} */}
-          {/* <div ref={ref}>나를 봤다면, 이벤트 실행!!</div> */}
+          <div ref={ref}>나를 봤다면, 이벤트 실행!!</div>
         </S.DetailCommentList>
-      {/* : ( */}
-      {/* ) */}
     </>
   );
 };
