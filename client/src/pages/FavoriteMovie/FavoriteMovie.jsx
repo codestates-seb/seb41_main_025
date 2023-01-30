@@ -3,7 +3,11 @@ import SeleteItem from "../../components/item/SelectItem/SeleteItem";
 import axios from "axios";
 import { useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
-import Empty from "../Empty/Empty";
+import Empty from "../../components/Empty/Empty";
+import { useCustomQuery } from "../../components/util/useCustomQuery";
+import Loading from "../../components/Loading/Loading";
+import Error from "../../components/Error/Error"
+
 
 const FavoriteMovie = (props) =>{
 
@@ -30,25 +34,25 @@ const FavoriteMovie = (props) =>{
       Navigate('/searchResult')
   }
 
-  useEffect(() => {
-    if (!isLogin) return navigate("/error");
-    axios
-    .get(`http://whatu1.kro.kr:8080/members/${memberId}/favorite`,
-    {
-      headers: {
-        "Content-Type": "application/json;charset=UTF-8",
-        Accept: "application/json",
-        "AutHorization" : localStorage.getItem("accessToken"),
-      },
-    })
-    .then((res) => {
-      setFavoriteContent(res.data.data);
-      // console.log(res.data.data)
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  },[]);
+  // useEffect(() => {
+  //   if (!isLogin) return navigate("/error");
+  //   axios
+  //   .get(`http://whatu1.kro.kr:8080/members/${memberId}/favorite`,
+  //   {
+  //     headers: {
+  //       "Content-Type": "application/json;charset=UTF-8",
+  //       Accept: "application/json",
+  //       "AutHorization" : localStorage.getItem("accessToken"),
+  //     },
+  //   })
+  //   .then((res) => {
+  //     setFavoriteContent(res.data.data);
+  //     // console.log(res.data.data)
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
+  // },[]);
 
   useEffect(() => {
     axios
@@ -68,14 +72,26 @@ const FavoriteMovie = (props) =>{
       });
     }, []);
 
-    console.log(favoriteContent)
+    const { data, isLoading, error, refetch } = useCustomQuery(
+      `/members/${memberId}/favorite`,
+      `memberId=${memberId}/favorite`
+    );
+  
+    if (isLoading) return <Loading />;
+    // if (loading) return <></>;
+    if (error) return <Error/>;
+    
+    const favoriteMovieList = data.data;
+
+    // console.log(favoriteContent)
+
     return (
         <S.MainWarp>
             <S.MainContainer>
                 <S.Title>
                     <span className="title">"{nickName}"님의 인생작품</span>
                     {/* 만약 Item 길이가 3개가 아니라면 검색 창 뜨게하기 */}
-                    {favoriteContent.length !== 3 ? (
+                    {favoriteMovieList.length !== 3 ? (
                       <S.FavoriteSearch>
                         <input 
                           type="text"
@@ -87,11 +103,11 @@ const FavoriteMovie = (props) =>{
                       </S.FavoriteSearch>) : null}
                 </S.Title>
                 {console.log(typeof(nickName))}
-                  {favoriteContent.length === 0 ? <Empty/> : (
-                    // FIXME : porps로 nickname을 내려주면 오류 발생
+                  {favoriteMovieList.length === 0 ? <Empty/> : (
+
                   <S.Items>
-                  {favoriteContent && favoriteContent.map((favorite) => {
-                    console.log(favorite.contentResponseMinDto.contentTitle)
+                  {favoriteMovieList && favoriteMovieList.map((favorite) => {
+  
                     return (
                       <SeleteItem 
                       dataId = {favorite.favoriteId}
@@ -99,6 +115,7 @@ const FavoriteMovie = (props) =>{
                       Id = {favorite.contentResponseMinDto.contentId}
                       Score={favorite.contentResponseMinDto.contentScore}
                       Title= {favorite.contentResponseMinDto.contentTitle}
+                      refetch= {refetch}
                       />
                       )
                     })}

@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { useCustomQuery } from "../../../components/util/useCustomQuery";
 import Loading from "../../../components/Loading/Loading";
+import { useCustomMutation } from "../../../components/util/useMutation";
 
 const Tving = () => {
   const [comment, setComment] = useState("");
@@ -16,7 +17,24 @@ const Tving = () => {
   const { data, isLoading, error, refetch } = useCustomQuery(
     `/boards/tving?page=1&size=100`,
     `boards=tving`
-  );
+    );
+
+    const { mutate } = useCustomMutation('/boards/tving','boards=tving', "POST", {
+    onMutate:(value) => {
+      console.log(value)
+    },
+    onSuccess:(data, variables, context) => {
+      console.log('onsuccess',data, variables, context)
+      refetch();
+    },
+    onError : (err) => {
+      console.log(err)
+    }
+    
+  })
+  const submitcommit = () => {
+    mutate({tvingBoardBody: comment})
+  }
 
   const timeForToday = (time) => {
     const today = new window.Date();
@@ -36,34 +54,36 @@ const Tving = () => {
   };
 
   //게시판 댓글 작성시 새 글이 밑으로 쌓여야 하는데 위로 쌓임
-  const submitcommit = async (e) => {
-    if (comment === "") return toast.error("한줄 평 내용을 입력해주세요");
+  // const submitcommit = async (e) => {
+  //   if (comment === "") return toast.error("한줄 평 내용을 입력해주세요");
 
-    const bodyJSON = JSON.stringify({
-      tvingBoardBody: comment,
-    });
+  //   const bodyJSON = JSON.stringify({
+  //     tvingBoardBody: comment,
+  //   });
 
-    await axios
-      .post(`http://whatu1.kro.kr:8080/boards/tving`, bodyJSON, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: localStorage.getItem("accessToken"),
-        },
-      })
-      .then(() => {
-        refetch();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    console.log(e.target.value);
-  };
+  //   await axios
+  //     .post(`http://whatu1.kro.kr:8080/boards/tving`, bodyJSON, {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: localStorage.getItem("accessToken"),
+  //       },
+  //     })
+  //     .then(() => {
+  //       refetch();
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  //   console.log(e.target.value);
+  // };
 
   const handleKeypress = (e) => {
     if (e.key === "Enter") {
       submitcommit();
+      e.target.reset()
     }
   };
+
 
   const deleteBoard = async (tvingBoardId) => {
     await axios
@@ -92,14 +112,6 @@ const Tving = () => {
             return Number(memberId) === Number(item.memberId) ? (
               <S.ContentItemMe key={item.tvingBoardId}>
                 <div className="userInfo">
-                  <button
-                    className="deleteChat"
-                    onClick={() => {
-                      deleteBoard(item.tvingBoardId);
-                    }}
-                  >
-                    삭제
-                  </button>
                   <span className="userInfText">
                     {timeForToday(item.createAt)}
                   </span>
@@ -112,7 +124,15 @@ const Tving = () => {
                     style={{}}
                   ></img>
                   <div className="content">{item.tvingBoardBody}</div>
-                </div>
+                  <button
+                    className="deleteChat"
+                    onClick={() => {
+                      deleteBoard(item.tvingBoardId);
+                    }}
+                    >
+                    삭제
+                  </button>
+                    </div>
               </S.ContentItemMe>
             ) : (
               <S.ContentItem key={item.tvingBoardId}>
@@ -141,11 +161,11 @@ const Tving = () => {
           onChange={(e) => setComment(e.target.value)}
           onKeyPress={handleKeypress}
         ></input>
-        <div className="buttonDiv">
+        <S.ButtonDiv>
           <button type="submit" className="submit" onClick={submitcommit}>
             등록
           </button>
-        </div>
+        </S.ButtonDiv>
       </S.InputDivs>
     </>
   );
