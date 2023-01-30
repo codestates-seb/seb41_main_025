@@ -49,6 +49,7 @@ export const ContentItem = styled.div`
 `;
 export const ContentItemMe = styled.div`
   padding: 20px;
+  text-align: right;
   .userInfo {
     text-align: right;
     padding-bottom: 10px;
@@ -63,6 +64,9 @@ export const ContentItemMe = styled.div`
     font-size: medium;
     margin-right: 5px;
     cursor: pointer;
+    @media only screen and (max-width: ${"350px"}) {
+      font-size: 3px;
+    }
   }
   .userInfText{
     padding: 0px 5px;
