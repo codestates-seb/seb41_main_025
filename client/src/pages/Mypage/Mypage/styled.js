@@ -69,7 +69,7 @@ export const FormDiv = styled.form`
   flex-direction: column;
   max-width: 1000px;
   align-items: end;
-  margin-left: 120px;
+  margin: 40px 0px 0px 120px;
   @media only screen and (max-width: ${'350px'}) {
     max-width: 350px;
     padding-right: 0px;
