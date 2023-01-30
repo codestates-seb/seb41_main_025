@@ -1,6 +1,6 @@
 import "./App.css";
 import styled, { createGlobalStyle } from "styled-components";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Header } from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Main from "./pages/Main/Main";
@@ -36,6 +36,7 @@ const Home = styled.div`
 
 function App() {
   const [searchResult, setSearchResult] = useState("");
+  const location = useLocation();
 
   const getSearchResult = (result) => {
     setSearchResult(result);
@@ -44,7 +45,7 @@ function App() {
   return (
     <Home>
       <GlobalStyle />
-      <BrowserRouter>
+      {/* <BrowserRouter> */}
         <Header getSearchResult={getSearchResult} />
         <Routes>
           <Route path="/" element={<Main />} />
@@ -63,9 +64,9 @@ function App() {
           <Route path="/contents/:contentId" element={<Detail />} />
           <Route exact path="/members/:memberId/modify" element={<Modify />} />
         </Routes>
-        <Footer />
+        {!['/signUp', '/login'].includes(location.pathname) && <Footer />}
         <Toast/>
-      </BrowserRouter>
+      {/* </BrowserRouter> */}
       <Toast />
     </Home>
   );

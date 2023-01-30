@@ -151,10 +151,10 @@ export const ModalContainer = styled.div`
   position: absolute;
   width: 250px;
   height: 300px;
-  top: calc(0% + 45px);
+  top: calc(0% + 60px);
   background-color: #ffffff;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  border-radius: 20px 20px 20px 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 20px;
   z-index: 10;
   @media only screen and (max-width: ${"350px"}) {
     width: 200px;
