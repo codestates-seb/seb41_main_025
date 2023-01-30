@@ -10,7 +10,6 @@ export const HeaderWrap = styled.div`
     background: white;
     z-index: 10;
     @media only screen and (max-width: ${'350px'}) {
-        height: 50px;
         max-width: 350px;
     }
 
@@ -40,7 +39,7 @@ export const HeaderContainer = styled.div`
             height: 60px;
             img { width: 100% };
             @media only screen and (max-width: ${'700px'}) {
-            max-width: 40%;
+            max-width: 30%;
             min-width: 100px;
             height: auto;
             }
@@ -68,9 +67,9 @@ export const SearchBar = styled.div`
         height: 40px;
         } 
         @media only screen and (max-width: ${'350px'}) {
-        margin-left: -120px;
-        width: 90px;
-        height: 30px;
+            margin-left: -130px;
+            width: 100px;
+            height: 30px;
         } 
 
     }
@@ -103,6 +102,7 @@ export const Sign = styled.ul`
     margin: 30px;
     @media only screen and (max-width: ${'350px'}) {
         padding: 0;
+        margin: 0;
         min-width: 100px;
     }
     a {
@@ -110,17 +110,22 @@ export const Sign = styled.ul`
         font-size : 16px;
         color: #7E7E7E;
         @media only screen and (max-width: ${'350px'}) {
-        width: 0;
-        height: 0;
-    }
+            font-size: 12px;
+        }
     }
 
     .signUp {
         margin-left: 24px;
         @media only screen and (max-width: ${'350px'}) {
-        width: 0;
-        height: 0;
+            width: 0;
+            height: 0;
+        }
     }
+
+    .off {
+        @media only screen and (max-width: ${'350px'}) {
+            display: none;
+        }
     }
 
     .modal {
@@ -135,7 +140,7 @@ export const Sign = styled.ul`
         cursor: pointer;
         @media only screen and (max-width: ${'350px'}) {
         font-size: 13px;
-    }
+        }
     }
 
     .flexEnd {
@@ -156,8 +161,8 @@ export const ModalContainer = styled.div`
     border-radius: 20px 0px 20px 20px;
     z-index: 10;
     @media only screen and (max-width: ${'350px'}) {
-    width: 200px;
-    height: 250px;
+        width: 200px;
+        height: 250px;
     }
 
     h5 {
