@@ -53,7 +53,8 @@ export const SignupButton = styled.button`
 
   :disabled {
     background-color: #ffffff;
-    opacity:0.7;
+    opacity:0.5;
+    cursor:Default;
   }
 
   @media only screen and (max-width: ${"350px"}) {
