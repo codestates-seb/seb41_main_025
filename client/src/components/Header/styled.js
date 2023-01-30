@@ -15,15 +15,15 @@ export const HeaderWrap = styled.div`
 
 `
 export const HeaderContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 1440px;
-    height: 60px;
-    margin: 0 auto;
-    @media only screen and (max-width: ${'350px'}) {
-        margin: 0 0;
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1440px;
+  height: 60px;
+  margin: 0 auto;
+  @media only screen and (max-width: ${"350px"}) {
+    margin: 0 0;
+  }
 
     .logo {
         display: flex;
@@ -50,7 +50,7 @@ export const HeaderContainer = styled.div`
             }
         } 
     }
-`
+`;
 
 export const SearchBar = styled.div`
     position: relative;
@@ -77,21 +77,20 @@ export const SearchBar = styled.div`
 `;
 
 export const SearchIcon = styled.button`
-    position: absolute;
+  position: absolute;
+  top: 50%;
+  right: 0%;
+  transform: translate(-50%, -50%);
+  color: #7e7e7e;
+  border: 0;
+  background-color: white;
+  cursor: pointer;
+  @media only screen and (max-width: ${"350px"}) {
     top: 50%;
-    right: 0%;
-    transform: translate(-50%,-50%);
-    color: #7e7e7e;
-    border: 0;
-    background-color: white;
-    cursor: pointer;
-    @media only screen and (max-width: ${'350px'}) {
-        top: 50%;
-        right: 50%;
-        transform: translate(0%,-50%);
-    }
+    right: 50%;
+    transform: translate(0%, -50%);
+  }
 `;
-
 
 export const Sign = styled.ul`
     display: flex;
@@ -143,48 +142,54 @@ export const Sign = styled.ul`
         }
     }
 
-    .flexEnd {
-        display: flex;
-        justify-content: flex-end;
-    }
+  .flexEnd {
+    display: flex;
+    justify-content: flex-end;
+  }
 `;
 
 export const ModalContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: absolute;
-    width: 250px;
-    height: 300px;
-    top: calc(0% + 60px);
-    background-color: aliceblue;
-    border-radius: 20px 0px 20px 20px;
-    z-index: 10;
-    @media only screen and (max-width: ${'350px'}) {
-        width: 200px;
-        height: 250px;
-    }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  width: 250px;
+  height: 300px;
+  top: calc(0% + 60px);
+  background-color: #ffffff;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 20px 20px 20px 20px;
+  z-index: 10;
+  @media only screen and (max-width: ${"350px"}) {
+    width: 200px;
+    height: 250px;
+  }
 
-    h5 {
-        text-align: end;
-        padding: 0px 20px; 
-    }
+  h5 {
+    text-align: end;
+    padding: 0px 20px;
+  }
 `;
 
 export const NevFont = styled(NavLink)`
-    padding: 20px;
-    @media only screen and (max-width: ${'350px'}) {
+  padding: 20px;
+  @media only screen and (max-width: ${"350px"}) {
     font-size: 10px;
-    }
+  }
 `;
 
 export const LogoutButton = styled.button`
-    font-size: 15px;
-    color: gray;
-    border: 0;
-    cursor: pointer;
-    height: 30px;
-    :active{
-        background-color: aliceblue;
-    }
+  width: 100px;
+  height: 30px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #ffffff;
+  color: #4ba6b3;
+  margin-left: 80px;
+  border: 0;
+  cursor: pointer;
+  :active {
+    background-color: #4ba6b3;
+    color: #ffffff;
+  }
 `;
