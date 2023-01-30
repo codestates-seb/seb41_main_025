@@ -79,12 +79,12 @@ const Header = (props) => {
           <S.Sign ref={outSection}>
             {/* ref 위치 확인하기 */}
             <li>
-              <S.Sign
+              <button
                 className="modal"
                 onClick={() => setIsModalOpen(!isModal)}
               >
                 마이페이지
-              </S.Sign>
+              </button>
             </li>
             {isModal === true ? (
               <li className="flexEnd" onClick={clickModalOutside}>
