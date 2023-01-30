@@ -10,6 +10,7 @@ import {
   ButtonDiv,
   InputDivs,
 } from "./styled";
+import Loading from "../../../components/Loading/Loading";
 
 const Watcha = () => {
   const [comment, setComment] = useState("");
@@ -90,6 +91,7 @@ const Watcha = () => {
 
   return (
     <>
+      {isLoading ? <Loading /> : null}
       <ContentList>
         {data &&
           data.data.map((item) => {

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useCustomQuery } from "../../../components/util/useCustomQuery";
+import Loading from "../../../components/Loading/Loading";
 
 const Tving = () => {
   const [comment, setComment] = useState("");
@@ -81,6 +82,7 @@ const Tving = () => {
   };
   return (
     <>
+      {isLoading ? <Loading /> : null}
       <S.ContentList>
         {data &&
           data.data.map((item) => {

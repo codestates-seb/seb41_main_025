@@ -17,6 +17,7 @@ import axios from "axios";
 import { useCustomQuery } from "../../../components/util/useCustomQuery";
 import { toast } from "react-toastify";
 import Error from "../../../components/Error/Error";
+import Loading from "../../../components/Loading/Loading";
 
 const apiCall = async (url) => {
   return await axios
@@ -110,10 +111,9 @@ const Detail = () => {
     `contents=${contentId}`
   );
 
-  // TODO: 로딩 컴포넌트
-  if (isLoading) return <></>;
-  if (loading) return <></>;
   if (error) return <Error/>;
+  if (isLoading) return <Loading />;
+  if (loading) return <Loading />;
   const movies = data.data;
   const ottlist = data.ottList;
 

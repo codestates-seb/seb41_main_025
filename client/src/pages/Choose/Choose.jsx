@@ -6,6 +6,7 @@ import axios from "axios";
 import SeleteItem from "../../components/item/SelectItem/SeleteItem"
 import Empty from "../Empty/Empty";
 import { useCustomQuery } from "../../components/util/useCustomQuery";
+import Loading from "../../components/Loading/Loading";
 
 const Choose = () => {
   const memberId = localStorage.getItem("memberId");
@@ -56,7 +57,7 @@ const Choose = () => {
     `memberId=${memberId}/choice`
   );
     // TODO: 로딩 컴포넌트
-    if (isLoading) return <></>;
+    if (isLoading) return <Loading />;
     // if (loading) return <></>;
     // TODO: error 컴포넌트
     if (error) return <>error 발생</>;

@@ -5,6 +5,7 @@ import axios from "axios";
 import { useCustomQuery } from "../../../components/util/useCustomQuery";
 import {ContentList, ContentItem, ContentItemMe, ButtonDiv, InputDivs } from "./styled"
 import { useCustomMutation } from "../../../components/util/useMutation";
+import Loading from "../../../components/Loading/Loading";
 
 const Wavve = () => {
   const [comment, setComment] = useState("");
@@ -98,6 +99,7 @@ const Wavve = () => {
 
   return (
     <>
+      {isLoading ? <Loading /> : null}
       <ContentList>
         {data &&
           data.data.map((item) => {
