@@ -15,7 +15,7 @@ export const FooterContainer = styled.div`
   margin: 0 auto;
   color: #ffffff;
   @media only screen and (max-width: ${'350px'}) {
-    height: 200px;
+    height: 230px;
     margin: 20px 0px 0 0;
     } 
 

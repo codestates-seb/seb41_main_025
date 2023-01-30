@@ -1,6 +1,6 @@
 import "./App.css";
 import styled, { createGlobalStyle } from "styled-components";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { Header } from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Main from "./pages/Main/Main";
@@ -17,6 +17,7 @@ import Detail from "./pages/Detail/Detail/Detail";
 import { useState } from "react";
 import Toast from "./components/Toast/Toast"
 import Modify from "./pages/Mypage/Modify/Modify";
+import Error from "./components/Error/Error";
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -63,6 +64,7 @@ function App() {
           <Route path="/recommend" element={<RecommendMovies />} />
           <Route path="/contents/:contentId" element={<Detail />} />
           <Route exact path="/members/:memberId/modify" element={<Modify />} />
+          <Route path="/*" element={<Error/>}/>
         </Routes>
         {!['/signUp', '/login'].includes(location.pathname) && <Footer />}
         <Toast/>
