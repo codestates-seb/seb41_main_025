@@ -114,7 +114,7 @@ export const Sign = styled.ul`
             font-size: 12px;
         }
     }
-  }
+  
 
     .signUp {
         margin-left: 24px;
