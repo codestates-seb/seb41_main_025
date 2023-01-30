@@ -2,6 +2,8 @@ package com.mainProject.server.domain.content.dto;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @Builder
@@ -28,5 +30,8 @@ public class ContentResponseDto {
     private Long recommendCount;
     private Long deprecateCount;
     private Long favoriteCount;
+
+    private LocalDateTime createdAt;
+    private LocalDateTime modifiedAt;
 
     }
