@@ -17,7 +17,7 @@ public class WebConfig implements WebMvcConfigurer {
                         .allowedOriginPatterns("*") //
                         .allowedHeaders("*")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS" , "PATCH")
-                        .exposedHeaders("Authorization"); //, "RefreshToken", "AccessToken"
+                        .exposedHeaders("Authorization","RefreshToken"); //, "RefreshToken", "AccessToken"
                 //.allowCredentials(true); 와일드카드로 했을때 에러가 난다 실행조차 안됨
             }
         };

@@ -48,6 +48,7 @@ public class MemberController {
     @PostMapping("/reissue")
     public ResponseEntity reissue(@Valid @RequestBody MemberDto.Reissue reissue) {
         // validation check
+        reissue.setAccessToken(reissue.getAccessToken().replace("Bearer ",""));
         memberService.reissue(reissue);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
