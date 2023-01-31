@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { useEffect } from "react";
 import { ImSearch } from "react-icons/im";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const Header = (props) => {
   let isLogin = localStorage.getItem("isLogin");
@@ -33,14 +34,15 @@ const Header = (props) => {
     setSearchMovie(e.target.value);
   };
   const onKeyPressEnter = (e) => {
-    if (searchMovie === "") {
-      toast.info("검색어를 입력하세요");
-    } else if (e.key === "Enter") {
+    if (e.key === "Enter") {
       sendSerachResult();
-      setSearchMovie();
+      setSearchMovie("");
     }
   };
   const sendSerachResult = () => {
+    if (searchMovie === "") {
+      toast.info("검색어를 입력하세요");
+    }
     props.getSearchResult(searchMovie);
     Navigate("/searchResult");
   };
@@ -113,6 +115,24 @@ const Modal = () => {
   const memberId = localStorage.getItem("memberId");
   const navigate = useNavigate();
 
+  // const LogoutHandle = () => {
+
+  //   axios
+  //     .post(
+  //       `http://whatu1.kro.kr:8080/members/logout`,
+  //       {
+
+  //       },
+  //     )
+  //     .then(() => {
+  //       toast.success("추천이 완료되었습니다");
+  //       navigate("/");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+
   const LogoutHandle = () => {
     localStorage.clear();
     toast.success("로그아웃이 완료되었습니다!");
@@ -122,7 +142,7 @@ const Modal = () => {
   return (
     <S.ModalContainer>
       <S.NevFont to={`/members/${memberId}`}>나의 정보</S.NevFont>
-      <S.NevFont to="/recommend">내가 누른 추천 & 비 추천</S.NevFont>
+      <S.NevFont to="/recommend">내가 누른 추천 & 비추천</S.NevFont>
       <S.NevFont to="/choice">찜한 영화</S.NevFont>
       <S.NevFont to="/favorite">내 인생작품 3가지</S.NevFont>
       <S.LogoutButton onClick={LogoutHandle}>Log out</S.LogoutButton>
