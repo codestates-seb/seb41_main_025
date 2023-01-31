@@ -62,9 +62,10 @@ export const FormDiv = styled.form`
   align-items: end;
   /* margin-left: 120px; */
   @media only screen and (max-width: ${"350px"}) {
-    width: 700px;
+    width: 300px;
     padding: 0;
-    margin: 0;
+    margin-right: 100px;
+    
   }
 `;
 

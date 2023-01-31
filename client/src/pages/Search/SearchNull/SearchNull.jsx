@@ -1,5 +1,5 @@
 import * as S from './styled'
-import { ButtonForm } from '../../components/item/Button/styled'
+import { ButtonForm } from '../../../components/item/Button/styled'
 
 const SearchNull = () => {
 

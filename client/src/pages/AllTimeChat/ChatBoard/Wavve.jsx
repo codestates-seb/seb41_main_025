@@ -106,14 +106,6 @@ const Wavve = () => {
             return Number(memberId) === Number(item.memberId) ? (
               <ContentItemMe key={item.wavveBoardId}>
                 <div className="userInfo">
-                  <button
-                    className="deleteChat"
-                    onClick={() => {
-                      deleteBoard(item.wavveBoardId);
-                    }}
-                  >
-                    삭제
-                  </button>
                   <span className="userInfText">
                     {timeForToday(item.createAt)}
                   </span>
@@ -125,6 +117,14 @@ const Wavve = () => {
                     style={{}}
                   ></img>
                   <div className="content">{item.wavveBoardBody}</div>
+                  <button
+                    className="deleteChat"
+                    onClick={() => {
+                      deleteBoard(item.wavveBoardId);
+                    }}
+                  >
+                    삭제
+                  </button>
                 </div>
               </ContentItemMe>
             ) : (

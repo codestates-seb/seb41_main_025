@@ -5,11 +5,9 @@ export const Main = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 60px 60px 0px;
-  height: 80vh;
   @media only screen and (max-width: ${"350px"}) {
     font-size: 15px;
-    width: 150px;
+    width: 200px;
     padding: 0px 0px 0px;
     height: 50vh;
   }
@@ -25,7 +23,7 @@ export const SerachWrap = styled.div`
 export const SearchConatiner = styled.div`
   max-width: 1440px;
   margin: 0 auto;
-  padding: 60px;
+
   /* @media only screen and (max-width: ${"350px"}) {
     width: 300px;
     }
@@ -56,6 +54,7 @@ export const Window = styled.div`
   opacity: 0.9;
   @media only screen and (max-width: ${"350px"}) {
     width: 300px;
+    height: 300px;
     flex-direction: column;
   }
   .character {
@@ -64,10 +63,10 @@ export const Window = styled.div`
     margin-top: 150px;
     margin-right: 20px;
     @media only screen and (max-width: ${"350px"}) {
-      width: 160px;
-      height: 160px;
+      width: 100px;
+      height: 100px;
       margin-top: 0px;
-      margin-left: 40%;
+      margin-left: 30%;
     }
   }
 `;
@@ -75,6 +74,6 @@ export const Window = styled.div`
 export const Font = styled.span`
   margin: auto;
   @media only screen and (max-width: ${"350px"}) {
-    font-size: 13px;
+    font-size: 10px;
   }
 `;

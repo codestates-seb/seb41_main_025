@@ -1,9 +1,9 @@
 import * as S from "./styled";
-import Item from "../../components/item/Item/item";
-import useFetch from "../../components/util/useFetch";
+import Item from "../../../components/item/Item/item";
+import useFetch from "../../../components/util/useFetch";
 import { Link, useParams } from "react-router-dom";
 import SearchNull from "../SearchNull/SearchNull";
-import { useCustomQuery } from "../../components/util/useCustomQuery";
+import { useCustomQuery } from "../../../components/util/useCustomQuery";
 
 const SearchResult = ({ searchResult }) => {
 

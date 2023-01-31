@@ -4,9 +4,10 @@ import { MainWarp } from "../Main/styled";
 import { Title } from "../FavoriteMovie/styled";
 import axios from "axios";
 import SeleteItem from "../../components/item/SelectItem/SeleteItem"
-import Empty from "../Empty/Empty";
+import Empty from "../../components/Empty/Empty";
 import { useCustomQuery } from "../../components/util/useCustomQuery";
 import Loading from "../../components/Loading/Loading";
+import Error from "../../components/Error/Error"
 
 const Choose = () => {
   const memberId = localStorage.getItem("memberId");
@@ -60,7 +61,7 @@ const Choose = () => {
     if (isLoading) return <Loading />;
     // if (loading) return <></>;
     // TODO: error 컴포넌트
-    if (error) return <>error 발생</>;
+    if (error) return <Error/>
 
   const choiceMovieList = data.data;
 
