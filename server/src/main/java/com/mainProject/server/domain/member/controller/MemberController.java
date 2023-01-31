@@ -56,6 +56,7 @@ public class MemberController {
     @PostMapping("/logout")
     public ResponseEntity<?> logout(@Valid @RequestBody MemberDto.Logout logout) {
         // validation check
+        logout.setAccessToken(logout.getAccessToken().replace("Bearer ",""));
         memberService.logout(logout);
         return new ResponseEntity<>("/members/login",HttpStatus.OK);
     }
