@@ -1,10 +1,10 @@
 import * as S from "./styled";
-import Item from "../../components/item/Item/item";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SearchNull from "../SearchNull/SearchNull";
-import { useCustomQuery } from "../../components/util/useCustomQuery";
-import Loading from "../../components/Loading/Loading";
-import Error from "../../components/Error/Error";
+import { useCustomQuery } from "../../../components/util/useCustomQuery";
+import Item from "../../../components/item/Item/item";
+import Loading from "../../../components/Loading/Loading";
+import Error from "../../../components/Error/Error";
 
 const SearchResult = ({ searchResult }) => {
 
