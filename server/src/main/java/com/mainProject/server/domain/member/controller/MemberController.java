@@ -48,6 +48,7 @@ public class MemberController {
     @PostMapping("/reissue")
     public ResponseEntity reissue(@Valid @RequestBody MemberDto.Reissue reissue) {
         // validation check
+        reissue.setAccessToken(reissue.getAccessToken().replace("Bearer ",""));
         memberService.reissue(reissue);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -55,6 +56,7 @@ public class MemberController {
     @PostMapping("/logout")
     public ResponseEntity<?> logout(@Valid @RequestBody MemberDto.Logout logout) {
         // validation check
+        logout.setAccessToken(logout.getAccessToken().replace("Bearer ",""));
         memberService.logout(logout);
         return new ResponseEntity<>("/members/login",HttpStatus.OK);
     }
