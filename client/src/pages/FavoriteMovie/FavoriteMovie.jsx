@@ -11,11 +11,8 @@ import Error from "../../components/Error/Error"
 
 const FavoriteMovie = (props) =>{
 
-  let isLogin = localStorage.getItem("isLogin");
   const memberId = localStorage.getItem("memberId");
   const [nickName, setNickName] = useState("")
-  const [favoriteContent, setFavoriteContent] = useState([]);
-  const navigate = useNavigate();
 
   //검색기능
   const Navigate = useNavigate();
@@ -23,13 +20,11 @@ const FavoriteMovie = (props) =>{
 
   const onChange = (e) => {
       setSearchMovie(e.currentTarget.value);
-      // console.log(e.currentTarget.value)
   }
   const onKeyPressEnter = (e) => {
       if(e.key === "Enter") sendSerachResult();
   }
   const sendSerachResult = () => {
-    console.log(props.getSearchResult)
       props.getSearchResult(searchMovie);
       Navigate('/searchResult')
   }
@@ -78,12 +73,10 @@ const FavoriteMovie = (props) =>{
     );
   
     if (isLoading) return <Loading />;
-    // if (loading) return <></>;
     if (error) return <Error/>;
     
     const favoriteMovieList = data.data;
 
-    // console.log(favoriteContent)
 
     return (
         <S.MainWarp>
@@ -102,7 +95,6 @@ const FavoriteMovie = (props) =>{
                           ></input>
                       </S.FavoriteSearch>) : null}
                 </S.Title>
-                {console.log(typeof(nickName))}
                   {favoriteMovieList.length === 0 ? <Empty/> : (
 
                   <S.Items>

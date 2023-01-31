@@ -6,11 +6,9 @@ import { toast } from "react-toastify";
 const Item = ({  dataId, Poster, Id, Score ,Title, refetch }) => {
 
   const params = useLocation()
-  console.log(params.pathname)
 
   //list 삭제
   const handleDelete = async (dataId) => {
-    console.log("clicked")
     await axios
       .delete(
         `http://whatu1.kro.kr:8080${params.pathname}/${dataId}`,
@@ -21,7 +19,6 @@ const Item = ({  dataId, Poster, Id, Score ,Title, refetch }) => {
         }
       )
       .then((res) => {
-        console.log(res)
         refetch()
         // window.location.reload();
         toast.success("삭제가 완료되었습니다");

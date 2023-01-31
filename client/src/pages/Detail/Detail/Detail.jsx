@@ -18,7 +18,6 @@ import { useCustomQuery } from "../../../components/util/useCustomQuery";
 import { toast } from "react-toastify";
 import Error from "../../../components/Error/Error";
 import Loading from "../../../components/Loading/Loading";
-import { useCustomMutation } from "../../../components/util/useMutation";
 
 const apiCall = async (url) => {
   return await axios
@@ -47,7 +46,6 @@ const Detail = () => {
   let isLogin = localStorage.getItem("isLogin");
   const contentRef = useRef(null);
   const [isHide, setIsHide] = useState(false);
-  // console.log(isHide)
 
   const memberId = localStorage.getItem("memberId");
 
@@ -164,7 +162,6 @@ const Detail = () => {
         }
         setRecommend(!recommend);
         refetch();
-        // toast.success("추천이 완료되었습니다");
       })
       .catch((err) => {
         console.log(err);
@@ -274,8 +271,6 @@ const Detail = () => {
               <div className="content">
                 공개일 : {movies && movies.contentOpenAt}
               </div>
-              {/* <div className="content">공개 OTT : </div> */}
-              {console.log(movies)}
               <div className="content">
                 평점 : {movies && movies.contentScore}
               </div>

@@ -1,7 +1,6 @@
 import React from "react";
 import * as S from "./styled";
 import { useState } from "react";
-import { toast } from "react-toastify";
 import axios from "axios";
 import { useCustomQuery } from "../../../components/util/useCustomQuery";
 import Loading from "../../../components/Loading/Loading";
@@ -10,10 +9,6 @@ import { useCustomMutation } from "../../../components/util/useMutation";
 const Tving = () => {
   const [comment, setComment] = useState("");
   const memberId = localStorage.getItem("memberId");
-  // console.log(memberId);
-
-  const [commentOTT, setCommentOTT] = useState("");
-
   const { data, isLoading, error, refetch } = useCustomQuery(
     `/boards/tving?page=1&size=100`,
     `boards=tving`
@@ -53,30 +48,6 @@ const Tving = () => {
     return `${Math.floor(betweenTimeDay / 365)} years ago`;
   };
 
-  //게시판 댓글 작성시 새 글이 밑으로 쌓여야 하는데 위로 쌓임
-  // const submitcommit = async (e) => {
-  //   if (comment === "") return toast.error("한줄 평 내용을 입력해주세요");
-
-  //   const bodyJSON = JSON.stringify({
-  //     tvingBoardBody: comment,
-  //   });
-
-  //   await axios
-  //     .post(`http://whatu1.kro.kr:8080/boards/tving`, bodyJSON, {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: localStorage.getItem("accessToken"),
-  //       },
-  //     })
-  //     .then(() => {
-  //       refetch();
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  //   console.log(e.target.value);
-  // };
-
   const handleKeypress = (e) => {
     if (e.key === "Enter") {
       submitcommit();
@@ -106,8 +77,6 @@ const Tving = () => {
       <S.ContentList>
         {data &&
           data.data.map((item) => {
-            // console.log("local", memberId);
-            // console.log(item.memberId);
 
             return Number(memberId) === Number(item.memberId) ? (
               <S.ContentItemMe key={item.tvingBoardId}>

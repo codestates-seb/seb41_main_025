@@ -14,13 +14,10 @@ const SearchResult = ({ searchResult }) => {
   //   `contents=${contentId}`
   // );
 
-  // TODO: 로딩 컴포넌트
   // if (isLoading) return <></>;
-  // if (loading) return <></>;
-  // TODO: error 컴포넌트
   // if (error) return <>error 발생</>;
   // const movies = data.data;
-  console.log(searchResult); // 입력값 제대로 오는지 확인
+
 
   // 검색 값과 영화 리스트를 filter 로 걸러낸다.
   const resultFilter = movies.filter((e) => {
@@ -28,7 +25,6 @@ const SearchResult = ({ searchResult }) => {
       .toLocaleLowerCase()
       .includes(searchResult.toLocaleLowerCase());
   });
-  console.log(resultFilter.length);
 
   return (
     <S.Wrap>

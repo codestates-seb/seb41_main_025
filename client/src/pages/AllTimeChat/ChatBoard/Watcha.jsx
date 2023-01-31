@@ -64,7 +64,6 @@ const Watcha = () => {
       .catch((err) => {
         console.log(err);
       });
-    console.log(e.target.value);
   };
 
   const handleKeypress = (e) => {

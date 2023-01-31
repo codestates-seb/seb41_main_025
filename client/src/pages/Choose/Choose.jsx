@@ -12,26 +12,6 @@ import Error from "../../components/Error/Error"
 const Choose = () => {
   const memberId = localStorage.getItem("memberId");
   const [nickName, setNickName] = useState("");
-  const [choice, setChoice] = useState([]);
-
-  console.log(choice)
-  //Choice
-  // useEffect(() => {
-  // axios
-  //   .get(`http://whatu1.kro.kr:8080/members/${memberId}/choice`, {
-  //     headers: {
-  //       "Content-Type": "application/json;charset=UTF-8",
-  //       Accept: "application/json",
-  //       AutHorization: localStorage.getItem("accessToken"),
-  //     },
-  //   })
-  //   .then((res) => {
-  //     setChoice(res.data.data)
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-  // }, []);
 
   useEffect(() => {
     axios
@@ -45,7 +25,6 @@ const Choose = () => {
       })
       .then((res) => {
         setNickName(res.data.data.nickName);
-        // console.log(nickName)
       })
       .catch((error) => {
         console.log(error);
@@ -57,15 +36,11 @@ const Choose = () => {
     `/members/${memberId}/choice`,
     `memberId=${memberId}/choice`
   );
-    // TODO: 로딩 컴포넌트
+
     if (isLoading) return <Loading />;
-    // if (loading) return <></>;
-    // TODO: error 컴포넌트
     if (error) return <Error/>
 
   const choiceMovieList = data.data;
-
-  console.log(choiceMovieList)
 
   return (
     <MainWarp>
