@@ -9,13 +9,16 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import Loading from "../../../components/Loading/Loading"
 
 const fetchPostList = async (pageParam) => {
+  console.log(pageParam)
   const res = await axios.get(
     `http://whatu1.kro.kr:8080/comments?page=${pageParam}&size=10`
   );
+  console.log(res)
 
   // const { posts, isLast } = res.data;
   const posts = res.data.data;
   const isLast = res.data.pageInfo.totalPages;
+  console.log(posts,)
   return { posts, nextPage: pageParam + 1, isLast };
 };
 
@@ -39,13 +42,14 @@ const Comment = () => {
   //   getNextPageParam: (lastPage, allPages) => lastPage.nextCursor,
   //   getPreviousPageParam: (firstPage, allPages) => firstPage.prevCursor,
   // })
-  const { data, status, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
+  const { data, status, fetchNextPage, isFetchingNextPage, hasNextPage } = useInfiniteQuery(
     //query KEY
     ['posts'],
     ({ pageParam = 1 }) => fetchPostList(pageParam),
     {
-      getNextPageParam: (lastPage) =>
-        !lastPage.isLast ? lastPage.nextPage : undefined,
+      // getNextPageParam: (lastPage) =>!lastPage.isLast ? lastPage.nextPage : undefined,
+      getNextPageParam: (lastPage, allPages) => lastPage.nextPage,
+      getPreviousPageParam: (firstPage, allPages) => firstPage.prevCursor
     }
   );
 
@@ -96,11 +100,22 @@ const Comment = () => {
   // const moviecomment = comments.filter(
   //   (comments) => contentId == comments.contentId
   // );
+    //       let moviecomment = data.pages[0].posts.filter(
+  //         (comments) => contentId == comments.contentId
 
-  const moviecomment = data.pages[0].posts.filter(
-    (comments) => contentId == comments.contentId
-  );
+  // let moviecomment = [];
 
+  // if(data) {
+  //   if(data[0]){
+  //     for(let i = 0; i<2; i++){
+  //       console.log(moviecomment)
+  //       return moviecomment = data.pages[i].posts;
+      
+  //     }
+  //   }
+  // }
+
+  // console.log(moviecomment)
   return (
     <>
       {true && (
@@ -128,16 +143,28 @@ const Comment = () => {
           </S.DetailCommentList>
           )}{" "}
         <S.DetailCommentList>
-          {moviecomment &&
-            moviecomment.map((comment) => (
-              <S.DetailCommentItem key={comment.commentId}>
-                <CommentBox comment={comment} />
-              </S.DetailCommentItem>
+          {console.log(data.pages)}
+          {data.pages &&
+            data.pages.map((comment) => (
+              <div key={comment.commentId}>
+                {comment.posts && comment.posts.map ((body) => (
+                  <div>
+                    {console.log("body",body.contentId)}
+                    {console.log("contentId",contentId)}
+                    {Number(body.contentId) === Number(contentId) ? 
+                    (
+                      <S.DetailCommentItem key={body.commentId}>
+                        <CommentBox comment={body} />
+                      </S.DetailCommentItem>
+                  ):null}
+                  </div>
+                ))}
+              </div>
             ))}
           {/* TODO:Loading 화면 구현 */}
-          {/* {isFetchingNextPage ? <Loading /> : <div ref={ref}></div>} */}
-          {/* {isFetchingNextPage ? '로딩' : <div ref={ref}></div>} */}
-          <div ref={ref}>나를 봤다면, 이벤트 실행!!</div>
+          {/* {hasNextPage ? <Loading /> : <div ref={ref}></div>} */}
+          {/* {hasNextPage ? '로딩' : <div ref={ref}>끝</div>} */}
+          <div ref={ref}></div>
         </S.DetailCommentList>
     </>
   );
