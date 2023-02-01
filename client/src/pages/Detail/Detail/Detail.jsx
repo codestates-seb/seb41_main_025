@@ -35,6 +35,7 @@ const apiCall = async (url) => {
     });
 };
 
+
 const Detail = () => {
   const { contentId } = useParams();
   const navigate = useNavigate();
@@ -105,6 +106,7 @@ const Detail = () => {
       setLoading(false);
     }
   }, []);
+
 
   const { data, isLoading, error, refetch } = useCustomQuery(
     `/contents/${contentId}`,
@@ -243,9 +245,12 @@ const Detail = () => {
         console.log(err);
       });
   };
+  
 
   const onClick = (e) => {
+    
     setIsHide(!isHide);
+    // console.log(contentRef.current)
     // 숨겨진 멘트가 다 출력된다
     isHide
       ? contentRef.current.classList.remove("show")
@@ -279,10 +284,10 @@ const Detail = () => {
               </div>
               <S.Ellipsis ref={contentRef}>
                 영화설명 : {movies && movies.contentBody}
+              </S.Ellipsis>
                 <S.Button onClick={onClick}>
                   {isHide ? "[숨기기]" : "...[더보기]"}
                 </S.Button>
-              </S.Ellipsis>
             </div>
           </>
           <S.DetailItem>
