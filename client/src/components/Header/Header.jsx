@@ -33,16 +33,19 @@ const Header = (props) => {
     setSearchMovie(e.target.value);
   };
   const onKeyPressEnter = (e) => {
-    if (searchMovie === "") {
-      toast.info("검색어를 입력하세요");
-    } else if (e.key === "Enter") {
+    if (e.key === "Enter") {
       sendSerachResult();
       setSearchMovie("");
     }
   };
   const sendSerachResult = () => {
+    if (searchMovie === "") {
+      toast.info("검색어를 입력하세요");
+    } 
+    else{
     props.getSearchResult(searchMovie);
     Navigate("/searchResult");
+    }
   };
 
   return (
