@@ -98,20 +98,20 @@ export const Ellipsis = styled.div`
   -webkit-line-clamp: 3;
   &.show {
     display: block;
-    max-height: none;
+    max-height: 280px;
     overflow: auto;
     -webkit-line-clamp: unset;
   }
 `;
 
 export const Button = styled.button`
-  position: absolute;
+  position: sticky;
   bottom: 0;
   right: 0;
   border: 0;
   max-height: 2rem;
   line-height: 2rem;
-  padding-left: 20px;
+  margin-left: 480px;
   background: #f9f9f9;
 
   &.hide {
