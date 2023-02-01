@@ -52,7 +52,7 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
-    public void reissue (MemberDto.Reissue reissue) {
+    public MemberDto.TokenInfo reissue (MemberDto.Reissue reissue) {
         // 1. Refresh Token 검증
         if (!jwtTokenizer.validateToken(reissue.getRefreshToken())) {
             throw new BusinessLogicException(ExceptionCode.REFRESH_TOKEN_NOT_ALLOW);
@@ -77,9 +77,8 @@ public class MemberService {
         // 5. RefreshToken Redis 업데이트
         redisTemplate.opsForValue()
                 .set(authentication.getName(), tokenInfo.getRefreshToken(), tokenInfo.getRefreshTokenExpirationTime(), TimeUnit.MILLISECONDS);
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "Bearer " + tokenInfo.getAccessToken());
-        headers.add("RefreshToken", tokenInfo.getRefreshToken());
+
+        return tokenInfo;
     }
     public void logout(MemberDto.Logout logout) {
         // 1. Access Token 검증

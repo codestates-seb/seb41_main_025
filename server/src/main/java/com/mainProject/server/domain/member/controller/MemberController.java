@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -49,8 +50,11 @@ public class MemberController {
     public ResponseEntity reissue(@Valid @RequestBody MemberDto.Reissue reissue) {
         // validation check
         reissue.setAccessToken(reissue.getAccessToken().replace("Bearer ",""));
-        memberService.reissue(reissue);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        MemberDto.TokenInfo tokenInfo = memberService.reissue(reissue);
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization",tokenInfo.getAccessToken());
+        headers.set("RefreshToken",tokenInfo.getRefreshToken());
+        return new ResponseEntity<>(headers,HttpStatus.CREATED);
     }
 
     @PostMapping("/logout")
