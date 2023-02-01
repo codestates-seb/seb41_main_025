@@ -18,6 +18,7 @@ import { useCustomQuery } from "../../../components/util/useCustomQuery";
 import { toast } from "react-toastify";
 import Error from "../../../components/Error/Error";
 import Loading from "../../../components/Loading/Loading";
+import { useCustomMutation } from "../../../components/util/useMutation";
 
 const apiCall = async (url) => {
   return await axios
@@ -111,6 +112,27 @@ const Detail = () => {
     `contents=${contentId}`
   );
 
+//   const { mutate } = useCustomMutation(`/contents/${contentId}/recommend`,`contents=${contentId}`, "POST", {
+//     onMutate:(value) => {
+//       console.log(value)
+//     },
+//     onSuccess:(data, variables, context) => {
+//       console.log('onsuccess',data, variables, context)
+//       if (deprecate) {
+//         setDeprecate(!deprecate);
+//       }
+//       setRecommend(!recommend);
+//       refetch();
+//     },
+//     onError : (err) => {
+//       console.log(err)
+//     }
+    
+//   })
+//   const handleRecommend = () => {
+//     mutate({})
+// }
+
   if (error) return <Error/>;
   if (isLoading) return <Loading />;
   if (loading) return <Loading />;
@@ -148,6 +170,8 @@ const Detail = () => {
         console.log(err);
       });
   };
+
+  
 
   //비추천
   const handleDecommend = async () => {

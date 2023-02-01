@@ -85,6 +85,6 @@ export const CommentItem = styled.div`
 export const Introduce = styled.div`
   margin-bottom: 50px;
   @media only screen and (max-width: ${'350px'}) {
-    font-size: 15px;
+    font-size: 12px;
   } 
 `

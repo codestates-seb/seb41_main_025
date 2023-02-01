@@ -11,6 +11,7 @@ import {
   InputDivs,
 } from "./styled";
 import Loading from "../../../components/Loading/Loading";
+import Error from "../../../components/Error/Error";
 
 const Watcha = () => {
   const [comment, setComment] = useState("");
@@ -20,9 +21,9 @@ const Watcha = () => {
     `/boards/watcha?page=1&size=100`,
     `boards=watcha`
   );
-  if (isLoading) return <></>;
+  if (isLoading) return <Loading/>;
   // TODO: error 컴포넌트
-  if (error) return <>error 발생</>;
+  if (error) return <Error/>;
 
   const timeForToday = (time) => {
     const today = new window.Date();
@@ -56,7 +57,7 @@ const Watcha = () => {
         },
       })
       .then(() => {
-        // window.location.reload();
+        window.location.reload();
         refetch();
         setComment("");
       })
@@ -98,14 +99,6 @@ const Watcha = () => {
             return Number(memberId) === Number(item.memberId) ? (
               <ContentItemMe key={item.watchaBoardId}>
                 <div className="userInfo">
-                  <button
-                    className="deleteChat"
-                    onClick={() => {
-                      deleteBoard(item.watchaBoardId);
-                    }}
-                  >
-                    삭제
-                  </button>
                   <span className="userInfText">
                     {timeForToday(item.createAt)}
                   </span>
@@ -117,6 +110,14 @@ const Watcha = () => {
                     style={{}}
                   ></img>
                   <div className="content">{item.watchaBoardBody}</div>
+                  <button
+                    className="deleteChat"
+                    onClick={() => {
+                      deleteBoard(item.watchaBoardId);
+                    }}
+                  >
+                    삭제
+                  </button>
                 </div>
               </ContentItemMe>
             ) : (

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
 const useFetch = (url) => {
-  //todo : loading, error 관련 페이지 작업하기
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
