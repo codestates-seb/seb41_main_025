@@ -133,6 +133,7 @@ const Modal = () => {
       })
       .catch((err) => {
         console.log(err);
+        localStorage.clear();
       });
   };
 
