@@ -42,9 +42,11 @@ const Header = (props) => {
   const sendSerachResult = () => {
     if (searchMovie === "") {
       toast.info("검색어를 입력하세요");
-    }
+    } 
+    else{
     props.getSearchResult(searchMovie);
     Navigate("/searchResult");
+    }
   };
 
   return (

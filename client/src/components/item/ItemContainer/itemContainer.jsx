@@ -34,8 +34,6 @@ const ItemContainer = ( {movies, ottName} ) => {
     }
   }, []);
 
-  // console.log(windowSize);
-
   // prev, next
   const slickRef = useRef(null);
   const previous = useCallback(() => slickRef.current.slickPrev(), []);

@@ -1,14 +1,11 @@
-import React, { useState, useEffect} from "react";
+import React, { useState } from "react";
 import * as S from "./styled";
 import ModalBasic from "../ModalBasic/ModalBasic";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { useCustomQuery } from "../../../components/util/useCustomQuery";
 import Loading from "../../../components/Loading/Loading";
 
 const Mypage = () => {
-  // const [info, setInfo] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const memberId = localStorage.getItem("memberId");
   const navigate = useNavigate();
@@ -27,12 +24,9 @@ const Mypage = () => {
     navigate(`/members/${memberId}/modify`)
   };
 
-
-
   if (isLoading) return <Loading />;
   const info = data.data;
-  // console.log(data.data);
-  // console.log(info);
+
   return (
     <S.Wrapper>
       <S.MypageDiv>
@@ -51,7 +45,6 @@ const Mypage = () => {
             <S.ModifyBtn type="submit" value="저장" onClick={navigatModify} >
               회원 정보 수정
             </S.ModifyBtn>
-            {/* {modalOpen && <ModalBasic setModalOpen={setModalOpen} />} */}
           </S.UserInfo>
         </S.UserInfoHeader>
         <S.FormDiv>

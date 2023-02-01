@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { SearchBar } from "../../components/Header/styled"
+import { SearchBar } from "../../../components/Header/styled"
 
 export const Items = styled.div`
     display: flex;

@@ -3,6 +3,7 @@ import * as S from "./styled";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
+import { useCustomMutation } from "../../../components/util/useMutation";
 
 const CommentBox = ({ comment }) => {
   const [toggle, setToggle] = useState(false);
@@ -44,22 +45,30 @@ const CommentBox = ({ comment }) => {
   };
 
   //한줄 평 삭제
-  const onCommentDeleteHandler = async (commentMemberId) => {
-    await axios({
-      method: "DELETE",
-      url: `http://whatu1.kro.kr:8080/comments/${commentMemberId}`,
-      headers: {
-        "Content-Type": "application/json",
-        AutHorization: localStorage.getItem("accessToken"),
-      },
-    })
-      .then(() => {
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const onCommentDeleteHandler = async (commentMemberId) => {
+  //   await axios({
+  //     method: "DELETE",
+  //     url: `http://whatu1.kro.kr:8080/comments/${commentMemberId}`,
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       AutHorization: localStorage.getItem("accessToken"),
+  //     },
+  //   })
+  //     .then(() => {
+  //       window.location.reload();
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+
+  const { mutate, refetch } = useCustomMutation(`/comments/${comment.commentId}`,`commentMemberId=${comment.commentId}`, "DELETE" )
+
+  const onCommentDeleteHandler = () => {
+    mutate()
+    toast.success("삭제가 완료되었습니다");
+    refetch();
+  }
 
   return (
     <S.CommentBoxDiv>

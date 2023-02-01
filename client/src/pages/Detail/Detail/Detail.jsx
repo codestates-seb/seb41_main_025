@@ -47,7 +47,6 @@ const Detail = () => {
   let isLogin = localStorage.getItem("isLogin");
   const contentRef = useRef(null);
   const [isHide, setIsHide] = useState(false);
-  // console.log(isHide)
 
   const memberId = localStorage.getItem("memberId");
 
@@ -137,12 +136,8 @@ const Detail = () => {
   if (isLoading) return <Loading />;
   if (loading) return <Loading />;
   const movies = data.data;
-  const ottlist = data.ottList;
-
-  console.log(ottlist);
 
   // data
-
   const otts = data.ottList;
 
   //추천
@@ -163,15 +158,14 @@ const Detail = () => {
           setDeprecate(!deprecate);
         }
         setRecommend(!recommend);
+        window.location.reload()
         refetch();
-        // toast.success("추천이 완료되었습니다");
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  
 
   //비추천
   const handleDecommend = async () => {
@@ -191,6 +185,7 @@ const Detail = () => {
           setRecommend(!recommend);
         }
         setDeprecate(!deprecate);
+        window.location.reload()
         refetch();
         // toast.success("비추천이 완료되었습니다");
       })
@@ -215,6 +210,7 @@ const Detail = () => {
       )
       .then(() => {
         setChoice(!choice);
+        window.location.reload()
         refetch();
       })
       .catch((err) => {
@@ -238,6 +234,7 @@ const Detail = () => {
       )
       .then(() => {
         setFavorite(!favorite);
+        window.location.reload()
         refetch();
         // toast.success("인생작품에 추가되었습니다");
       })
@@ -274,8 +271,6 @@ const Detail = () => {
               <div className="content">
                 공개일 : {movies && movies.contentOpenAt}
               </div>
-              {/* <div className="content">공개 OTT : </div> */}
-              {console.log(movies)}
               <div className="content">
                 평점 : {movies && movies.contentScore}
               </div>
