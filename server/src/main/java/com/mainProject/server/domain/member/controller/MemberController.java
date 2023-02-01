@@ -52,7 +52,7 @@ public class MemberController {
         reissue.setAccessToken(reissue.getAccessToken().replace("Bearer ",""));
         MemberDto.TokenInfo tokenInfo = memberService.reissue(reissue);
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization",tokenInfo.getAccessToken());
+        headers.set("Authorization","Bearer " +tokenInfo.getAccessToken());
         headers.set("RefreshToken",tokenInfo.getRefreshToken());
         return new ResponseEntity<>(headers,HttpStatus.CREATED);
     }
