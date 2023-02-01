@@ -37,7 +37,7 @@ const Comment = () => {
   //   getNextPageParam: (lastPage, allPages) => lastPage.nextCursor,
   //   getPreviousPageParam: (firstPage, allPages) => firstPage.prevCursor,
   // })
-  const { data, status, fetchNextPage, isFetchingNextPage, hasNextPage } = useInfiniteQuery(
+  const { data, status, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
     //query KEY
     ['posts'],
     ({ pageParam = 1 }) => fetchPostList(pageParam),

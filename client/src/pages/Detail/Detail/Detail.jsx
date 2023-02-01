@@ -18,6 +18,7 @@ import { useCustomQuery } from "../../../components/util/useCustomQuery";
 import { toast } from "react-toastify";
 import Error from "../../../components/Error/Error";
 import Loading from "../../../components/Loading/Loading";
+import { useCustomMutation } from "../../../components/util/useMutation";
 
 const apiCall = async (url) => {
   return await axios
@@ -135,12 +136,8 @@ const Detail = () => {
   if (isLoading) return <Loading />;
   if (loading) return <Loading />;
   const movies = data.data;
-  const ottlist = data.ottList;
-
-  console.log(ottlist);
 
   // data
-
   const otts = data.ottList;
 
   //추천
@@ -168,7 +165,6 @@ const Detail = () => {
       });
   };
 
-  
 
   //비추천
   const handleDecommend = async () => {

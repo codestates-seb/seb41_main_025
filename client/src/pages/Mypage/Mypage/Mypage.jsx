@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState } from "react";
 import * as S from "./styled";
 import ModalBasic from "../ModalBasic/ModalBasic";
 import { useNavigate } from "react-router-dom";
@@ -23,8 +23,6 @@ const Mypage = () => {
   const navigatModify = () => {
     navigate(`/members/${memberId}/modify`)
   };
-
-
 
   if (isLoading) return <Loading />;
   const info = data.data;
