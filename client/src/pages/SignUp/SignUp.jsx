@@ -73,7 +73,6 @@ const SignUp = () => {
       }),
     })
       .then((res) => {
-        console.log(res.status);
         if (res.status === 201) {
           toast.success("회원가입이 완료되었습니다!");
           navigate("/login");

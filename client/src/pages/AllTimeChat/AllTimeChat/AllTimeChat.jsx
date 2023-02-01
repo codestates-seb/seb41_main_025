@@ -31,7 +31,7 @@ const AllTimeChat = () => {
 
       <S.ButtonDiv>
         {tabList.map((el, idx) => (
-          <div
+          <div key = {idx}
             className={idx === currentTab ? "active" : "none"}
             onClick={() => selectMenuHandler(idx)}
           >

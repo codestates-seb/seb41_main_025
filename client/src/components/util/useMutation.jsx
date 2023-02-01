@@ -15,7 +15,15 @@ export const useCustomMutation = (url, queryKey, method) => {
     },
     {
       onSuccess: () => queryClient.invalidateQueries(queryKey),
-    }
+    },
+    {
+      onError: () => queryClient.invalidateQueries(queryKey),
+    },
+    // {
+    //   onSettled: (data, error, variables, context) => {
+    //   // mutation이 완료되면 성공 유무와 관계없이 쿼리를 무효화 시키고 새로 갱신
+    //   queryClient.invalidateQueries(queryKey);
+    // }},
   );
 
   return { mutate };

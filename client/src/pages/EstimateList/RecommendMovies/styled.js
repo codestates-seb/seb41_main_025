@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MainContainer } from "../Main/styled";
+import { MainContainer } from "../../Main/styled";
 
 export const RecommendButton = styled.button`
   display: grid;
