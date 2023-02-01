@@ -7,14 +7,15 @@ import Loading from "../../../components/Loading/Loading";
 import { useCustomMutation } from "../../../components/util/useMutation";
 
 const Tving = () => {
+
   const [comment, setComment] = useState("");
   const memberId = localStorage.getItem("memberId");
-  const { data, isLoading, error, refetch } = useCustomQuery(
+  const { data, isLoading, refetch } = useCustomQuery(
     `/boards/tving?page=1&size=100`,
     `boards=tving`
     );
 
-    const { mutate } = useCustomMutation('/boards/tving','boards=tving', "POST", {
+  let { mutate } = useCustomMutation('/boards/tving','boards=tving', "POST" , {
     onMutate:(value) => {
       console.log(value)
     },
@@ -24,53 +25,58 @@ const Tving = () => {
     },
     onError : (err) => {
       console.log(err)
+    },
+  })
+
+    const submitcommit = () => {
+      mutate({tvingBoardBody: comment})
     }
     
-  })
-  const submitcommit = () => {
-    mutate({tvingBoardBody: comment})
-  }
-
-  const timeForToday = (time) => {
-    const today = new window.Date();
-    const timeValue = new window.Date(time);
-    const betweenTimeMin = Math.floor(
-      (today.getTime() - timeValue.getTime()) / 1000 / 60
-    );
-    const betweenTimeHour = Math.floor(betweenTimeMin / 60);
-    const betweenTimeDay = Math.floor(betweenTimeMin / 60 / 24);
-
-    if (betweenTimeMin < 1) return "방금 전";
-    if (betweenTimeMin < 60) return `${betweenTimeMin}분전`;
-    if (betweenTimeHour < 24) return `${betweenTimeHour} hours ago`;
-    if (betweenTimeDay < 365) return `${betweenTimeDay} days ago`;
-
-    return `${Math.floor(betweenTimeDay / 365)} years ago`;
-  };
-
-  const handleKeypress = (e) => {
-    if (e.key === "Enter") {
-      submitcommit();
-      e.target.reset()
-    }
-  };
-
-
-  const deleteBoard = async (tvingBoardId) => {
-    await axios
-      .delete(`http://whatu1.kro.kr:8080/boards/tving/${tvingBoardId}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: localStorage.getItem("accessToken"),
-        },
+    const timeForToday = (time) => {
+      const today = new window.Date();
+      const timeValue = new window.Date(time);
+      const betweenTimeMin = Math.floor(
+        (today.getTime() - timeValue.getTime()) / 1000 / 60
+        );
+      const betweenTimeHour = Math.floor(betweenTimeMin / 60);
+      const betweenTimeDay = Math.floor(betweenTimeMin / 60 / 24);
+        
+      if (betweenTimeMin < 1) return "방금 전";
+      if (betweenTimeMin < 60) return `${betweenTimeMin}분전`;
+      if (betweenTimeHour < 24) return `${betweenTimeHour} hours ago`;
+      if (betweenTimeDay < 365) return `${betweenTimeDay} days ago`;
+        
+      return `${Math.floor(betweenTimeDay / 365)} years ago`;
+    };
+      
+    const handleKeypress = (e) => {
+      if (e.key === "Enter") {
+        submitcommit();
+        e.target.reset()
+      }
+    };
+      
+  // const deleteBoard = useCustomMutation((tvingBoardId) => {
+  //   return axios.delete(`/boards/tving/${tvingBoardId}`)})
+  // const deleteBoard = (tvingBoardId) => {
+  //   mutate({url : `/boards/tving/${tvingBoardId}`, queryKey:`tvingBoardId=${tvingBoardId}`,mothod: delete})
+  // }
+    const deleteBoard = async (tvingBoardId) => {
+      await axios
+        .delete(`http://whatu1.kro.kr:8080/boards/tving/${tvingBoardId}`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("accessToken"),
+          },
       })
       .then(() => {
-        refetch();
+          refetch();
       })
       .catch((err) => {
         console.log(err);
       });
-  };
+    };
+                
   return (
     <>
       {isLoading ? <Loading /> : null}
@@ -97,6 +103,7 @@ const Tving = () => {
                     className="deleteChat"
                     onClick={() => {
                       deleteBoard(item.tvingBoardId);
+                      console.log(item.tvingBoardId)
                     }}
                     >
                     삭제
