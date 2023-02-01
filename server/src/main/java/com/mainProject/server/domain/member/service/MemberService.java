@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -76,6 +77,9 @@ public class MemberService {
         // 5. RefreshToken Redis 업데이트
         redisTemplate.opsForValue()
                 .set(authentication.getName(), tokenInfo.getRefreshToken(), tokenInfo.getRefreshTokenExpirationTime(), TimeUnit.MILLISECONDS);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer " + tokenInfo.getAccessToken());
+        headers.add("RefreshToken", tokenInfo.getRefreshToken());
     }
     public void logout(MemberDto.Logout logout) {
         // 1. Access Token 검증
