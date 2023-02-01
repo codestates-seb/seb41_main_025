@@ -1,5 +1,5 @@
 import * as S from "./styled";
-import { MainWarp, MainContainer } from "../Main/styled";
+import { MainWarp, MainContainer } from "../../Main/styled";
 import { useState } from "react";
 import axios from "axios";
 import Deprecate from "./Deprecate/Deprecate";

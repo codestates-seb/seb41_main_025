@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./styled";
-import { MainWarp } from "../Main/styled";
-import { Title } from "../FavoriteMovie/styled";
+import { MainWarp } from "../../Main/styled";
+import { Title } from "../../EstimateList/FavoriteMovie/styled";
 import axios from "axios";
-import SeleteItem from "../../components/item/SelectItem/SeleteItem"
-import Empty from "../../components/Empty/Empty";
-import { useCustomQuery } from "../../components/util/useCustomQuery";
-import Loading from "../../components/Loading/Loading";
-import Error from "../../components/Error/Error"
+import SeleteItem from "../../../components/item/SelectItem/SeleteItem"
+import Empty from "../../../components/Empty/Empty";
+import { useCustomQuery } from "../../../components/util/useCustomQuery";
+import Loading from "../../../components/Loading/Loading";
+import Error from "../../../components/Error/Error"
 
 const Choose = () => {
   const memberId = localStorage.getItem("memberId");
@@ -52,7 +52,7 @@ const Choose = () => {
               <S.Items>
               {choiceMovieList && choiceMovieList.map((choice) => {
                 return (
-                  <SeleteItem 
+                  <SeleteItem key={choice.choiceId}
                   dataId = {choice.choiceId}
                   Poster = {choice.contentResponseMinDto.contentPoster}
                   Id = {choice.contentResponseMinDto.contentId}

@@ -1,12 +1,12 @@
 import * as S from "./styled";
-import SeleteItem from "../../components/item/SelectItem/SeleteItem";
+import SeleteItem from "../../../components/item/SelectItem/SeleteItem";
 import axios from "axios";
 import { useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
-import Empty from "../../components/Empty/Empty";
-import { useCustomQuery } from "../../components/util/useCustomQuery";
-import Loading from "../../components/Loading/Loading";
-import Error from "../../components/Error/Error"
+import Empty from "../../../components/Empty/Empty";
+import { useCustomQuery } from "../../../components/util/useCustomQuery";
+import Loading from "../../../components/Loading/Loading";
+import Error from "../../../components/Error/Error"
 
 
 const FavoriteMovie = (props) =>{

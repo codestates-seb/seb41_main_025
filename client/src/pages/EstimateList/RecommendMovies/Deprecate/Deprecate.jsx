@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as S from "./styled"
-import Empty from "../../../components/Empty/Empty";
-import { useCustomQuery } from "../../../components/util/useCustomQuery";
+import Empty from "../../../../components/Empty/Empty";
+import { useCustomQuery } from "../../../../components/util/useCustomQuery";
 import { toast } from "react-toastify";
 
 const Deprecate = () => {

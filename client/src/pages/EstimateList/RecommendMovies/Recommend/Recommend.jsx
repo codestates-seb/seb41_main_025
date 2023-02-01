@@ -1,7 +1,7 @@
-import SeleteItem from "../../../components/item/SelectItem/SeleteItem";
+import SeleteItem from "../../../../components/item/SelectItem/SeleteItem";
 import * as S from "./styled"
-import Empty from "../../../components/Empty/Empty";
-import { useCustomQuery } from "../../../components/util/useCustomQuery";
+import Empty from "../../../../components/Empty/Empty";
+import { useCustomQuery } from "../../../../components/util/useCustomQuery";
 
 const Recommend = () => {
   //새로고침을 해줘야 업데이트됨

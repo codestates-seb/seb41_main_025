@@ -9,10 +9,10 @@ import SignUp from "./pages/SignUp/SignUp";
 import SearchNull from "./pages/Search/SearchNull/SearchNull";
 import SearchResult from "./pages/Search/SearchResult/SearchResult";
 import AllTimeChat from "./pages/AllTimeChat/AllTimeChat/AllTimeChat";
-import FavoriteMovie from "./pages/FavoriteMovie/FavoriteMovie";
-import Choose from "./pages/Choose/Choose";
+import FavoriteMovie from "./pages/EstimateList/FavoriteMovie/FavoriteMovie";
+import Choose from "./pages/EstimateList/Choose/Choose";
 import Mypage from "./pages/Mypage/Mypage/Mypage";
-import RecommendMovies from "./pages/RecommendMovies/RecommendMovies";
+import RecommendMovies from "./pages/EstimateList/RecommendMovies/RecommendMovies"
 import Detail from "./pages/Detail/Detail/Detail";
 import { useState } from "react";
 import Toast from "./components/Toast/Toast"
