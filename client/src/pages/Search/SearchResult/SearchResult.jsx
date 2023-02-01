@@ -1,18 +1,21 @@
 import * as S from "./styled";
-import Item from "../../../components/item/Item/item";
-import useFetch from "../../../components/util/useFetch";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SearchNull from "../SearchNull/SearchNull";
 import { useCustomQuery } from "../../../components/util/useCustomQuery";
+import Item from "../../../components/item/Item/item";
+import Loading from "../../../components/Loading/Loading";
+import Error from "../../../components/Error/Error";
 
 const SearchResult = ({ searchResult }) => {
 
-  // const { contentId } = useParams();
-  const [movies] = useFetch("http://whatu1.kro.kr:8080/contents");
-  // const { data, isLoading, error, refetch } = useCustomQuery(
-  //   `/contents/${contentId}`,
-  //   `contents=${contentId}`
-  // );
+  const { data, isLoading, error, refetch } = useCustomQuery(
+    `/contents`,
+  );
+  
+  if (error) return <Error/>;
+  if (isLoading) return <Loading />;
+  
+  const movies = [data];
 
   // if (isLoading) return <></>;
   // if (error) return <>error 발생</>;
@@ -20,7 +23,7 @@ const SearchResult = ({ searchResult }) => {
 
 
   // 검색 값과 영화 리스트를 filter 로 걸러낸다.
-  const resultFilter = movies.filter((e) => {
+  const resultFilter = movies[0].data.filter((e) => {
     return e.contentTitle
       .toLocaleLowerCase()
       .includes(searchResult.toLocaleLowerCase());
