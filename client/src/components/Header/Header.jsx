@@ -115,29 +115,32 @@ const Modal = () => {
   const memberId = localStorage.getItem("memberId");
   const navigate = useNavigate();
 
-  // const LogoutHandle = () => {
-
-  //   axios
-  //     .post(
-  //       `http://whatu1.kro.kr:8080/members/logout`,
-  //       {
-
-  //       },
-  //     )
-  //     .then(() => {
-  //       toast.success("추천이 완료되었습니다");
-  //       navigate("/");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
   const LogoutHandle = () => {
-    localStorage.clear();
-    toast.success("로그아웃이 완료되었습니다!");
-    navigate("/");
+
+    axios
+      .post(
+        `http://whatu1.kro.kr:8080/members/logout`,
+        {
+          accessToken: localStorage.getItem("accessToken"),
+          refreshToken : localStorage.getItem("refreshToken")
+        },
+      )
+      .then((res) => {
+        console.log(res)
+        toast.success("로그아웃이 완료되었습니다");
+        localStorage.clear();
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
+
+  // const LogoutHandle = () => {
+  //   localStorage.clear();
+  //   toast.success("로그아웃이 완료되었습니다!");
+  //   navigate("/");
+  // };
 
   return (
     <S.ModalContainer>
