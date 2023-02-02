@@ -60,6 +60,7 @@ export const ButtonDiv = styled.div`
   font-size: 25px;
   color: black;
   border: none;
+  cursor: pointer;
 
   .active {
     width: calc(100% / 4);
