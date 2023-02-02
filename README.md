@@ -1,5 +1,5 @@
 
-<img src="https://github.com/codestates-seb/seb41_main_025/blob/dev_fe/client/public/assets/GreenLogo.png" alt="배너 이미지" width = 300>
+<img src="https://github.com/codestates-seb/seb41_main_025/blob/dev_fe/client/public/assets/GreenLogo.png" alt="배너 이미지" width = "300">
 ### 내가 널 볼 수 밖에 없는 10가지 이유
 
 시간이 지나면서 제작된 콘텐츠는 쌓여가고, 사람들이 소비하고 있는 OTT 사용량은 점차 늘어나고 있습니다. 여러분들은 어떤 OTT를 이용하고 계신가요? 티빙, 왓챠, 넷플릭스, 웨이브? 뭐든 좋습니다.
