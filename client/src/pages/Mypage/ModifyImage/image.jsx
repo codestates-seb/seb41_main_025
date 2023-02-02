@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import ImageUploading from "react-images-uploading";
 import "./Styles/image.css";
+import { toast } from "react-toastify";
 
 const ImageUpload = ({ refetch, setModalOpen, setImage }) => {
   const [images, setImages] = useState([]);
@@ -21,6 +22,7 @@ const ImageUpload = ({ refetch, setModalOpen, setImage }) => {
       )
       .then((res) => {
         setModalOpen(false);
+        toast.success("이미지 수정을 성공했습니다");
         refetch();
       })
       .catch((error) => {

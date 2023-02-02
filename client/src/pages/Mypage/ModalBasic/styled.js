@@ -75,6 +75,12 @@ export const InputItem = styled.div`
   @media only screen and (max-width: ${"350px"}) {
     padding: 70px 30px;
   }
+  p {
+    font-size: 20px;
+    @media only screen and (max-width: ${"350px"}) {
+    font-size: 15px;
+  }
+  }
 `;
 
 export const MyInput = styled.input`

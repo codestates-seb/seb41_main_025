@@ -113,7 +113,10 @@ export const Button = styled.button`
   line-height: 2rem;
   margin-left: 480px;
   background: #f9f9f9;
-
+  @media only screen and (max-width: ${"350px"}) {
+    margin-left: 160px;
+    font-size: 10px;
+  }
   &.hide {
     display: none;
   }

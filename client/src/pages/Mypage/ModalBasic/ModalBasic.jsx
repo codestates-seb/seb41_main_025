@@ -42,7 +42,6 @@ const ModalBasic = ({ setModalOpen }) => {
     };
 
       // 회원 탈퇴
-  // TODO: 정말 회원 탈퇴를 진행하시겠습니까? 알림창 띄우기
   const deleteMember = async () => {
     await axios({
       method: "DELETE",
@@ -70,7 +69,7 @@ const ModalBasic = ({ setModalOpen }) => {
         <AiFillCloseCircle size="30" color="#4BA6B2" onClick={closeModal}/>
       </S.CloseBtn>
       <S.InputItem>
-        <p>탈퇴를 원하시면 확인 버튼을 눌러주세요</p>
+        <p>뭘봐유에서 정말 탈퇴를 원하신다면 <br/>확인을 눌러주세요 :(</p>
         {/* <S.MyInput
           id="password"
           placeholder="비밀번호를 입력해주세요"
