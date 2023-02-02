@@ -32,7 +32,6 @@ const Login = () => {
         // axios.defaults.headers.common[
         //   "Authorization"
         // ] = `${res.headers.authorization}`;
-        console.log(res.headers.authorization);
         setInterval(onSilentRefresh, 1200000);
         if (res.status === 200) {
           toast.success("로그인이 완료되었습니다!");

@@ -105,12 +105,9 @@ const ModifySecond = ({ refetch, info, memberId }) => {
   //   }
   // };
 
-  console.log(pwd);
 
   const onChangePwd = (e) => {
-    // const currentPwd = e.target.value;
     setPwd(e.target.value);
-    console.log(e.target.value);
   };
   console.log("pwd", pwd);
 
