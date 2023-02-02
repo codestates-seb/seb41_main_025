@@ -20,6 +20,7 @@
 [(http://whatareyoulooking.s3-website.ap-northeast-2.amazonaws.com)](http://whatareyoulooking.s3-website.ap-northeast-2.amazonaws.com)
 </br></br>
 
+
 ##  테스트 계정
 ID : 41project@gmail.com
 PW : 41project!
@@ -44,4 +45,13 @@ PW : 41project!
 
 ### CI/CD
 
-  <img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white"/> <img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=for-the-badge&logo=Amazon EC2&logoColor=white"/>
+<img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white"/> <img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=for-the-badge&logo=Amazon EC2&logoColor=white"/>
+<br/>
+
+##구현영상
+
+
+![게시판](https://user-images.githubusercontent.com/111329273/216264135-75e26422-425c-40bf-9c94-45e658917785.gif)
+
+<aside>
+* 각 ott 별 게시판을 통해서 게시판을 작성할 수 있어요! </aside>
