@@ -83,7 +83,6 @@ const Tving = () => {
       <S.ContentList>
         {data &&
           data.data.map((item) => {
-
             return Number(memberId) === Number(item.memberId) ? (
               <S.ContentItemMe key={item.tvingBoardId}>
                 <div className="userInfo">

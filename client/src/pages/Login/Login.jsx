@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import * as S from "./styled";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +18,6 @@ const Login = () => {
 
     if (info.email === "" || info.password === "") {
       toast.error("이메일이나 패스워드를 확인하세요");
-      // alert("이메일이나 패스워드를 확인하세요");
       return;
     }
 
@@ -87,7 +86,6 @@ const Login = () => {
               onKeyPress={handleKeypress}
             />
           </S.EnterContent>
-          {/* <S.Whitebutton to = '/' onClick={EnterButton}>Login</S.Whitebutton> */}
           <S.WhiteLoginbutton onClick={Login}>Login</S.WhiteLoginbutton>
         </S.ContentForm>
       </S.Window>
