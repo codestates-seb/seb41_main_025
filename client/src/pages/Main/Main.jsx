@@ -18,12 +18,8 @@ const Main = () => {
   const tvingMovies = movies[0].data.filter( movie => movie.contentOttName === "tving" );
   const wavveMovies = movies[0].data.filter( movie => movie.contentOttName === "wavve" );
 
-  // console.log(movies[0].data)
   const Watcha = watchaMovies.filter((watchMovie, index) =>
-  { 
-    console.log(watchMovie.modifiedAt)
-    
-    // console.log("index", index)
+  {
     return ( 
       watchaMovies.findLastIndex((watchMovie2,j) => 
     { 
@@ -35,9 +31,6 @@ const Main = () => {
   const WatchaResult = Watcha.sort(function (a, b) {
     return a.contentOttRank - b.contentOttRank;
   });
-  console.log(WatchaResult)
-
- console.log(Watcha)
 
   const Tving = tvingMovies.filter((tivingmovie, index) =>
   { 
@@ -45,7 +38,7 @@ const Main = () => {
       tvingMovies.findLastIndex((tivingmovie2,j) => 
       { 
       return (
-        tivingmovie.contentOttRank === tivingmovie2.contentOttRank  )
+        tivingmovie.contentOttRank === tivingmovie2.contentOttRank)
       }) === index
     )
   });
@@ -53,11 +46,10 @@ const Main = () => {
   const TvingResult = Tving.sort(function (a, b) {
     return a.contentOttRank - b.contentOttRank;
   });
-  console.log(WatchaResult)
+
   
   const Wavve = wavveMovies.filter((wavveMovie, index3) =>
-  { 
-    // console.log("index3", index3)
+  {
     return ( 
       wavveMovies.findLastIndex((wavveMovie2,j) => 
     { 
@@ -70,7 +62,6 @@ const Main = () => {
   const WavveResult = Wavve.sort(function (a, b) {
     return a.contentOttRank - b.contentOttRank;
   });
-  console.log(WatchaResult)
 
   return (
     <S.MainWarp>
