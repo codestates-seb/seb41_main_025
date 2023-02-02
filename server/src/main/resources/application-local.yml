@@ -1,0 +1,48 @@
+cloud:
+  aws:
+    credentials:
+      access-key: ${S3_ACCESS_KEY}
+      secret-key: ${S3_SECRET_KEY}
+    s3: #버킷이름
+      bucket: ${S3_BUCKET}
+    region: #S3 지역
+      static: ${S3_REGION}
+    stack:
+      auto: false
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  redis:
+    host: localhost
+    port: 6379
+  jpa:
+    hibernate:
+      ddl-auto: update  # (1) 스키마 자동 생성 SessionFactory가 시작될때 Drop, Create, alter 종료될때 Drop
+    show-sql: true      # (2) SQL 쿼리 출력
+    properties:
+      hibernate:
+        format_sql: true  # (3) SQL pretty print
+    database: mysql
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=Asia/Seoul # 포트넘버, 스키마이름
+    username: root #${MYSQL_NAME} #root # 환경변수로 넣었습니다.
+    password: 1234 #${MYSQL_SECRET}
+  sql:
+    init:
+      mode: always
+      platform: h2
+#    open-in-view: false
+jwt:
+  key: localTestGood1234123412341234123412341234123412341234123412341234123412341234        # 민감한 정보는 시스템 환경 변수에서 로드한다.
+  access-token-expiration-minutes: 420
+  refresh-token-expiration-minutes: 420
+mail:
+  address:
+    admin: admin@gmail.com
+logging:
+  file:
+    name: sever.log
+    path: /Users/user/Workspace/seb41_25
