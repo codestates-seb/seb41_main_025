@@ -109,7 +109,10 @@ public class MemberService {
             throw new BusinessLogicException(ExceptionCode.MEMBER_NOT_ALLOW);
 
         Member updateMember = beanUtils.copyNonNullProperties(member, findMember);
-// 오 뭔가 눌렀는데 오류가 잠깐 사라진거 같아요
+
+        String encryptPassword = passwordEncoder.encode(updateMember.getPassword());
+        updateMember.setPassword(encryptPassword);
+
         return memberRepository.save(updateMember);
     }
 
