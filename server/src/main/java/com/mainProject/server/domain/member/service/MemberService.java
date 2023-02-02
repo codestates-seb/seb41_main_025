@@ -14,7 +14,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -109,7 +108,10 @@ public class MemberService {
             throw new BusinessLogicException(ExceptionCode.MEMBER_NOT_ALLOW);
 
         Member updateMember = beanUtils.copyNonNullProperties(member, findMember);
-// 오 뭔가 눌렀는데 오류가 잠깐 사라진거 같아요
+
+        String encryptPassword = passwordEncoder.encode(updateMember.getPassword());
+        updateMember.setPassword(encryptPassword);
+
         return memberRepository.save(updateMember);
     }
 
@@ -123,8 +125,8 @@ public class MemberService {
             return false;
         }
     }
-/*
 
+/*
     public String prevModify(String memberpw, MemberDto.PrevModify prevModify, RedirectAttributes rttr) {
         String pw = prevModify.getPassword();
 
