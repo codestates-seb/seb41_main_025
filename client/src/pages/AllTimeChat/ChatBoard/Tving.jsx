@@ -22,7 +22,7 @@ const Tving = () => {
     "POST",
     {
       onMutate: (value) => {
-        console.log(value);
+        // console.log(value);
       },
       onSuccess: (data, variables, context) => {
         console.log("onsuccess", data, variables, context);
