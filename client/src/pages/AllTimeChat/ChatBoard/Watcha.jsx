@@ -12,6 +12,7 @@ import {
 } from "./styled";
 import Loading from "../../../components/Loading/Loading";
 import Error from "../../../components/Error/Error";
+import { useCustomMutation } from "../../../components/util/useMutation";
 
 const Watcha = () => {
   const [comment, setComment] = useState("");
@@ -21,8 +22,14 @@ const Watcha = () => {
     `/boards/watcha?page=1&size=100`,
     `boards=watcha`
   );
+
+  const { mutate } = useCustomMutation(
+    `/boards/watcha`,
+    `boards=watcha`,
+    "POST"
+  );
+
   if (isLoading) return <Loading/>;
-  // TODO: error 컴포넌트
   if (error) return <Error/>;
 
   const timeForToday = (time) => {
@@ -42,28 +49,13 @@ const Watcha = () => {
     return `${Math.floor(betweenTimeDay / 365)} years ago`;
   };
 
-  const submitcommit = async (e) => {
-    if (comment === "") return toast.error("한줄 평 내용을 입력해주세요");
+  const submitcommit = () => {
 
-    const bodyJSON = JSON.stringify({
-      watchaBoardBody: comment,
-    });
-
-    await axios
-      .post(`http://whatu1.kro.kr:8080/boards/watcha`, bodyJSON, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: localStorage.getItem("accessToken"),
-        },
-      })
-      .then(() => {
-        window.location.reload();
-        refetch();
-        setComment("");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (comment === "") return toast.error("한줄평 내용을 입력하세요");
+    mutate({watchaBoardBody: comment})
+    toast.success("내용이 입력되었습니다");
+    setComment("")
+    refetch();
   };
 
   const handleKeypress = (e) => {
@@ -82,6 +74,7 @@ const Watcha = () => {
         },
       })
       .then(() => {
+        toast.success("선택하신 내용이 삭제되었습니다");
         refetch();
       })
       .catch((err) => {
@@ -142,6 +135,7 @@ const Watcha = () => {
           autoComplete="off"
           name="recommend"
           type="text"
+          value={comment}
           // maxLength="35"
           placeholder="Watcha 작품에 대해서 자유롭게 입력해주세요"
           onChange={(e) => setComment(e.target.value)}
