@@ -33,6 +33,8 @@
   src: url(../src/fonts/NanumGothicCoding-Bold.ttf) format("ttf");
 }
 
+#root { background: #f9f9f9; }
+
 .App {
   text-align: center;
 }
