@@ -153,7 +153,7 @@ public class MemberService {
     public void deleteMember(long memberId) {
         Member findMember = findVerifiedMember(memberId);
 
-        if(getCurrentMember().getMemberId() != findMember.getMemberId() || !getCurrentMember().getEmail().equals("admin@gmail.com"))
+        if((getCurrentMember().getMemberId() != findMember.getMemberId()) || (!getCurrentMember().getEmail().equals("admin@gmail.com")))
             throw new BusinessLogicException(ExceptionCode.MEMBER_NOT_ALLOW);
 
         memberRepository.delete(findMember);
