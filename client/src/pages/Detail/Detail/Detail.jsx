@@ -298,7 +298,7 @@ const Detail = () => {
               ) : (
                 <AiOutlineLike size="48" />
               )}
-              <div className="itemIconText">{movies.recommendCount}</div>
+              <div className="itemIconText recommend">{movies.recommendCount}</div>
             </div>
             <div className="itemIcon" onClick={handleDecommend}>
               {deprecate ? (
@@ -306,7 +306,7 @@ const Detail = () => {
               ) : (
                 <AiOutlineDislike size="48" />
               )}
-              <div div className="itemIconText">
+              <div div className="itemIconText deprecate">
                 {movies.deprecateCount}
               </div>
             </div>
@@ -316,8 +316,8 @@ const Detail = () => {
               ) : (
                 <AiOutlineHeart size="48" />
               )}
-              <div div className="itemIconText">
-                찜하기
+              <div div className="itemIconText choice">
+                {movies.choiceCount}
               </div>
             </div>
             <div className="itemIcon" onClick={handleFavorite}>
@@ -326,9 +326,8 @@ const Detail = () => {
               ) : (
                 <AiOutlineStar size="48" />
               )}
-              <div className="itemIconText" >
-                인생작품
-                <div style={{ fontSize: "12px" }}>BEST 3</div>
+              <div className="itemIconText best">
+                {movies.favoriteCount}
               </div>
             </div>
           </S.DetailItem>

@@ -69,6 +69,33 @@ export const DetailItem = styled.div`
     @media only screen and (max-width: ${"350px"}) {
       svg { width: 30px; }
     }
+    &:hover {
+      .recommend {
+        &::after {
+          content: "추천";
+          font-size: 12px;
+        }
+      }
+      .deprecate {
+        &::after {
+          content: "비추천";
+          font-size: 12px;
+        }
+      }
+      .choice {
+        &::after {
+          content: "찜하기";
+          font-size: 12px;
+        }
+      }
+      .best {
+        &::after {
+          content: "인생작품 BEST 3";
+          text-align: center;
+          font-size: 12px;
+        }
+      }
+    }
   }
   @media only screen and (max-width: ${"350px"}) {
     margin: 20px 0 20px 0;
