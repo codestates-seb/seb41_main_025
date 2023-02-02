@@ -48,9 +48,38 @@ PW : 41project!
 <img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white"/> <img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=for-the-badge&logo=Amazon EC2&logoColor=white"/>
 <br/>
 
-## 구현영상
+## 구현영상 - Web
 
+### 메인페이지
+
+![메인페이지](https://user-images.githubusercontent.com/111329273/216265731-767b8288-742d-4b5c-9cb5-9c60721d1ad0.gif)
+
+<br>
+<aside>
+ott 별 상위 순위 10개의 영화를 확인하실 수 있어요! </aside>
+
+### 컨텐츠 상세 페이지
+![디테일 페이지](https://user-images.githubusercontent.com/111329273/216279449-5c36d0a4-33c0-4712-bfcc-c8dc51f9dd77.gif)
+
+<br><aside>
+컨텐츠 상세 페이지를 통해서 추천/비추천, 찜하기, 인생작품 선택할 수 있어요! </aside>
+
+### 게시판 페이지
 ![게시판](https://user-images.githubusercontent.com/111329273/216264135-75e26422-425c-40bf-9c94-45e658917785.gif)
 
+<br>
 <aside>
-* 각 ott 별 게시판을 통해서 게시판을 작성할 수 있어요! </aside>
+각 ott 별 게시판을 통해서 게시판을 작성할 수 있어요! </aside>
+
+### 인생 영화 리스트 페이지
+
+![인생 영화 페이지](https://user-images.githubusercontent.com/111329273/216282070-6508ce91-f2dd-48a5-bf40-deb6f626eb1e.gif)
+ 
+<br><aside>
+내가 선택한 인생작품 Best3를 인생작품 게시판에서 확인할 수 있어요! </aside>
+
+## 구현영상 - Mobile(350px)
+![메인페이지 모바일](https://user-images.githubusercontent.com/98151533/216283426-a37b69cc-738e-45f1-8699-531435e96e2e.gif) 
+![디테일 페이지 모바일](https://user-images.githubusercontent.com/98151533/216282469-392f575d-6aa9-4df2-99ca-622d27c956b1.gif)
+![게시판](https://user-images.githubusercontent.com/98151533/216282591-e6b264b8-e64a-4e82-8595-80f09b977680.gif) 
+![평가, 마이페이지](https://user-images.githubusercontent.com/98151533/216282922-f508c1f5-5b0d-485d-92de-ddff00c38bb2.gif)
