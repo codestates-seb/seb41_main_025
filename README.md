@@ -32,10 +32,7 @@ BE : 김희진, 강신찬, 박금비
 
 | 장한나(FE) |  이영우 (FE) |  강성심(FE)  |  김희진(BE)  |  강신찬(BE) |  박금비(BE) |
 | :-: | :-: |  :-: |  :-: |  :-: |  :-: |
-|                                                [jhn221](https://github.com/jhn221) |                               [2Zerozero](https://github.com/2Zerozero) | [kangseong-sim](https://github.com/kangseong-sim)
-|                                                [Khjin06k](https://github.com/Khjin06k)
-|                                                [superscman](https://github.com/superscman)
-|                                                [keumbi](https://github.com/keumbi)
+| [jhn221](https://github.com/jhn221) | [2Zerozero](https://github.com/2Zerozero) | [kangseong-sim](https://github.com/kangseong-sim) | [Khjin06k](https://github.com/Khjin06k) | [superscman](https://github.com/superscman)| [keumbi](https://github.com/keumbi)
 ## :low_brightness: 기술 스텍
 ### Front
 
