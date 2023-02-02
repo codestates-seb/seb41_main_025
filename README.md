@@ -1,5 +1,5 @@
 
-<img src="https://github.com/codestates-seb/seb41_main_025/blob/dev_fe/client/public/assets/GreenLogo.png" alt="배너 이미지">
+<img src="https://github.com/codestates-seb/seb41_main_025/blob/dev_fe/client/public/assets/GreenLogo.png" alt="배너 이미지" width = 250>
 
 ### 내가 널 볼 수 밖에 없는 10가지 이유
 
