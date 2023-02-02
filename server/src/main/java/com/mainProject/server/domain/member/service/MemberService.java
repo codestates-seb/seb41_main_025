@@ -126,8 +126,8 @@ public class MemberService {
             return false;
         }
     }
-/*
 
+/*
     public String prevModify(String memberpw, MemberDto.PrevModify prevModify, RedirectAttributes rttr) {
         String pw = prevModify.getPassword();
 

@@ -16,6 +16,7 @@ public class MemberDto {
         @Email
         private String email;
         @NotBlank
+        @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\\d~!@#$%^&*()+|=]{8,20}$", message = "비밀번호는 8글자이상 20글자 이하로 영어,숫자,특수문자가 1개이상 들어가야 합니다.")
         private String password;
         @NotBlank(message = "회원 이름은 공백이 아니어야 합니다.")
         private String name;
