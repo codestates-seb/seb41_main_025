@@ -59,7 +59,6 @@ const Comment = () => {
   }, [inView]);
 
   const [comment, setComment] = useState("");
-  const [text, setText] = useState('');
 
   if (status === "loading") return <Loading/>;
 
@@ -67,28 +66,11 @@ const Comment = () => {
   //한 줄 평 입력
   const submitcommit = () => {
 
-    if (comment === "") return toast.info("한줄평 내용을 입력하세요");
+    if (comment === "") return toast.error("한줄평 내용을 입력하세요");
     mutate({commentBody: comment})
     toast.success("한줄평 내용이 입력되었습니다");
     setComment("")
     refetch();
-    // await axios
-    //   .post(
-    //     `http://whatu1.kro.kr:8080/contents/${contentId}/comments`,
-    //     bodyJSON,
-    //     {
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         Authorization: localStorage.getItem("accessToken"),
-    //       },
-    //     }
-    //   )
-    //   .then(() => {
-    //     window.location.reload();
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
   };
 
   //enter치면 submitcommit 함수 실행
