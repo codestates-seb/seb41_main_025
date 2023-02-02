@@ -160,7 +160,6 @@ const Detail = () => {
           setDeprecate(!deprecate);
         }
         setRecommend(!recommend);
-        window.location.reload()
         refetch();
       })
       .catch((err) => {
@@ -187,7 +186,6 @@ const Detail = () => {
           setRecommend(!recommend);
         }
         setDeprecate(!deprecate);
-        window.location.reload()
         refetch();
         // toast.success("비추천이 완료되었습니다");
       })
@@ -212,7 +210,6 @@ const Detail = () => {
       )
       .then(() => {
         setChoice(!choice);
-        window.location.reload()
         refetch();
       })
       .catch((err) => {
@@ -236,7 +233,6 @@ const Detail = () => {
       )
       .then(() => {
         setFavorite(!favorite);
-        window.location.reload()
         refetch();
         // toast.success("인생작품에 추가되었습니다");
       })
