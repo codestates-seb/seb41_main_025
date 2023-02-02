@@ -4,13 +4,14 @@ import { useState } from "react";
 import axios from "axios";
 import { useCustomQuery } from "../../../components/util/useCustomQuery";
 import Loading from "../../../components/Loading/Loading";
+import Error from "../../../components/Error/Error";
 import { useCustomMutation } from "../../../components/util/useMutation";
 import { toast } from "react-toastify";
 
 const Tving = () => {
   const [comment, setComment] = useState("");
   const memberId = localStorage.getItem("memberId");
-  const { data, isLoading, refetch } = useCustomQuery(
+  const { data, isLoading, error, refetch } = useCustomQuery(
     `/boards/tving?page=1&size=100`,
     `boards=tving`
   );
@@ -32,6 +33,9 @@ const Tving = () => {
       },
     }
   );
+
+  if (isLoading) return <Loading/>;
+  if (error) return <Error/>;
 
   const timeForToday = (time) => {
     const today = new window.Date();
