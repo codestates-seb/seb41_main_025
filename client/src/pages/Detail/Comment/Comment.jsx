@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import * as S from "./styled";
 import axios from "axios";
@@ -24,6 +24,8 @@ const fetchPostList = async (pageParam) => {
   const { contentId } = useParams();
   //창 뷰트 들어오고 나갈 때  요소의 가시성 추적
   const [ref, inView] = useInView();
+  let isLogin = localStorage.getItem("isLogin");
+  const navigate = useNavigate();
 
   //밑으로 내리면 true 반환
   const { data, status, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
@@ -52,12 +54,12 @@ const fetchPostList = async (pageParam) => {
 
   //한 줄 평 입력
   const submitcommit = () => {
-
+    if (!isLogin) return navigate("/login");
     if (comment === "") return toast.error("한줄평 내용을 입력하세요");
-    mutate({commentBody: comment})
-    toast.success("한줄평 내용이 입력되었습니다");
-    setComment("")
-    refetch();
+      mutate({commentBody: comment})
+      toast.success("한줄평 내용이 입력되었습니다");
+      setComment("")
+      refetch();
   };
 
   //enter치면 submitcommit 함수 실행
