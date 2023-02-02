@@ -32,8 +32,7 @@ BE : 김희진, 강신찬, 박금비
 
 | 장한나(FE) |  이영우 (FE) |  강성심(FE)  |  김희진(BE)  |  강신찬(BE) |  박금비(BE) |
 | :-: | :-: |  :-: |  :-: |  :-: |  :-: |
-|                                                [jhn221]([https://github.com/jhn221](https://github.com/jhn221))                                                 |                                                [DubblePos](https://github.com/DubblePos)                                                 |                                           [SpringintheFall](https://github.com/SpringintheFall)                                           |                                                 [itsowavy](https://github.com/itsowavy)                                                  |                                                  [tlskals](https://github.com/tlskals)                                                   |                                                 [wonyongg](https://github.com/wonyongg)                                                  |
-| <img width="320" alt="기정" src="https://user-images.githubusercontent.com/48042650/215429981-a82a945f-58dd-434d-91d2-0f5384371134.png"> | <img width="310" alt="승필" src="https://user-images.githubusercontent.com/48042650/215432195-3583cb1d-1e0e-40e8-8351-5f122e4cd5fb.png"> | <img width="230" alt="보미" src="https://user-images.githubusercontent.com/48042650/215431119-106aa8d3-2dc5-44d5-aef8-c886023ca65b.jpeg"> | <img width="340" alt="승훈" src="https://user-images.githubusercontent.com/48042650/215430809-a6872c3d-43f8-43c9-ba94-83974a7f1ca2.png"> | <img width="400" alt="지민" src="https://user-images.githubusercontent.com/48042650/215432591-3fb551df-240a-4f5e-9d28-d3c66eb03263.png"> | <img width="300" alt="원용" src="https://user-images.githubusercontent.com/48042650/215430252-cb82416f-3d42-46fe-890a-fe2010d6210f.png"> |
+|                                                [jhn221]([https://github.com/jhn221](https://github.com/jhn221))    
 ## :low_brightness: 기술 스텍
 ### Front
 
