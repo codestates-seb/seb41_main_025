@@ -36,15 +36,11 @@ const fetchPostList = async (pageParam) => {
     }
   );
 
-  //한 줄 평 입력
-  let { mutate, refetch } = useCustomMutation(`/contents/${contentId}/comments`,`contentId=${contentId}`, "POST" )
-  
-  const submitcommit = () => {
-    if (comment === "") return toast.info("한줄평 내용을 입력하세요");
-    mutate({commentBody: comment})
-    setComment('')
-    refetch();
-  }
+  const { mutate, refetch } = useCustomMutation(
+    `/contents/${contentId}/comments`,
+    `contentId=${contentId}`,
+    "POST"
+  );
 
   useEffect(() => {
     if (inView && !isFetchingNextPage) fetchNextPage();
@@ -53,6 +49,16 @@ const fetchPostList = async (pageParam) => {
 
   if (status === "loading") return <Loading/>;
 
+
+  //한 줄 평 입력
+  const submitcommit = () => {
+
+    if (comment === "") return toast.error("한줄평 내용을 입력하세요");
+    mutate({commentBody: comment})
+    toast.success("한줄평 내용이 입력되었습니다");
+    setComment("")
+    refetch();
+  };
 
   //enter치면 submitcommit 함수 실행
   const handleKeypress = (e) => {

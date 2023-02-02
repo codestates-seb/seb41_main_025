@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import { useCustomMutation } from "../../../components/util/useMutation";
 
-const CommentBox = ({ comment }) => {
+const CommentBox = ({ comment, refetch }) => {
   const [toggle, setToggle] = useState(false);
   const [editComment, setEditComment] = useState("");
   const onEdit = (e) => {
@@ -62,7 +62,7 @@ const CommentBox = ({ comment }) => {
   //     });
   // };
 
-  const { mutate, refetch } = useCustomMutation(`/comments/${comment.commentId}`,`commentMemberId=${comment.commentId}`, "DELETE" )
+  const { mutate } = useCustomMutation(`/comments/${comment.commentId}`,`commentMemberId=${comment.commentId}`, "DELETE" )
 
   const onCommentDeleteHandler = () => {
     mutate()

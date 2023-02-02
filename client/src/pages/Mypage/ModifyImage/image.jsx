@@ -8,7 +8,7 @@ const ImageUpload = ({ refetch, setModalOpen, setImage }) => {
   const [images, setImages] = useState([]);
   const maxNumber = 1;
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
     axios
       .post(
         `http://whatu1.kro.kr:8080/members/upload`,
