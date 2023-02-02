@@ -1,5 +1,7 @@
 
-### 프로젝트 소개
+<img src="(https://github.com/codestates-seb/seb41_main_025/blob/dev_fe/client/public/assets/GreenLogo.png)" alt="배너 이미지">
+
+### 내가 널 볼 수 밖에 없는 10가지 이유
 
 시간이 지나면서 제작된 콘텐츠는 쌓여가고, 사람들이 소비하고 있는 OTT 사용량은 점차 늘어나고 있습니다. 여러분들은 어떤 OTT를 이용하고 계신가요? 티빙, 왓챠, 넷플릭스, 웨이브? 뭐든 좋습니다.
 하지만 재미가 있어야 재미있게 보는거겠죠? 1시간 재미있는 것을 보러 왔다 2시간 동안 고르다가 시간을 보내신 경험. 그리고,로그인을 진행해야만 해당 OTT 내에 어떤 콘텐츠가 있는지 확인할 수 있기 때문에 해당 OTT를 소비하는 지인에게 연락한 경험. 여러분들은 없으신가요?
@@ -9,30 +11,13 @@ OTT를 소비하시는 분들이라면 한 번쯤은 있으실 것이라 예상�
 ‘뭘봐유’를 이용하는 이용자들은 자신이 이용하는 OTT의 게시판을 통해 서로에게 콘텐츠를 추천하거나 추천받는 등의 소통이 가능하다는 점까지 고려하면, 우리는 ‘뭘봐유’를 통해 OTT 소비자들이 그동안 낭비하였던 2시간을 되찾아갈 수 있을것이라 기대합니다.
 
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ## 👨‍👩‍👧‍👦 Member
-FE : 장한나, 이영우, 강성심
-
-BE : 김희진, 강신찬, 박금비
-
 
 | 장한나(FE) |  이영우 (FE) |  강성심(FE)  |  김희진(BE)  |  강신찬(BE) |  박금비(BE) |
 | :-: | :-: |  :-: |  :-: |  :-: |  :-: |
 | [jhn221](https://github.com/jhn221) | [2Zerozero](https://github.com/2Zerozero) | [kangseong-sim](https://github.com/kangseong-sim) | [Khjin06k](https://github.com/Khjin06k) | [superscman](https://github.com/superscman)| [keumbi](https://github.com/keumbi)
+
 ## :low_brightness: 기술 스텍
 ### Front
 
@@ -46,20 +31,14 @@ BE : 김희진, 강신찬, 박금비
 ### Back
 
 <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"/>
-
 <img src="https://img.shields.io/badge/springBoot-6DB33F?style=for-the-badge&logo=springBoot&logoColor=white"/>
-
 <img src="https://img.shields.io/badge/JAVA-F05032?style=for-the-badge&logo=JAVA&logoColor=white"/>
-
 <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"/>
-
 <img src="https://img.shields.io/badge/Apache-D22128?style=for-the-badge&logo=Apache&logoColor=white"/>
-
 <img src="https://img.shields.io/badge/SpringSecurity-6DB33F?style=for-the-badge&logo=SpringSecurity&logoColor=white"/>
 
 
 ### CI/CD
 
   <img src="https://img.shields.io/badge/Amazon S3-569A31?style=flat&logo=Amazon S3&logoColor=white"/>
-
   <img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=flat&logo=Amazon EC2&logoColor=white"/>
