@@ -3,13 +3,19 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useCustomQuery } from "../../../components/util/useCustomQuery";
-import {ContentList, ContentItem, ContentItemMe, ButtonDiv, InputDivs } from "./styled"
+import {
+  ContentList,
+  ContentItem,
+  ContentItemMe,
+  ButtonDiv,
+  InputDivs,
+} from "./styled";
 import { useCustomMutation } from "../../../components/util/useMutation";
 import Loading from "../../../components/Loading/Loading";
+import Error from "../../../components/Error/Error";
 
 const Wavve = () => {
   const [comment, setComment] = useState("");
-  const [commentOTT, setCommentOTT] = useState("");
   const memberId = localStorage.getItem("memberId");
 
   const { data, isLoading, error, refetch } = useCustomQuery(
@@ -17,6 +23,10 @@ const Wavve = () => {
     `boards=wavve`
   );
 
+  const { mutate } = useCustomMutation(`/boards/wavve`, `boards=wavve`, "POST");
+
+  if (isLoading) return <Loading/>;
+  if (error) return <Error/>;
 
   const timeForToday = (time) => {
     const today = new window.Date();
@@ -35,48 +45,17 @@ const Wavve = () => {
     return `${Math.floor(betweenTimeDay / 365)} years ago`;
   };
 
-  //todo : mutate
-  // const { mutate } = useCustomMutation(`/boards/wavve`, ['wavveBoardBody',comment ], "POST" );
-
-
-  // const submitcommit = async (e) => {
-  //   if (comment === "") return toast.error("한줄 평 내용을 입력해주세요");
-
-  //   const submitcommitValue = JSON.stringify({
-  //     wavveBoardBody: comment,
-  //   });
-
-  //   mutate(submitcommitValue);
-
-  // };
-
-  const submitcommit = async (e) => {
-    if (comment === "") return toast.error("한줄 평 내용을 입력해주세요");
-
-    const bodyJSON = JSON.stringify({
-      wavveBoardBody: comment,
-    });
-
-    await axios
-      .post(`http://whatu1.kro.kr:8080/boards/wavve`, bodyJSON, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: localStorage.getItem("accessToken"),
-        },
-      })
-      .then(() => {
-        refetch();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
+  const submitcommit = () => {
+    if (comment === "") return toast.error("내용을 입력하세요");
+    mutate({ wavveBoardBody: comment });
+    toast.success("내용이 입력되었습니다");
+    setComment("");
+    refetch();
   };
 
   const handleKeypress = (e) => {
     if (e.key === "Enter") {
       submitcommit();
-      setCommentOTT();
     }
   };
 
@@ -90,7 +69,7 @@ const Wavve = () => {
       })
       .then(() => {
         refetch();
-        window.location.reload();
+        toast.success("선택하신 내용이 삭제되었습니다");
       })
       .catch((err) => {
         console.log(err);
@@ -148,6 +127,7 @@ const Wavve = () => {
         <input
           className="recommendInput"
           autoComplete="off"
+          value={comment}
           name="recommend"
           type="text"
           // maxLength="35"
