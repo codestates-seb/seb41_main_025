@@ -48,8 +48,7 @@ PW : 41project!
 <img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white"/> <img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=for-the-badge&logo=Amazon EC2&logoColor=white"/>
 <br/>
 
-##구현영상
-
+## 구현영상
 
 ![게시판](https://user-images.githubusercontent.com/111329273/216264135-75e26422-425c-40bf-9c94-45e658917785.gif)
 
