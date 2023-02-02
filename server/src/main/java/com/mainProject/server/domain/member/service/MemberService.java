@@ -126,22 +126,6 @@ public class MemberService {
         }
     }
 
-/*
-    public String prevModify(String memberpw, MemberDto.PrevModify prevModify, RedirectAttributes rttr) {
-        String pw = prevModify.getPassword();
-
-        if(passwordEncoder.matches(pw, memberpw)) {
-            log.info("pw 재확인 완료..");
-            return "/members/"+getCurrentMember().getMemberId();
-        }
-        else {
-            rttr.addFlashAttribute("msg", "비밀번호를 다시 확인해 주세요.");
-            return "/members/prevModify";
-        }
-    }
-*/
-
-
     public Member findMember(long memberId) {
         return findVerifiedMember(memberId);
     }
@@ -153,10 +137,13 @@ public class MemberService {
     public void deleteMember(long memberId) {
         Member findMember = findVerifiedMember(memberId);
 
-        if((getCurrentMember().getMemberId() != findMember.getMemberId()) || (!getCurrentMember().getEmail().equals("admin@gmail.com")))
+        if (getCurrentMember().getEmail().equals("admin@gmail.com")) {
+            memberRepository.delete(findMember);
+        } else if (getCurrentMember().getMemberId() != findMember.getMemberId()) {
             throw new BusinessLogicException(ExceptionCode.MEMBER_NOT_ALLOW);
-
-        memberRepository.delete(findMember);
+        } else {
+            memberRepository.delete(findMember);
+        }
     }
 
     public Member findVerifiedMember(long memberId) {
