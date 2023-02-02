@@ -1,6 +1,5 @@
 
-<img src="https://github.com/codestates-seb/seb41_main_025/blob/dev_fe/client/public/assets/GreenLogo.png" alt="배너 이미지" width = "300">
-### 내가 널 볼 수 밖에 없는 10가지 이유
+<img src="https://github.com/codestates-seb/seb41_main_025/blob/dev_fe/client/public/assets/GreenLogo.png" alt="배너 이미지" width = "300"> ### 내가 널 볼 수 밖에 없는 10가지 이유
 
 시간이 지나면서 제작된 콘텐츠는 쌓여가고, 사람들이 소비하고 있는 OTT 사용량은 점차 늘어나고 있습니다. 여러분들은 어떤 OTT를 이용하고 계신가요? 티빙, 왓챠, 넷플릭스, 웨이브? 뭐든 좋습니다.
 하지만 재미가 있어야 재미있게 보는거겠죠? 1시간 재미있는 것을 보러 왔다 2시간 동안 고르다가 시간을 보내신 경험. 그리고,로그인을 진행해야만 해당 OTT 내에 어떤 콘텐츠가 있는지 확인할 수 있기 때문에 해당 OTT를 소비하는 지인에게 연락한 경험. 여러분들은 없으신가요?
