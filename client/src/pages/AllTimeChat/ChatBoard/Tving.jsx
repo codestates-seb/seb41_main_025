@@ -4,86 +4,93 @@ import { useState } from "react";
 import axios from "axios";
 import { useCustomQuery } from "../../../components/util/useCustomQuery";
 import Loading from "../../../components/Loading/Loading";
+import Error from "../../../components/Error/Error";
 import { useCustomMutation } from "../../../components/util/useMutation";
+import { toast } from "react-toastify";
 
 const Tving = () => {
-
   const [comment, setComment] = useState("");
   const memberId = localStorage.getItem("memberId");
-  const { data, isLoading, refetch } = useCustomQuery(
+  const { data, isLoading, error, refetch } = useCustomQuery(
     `/boards/tving?page=1&size=100`,
     `boards=tving`
-    );
+  );
 
-  let { mutate } = useCustomMutation('/boards/tving','boards=tving', "POST" , {
-    onMutate:(value) => {
-      console.log(value)
-    },
-    onSuccess:(data, variables, context) => {
-      console.log('onsuccess',data, variables, context)
-      refetch();
-    },
-    onError : (err) => {
-      console.log(err)
-    },
-  })
-
-    const submitcommit = () => {
-      mutate({tvingBoardBody: comment})
+  const { mutate } = useCustomMutation(
+    "/boards/tving",
+    "boards=tving",
+    "POST",
+    {
+      onMutate: (value) => {
+        console.log(value);
+      },
+      onSuccess: (data, variables, context) => {
+        console.log("onsuccess", data, variables, context);
+        refetch();
+      },
+      onError: (err) => {
+        console.log(err);
+      },
     }
-    
-    const timeForToday = (time) => {
-      const today = new window.Date();
-      const timeValue = new window.Date(time);
-      const betweenTimeMin = Math.floor(
-        (today.getTime() - timeValue.getTime()) / 1000 / 60
-        );
-      const betweenTimeHour = Math.floor(betweenTimeMin / 60);
-      const betweenTimeDay = Math.floor(betweenTimeMin / 60 / 24);
-        
-      if (betweenTimeMin < 1) return "방금 전";
-      if (betweenTimeMin < 60) return `${betweenTimeMin}분전`;
-      if (betweenTimeHour < 24) return `${betweenTimeHour} hours ago`;
-      if (betweenTimeDay < 365) return `${betweenTimeDay} days ago`;
-        
-      return `${Math.floor(betweenTimeDay / 365)} years ago`;
-    };
-      
-    const handleKeypress = (e) => {
-      if (e.key === "Enter") {
-        submitcommit();
-        e.target.reset()
-      }
-    };
-      
-  // const deleteBoard = useCustomMutation((tvingBoardId) => {
-  //   return axios.delete(`/boards/tving/${tvingBoardId}`)})
-  // const deleteBoard = (tvingBoardId) => {
-  //   mutate({url : `/boards/tving/${tvingBoardId}`, queryKey:`tvingBoardId=${tvingBoardId}`,mothod: delete})
-  // }
-    const deleteBoard = async (tvingBoardId) => {
-      await axios
-        .delete(`http://whatu1.kro.kr:8080/boards/tving/${tvingBoardId}`, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: localStorage.getItem("accessToken"),
-          },
+  );
+
+  if (isLoading) return <Loading/>;
+  if (error) return <Error/>;
+
+  const timeForToday = (time) => {
+    const today = new window.Date();
+    const timeValue = new window.Date(time);
+    const betweenTimeMin = Math.floor(
+      (today.getTime() - timeValue.getTime()) / 1000 / 60
+    );
+    const betweenTimeHour = Math.floor(betweenTimeMin / 60);
+    const betweenTimeDay = Math.floor(betweenTimeMin / 60 / 24);
+
+    if (betweenTimeMin < 1) return "방금 전";
+    if (betweenTimeMin < 60) return `${betweenTimeMin}분전`;
+    if (betweenTimeHour < 24) return `${betweenTimeHour} hours ago`;
+    if (betweenTimeDay < 365) return `${betweenTimeDay} days ago`;
+
+    return `${Math.floor(betweenTimeDay / 365)} years ago`;
+  };
+
+  const submitcommit = () => {
+    if (comment === "") return toast.error("내용을 입력하세요");
+    mutate({ tvingBoardBody: comment });
+    toast.success("내용이 입력되었습니다");
+    setComment("")
+    refetch();
+  };
+
+  const handleKeypress = (e) => {
+    if (e.key === "Enter") {
+      submitcommit();
+    }
+  };
+
+  const deleteBoard = async (tvingBoardId) => {
+    await axios
+      .delete(`http://whatu1.kro.kr:8080/boards/tving/${tvingBoardId}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("accessToken"),
+        },
       })
       .then(() => {
-          refetch();
+        toast.success("선택하신 내용이 삭제되었습니다");
+        refetch();
       })
       .catch((err) => {
         console.log(err);
       });
-    };
-                
+  };
+
   return (
     <>
       {isLoading ? <Loading /> : null}
       <S.ContentList>
         {data &&
           data.data.map((item) => {
-
             return Number(memberId) === Number(item.memberId) ? (
               <S.ContentItemMe key={item.tvingBoardId}>
                 <div className="userInfo">
@@ -103,12 +110,12 @@ const Tving = () => {
                     className="deleteChat"
                     onClick={() => {
                       deleteBoard(item.tvingBoardId);
-                      console.log(item.tvingBoardId)
+                      console.log(item.tvingBoardId);
                     }}
-                    >
+                  >
                     삭제
                   </button>
-                    </div>
+                </div>
               </S.ContentItemMe>
             ) : (
               <S.ContentItem key={item.tvingBoardId}>
@@ -130,6 +137,7 @@ const Tving = () => {
       <S.InputDivs>
         <input
           className="recommendInput"
+          value={comment}
           autoComplete="off"
           name="recommend"
           type="text"

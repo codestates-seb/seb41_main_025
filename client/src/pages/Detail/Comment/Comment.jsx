@@ -7,6 +7,7 @@ import CommentBox from "../CommentBox/CommentBox";
 import { useInView } from "react-intersection-observer";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import Loading from "../../../components/Loading/Loading"
+import {useCustomMutation} from "../../../components/util/useMutation"
 
 const fetchPostList = async (pageParam) => {
   const res = await axios.get(
@@ -47,6 +48,12 @@ const Comment = () => {
     }
   );
 
+  const { mutate, refetch } = useCustomMutation(
+    `/contents/${contentId}/comments`,
+    `contentId=${contentId}`,
+    "POST"
+  );
+
   useEffect(() => {
     if (inView && !isFetchingNextPage) fetchNextPage();
   }, [inView]);
@@ -55,31 +62,15 @@ const Comment = () => {
 
   if (status === "loading") return <Loading/>;
 
+
   //한 줄 평 입력
-  const submitcommit = async (e) => {
-    if (comment === "") return toast.info("한줄평 내용을 입력하세요");
+  const submitcommit = () => {
 
-    const bodyJSON = JSON.stringify({
-      commentBody: comment,
-    });
-
-    await axios
-      .post(
-        `http://whatu1.kro.kr:8080/contents/${contentId}/comments`,
-        bodyJSON,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: localStorage.getItem("accessToken"),
-          },
-        }
-      )
-      .then(() => {
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (comment === "") return toast.error("한줄평 내용을 입력하세요");
+    mutate({commentBody: comment})
+    toast.success("한줄평 내용이 입력되었습니다");
+    setComment("")
+    refetch();
   };
 
   //enter치면 submitcommit 함수 실행
@@ -100,6 +91,7 @@ const Comment = () => {
                 name="recommend"
                 type="text"
                 // maxLength="35"
+                value={comment}
                 placeholder="한줄평을 입력해주세요"
                 onChange={(e) => setComment(e.target.value)}
                 onKeyPress={handleKeypress}

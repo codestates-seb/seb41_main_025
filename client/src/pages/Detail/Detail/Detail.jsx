@@ -373,7 +373,7 @@ const Detail = () => {
           );
         })}
       </S.OttList>
-      <Comment />
+      <Comment refetch={refetch}/>
     </S.DetailContainer>
   );
 };
