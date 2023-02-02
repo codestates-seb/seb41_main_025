@@ -37,7 +37,7 @@ const CommentBox = ({ comment, refetch }) => {
         window.location.reload();
         setTimeout(() => {
           return toast.success("수정이 완료되었습니다");
-        }, 1000);
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -45,22 +45,6 @@ const CommentBox = ({ comment, refetch }) => {
   };
 
   //한줄 평 삭제
-  // const onCommentDeleteHandler = async (commentMemberId) => {
-  //   await axios({
-  //     method: "DELETE",
-  //     url: `http://whatu1.kro.kr:8080/comments/${commentMemberId}`,
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       AutHorization: localStorage.getItem("accessToken"),
-  //     },
-  //   })
-  //     .then(() => {
-  //       window.location.reload();
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
 
   const { mutate } = useCustomMutation(`/comments/${comment.commentId}`,`commentMemberId=${comment.commentId}`, "DELETE" )
 
@@ -69,6 +53,11 @@ const CommentBox = ({ comment, refetch }) => {
     toast.success("삭제가 완료되었습니다");
     refetch();
   }
+  const handleKeypress = (e) => {
+    if (e.key === "Enter") {
+      setEditComment();
+    }
+  };
 
   return (
     <S.CommentBoxDiv>
@@ -85,10 +74,11 @@ const CommentBox = ({ comment, refetch }) => {
           <input
           className="commentToggleInput"
             defaultValue={comment.commentBody}
+            onKeyPress={handleKeypress}
             onChange={(e) => {
               setEditComment(e.target.value);
             }}
-            onClick={() => oncommentEditHandler(comment.commentId)}
+            // onClick={() => oncommentEditHandler(comment.commentId)}
           ></input>
         ) : (
           comment.commentBody
@@ -100,15 +90,15 @@ const CommentBox = ({ comment, refetch }) => {
           {toggle ? (
             <S.Buttons>
               <S.InputButton
+                
                 onClick={() => oncommentEditHandler(comment.commentId)}
-              >
-                완료
+              > 완료
               </S.InputButton>
               <S.InputButton onClick={onEdit}>취소</S.InputButton>
             </S.Buttons>
           ) : (
             <S.Buttons>
-              <S.InputButton onClick={onEdit}>수정</S.InputButton>
+              <S.InputButton onClick={onEdit} >수정</S.InputButton>
               <S.InputButton
                 onClick={() => onCommentDeleteHandler(comment.commentId)}
               >
