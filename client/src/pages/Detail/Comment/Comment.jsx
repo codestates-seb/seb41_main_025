@@ -7,37 +7,25 @@ import CommentBox from "../CommentBox/CommentBox";
 import { useInView } from "react-intersection-observer";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import Loading from "../../../components/Loading/Loading"
-import {useCustomMutation} from "../../../components/util/useMutation"
+import { useCustomMutation } from "../../../components/util/useMutation";
 
 const fetchPostList = async (pageParam) => {
   const res = await axios.get(
     `http://whatu1.kro.kr:8080/comments?page=${pageParam}&size=10`
-  );
-
-  const posts = res.data.data;
-  const isLast = res.data.pageInfo.totalPages;
-  return { posts, nextPage: pageParam + 1, isLast };
-};
-
-const Comment = () => {
+    );
+    
+    const posts = res.data.data;
+    const isLast = res.data.pageInfo.totalPages;
+    return { posts, nextPage: pageParam + 1, isLast };
+  };
+  
+  const Comment = () => {
+  const [comment, setComment] = useState("");
   const { contentId } = useParams();
   //창 뷰트 들어오고 나갈 때  요소의 가시성 추적
   const [ref, inView] = useInView();
 
   //밑으로 내리면 true 반환
-  // const {
-  //   fetchNextPage, // 다음 페이지 데이터를 불러올 수 있는 함수
-  //   fetchPreviousPage, // 이전 페이지 데이터를 불러올 수 있는 함수
-  //   hasNextPage, // 다음 페이지가 존재하는지 구분할 수 있는 식별자
-  //   hasPreviousPage, // 이전 페이지가 존재하는지 구분할 수 있는 식별자
-  //   isFetchingNextPage, // 다음 페이지를 불러오고 있는 중인지 구분할 수 있는 식별자
-  //   isFetchingPreviousPage, // 이전 데이터를 불러오고 있는 중인지 구분할 수 있는 식별자
-  //   ...result // etc...
-  // } = useInfiniteQuery(queryKey, ({ pageParam = 1 }) => fetchPage(pageParam), {
-  //   ...options,
-  //   getNextPageParam: (lastPage, allPages) => lastPage.nextCursor,
-  //   getPreviousPageParam: (firstPage, allPages) => firstPage.prevCursor,
-  // })
   const { data, status, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
     //query KEY
     ['posts'],
@@ -58,7 +46,6 @@ const Comment = () => {
     if (inView && !isFetchingNextPage) fetchNextPage();
   }, [inView]);
 
-  const [comment, setComment] = useState("");
 
   if (status === "loading") return <Loading/>;
 

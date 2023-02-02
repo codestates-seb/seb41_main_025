@@ -57,9 +57,6 @@ const Main = () => {
   const WavveResult = Wavve.sort((a, b) => {
     return a.contentOttRank - b.contentOttRank;
   });
-  console.log("Wavve",Wavve)
-  console.log("WavveResult", WavveResult)
-
 
   return (
     <S.MainWarp>

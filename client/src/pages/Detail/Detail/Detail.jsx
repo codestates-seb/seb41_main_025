@@ -326,13 +326,10 @@ const Detail = () => {
               ) : (
                 <AiOutlineStar size="48" />
               )}
-              {/* <div> */}
               <div className="itemIconText" >
                 인생작품
                 <div style={{ fontSize: "12px" }}>BEST 3</div>
               </div>
-
-              {/* </div> */}
             </div>
           </S.DetailItem>
         </S.DetailContent>
